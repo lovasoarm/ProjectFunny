@@ -8,7 +8,7 @@ l'écran le plus simple : la liste des adhérents, formulaire classique, CRUD ba
 finit en trois jours, se sent productif, enchaîne sur l'écran de catalogue. Six semaines
 plus tard, il attaque enfin le vrai problème : une corde ne peut être prêtée que si elle n'a
 pas dépassé son nombre de chutes maximum (une règle de sécurité, pas une fonctionnalité
-secondaire), et cette donnée n'existe dans aucun système actuel — elle est notée à la main
+secondaire), et cette donnée n'existe dans aucun système actuel : elle est notée à la main
 sur des étiquettes physiques attachées aux cordes. Le projet entier dépend de la capacité à
 digitaliser cette donnée, et personne ne l'a vérifié avant de coder six semaines d'écrans
 annexes. Le bénévole a commencé par ce qui était facile, pas par ce qui était incertain.
@@ -46,7 +46,7 @@ Le risque le plus cher n'est presque jamais la tâche qui semble techniquement l
 difficile. Dans l'exemple du club d'escalade, l'écran de catalogue est techniquement plus
 complexe (recherche, filtres) que la règle de sécurité sur les cordes, qui tient en une
 condition. Mais la règle de sécurité est le risque le plus cher, parce que la donnée dont
-elle dépend n'existe peut-être pas dans un format exploitable — et si elle n'existe pas,
+elle dépend n'existe peut-être pas dans un format exploitable : et si elle n'existe pas,
 tout le projet change de forme (il faut peut-être numériser les étiquettes en premier, ou
 changer le processus terrain avant le logiciel).
 
@@ -66,7 +66,7 @@ Hypothèses du projet bibliothèque d'escalade :
 ```
 
 L'hypothèse 3 devient la première phase du plan, avant même d'écrire un écran. Pas en
-"faisant confiance" au bénévole qui gère le matériel — en allant vérifier physiquement,
+"faisant confiance" au bénévole qui gère le matériel : en allant vérifier physiquement,
 avec cinq cordes réelles, si l'information est exploitable telle quelle.
 
 ### Attaquer le risque, pas le documenter
@@ -79,7 +79,7 @@ confirme ou infirme l'hypothèse.
 Documenter le risque                    Attaquer le risque
 "On pense que les étiquettes            On prend 5 cordes réelles, on lit
 de cordes contiennent le nombre         les étiquettes, on note ce qu'on
-de chutes de façon fiable"              trouve vraiment — dans les deux
+de chutes de façon fiable"              trouve vraiment : dans les deux
                                          premiers jours du projet
 → zéro information nouvelle             → la vérité, avant d'avoir investi
                                            six semaines dessus
@@ -87,21 +87,21 @@ de chutes de façon fiable"              trouve vraiment — dans les deux
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Commencer par le facile (quick win) | Sensation de progrès rapide, motivant pour l'équipe | Bon pour le moral en tout début de projet très long | Uniquement en complément, jamais à la place de l'attaque du risque principal |
-| Risk-first (le plus cher, le plus incertain, en premier) | Démarrage plus lent, moins "montrable" en première semaine | Si le projet doit échouer ou pivoter, ça arrive tôt et pas cher | Systématiquement, dès qu'une hypothèse difficile à inverser existe |
+| Option                                                   | Coût                                                       | Bénéfice                                                        | Quand choisir                                                                |
+| -------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Commencer par le facile (quick win)                      | Sensation de progrès rapide, motivant pour l'équipe        | Bon pour le moral en tout début de projet très long             | Uniquement en complément, jamais à la place de l'attaque du risque principal |
+| Risk-first (le plus cher, le plus incertain, en premier) | Démarrage plus lent, moins "montrable" en première semaine | Si le projet doit échouer ou pivoter, ça arrive tôt et pas cher | Systématiquement, dès qu'une hypothèse difficile à inverser existe           |
 
 ## Pièges classiques
 
-- Confondre "difficile techniquement" et "risqué" — le symptôme est un plan qui attaque en
+- Confondre "difficile techniquement" et "risqué" : le symptôme est un plan qui attaque en
   premier la fonctionnalité la plus complexe à coder au lieu de l'hypothèse la plus fragile.
 - Repousser le risque parce qu'il fait peur ou parce que personne ne sait par où commencer
-  — le symptôme est un planning où le risque principal apparaît toujours "en phase 3 ou 4".
-- Analyser le risque sur papier au lieu de le tester empiriquement — le symptôme est un
+  : le symptôme est un planning où le risque principal apparaît toujours "en phase 3 ou 4".
+- Analyser le risque sur papier au lieu de le tester empiriquement : le symptôme est un
   document d'analyse de risque très complet et zéro donnée réelle collectée.
 - Traiter tous les risques comme égaux et les traiter dans l'ordre où ils viennent à
-  l'esprit — le symptôme est un plan sans priorité visible entre les risques.
+  l'esprit : le symptôme est un plan sans priorité visible entre les risques.
 
 ## Ce que tu dois savoir défendre
 
@@ -110,4 +110,4 @@ de chutes de façon fiable"              trouve vraiment — dans les deux
 2. Formule la question qui permet d'identifier le risque le plus cher d'un projet que tu
    connais, et applique-la à trois hypothèses concrètes de ce projet.
 3. Pourquoi "attaquer" un risque veut dire produire une preuve empirique et pas écrire un
-   document d'analyse — donne un exemple de preuve empirique rapide à produire.
+   document d'analyse : donne un exemple de preuve empirique rapide à produire.

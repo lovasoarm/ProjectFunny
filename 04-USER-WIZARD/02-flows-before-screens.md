@@ -1,6 +1,7 @@
 # Dessiner le parcours avant l'écran
 
 ## Le piège
+
 On te demande "un écran de prise de rendez-vous". Tu ouvres Figma ou ton éditeur, tu poses un
 formulaire : animal, praticien, créneau, bouton "Réserver". Ça a l'air complet. Trois semaines
 plus tard : que se passe-t-il si le créneau vient d'être pris par quelqu'un d'autre pendant que le
@@ -10,6 +11,7 @@ Personne n'a dessiné ces chemins, donc personne n'a codé de réponse : l'écra
 pire, ment ("Rendez-vous confirmé" alors qu'il ne l'est pas).
 
 ## Ce qui se passe vraiment
+
 Un écran est la représentation visuelle d'un sous-ensemble d'un parcours. Si tu dessines l'écran
 avant le parcours, tu dessines une photo d'un instant et tu oublies tout ce qui bouge autour :
 le temps qui passe, les autres utilisateurs, le réseau qui peut échouer à n'importe quel moment.
@@ -19,10 +21,11 @@ d'états avec, à chaque état, la question : qu'est-ce qui peut mal se passer i
 l'utilisateur peut faire ensuite ?
 
 ### La méthode
+
 1. Écris le chemin heureux en une phrase par étape, sans écran, juste des verbes.
 2. Pour chaque étape, liste au moins trois façons dont elle peut échouer ou être interrompue.
 3. Pour chaque échec, décide : on retente automatiquement, on prévient l'utilisateur, ou on bloque ?
-4. Seulement maintenant, dessine les écrans — ils découlent des états, pas l'inverse.
+4. Seulement maintenant, dessine les écrans : ils découlent des états, pas l'inverse.
 
 ## Exemple : réserver un créneau au cabinet vétérinaire
 
@@ -37,7 +40,7 @@ Chemin heureux, en verbes :
 6. Afficher le rendez-vous confirmé
 ```
 
-Maintenant, les embranchements d'erreur — c'est là que se joue la vraie conception :
+Maintenant, les embranchements d'erreur : c'est là que se joue la vraie conception :
 
 ```text
 1. Charger les créneaux
@@ -88,14 +91,15 @@ une erreur classique ("réessaie") crée les doublons du jeudi 17h50.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Dessiner tous les embranchements avant de coder | Temps de conception en amont, réunions | Écran robuste dès la première version, moins de tickets bugs | Fonctionnalité avec argent, santé, ou concurrence réelle en jeu |
-| Coder le happy path, corriger les bugs remontés | Rapide au départ | Rien en amont | Prototype jetable, preuve de concept interne |
-| Machine à états explicite (state machine) en code | Un peu de boilerplate | Impossible d'atteindre un état incohérent par accident | Formulaires critiques, flux multi-étapes, paiement, réservation |
-| `useState` booléens empilés (`isLoading`, `hasError`, `isSuccess`) | Rapide à écrire | États incohérents possibles (`isLoading && hasError` vrais en même temps) | Composant jetable à très faible enjeu |
+| Option                                                             | Coût                                   | Bénéfice                                                                  | Quand choisir                                                   |
+| ------------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Dessiner tous les embranchements avant de coder                    | Temps de conception en amont, réunions | Écran robuste dès la première version, moins de tickets bugs              | Fonctionnalité avec argent, santé, ou concurrence réelle en jeu |
+| Coder le happy path, corriger les bugs remontés                    | Rapide au départ                       | Rien en amont                                                             | Prototype jetable, preuve de concept interne                    |
+| Machine à états explicite (state machine) en code                  | Un peu de boilerplate                  | Impossible d'atteindre un état incohérent par accident                    | Formulaires critiques, flux multi-étapes, paiement, réservation |
+| `useState` booléens empilés (`isLoading`, `hasError`, `isSuccess`) | Rapide à écrire                        | États incohérents possibles (`isLoading && hasError` vrais en même temps) | Composant jetable à très faible enjeu                           |
 
 ## Pièges classiques
+
 - Le diagramme d'état existe dans la tête du développeur mais jamais sur un support partagé : la
   personne qui reprend le code six mois plus tard invente ses propres règles, incompatibles.
 - On modélise le succès et une seule erreur générique ("une erreur est survenue"), ce qui empêche
@@ -108,6 +112,7 @@ une erreur classique ("réessaie") crée les doublons du jeudi 17h50.
   en ligne au même moment).
 
 ## Ce que tu dois savoir défendre
+
 - Pourquoi dessiner le parcours avant l'écran change concrètement le code que tu écris ensuite ?
 - Qu'est-ce qu'un état "incertain" après un timeout, et pourquoi le traiter comme une erreur
   classique est dangereux ?

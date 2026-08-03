@@ -1,4 +1,4 @@
-# ANNEXE — et après ? Spécialisations et signaux de progression
+# ANNEXE : et après ? Spécialisations et signaux de progression
 
 ## Choisir une spécialisation sans se piéger
 
@@ -40,10 +40,10 @@ maison.
 
 Pas de bibliographie de cent titres. Quatre livres, dans cet ordre, un par trimestre :
 
-- *A Philosophy of Software Design* (Ousterhout) — pour la profondeur des modules.
-- *Designing Data-Intensive Applications* (Kleppmann) — pour les données et la fiabilité.
-- *Accelerate* (Forsgren, Humble, Kim) — pour comprendre ce qui fait vraiment livrer une équipe.
-- *Thinking in Systems* (Meadows) — pour sortir de l'informatique et voir les boucles.
+- _A Philosophy of Software Design_ (Ousterhout) : pour la profondeur des modules.
+- _Designing Data-Intensive Applications_ (Kleppmann) : pour les données et la fiabilité.
+- _Accelerate_ (Forsgren, Humble, Kim) : pour comprendre ce qui fait vraiment livrer une équipe.
+- _Thinking in Systems_ (Meadows) : pour sortir de l'informatique et voir les boucles.
 
 Lis-les en appliquant sur ton projet fil rouge. Un livre lu sans mise en pratique s'oublie en six
 semaines.

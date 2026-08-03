@@ -1,4 +1,4 @@
-# Challenge — Blinder une API existante
+# Challenge : Blinder une API existante
 
 ## Contexte
 
@@ -44,7 +44,7 @@ relevé), et un accès qui doit être restreint selon l'identité de l'appelant.
 ## Ce que ce challenge ne demande pas
 
 Il ne demande pas d'implémenter un rate limiting distribué en production ni un cache HTTP
-complet avec invalidation — ces mécanismes se démontrent en boss fight sur un cas de
+complet avec invalidation : ces mécanismes se démontrent en boss fight sur un cas de
 décision, pas nécessairement en code complet ici. Il demande de prouver, par des tests qui
 passent et échouent aux bons endroits, que tu maîtrises le socle : contrat écrit, idempotence
 réelle, autorisation vérifiée, pagination bornée. Une API "sécurisée" sur le papier sans test

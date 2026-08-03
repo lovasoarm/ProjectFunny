@@ -1,4 +1,4 @@
-# Grimoire — Niveau 10 : Team Quest
+# Grimoire : Niveau 10 : Team Quest
 
 ## La règle en une phrase
 

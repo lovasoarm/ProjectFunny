@@ -1,4 +1,4 @@
-# ProjectFunny — Le curriculum qui fabrique des cerveaux d'ingénieurs
+# ProjectFunny : Le curriculum qui fabrique des cerveaux d'ingénieurs
 
 Ce n'est pas un cours. C'est un parcours d'entraînement.
 

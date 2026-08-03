@@ -15,7 +15,7 @@ et de méthode.
 
 ## Ce qui se passe vraiment
 
-La compétence d'un développeur n'est pas linéaire — elle a deux composantes multiplicatives,
+La compétence d'un développeur n'est pas linéaire : elle a deux composantes multiplicatives,
 pas additives :
 
 ```text
@@ -26,7 +26,7 @@ IA utilisée sans vérification), le produit s'effondre même avec une excellent
 compréhension du problème.
 ```
 
-Une bonne compréhension du domaine ne compense pas une mauvaise méthode d'outillage — elle
+Une bonne compréhension du domaine ne compense pas une mauvaise méthode d'outillage : elle
 la rend seulement moins visible sur les cas faciles. Sur les cas difficiles (bug
 intermittent, régression de performance discrète, code legacy mal documenté), l'écart entre
 un développeur outillé et un développeur qui improvise devient un facteur de 5 à 10 en temps
@@ -34,17 +34,17 @@ passé, pas de 20%.
 
 Ce niveau isole trois familles d'outils qui, mal maîtrisées, plafonnent silencieusement ta
 vitesse et ta fiabilité sans que tu t'en rendes compte, parce que tu compares toujours ta
-vitesse d'aujourd'hui à ta vitesse d'hier — jamais à ce qu'elle pourrait être :
+vitesse d'aujourd'hui à ta vitesse d'hier : jamais à ce qu'elle pourrait être :
 
 1. **L'éditeur et le shell** : les outils que tu utilises littéralement chaque minute. Une
    friction de deux secondes répétée cinq cents fois par jour coûte plus cher qu'une
-   friction de trente minutes une fois par mois — et elle est invisible parce qu'elle ne
+   friction de trente minutes une fois par mois : et elle est invisible parce qu'elle ne
    fait jamais assez mal pour déclencher une remise en question.
 2. **La méthode de debug** : sans méthode, chaque bug est une aventure nouvelle où tu
    redécouvres les mêmes principes par tâtonnement. Avec une méthode, chaque bug devient une
    instance d'un problème déjà résolu en général.
 3. **L'IA générative** : le plus récent et le plus dangereux des trois, parce qu'il ressemble
-   à un raccourci gratuit alors qu'il déplace le coût ailleurs — de la production du code
+   à un raccourci gratuit alors qu'il déplace le coût ailleurs : de la production du code
    vers la vérification du code, une compétence que peu de développeurs ont explicitement
    entraînée.
 
@@ -71,16 +71,16 @@ pratique produit un vrai gain de vitesse et de fiabilité mesurable.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Ignorer l'outillage, se concentrer sur "le code qui compte" | Zéro coût d'apprentissage immédiat | Illusion de productivité court terme | Jamais volontairement — seulement sous deadline extrême ponctuelle |
-| Investir une à deux semaines dans l'outillage maintenant | Temps non livré à court terme | Gain de vitesse composé sur toute la carrière | Dès que tu as un projet réel derrière toi pour ancrer la pratique |
-| Apprendre l'outillage "sur le tas", au fil des frustrations | Apprentissage lent, lacunes aléatoires | Pas de temps dédié à bloquer | Si aucune fenêtre dédiée n'est possible, en dernier recours |
+| Option                                                      | Coût                                   | Bénéfice                                      | Quand choisir                                                      |
+| ----------------------------------------------------------- | -------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------ |
+| Ignorer l'outillage, se concentrer sur "le code qui compte" | Zéro coût d'apprentissage immédiat     | Illusion de productivité court terme          | Jamais volontairement : seulement sous deadline extrême ponctuelle |
+| Investir une à deux semaines dans l'outillage maintenant    | Temps non livré à court terme          | Gain de vitesse composé sur toute la carrière | Dès que tu as un projet réel derrière toi pour ancrer la pratique  |
+| Apprendre l'outillage "sur le tas", au fil des frustrations | Apprentissage lent, lacunes aléatoires | Pas de temps dédié à bloquer                  | Si aucune fenêtre dédiée n'est possible, en dernier recours        |
 
 ## Pièges classiques
 
 - **Confondre vitesse de frappe et vitesse de livraison.** Symptôme : tu tapes très vite
-  mais tu passes autant de temps à chercher où est le problème qu'avant — la frappe n'était
+  mais tu passes autant de temps à chercher où est le problème qu'avant : la frappe n'était
   jamais le goulot.
 - **Optimiser l'éditeur sans jamais toucher à la méthode de debug.** Symptôme : ton setup est
   impressionnant en démo, mais un bug intermittent te fait toujours perdre une demi-journée.

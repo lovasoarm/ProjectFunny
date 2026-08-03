@@ -1,4 +1,4 @@
-# ANNEXE — pérennité : pourquoi ce curriculum ne périme pas
+# ANNEXE : pérennité : pourquoi ce curriculum ne périme pas
 
 Les outils changent tous les trois ans. Les modes d'échec des projets, non. Ce curriculum est
 construit sur les seconds.

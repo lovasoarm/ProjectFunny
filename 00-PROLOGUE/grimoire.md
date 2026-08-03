@@ -1,14 +1,14 @@
-# Grimoire — Niveau 00
+# Grimoire : Niveau 00
 
 ## Les 7 règles du joueur (rappel dense)
 
-1. Livrer — un artefact réel bat une conception théorique.
-2. Mesurer — écris le critère d'échec avant de commencer.
-3. Écrire — une décision non écrite n'existe pas dans six mois.
-4. Défendre — si tu ne peux pas la défendre à l'oral, ce n'est pas une décision.
-5. Jeter — décide du signal d'abandon avant de lancer le pari, pas après.
-6. Documenter la décision — inclus toujours les options rejetées et pourquoi.
-7. Revenir — note la condition qui rendrait la décision obsolète.
+1. Livrer : un artefact réel bat une conception théorique.
+2. Mesurer : écris le critère d'échec avant de commencer.
+3. Écrire : une décision non écrite n'existe pas dans six mois.
+4. Défendre : si tu ne peux pas la défendre à l'oral, ce n'est pas une décision.
+5. Jeter : décide du signal d'abandon avant de lancer le pari, pas après.
+6. Documenter la décision : inclus toujours les options rejetées et pourquoi.
+7. Revenir : note la condition qui rendrait la décision obsolète.
 
 ## Différence exécution / modèle mental
 

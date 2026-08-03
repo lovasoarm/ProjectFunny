@@ -1,4 +1,4 @@
-# Niveau 08 — Roadmap Run
+# Niveau 08 : Roadmap Run
 
 ## Ce que c'est
 
@@ -6,7 +6,7 @@ Tu sais découper un problème (Niveau 02), construire un MVP (Niveau 03), poser
 architecture (Niveau 06) et exposer une API (Niveau 07). Ce niveau répond à une question
 différente : comment on transforme tout ça en un plan qui tient la route sur des semaines,
 avec une équipe, un budget, et des inconnues qui ne se révèlent qu'en avançant. Une roadmap
-n'est pas une liste de tâches dans l'ordre où elles te viennent à l'esprit — c'est un pari
+n'est pas une liste de tâches dans l'ordre où elles te viennent à l'esprit : c'est un pari
 structuré sur ce qui va casser en premier.
 
 Durée estimée : 5 à 7 heures de lecture active, plus le temps du challenge (une roadmap
@@ -23,7 +23,7 @@ bloquant.
   au lieu de le repousser parce qu'il fait peur.
 - Tu sais distinguer un jalon réel (vérifiable, daté, binaire) d'un jalon décoratif ("phase 2
   terminée à 80 %").
-- Tu sais repérer les signaux de dérive avant que le retard soit officiel — et tu sais quoi
+- Tu sais repérer les signaux de dérive avant que le retard soit officiel : et tu sais quoi
   faire de ces signaux.
 - Tu sais répondre en réunion à "où on en est vraiment ?" sans mentir ni paniquer.
 

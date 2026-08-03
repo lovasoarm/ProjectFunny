@@ -10,7 +10,7 @@ livraison de produits périmés et appelle en furie. Dans l'heure qui suit, troi
 tournent mal en même temps : personne ne sait qui a le droit de décider de couper le
 déploiement, trois personnes différentes touchent à la base de données en parallèle sans se
 coordonner en pensant "réparer plus vite", et le lundi, la réunion de debrief se transforme
-en recherche du coupable — la développeuse qui a fait le déploiement du vendredi soir quitte
+en recherche du coupable : la développeuse qui a fait le déploiement du vendredi soir quitte
 la réunion en larmes, jure de ne plus jamais déployer un vendredi, et l'équipe n'a toujours
 aucune mesure concrète pour empêcher que ça se reproduise un mardi.
 
@@ -36,12 +36,12 @@ Après l'incident : objectif = comprendre et changer le système, sans urgence d
 ### Pendant l'incident : la coordination compte plus que l'expertise individuelle
 
 Le rôle d'incident commander n'exige pas d'être la personne la plus compétente
-techniquement sur le sujet en cause — il exige de centraliser les décisions pour éviter que
+techniquement sur le sujet en cause : il exige de centraliser les décisions pour éviter que
 plusieurs personnes bien intentionnées se marchent dessus.
 
 ```text
 Sans coordination                       Avec incident commander désigné
-                                         
+
 Dev A : je restaure la base              Dev A, B, C : diagnostiquent, remontent
 Dev B : je redéploie l'ancienne version  les options à l'incident commander
 Dev C : je coupe le service               │
@@ -55,7 +55,7 @@ Dev C : je coupe le service               │
 Priorité pendant l'incident : réduire l'impact d'abord (rollback, désactivation d'une
 fonctionnalité, bascule vers un mode dégradé connu), comprendre la cause racine ensuite. Un
 rollback qui répare le symptôme sans qu'on comprenne encore la cause exacte est un succès
-d'incident, pas un échec d'analyse — les deux temps sont différents.
+d'incident, pas un échec d'analyse : les deux temps sont différents.
 
 ```typescript
 // Exemple de garde-fou simple qui limite l'impact pendant qu'on investigue :
@@ -77,7 +77,7 @@ de bonne foi, cause autant de dégâts".
 
 ```text
 Recherche du coupable                    Recherche de la cause structurelle
-                                          
+
 "Qui a déployé vendredi soir ?"          "Pourquoi le déploiement de vendredi
   → réponse : une personne, qui             soir n'a-t-il déclenché aucune alerte
     culpabilise, l'équipe apprend           pendant six heures ?"
@@ -88,7 +88,7 @@ Recherche du coupable                    Recherche de la cause structurelle
                                              sur ce taux, avec seuil et propriétaire
 ```
 
-Un postmortem sans blâme n'est pas un exercice de gentillesse — c'est un mécanisme
+Un postmortem sans blâme n'est pas un exercice de gentillesse : c'est un mécanisme
 d'efficacité : une équipe qui craint d'être blâmée cache des informations (elle minimise ce
 qu'elle a touché, elle tarde à signaler un problème par peur), ce qui ralentit directement
 la résolution du prochain incident.
@@ -97,10 +97,10 @@ la résolution du prochain incident.
 
 ```text
 1. Chronologie factuelle (horodatée, basée sur logs et métriques réels)
-   14h01 — déploiement du service température, version 2.4.1
-   14h03 — le taux de "conformité" passe de ~85% à 100% (aucune alerte configurée)
-   20h12 — un client signale une livraison non conforme reçue
-   20h45 — rollback vers la version 2.4.0, conformité réelle rétablie
+   14h01 : déploiement du service température, version 2.4.1
+   14h03 : le taux de "conformité" passe de ~85% à 100% (aucune alerte configurée)
+   20h12 : un client signale une livraison non conforme reçue
+   20h45 : rollback vers la version 2.4.0, conformité réelle rétablie
 
 2. Cause immédiate ET cause structurelle
    Immédiate : un changement de format de champ (`temp_celsius` → `temperature`) a fait
@@ -119,31 +119,31 @@ la résolution du prochain incident.
      d'erreur explicite, jamais comme une valeur par défaut favorable.
 ```
 
-Un postmortem sans action assignée et datée n'a produit aucun changement — il a juste
+Un postmortem sans action assignée et datée n'a produit aucun changement : il a juste
 documenté un problème qui se reproduira.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Un incident commander unique désigné | Nécessite une astreinte ou un rôle tournant | Coordination claire, pas d'actions contradictoires | Systématique dès qu'un incident implique plus d'une personne |
-| Réparer d'abord, comprendre la cause exacte ensuite | Peut laisser une cause mal comprise temporairement | Réduit l'impact utilisateur au plus vite | Presque toujours pendant un incident en cours |
-| Postmortem sans blâme, orienté cause structurelle | Demande une discipline d'animation (recadrer si ça dérive vers l'accusation) | Actions correctives réelles, équipe qui reste honnête sur ses erreurs | Systématique après tout incident notable |
-| Chercher un responsable individuel | Rapide, satisfait un besoin émotionnel immédiat | Aucune protection contre la récidive, équipe qui cache ses erreurs ensuite | Jamais comme pratique d'équipe |
+| Option                                              | Coût                                                                         | Bénéfice                                                                   | Quand choisir                                                |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Un incident commander unique désigné                | Nécessite une astreinte ou un rôle tournant                                  | Coordination claire, pas d'actions contradictoires                         | Systématique dès qu'un incident implique plus d'une personne |
+| Réparer d'abord, comprendre la cause exacte ensuite | Peut laisser une cause mal comprise temporairement                           | Réduit l'impact utilisateur au plus vite                                   | Presque toujours pendant un incident en cours                |
+| Postmortem sans blâme, orienté cause structurelle   | Demande une discipline d'animation (recadrer si ça dérive vers l'accusation) | Actions correctives réelles, équipe qui reste honnête sur ses erreurs      | Systématique après tout incident notable                     |
+| Chercher un responsable individuel                  | Rapide, satisfait un besoin émotionnel immédiat                              | Aucune protection contre la récidive, équipe qui cache ses erreurs ensuite | Jamais comme pratique d'équipe                               |
 
 ## Pièges classiques
 
-- Mélanger le temps de réparation et le temps d'analyse — le symptôme est une équipe qui
+- Mélanger le temps de réparation et le temps d'analyse : le symptôme est une équipe qui
   débat de la cause exacte pendant que l'incident continue d'impacter des utilisateurs.
 - Plusieurs personnes qui touchent au système en parallèle sans coordination pendant un
-  incident — le symptôme est un état final imprévisible, parfois pire que le problème
+  incident : le symptôme est un état final imprévisible, parfois pire que le problème
   initial.
-- Un postmortem qui se termine sans aucune action assignée et datée — le symptôme est le
+- Un postmortem qui se termine sans aucune action assignée et datée : le symptôme est le
   même incident, presque identique, six mois plus tard.
-- Une culture qui blâme la personne à l'origine du déclenchement — le symptôme est que les
+- Une culture qui blâme la personne à l'origine du déclenchement : le symptôme est que les
   incidents suivants sont signalés plus tard, ou minimisés, par peur des conséquences.
 - Confondre "cause immédiate" (le bug technique précis) et "cause structurelle" (pourquoi le
-  système a laissé ce bug produire autant de dégâts sans alerte) — le symptôme est un
+  système a laissé ce bug produire autant de dégâts sans alerte) : le symptôme est un
   correctif qui empêche exactement ce bug de revenir, mais aucun autre.
 
 ## Ce que tu dois savoir défendre

@@ -17,7 +17,7 @@ besoin par les réactions du client face à quelque chose de concret.
 - **Tu livres "tout ce que tu as compris" sans structure de livrables**, ce qui rend
   impossible pour le client de savoir ce qui est fini, en cours, ou pas commencé.
 - **Tu ne t'évalues jamais toi-même avant la revue**, donc tu découvres tes angles morts en
-  même temps que ton client — au pire moment possible.
+  même temps que ton client : au pire moment possible.
 - **Tu confonds "j'ai tout fait" avec "j'ai livré de la valeur vérifiable"**, deux choses très
   différentes quand personne d'autre que toi ne peut juger si le travail est bon.
 

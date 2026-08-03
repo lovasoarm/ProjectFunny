@@ -1,6 +1,7 @@
 # Formulaires qui ne mentent pas
 
 ## Le piège
+
 Le formulaire de nouveau dossier animal valide côté client que le poids est un nombre positif.
 Propre, message d'erreur immédiat, tout va bien. Sauf que l'API accepte aussi les demandes directes
 (import en masse, script de migration, futur client mobile) et là, rien ne vérifie que le poids est
@@ -37,7 +38,7 @@ validation client, échoue côté serveur, et l'utilisateur reçoit une erreur q
 puisque son formulaire "était valide".
 
 ```typescript
-// schema partagé — un seul fichier de vérité, importé des deux côtés si le stack le permet
+// schema partagé : un seul fichier de vérité, importé des deux côtés si le stack le permet
 // (ex. Zod, exécutable côté client ET côté serveur en TypeScript full-stack)
 import { z } from "zod";
 
@@ -58,7 +59,7 @@ Côté client, ce schéma alimente les messages d'erreur en direct. Côté serve
 schéma rejette toute requête qui l'aurait contourné :
 
 ```typescript
-// route serveur — la seule porte d'entrée qui compte réellement
+// route serveur : la seule porte d'entrée qui compte réellement
 app.post("/animals", async (req, res) => {
   const parsed = AnimalSchema.safeParse(req.body);
   if (!parsed.success) {
@@ -90,7 +91,7 @@ récupération. "Erreur 500" n'est jamais un message utilisateur, seulement un m
 
 Le double submit n'est pas un bug de "clic trop rapide". C'est un problème structurel : envoyer
 deux fois une commande de création doit produire un seul résultat, pas deux. La solution n'est pas
-de désactiver le bouton (ça aide, mais ne suffit pas — un retry réseau côté client, un double
+de désactiver le bouton (ça aide, mais ne suffit pas : un retry réseau côté client, un double
 appel depuis deux onglets, ou un proxy qui rejoue la requête contournent un simple `disabled`).
 
 La vraie solution est une **clé d'idempotence** : un identifiant unique généré côté client pour
@@ -104,7 +105,10 @@ function useIdempotencyKey() {
   return keyRef.current;
 }
 
-async function submitAppointment(payload: AppointmentInput, idempotencyKey: string) {
+async function submitAppointment(
+  payload: AppointmentInput,
+  idempotencyKey: string,
+) {
   const response = await fetch("/api/appointments", {
     method: "POST",
     headers: {
@@ -170,24 +174,26 @@ soumission recevra la même réponse.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Schéma de validation partagé client/serveur | Discipline à maintenir un seul fichier de vérité | Élimine les contradictions de règles | Stack full-stack TypeScript, formulaire à enjeu réel |
-| Validation dupliquée mais indépendante | Simple à démarrer | Dérive garantie dans le temps | Prototype très court terme uniquement |
-| Bouton désactivé pendant l'envoi | Trivial à coder | Réduit le double-clic humain | Toujours, mais jamais suffisant seul |
-| Clé d'idempotence + table dédiée | Migration DB, un peu de code serveur | Garantit un seul effet, quelle que soit la source de duplication | Toute opération de création/paiement/réservation qui coûte cher si dupliquée |
+| Option                                      | Coût                                             | Bénéfice                                                         | Quand choisir                                                                |
+| ------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Schéma de validation partagé client/serveur | Discipline à maintenir un seul fichier de vérité | Élimine les contradictions de règles                             | Stack full-stack TypeScript, formulaire à enjeu réel                         |
+| Validation dupliquée mais indépendante      | Simple à démarrer                                | Dérive garantie dans le temps                                    | Prototype très court terme uniquement                                        |
+| Bouton désactivé pendant l'envoi            | Trivial à coder                                  | Réduit le double-clic humain                                     | Toujours, mais jamais suffisant seul                                         |
+| Clé d'idempotence + table dédiée            | Migration DB, un peu de code serveur             | Garantit un seul effet, quelle que soit la source de duplication | Toute opération de création/paiement/réservation qui coûte cher si dupliquée |
 
 ## Pièges classiques
+
 - La règle de validation change côté client sans que quelqu'un pense à la reporter côté serveur (ou
   l'inverse) : les deux divergent en quelques sprints si elles ne sont pas dans le même fichier.
 - Le message d'erreur générique "Une erreur est survenue" est affiché même quand le serveur a
-  renvoyé un détail exploitable — le détail est jeté dans le `catch` sans être lu.
+  renvoyé un détail exploitable : le détail est jeté dans le `catch` sans être lu.
 - La clé d'idempotence est générée à chaque clic sur "envoyer" au lieu d'une fois par ouverture de
   formulaire : elle ne protège alors plus contre rien.
 - Le bouton est désactivé visuellement (`opacity: 0.5`) mais reste cliquable au clavier ou via un
   script, parce que l'attribut `disabled` n'a pas été posé sur l'élément réel.
 
 ## Ce que tu dois savoir défendre
+
 - Pourquoi la validation côté client seule n'est jamais une garantie, même si elle est bien écrite ?
 - Explique avec un exemple concret pourquoi désactiver le bouton ne suffit pas à empêcher un
   doublon de création.

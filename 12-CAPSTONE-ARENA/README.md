@@ -1,9 +1,9 @@
-# Niveau 12 — Capstone Arena
+# Niveau 12 : Capstone Arena
 
 ## Ce que c'est
 
 Ce niveau ne t'apprend rien de nouveau techniquement. Il te met en situation de livrer un
-projet complet, seul, face à un brief client réaliste et volontairement ambigu — comme celui
+projet complet, seul, face à un brief client réaliste et volontairement ambigu : comme celui
 que tu recevras vraiment en mission ou en poste. Aucun niveau précédent ne t'a préparé un
 cahier des charges propre : ici non plus. Le capstone teste ta capacité à mobiliser tout ce
 que les niveaux 00 à 11 t'ont donné, dans le désordre et sous incertitude, sans qu'on te dise
@@ -24,7 +24,7 @@ ensemble sous pression réelle.
   ton mieux".
 - Tu sais t'auto-évaluer avec une grille chiffrée avant qu'un tiers ne le fasse à ta place.
 - Tu as un projet complet, démontrable, que tu peux présenter à un recruteur ou un client
-  sans rougir de ses angles morts — parce que tu les connais et tu peux les nommer.
+  sans rougir de ses angles morts : parce que tu les connais et tu peux les nommer.
 
 ## Structure du niveau
 
@@ -42,7 +42,7 @@ ensemble sous pression réelle.
 ## Comment lire ce niveau
 
 Lis `02-briefing.md` une seule fois, en entier, sans sauter aux livrables. Note tes premières
-questions avant de lire `03-deliverables.md` — c'est un exercice volontaire : la plupart des
+questions avant de lire `03-deliverables.md` : c'est un exercice volontaire : la plupart des
 briefs réels ne répondent pas à tes questions avant que tu ne livres quelque chose. Utilise
 `04-evaluation-grid.md` pour t'auto-évaluer avant toute revue externe.
 

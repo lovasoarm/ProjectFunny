@@ -1,11 +1,11 @@
-# Niveau 01 — Mindset
+# Niveau 01 : Mindset
 
 ## Ce que c'est
 
 Ce niveau construit les quatre outils de pensée que tout le reste du curriculum réutilise :
 voir un système comme entrées/sorties/état, évaluer le coût réel d'une décision, raisonner
 correctement sous incertitude, et écrire pour clarifier sa pensée avant de coder. Aucune
-technologie n'est enseignée ici — c'est le socle sur lequel toute technologie s'appuiera.
+technologie n'est enseignée ici : c'est le socle sur lequel toute technologie s'appuiera.
 
 Durée estimée : 8 à 12 heures, challenge et boss-fight inclus.
 

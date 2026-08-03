@@ -44,7 +44,7 @@ Couplage de message     → A et B communiquent par événements/messages, sans 
 ```
 
 Le couplage de contenu de l'exemple vétérinaire (`distanceKm` lu directement) est le pire
-niveau du gradient. La correction n'est pas "il ne faut jamais coupler" — un couplage de
+niveau du gradient. La correction n'est pas "il ne faut jamais coupler" : un couplage de
 donnée entre `Tournee` et `Facturation` est nécessaire et sain, la facturation a besoin de
 connaître la distance. La correction consiste à **choisir consciemment le niveau de couplage
 minimal suffisant**, et à le rendre explicite via une interface stable :
@@ -55,7 +55,7 @@ const prix = tournee.itineraire.segments[0].distanceCalculee * tarifKm;
 
 // Bon : couplage de donnée, via un contrat explicite et stable
 interface TourneeCompletee {
-  distanceTotaleKm: number;   // valeur finale garantie, peu importe comment elle est calculée
+  distanceTotaleKm: number; // valeur finale garantie, peu importe comment elle est calculée
   dureeMinutes: number;
 }
 
@@ -65,8 +65,8 @@ function calculerFacture(tournee: TourneeCompletee, tarifKm: number): number {
 ```
 
 Le point-clé : `TourneeCompletee` est un contrat. Tant que ce contrat ne change pas,
-`Tournee` peut changer son mode de calcul interne — passer du vol d'oiseau à une API de
-routage — sans que `Facturation` ne le sache ni n'ait besoin d'être modifié.
+`Tournee` peut changer son mode de calcul interne : passer du vol d'oiseau à une API de
+routage : sans que `Facturation` ne le sache ni n'ait besoin d'être modifié.
 
 ### Cohésion : l'autre moitié de l'équation
 
@@ -88,7 +88,7 @@ routes/appointments.js (faible cohésion, 640 lignes)
 
 La règle de Robert C. Martin (principe de responsabilité unique, souvent mal résumé en "une
 classe = une fonction") se formule mieux ainsi : **un module ne devrait avoir qu'une seule
-raison de changer**. Ce n'est pas une question de taille — un module de 300 lignes qui gère
+raison de changer**. Ce n'est pas une question de taille : un module de 300 lignes qui gère
 uniquement la disponibilité des créneaux a une cohésion parfaite. Un module de 30 lignes qui
 mélange authentification et calcul de TVA a une cohésion nulle.
 
@@ -101,7 +101,7 @@ que chacune de ses responsabilités crée sa propre dépendance vers l'extérieu
 Un module est une unité qui expose une frontière : une interface publique, et un intérieur
 caché. La frontière n'a de valeur que si elle est respectée dans un seul sens. C'est le
 concept de **dépendance dirigée** : dans un système sain, les dépendances forment un graphe
-acyclique — tu peux dessiner une flèche de "qui dépend de qui" et jamais revenir à ton point
+acyclique : tu peux dessiner une flèche de "qui dépend de qui" et jamais revenir à ton point
 de départ en suivant les flèches.
 
 ```text
@@ -125,7 +125,7 @@ Système malade (cycle) :
 
 Un cycle de dépendance est presque toujours un signal d'alarme, pas un détail. Il signifie
 qu'aucune des deux parties ne peut être comprise, testée, ou changée indépendamment de
-l'autre — elles forment de facto un seul gros module, mais réparties dans deux dossiers qui
+l'autre : elles forment de facto un seul gros module, mais réparties dans deux dossiers qui
 prétendent être séparés.
 
 ### Comment détecter un mauvais découpage sans outil
@@ -143,12 +143,12 @@ Trois questions à te poser sur un module que tu regardes pour la première fois
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Découpage fin (beaucoup de petits modules à faible couplage) | Plus de fichiers, plus d'indirection à suivre en lecture, courbe d'entrée plus raide | Changements localisés, testabilité, parallélisation entre développeurs | Projet destiné à vivre plusieurs mois/années, équipe > 1 personne |
-| Découpage grossier (peu de gros modules) | Rayon d'explosion large à chaque changement, conflits de merge fréquents | Rapidité de mise en place initiale, moins de sauts de fichier en lecture | Prototype jetable, script d'un jour, exploration technique |
-| Couplage de donnée explicite (interfaces/contrats) | Écrire et maintenir le contrat, parfois redondant en apparence | Modules remplaçables indépendamment, tests isolés faciles | Dès qu'un module a plus d'un consommateur ou plus d'une implémentation possible |
-| Couplage de contenu (accès direct à l'interne) | Fragilité immédiate au moindre changement interne, bugs silencieux | Vitesse d'écriture initiale | Jamais en dehors d'un script jetable de moins d'une journée |
+| Option                                                       | Coût                                                                                 | Bénéfice                                                                 | Quand choisir                                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Découpage fin (beaucoup de petits modules à faible couplage) | Plus de fichiers, plus d'indirection à suivre en lecture, courbe d'entrée plus raide | Changements localisés, testabilité, parallélisation entre développeurs   | Projet destiné à vivre plusieurs mois/années, équipe > 1 personne               |
+| Découpage grossier (peu de gros modules)                     | Rayon d'explosion large à chaque changement, conflits de merge fréquents             | Rapidité de mise en place initiale, moins de sauts de fichier en lecture | Prototype jetable, script d'un jour, exploration technique                      |
+| Couplage de donnée explicite (interfaces/contrats)           | Écrire et maintenir le contrat, parfois redondant en apparence                       | Modules remplaçables indépendamment, tests isolés faciles                | Dès qu'un module a plus d'un consommateur ou plus d'une implémentation possible |
+| Couplage de contenu (accès direct à l'interne)               | Fragilité immédiate au moindre changement interne, bugs silencieux                   | Vitesse d'écriture initiale                                              | Jamais en dehors d'un script jetable de moins d'une journée                     |
 
 ## Pièges classiques
 
@@ -157,7 +157,7 @@ Trois questions à te poser sur un module que tu regardes pour la première fois
   déguisée en organisation.
 - **L'interface qui fuit l'implémentation.** Symptôme : une interface `PaymentGateway` qui
   expose une méthode `getStripeCustomerId()`. Le nom de l'implémentation concrète (Stripe) a
-  fui dans le contrat censé l'abstraire — changer de fournisseur de paiement casse tout de
+  fui dans le contrat censé l'abstraire : changer de fournisseur de paiement casse tout de
   toute façon.
 - **Le cycle de dépendance masqué par les imports dynamiques.** Symptôme : le projet compile
   et tourne, mais un outil d'analyse de dépendances (`madge`, `dependency-cruiser`) révèle des

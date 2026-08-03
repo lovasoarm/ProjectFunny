@@ -1,4 +1,4 @@
-# Grimoire — Tool Cave
+# Grimoire : Tool Cave
 
 ## Méthode de debug, en une page
 
@@ -22,23 +22,23 @@
 - [ ] J'ai testé sur au moins un cas dont je connais la réponse correcte à la main, avant
       d'écrire le code.
 
-## Prompt de décision — patron réutilisable
+## Prompt de décision : patron réutilisable
 
 ```text
 "Je dois [tâche]. Liste-moi les approches possibles, avec pour chacune :
 - l'hypothèse métier qu'elle suppose implicitement,
 - un cas où elle serait fausse ou injuste,
 - son coût de mise en œuvre.
-Ne génère pas encore de code — j'ai besoin de choisir en connaissance de cause d'abord."
+Ne génère pas encore de code : j'ai besoin de choisir en connaissance de cause d'abord."
 ```
 
-## Signaux d'alarme — code généré à relire en priorité absolue
+## Signaux d'alarme : code généré à relire en priorité absolue
 
 - Le code "a l'air fini" en trois secondes sur un problème qui te prendrait normalement
-  vingt minutes à réfléchir — la vitesse cache probablement une hypothèse non vérifiée.
+  vingt minutes à réfléchir : la vitesse cache probablement une hypothèse non vérifiée.
 - Aucune gestion de cas limite ou d'erreur visible dans la première lecture.
 - Des noms de variables génériques (`data`, `value`, `result`) sur une logique métier
-  précise — signe que le modèle a généralisé au lieu de traiter ton cas réel.
+  précise : signe que le modèle a généralisé au lieu de traiter ton cas réel.
 - Un commentaire qui explique "ce que fait le code" sans jamais expliquer "pourquoi ce choix
   plutôt qu'un autre" sur un point ambigu du domaine.
 

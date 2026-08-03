@@ -1,4 +1,4 @@
-# Challenge — Refactorer un système couplé en modules sains
+# Challenge : Refactorer un système couplé en modules sains
 
 ## Contexte
 
@@ -6,7 +6,7 @@ Reprends (ou crée si tu n'en as pas déjà un) un projet concret : la gestion d
 cabinet vétérinaire, avec au minimum ces fonctionnalités : création d'un rendez-vous,
 vérification de disponibilité, calcul du prix selon le type de consultation, envoi d'une
 confirmation, et mise à jour du stock de vaccins si l'acte en consomme un. Écris-le d'abord
-volontairement de façon couplée — tout dans un seul fichier de traitement de la requête,
+volontairement de façon couplée : tout dans un seul fichier de traitement de la requête,
 exactement comme dans la scène du niveau. Cette étape n'est pas optionnelle : tu dois avoir
 sous les yeux le problème réel avant de le corriger, sinon le refactoring suivant restera un
 exercice théorique sans valeur d'apprentissage.
@@ -27,14 +27,14 @@ exercice théorique sans valeur d'apprentissage.
 ## Critères de réussite mesurables
 
 - Zéro import direct d'un détail d'infrastructure (SQL, client HTTP, etc.) dans le dossier
-  domaine — vérifiable par une recherche de texte (`grep`) qui doit retourner zéro résultat.
+  domaine : vérifiable par une recherche de texte (`grep`) qui doit retourner zéro résultat.
 - Les tests des règles métier s'exécutent en moins d'une seconde, sans dépendance externe
   démarrée (pas de Docker, pas de vraie base).
 - Le graphe de dépendances entre modules (traçable à la main ou avec un outil comme
   `dependency-cruiser`) ne contient aucun cycle.
 - Ajouter un deuxième canal d'entrée (par exemple, une commande CLI qui crée un rendez-vous)
   ne nécessite de créer qu'un nouveau fichier dans la couche UI, sans modifier le domaine ni
-  le cas d'usage — teste-le réellement, ne te contente pas de l'affirmer.
+  le cas d'usage : teste-le réellement, ne te contente pas de l'affirmer.
 - `DECISIONS.md` répond, pour chaque module, à la question "si je supprime ce module et le
   remplace par un autre respectant la même interface, combien d'autres fichiers dois-je
   modifier ?" avec une réponse chiffrée, pas une estimation vague.
@@ -45,5 +45,5 @@ Il ne demande pas d'utiliser un framework précis, ni de respecter à la lettre 
 nommé (Clean Architecture, Hexagonal...). Il demande de prouver, par du code qui tourne et des
 tests qui passent, que tu maîtrises les forces sous-jacentes vues dans ce niveau. Un
 "Hexagonal Architecture" mal compris et mal appliqué ne vaut rien de plus qu'un fichier
-couplé — c'est le comportement du code face au changement qui compte, pas le nom du pattern
+couplé : c'est le comportement du code face au changement qui compte, pas le nom du pattern
 affiché dans le README.

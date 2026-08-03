@@ -9,8 +9,8 @@ défiler des milliers de lignes de texte libre écrites par douze développeurs 
 trois ans, chacune dans un format différent : `"Erreur commande"`, `[ERROR] cmd failed
 id=482`, `Exception in thread pool-3`. Personne ne peut répondre en moins de vingt minutes à
 la question la plus simple : combien de tournées sont affectées, et depuis quand. Le vrai
-problème n'est pas l'absence de logs — il y en a des millions de lignes. Le problème est
-qu'aucune de ces lignes n'a été pensée pour répondre à une question qu'on se pose *pendant*
+problème n'est pas l'absence de logs : il y en a des millions de lignes. Le problème est
+qu'aucune de ces lignes n'a été pensée pour répondre à une question qu'on se pose _pendant_
 un incident, seulement pour tracer ce que le développeur trouvait intéressant au moment où
 il écrivait la ligne.
 
@@ -19,7 +19,7 @@ il écrivait la ligne.
 L'observabilité n'est pas "avoir des logs". C'est la capacité d'un système à répondre à des
 questions qu'on n'a pas anticipées à l'avance, à partir de données qu'il a produites de
 lui-même. La nuance compte : un dashboard qui affiche un graphique prévu à l'avance
-("nombre de commandes par heure") est du monitoring — utile, mais limité aux questions
+("nombre de commandes par heure") est du monitoring : utile, mais limité aux questions
 posées avant l'incident. L'observabilité va plus loin : elle permet de creuser une question
 surgie en plein incident ("pourquoi ces 40 tournées précises sont bloquées, et seulement
 elles").
@@ -41,7 +41,9 @@ français. La différence est immense au moment où on doit filtrer, agréger, o
 
 ```typescript
 // Mauvais : texte libre, impossible à interroger de façon fiable
-console.log(`Livraison ${deliveryId} en retard de ${delayMinutes} minutes sur tournée ${tourId}`);
+console.log(
+  `Livraison ${deliveryId} en retard de ${delayMinutes} minutes sur tournée ${tourId}`,
+);
 
 // Bon : structuré, chaque champ est interrogeable indépendamment
 logger.warn("delivery.delayed", {
@@ -56,13 +58,13 @@ logger.warn("delivery.delayed", {
 
 Avec le log structuré, la question "quelles livraisons en retard de plus de 30 minutes
 viennent de l'entrepôt de Lyon-Est aujourd'hui" devient une requête directe sur les champs
-`delayMinutes`, `warehouseId` et un filtre de date — pas un `grep` fragile sur une phrase.
+`delayMinutes`, `warehouseId` et un filtre de date : pas un `grep` fragile sur une phrase.
 
 ### Métriques : "combien, et est-ce que ça dérive"
 
 Une métrique est un nombre agrégé dans le temps : compteur, jauge, histogramme. Elle ne dit
-pas *quelle* livraison a un problème, elle dit *combien* et *depuis quand la tendance a
-changé* — c'est ce qui permet de détecter un problème avant qu'un client ne le signale.
+pas _quelle_ livraison a un problème, elle dit _combien_ et _depuis quand la tendance a
+changé_ : c'est ce qui permet de détecter un problème avant qu'un client ne le signale.
 
 ```typescript
 // Compteur : nombre d'événements cumulés
@@ -86,7 +88,7 @@ Utile quand une opération lente ou en échec touche plusieurs systèmes (l'API 
 service de température, le service de facturation) et qu'il faut savoir lequel est en cause.
 
 ```text
-Requête "confirmer livraison #4821" — durée totale : 3.2s
+Requête "confirmer livraison #4821" : durée totale : 3.2s
 
 ├─ API tournées         [====]                     220ms
 ├─ Service température  [==============]           1800ms  ← le goulot
@@ -126,34 +128,34 @@ numéro de carte bancaire) finissent dans des logs jamais audités.
 // Danger : un log qui contient une donnée sensible finit dans des outils tiers,
 // des rétentions longues, parfois accessibles à plus de monde que prévu.
 logger.info("payment.processed", {
-  cardNumber: card.number,        // jamais — donnée sensible en clair
-  customerEmail: customer.email,  // à questionner selon la politique de rétention
-  amount: payment.amount,         // ok, utile pour le diagnostic
+  cardNumber: card.number, // jamais : donnée sensible en clair
+  customerEmail: customer.email, // à questionner selon la politique de rétention
+  amount: payment.amount, // ok, utile pour le diagnostic
 });
 ```
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Logs texte libre | Rapide à écrire sur le moment | Presque nul en incident réel | Jamais en production, tout juste acceptable en script local jetable |
-| Logs structurés | Discipline de format, un peu plus de code au moment d'écrire | Interrogeables, filtrables, corrélables en incident | Systématique en production |
-| Métriques sur symptômes utilisateur uniquement | Demande d'identifier les bons indicateurs en amont | Alertes fiables, peu de bruit | Toujours en priorité sur les métriques internes |
-| Traces distribuées | Instrumentation à poser sur chaque service, coût d'infrastructure | Diagnostic rapide sur les systèmes multi-services | Dès que plus de deux services participent à une même opération critique |
-| Tout instrumenter, tout alerter | Coût de stockage, bruit, risque de fuite de données sensibles | Illusion de tout voir | Jamais comme stratégie par défaut |
+| Option                                         | Coût                                                              | Bénéfice                                            | Quand choisir                                                           |
+| ---------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
+| Logs texte libre                               | Rapide à écrire sur le moment                                     | Presque nul en incident réel                        | Jamais en production, tout juste acceptable en script local jetable     |
+| Logs structurés                                | Discipline de format, un peu plus de code au moment d'écrire      | Interrogeables, filtrables, corrélables en incident | Systématique en production                                              |
+| Métriques sur symptômes utilisateur uniquement | Demande d'identifier les bons indicateurs en amont                | Alertes fiables, peu de bruit                       | Toujours en priorité sur les métriques internes                         |
+| Traces distribuées                             | Instrumentation à poser sur chaque service, coût d'infrastructure | Diagnostic rapide sur les systèmes multi-services   | Dès que plus de deux services participent à une même opération critique |
+| Tout instrumenter, tout alerter                | Coût de stockage, bruit, risque de fuite de données sensibles     | Illusion de tout voir                               | Jamais comme stratégie par défaut                                       |
 
 ## Pièges classiques
 
 - Des logs en texte libre non structuré, découverts inutilisables le jour où il faut vraiment
   chercher quelque chose vite, en plein incident.
 - Une alerte qui se déclenche sur une cause interne (CPU, mémoire) sans lien vérifié avec un
-  impact utilisateur — le symptôme est que l'équipe finit par la couper ou l'ignorer.
+  impact utilisateur : le symptôme est que l'équipe finit par la couper ou l'ignorer.
 - Une donnée sensible (mot de passe, numéro de carte, dossier médical) qui finit dans un log
   ou une trace, découvert lors d'un audit de sécurité plutôt qu'avant.
 - Une métrique en moyenne qui masque des cas extrêmes graves noyés dans un grand nombre de
-  cas normaux — le symptôme est un dashboard vert alors qu'une minorité de clients souffre.
+  cas normaux : le symptôme est un dashboard vert alors qu'une minorité de clients souffre.
 - Confondre monitoring (dashboards prévus à l'avance) et observabilité (capacité à répondre
-  à une question surgie en plein incident) — le symptôme est de se retrouver démuni dès
+  à une question surgie en plein incident) : le symptôme est de se retrouver démuni dès
   qu'un problème sort du cadre des graphiques déjà construits.
 
 ## Ce que tu dois savoir défendre

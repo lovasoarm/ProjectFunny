@@ -1,11 +1,11 @@
-# EPILOGUE — après le dernier niveau
+# EPILOGUE : après le dernier niveau
 
 Tu as fini le capstone. Voici ce qui change, et ce qui ne change pas.
 
 ## Ce qui a changé
 
-Tu ne commences plus par le code. Tu commences par la question : *qu'est-ce qui casse si je me
-trompe ici, et combien ça coûte de le découvrir plus tard ?* C'est la seule différence durable
+Tu ne commences plus par le code. Tu commences par la question : _qu'est-ce qui casse si je me
+trompe ici, et combien ça coûte de le découvrir plus tard ?_ C'est la seule différence durable
 entre un dev qui exécute et un ingénieur.
 
 Tu as aussi acquis quelque chose de moins visible : la capacité de **rendre une décision

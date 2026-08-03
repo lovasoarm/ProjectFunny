@@ -1,4 +1,4 @@
-# Niveau 03 — MVP Split
+# Niveau 03 : MVP Split
 
 ## Ce que c'est
 

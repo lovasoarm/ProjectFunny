@@ -10,7 +10,7 @@ colles, les tests unitaires basiques passent, tu livres. Trois semaines plus tar
 locataire conteste sa facture : la fonction répartit le chauffage commun par nombre
 d'occupants au lieu de par surface, une hypothèse plausible mais fausse pour ce cas précis,
 que l'IA a choisie silencieusement faute de précision dans ta demande. Tu n'as jamais relu
-la logique — seulement vérifié qu'elle "avait l'air" correcte.
+la logique : seulement vérifié qu'elle "avait l'air" correcte.
 
 ## Ce qui se passe vraiment
 
@@ -36,7 +36,7 @@ Sa vitesse est limitée              vs  Sa vitesse peut masquer une absence
                                          totale de vérification derrière elle
 ```
 
-Le danger n'est pas que l'IA se trompe — tout collaborateur se trompe. Le danger est que sa
+Le danger n'est pas que l'IA se trompe : tout collaborateur se trompe. Le danger est que sa
 vitesse et la fluidité de sa réponse créent une confiance qui n'est pas corrélée à
 l'exactitude. Un humain qui hésite te donne un signal (il hésite). Une IA qui invente une
 règle de répartition d'énergie inventée le fait avec la même confiance apparente qu'une
@@ -57,7 +57,7 @@ Effort de vérification →→→→ (déplacé ici, volontairement)
 ```
 
 Le gain de temps de l'IA n'est réel que si l'effort économisé en production est réinvesti en
-vérification — pas s'il est simplement supprimé du budget total.
+vérification : pas s'il est simplement supprimé du budget total.
 
 ### Prompts de décision plutôt que prompts de génération directe
 
@@ -76,17 +76,17 @@ Prompt de décision (plus sûr)
 "Je dois répartir un coût de chauffage commun entre locataires. Liste-moi les
 règles de répartition possibles (par surface, par occupants, par relevé individuel,
 mixte), avec pour chacune un cas où elle serait injuste, avant d'écrire du code."
-→ L'IA doit exposer ses options et leurs limites — tu choisis en connaissance de cause,
+→ L'IA doit exposer ses options et leurs limites : tu choisis en connaissance de cause,
    et tu détectes une hypothèse fausse avant qu'elle ne soit enterrée dans du code.
 ```
 
 ### Revue critique : la checklist minimale avant de coller du code généré
 
 1. **Est-ce que je pourrais expliquer cette logique à un collègue sans relire le code ?**
-   Si non, tu ne l'as pas encore comprise — tu ne peux pas la maintenir ni la déboguer plus
+   Si non, tu ne l'as pas encore comprise : tu ne peux pas la maintenir ni la déboguer plus
    tard.
 2. **Quelle hypothèse implicite ce code fait-il sur les données d'entrée ?** (formats,
-   valeurs nulles, ordres de grandeur) — l'IA choisit rarement l'hypothèse la plus prudente,
+   valeurs nulles, ordres de grandeur) : l'IA choisit rarement l'hypothèse la plus prudente,
    elle choisit la plus commune dans son corpus d'entraînement.
 3. **Ce code gère-t-il les cas limites de mon domaine précis, pas d'un domaine générique ?**
    Un cabinet vétérinaire, une bibliothèque d'escalade, une refacturation d'énergie ont
@@ -97,12 +97,12 @@ mixte), avec pour chacune un cas où elle serait injuste, avant d'écrire du cod
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Refuser l'IA par principe | Perte de vitesse réelle sur les tâches mécaniques | Zéro risque de code non vérifié collé sans lecture | Rarement justifié en soi ; défendable seulement sur du code critique réglementé |
-| Accepter les réponses de l'IA sans vérification | Vitesse apparente maximale | Risque de bugs de logique métier invisibles jusqu'en production | Jamais, même sous deadline — le coût se paie plus tard, avec intérêts |
-| IA pour la génération, vérification humaine systématique | Effort de relecture déplacé mais réel | Gain de vitesse net, risque maîtrisé | Approche par défaut recommandée pour tout code qui touche à une règle métier |
-| IA pour l'exploration d'options, décision humaine | Prompt plus long à construire | Force l'exposition des hypothèses avant qu'elles ne soient enterrées dans du code | Dès qu'une tâche a plusieurs interprétations métier possibles |
+| Option                                                   | Coût                                              | Bénéfice                                                                          | Quand choisir                                                                   |
+| -------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Refuser l'IA par principe                                | Perte de vitesse réelle sur les tâches mécaniques | Zéro risque de code non vérifié collé sans lecture                                | Rarement justifié en soi ; défendable seulement sur du code critique réglementé |
+| Accepter les réponses de l'IA sans vérification          | Vitesse apparente maximale                        | Risque de bugs de logique métier invisibles jusqu'en production                   | Jamais, même sous deadline : le coût se paie plus tard, avec intérêts           |
+| IA pour la génération, vérification humaine systématique | Effort de relecture déplacé mais réel             | Gain de vitesse net, risque maîtrisé                                              | Approche par défaut recommandée pour tout code qui touche à une règle métier    |
+| IA pour l'exploration d'options, décision humaine        | Prompt plus long à construire                     | Force l'exposition des hypothèses avant qu'elles ne soient enterrées dans du code | Dès qu'une tâche a plusieurs interprétations métier possibles                   |
 
 ## Pièges classiques
 

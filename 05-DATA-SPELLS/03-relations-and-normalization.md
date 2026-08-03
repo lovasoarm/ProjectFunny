@@ -46,18 +46,18 @@ ligne à modifier, et tout l'historique la reflète immédiatement et correcteme
 
 Le critère concret pour savoir si une colonne est mal placée : **si je change cette valeur,
 combien de lignes dois-je toucher, et est-ce que ça correspond à la réalité du monde ?** La
-catégorie d'un article change une fois, pour l'article — elle doit être écrite une fois, sur la
+catégorie d'un article change une fois, pour l'article : elle doit être écrite une fois, sur la
 table `Materiel`. Le nom d'un adhérent à l'instant T d'un emprunt passé, en revanche, ne
 "change" pas rétroactivement au sens propre : c'est une information historique. Recopier le nom
 de l'adhérent au moment de l'emprunt n'est pas une violation de normalisation si c'est fait
-consciemment pour figer un fait historique (voir dénormalisation ci-dessous) — mais il faut le
+consciemment pour figer un fait historique (voir dénormalisation ci-dessous) : mais il faut le
 nommer explicitement (`nom_adherent_au_moment_emprunt`), pas le confondre avec "le nom actuel de
 l'adhérent" lu depuis une jointure.
 
 ### Contraintes : faire porter les invariants par la base, pas par la confiance
 
 Les invariants de la leçon précédente doivent, dès que c'est possible, devenir des contraintes
-que la base refuse de violer — indépendamment de ce que fait le code applicatif, qui sera un
+que la base refuse de violer : indépendamment de ce que fait le code applicatif, qui sera un
 jour bugué, contourné, ou appelé par un script de migration écrit à la va-vite un dimanche soir.
 
 ```sql
@@ -81,7 +81,7 @@ CREATE UNIQUE INDEX un_seul_emprunt_actif_par_materiel
 
 Cet index partiel est la traduction exacte de l'invariant métier : "au plus une ligne sans date
 de retour, par article". Toute tentative d'insertion qui le violerait échoue au niveau de la
-base, quel que soit le chemin de code emprunté — API REST, script d'import, console SQL
+base, quel que soit le chemin de code emprunté : API REST, script d'import, console SQL
 d'urgence à 23h. C'est la différence entre un invariant "documenté" et un invariant "garanti".
 
 ### Index : accélérer une lecture a toujours un prix à l'écriture
@@ -115,7 +115,7 @@ CREATE INDEX idx_emprunt_adherent_date ON emprunt (adherent_id, date_emprunt DES
 ### Dénormaliser sciemment : le contraire n'est pas un péché, c'est un choix chiffré
 
 Dénormaliser, c'est réintroduire de la redondance volontairement, pour une raison précise et
-mesurée — jamais "pour aller plus vite" sans avoir mesuré que c'était nécessaire.
+mesurée : jamais "pour aller plus vite" sans avoir mesuré que c'était nécessaire.
 
 ```text
 Cas légitime de dénormalisation, refacturation d'énergie :
@@ -125,7 +125,7 @@ Facture(id, logement_id, periode, montant_total, tarif_applique_snapshot jsonb)
 "tarif_applique_snapshot" recopie le détail du tarif au moment de l'émission de la facture,
 alors que le tarif "vivant" existe déjà dans TarifEnergie. Ce n'est pas une erreur de
 modélisation : une facture émise doit rester lisible et immuable même si le tarif change plus
-tard dans le référentiel — c'est une exigence légale et comptable, pas un raccourci de
+tard dans le référentiel : c'est une exigence légale et comptable, pas un raccourci de
 performance.
 
 Cas illégitime (le vrai piège) :
@@ -145,19 +145,19 @@ mentir.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Normalisation stricte (3NF) partout | Plus de jointures à chaque lecture, plus de tables à maintenir | Aucune incohérence possible, une seule source de vérité par fait | Par défaut, sauf preuve mesurée du contraire |
-| Dénormalisation en snapshot explicite | Duplication assumée, champ nommé clairement (`_snapshot`, `_au_moment_de`) | Immuabilité et lisibilité d'un document historique (facture, contrat) | Donnée qui doit rester figée pour des raisons légales/comptables |
-| Dénormalisation "de confort" (cache non nommé) | Risque de divergence silencieuse, source de vérité ambiguë | Une jointure en moins en apparence | Quasiment jamais sans mesure de performance réelle préalable |
-| Index composite large | Coût d'écriture, coût de maintenance | Sert plusieurs requêtes filtrant/triant sur les mêmes colonnes en préfixe | Requêtes fréquentes et identifiées, pas anticipées |
+| Option                                         | Coût                                                                       | Bénéfice                                                                  | Quand choisir                                                    |
+| ---------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Normalisation stricte (3NF) partout            | Plus de jointures à chaque lecture, plus de tables à maintenir             | Aucune incohérence possible, une seule source de vérité par fait          | Par défaut, sauf preuve mesurée du contraire                     |
+| Dénormalisation en snapshot explicite          | Duplication assumée, champ nommé clairement (`_snapshot`, `_au_moment_de`) | Immuabilité et lisibilité d'un document historique (facture, contrat)     | Donnée qui doit rester figée pour des raisons légales/comptables |
+| Dénormalisation "de confort" (cache non nommé) | Risque de divergence silencieuse, source de vérité ambiguë                 | Une jointure en moins en apparence                                        | Quasiment jamais sans mesure de performance réelle préalable     |
+| Index composite large                          | Coût d'écriture, coût de maintenance                                       | Sert plusieurs requêtes filtrant/triant sur les mêmes colonnes en préfixe | Requêtes fréquentes et identifiées, pas anticipées               |
 
 ## Pièges classiques
 
 - **L'index qui ne sert à rien.** Symptôme : `EXPLAIN` montre un scan complet malgré un index
-  présent — souvent parce que l'ordre des colonnes de l'index composite ne correspond pas à
+  présent : souvent parce que l'ordre des colonnes de l'index composite ne correspond pas à
   l'ordre du `WHERE`, ou parce qu'une fonction est appliquée sur la colonne (`WHERE
-  LOWER(email) = ...` ignore un index sur `email` brut).
+LOWER(email) = ...` ignore un index sur `email` brut).
 - **La contrainte NULL oubliée sur une clé étrangère.** Symptôme : des lignes "orphelines"
   logiquement invalides insérées silencieusement, découvertes seulement lors d'un rapport qui
   s'appuie sur une jointure interne qui les exclut sans prévenir.
@@ -166,18 +166,18 @@ mentir.
   savait laquelle des deux colonnes était la source de vérité.
 - **La contrainte `UNIQUE` classique censée remplacer un index partiel.** Symptôme : deux
   emprunts actifs simultanés sur le même article passent sans erreur, parce que `NULL` n'est
-  jamais égal à `NULL` en SQL — la contrainte croyait interdire un doublon qu'elle n'a jamais
+  jamais égal à `NULL` en SQL : la contrainte croyait interdire un doublon qu'elle n'a jamais
   détecté.
 - **Sur-normaliser une donnée qui n'a jamais deux occurrences réelles.** Symptôme : une table
   `Civilite(id, libelle)` avec trois lignes ("M.", "Mme", "Non précisé") jointe partout pour
-  rien — le gain de normalisation (éviter une incohérence) est nul sur un référentiel de trois
+  rien : le gain de normalisation (éviter une incohérence) est nul sur un référentiel de trois
   valeurs qui ne changera jamais.
 
 ## Ce que tu dois savoir défendre
 
 - Explique, avec l'exemple de la facture d'énergie, pourquoi dénormaliser peut être la décision
-  correcte — et à quelle condition précise ça reste sain plutôt que dangereux.
+  correcte : et à quelle condition précise ça reste sain plutôt que dangereux.
 - Pourquoi une contrainte `UNIQUE` classique ne suffit-elle pas à garantir "un seul emprunt
   actif par article", et comment un index partiel résout-il exactement ce problème ?
 - Donne un exemple où ajouter un index rendrait une lecture plus rapide mais dégraderait une
-  écriture au point de ne pas valoir le coup — chiffre l'arbitrage même approximativement.
+  écriture au point de ne pas valoir le coup : chiffre l'arbitrage même approximativement.

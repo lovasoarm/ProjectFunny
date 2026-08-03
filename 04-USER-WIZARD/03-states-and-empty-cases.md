@@ -1,6 +1,7 @@
 # Les cinq états obligatoires de tout affichage
 
 ## Le piège
+
 Le planning du jour du cabinet vétérinaire s'affiche très bien pendant la démo : huit rendez-vous,
 bien répartis, jolis badges de couleur par praticien. En prod, le premier lundi de l'année, le
 planning est vide (fermeture des fêtes) et affiche... rien. Une page blanche. Le stagiaire pense que
@@ -8,10 +9,11 @@ l'appli a planté. Trois mois plus tard, jour de rentrée scolaire, le planning 
 vous compressés sur un même jour et le navigateur rame à chaque scroll.
 
 Le composant `<Planning />` n'a été pensé que pour un seul état : "il y a des données, tout va bien".
-C'est l'état le plus rare en réalité — la plupart du temps, ton composant est soit vide, soit en
+C'est l'état le plus rare en réalité : la plupart du temps, ton composant est soit vide, soit en
 train de charger, soit en erreur, soit surchargé.
 
 ## Ce qui se passe vraiment
+
 Tout affichage de données asynchrones a exactement cinq états possibles, pas quatre, pas trois :
 
 ```text
@@ -40,7 +42,7 @@ Tout affichage de données asynchrones a exactement cinq états possibles, pas q
 ```
 
 Il en manque un sixième, plus sournois : le **partiel**. La requête a "réussi" mais la donnée est
-incomplète — 8 rendez-vous sur 12 sont revenus, les 4 autres ont échoué à charger le nom du
+incomplète : 8 rendez-vous sur 12 sont revenus, les 4 autres ont échoué à charger le nom du
 propriétaire (service annexe indisponible). Ce n'est ni une erreur totale, ni un succès complet.
 L'afficher comme un succès plein cache une perte d'information ; l'afficher comme une erreur totale
 cache huit rendez-vous parfaitement exploitables.
@@ -133,7 +135,7 @@ Mauvais état vide            Bon état vide
 
 ## Le cas "trop de données" est un problème de design, pas de performance pure
 
-Tu peux virtualiser une liste de 10 000 lignes techniquement — React virtualization, pagination,
+Tu peux virtualiser une liste de 10 000 lignes techniquement : React virtualization, pagination,
 fenêtrage. Mais la vraie question précède la technique : est-ce que l'utilisateur a besoin de voir
 10 000 lignes d'un coup ? Souvent non : au-delà d'un seuil, il a besoin d'un filtre ou d'un résumé,
 pas d'un scroll plus rapide.
@@ -145,7 +147,11 @@ const OVERLOAD_THRESHOLD = 200;
 function toPlanningState(appointments: Appointment[]): PlanningState {
   if (appointments.length === 0) return { status: "empty" };
   if (appointments.length > OVERLOAD_THRESHOLD) {
-    return { status: "overload", total: appointments.length, sample: appointments.slice(0, 20) };
+    return {
+      status: "overload",
+      total: appointments.length,
+      sample: appointments.slice(0, 20),
+    };
   }
   return { status: "ready", appointments };
 }
@@ -153,14 +159,15 @@ function toPlanningState(appointments: Appointment[]): PlanningState {
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Union discriminée (state machine légère) | Un peu plus de code au départ, réflexion sur les cas | États impossibles interdits par le compilateur | Tout composant qui affiche des données asynchrones dans une appli qui doit durer |
-| Booléens indépendants | Rapide à écrire | Bugs d'état incohérent tôt ou tard | Prototype à jeter sous 48h |
-| Virtualisation de liste (react-virtual, etc.) | Complexité technique, scroll custom | Affiche réellement 10 000 lignes sans ramer | Cas où l'utilisateur a un vrai besoin de tout voir défiler (rare) |
-| Seuil + filtre forcé | Il faut définir un seuil métier, parfois arbitraire | Interface qui reste utilisable et rapide | Cas où au-delà d'un seuil, personne ne lit ligne par ligne de toute façon |
+| Option                                        | Coût                                                 | Bénéfice                                       | Quand choisir                                                                    |
+| --------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| Union discriminée (state machine légère)      | Un peu plus de code au départ, réflexion sur les cas | États impossibles interdits par le compilateur | Tout composant qui affiche des données asynchrones dans une appli qui doit durer |
+| Booléens indépendants                         | Rapide à écrire                                      | Bugs d'état incohérent tôt ou tard             | Prototype à jeter sous 48h                                                       |
+| Virtualisation de liste (react-virtual, etc.) | Complexité technique, scroll custom                  | Affiche réellement 10 000 lignes sans ramer    | Cas où l'utilisateur a un vrai besoin de tout voir défiler (rare)                |
+| Seuil + filtre forcé                          | Il faut définir un seuil métier, parfois arbitraire  | Interface qui reste utilisable et rapide       | Cas où au-delà d'un seuil, personne ne lit ligne par ligne de toute façon        |
 
 ## Pièges classiques
+
 - L'état "vide" et l'état "erreur silencieuse" rendent tous les deux une liste vide : impossible de
   les distinguer en observant seulement l'écran, il faut vérifier les logs.
 - Le squelette de chargement ne ressemble pas à la forme réelle du contenu : l'utilisateur perçoit
@@ -173,6 +180,7 @@ function toPlanningState(appointments: Appointment[]): PlanningState {
   poste bas de gamme, celui qu'utilise effectivement l'accueil du cabinet.
 
 ## Ce que tu dois savoir défendre
+
 - Pourquoi des booléens indépendants pour représenter le chargement/l'erreur/le succès sont une
   source de bugs, même si chaque booléen pris seul semble correct ?
 - Comment distingues-tu, dans ton code, un état "vide légitime" d'une erreur silencieuse ?

@@ -6,7 +6,7 @@ Une bibliothèque de club d'escalade doit choisir comment stocker l'historique d
 de matériel (baudriers, cordes, chaussons). L'équipe hésite entre une table SQL normalisée
 et un simple champ JSON "historique" par matériel. Le JSON est plus rapide à écrire ce
 sprint-ci. Six mois plus tard, on veut savoir "quel matériel a été prêté plus de dix fois
-sans révision" — une requête impossible à écrire proprement sur le JSON sans tout migrer. Le
+sans révision" : une requête impossible à écrire proprement sur le JSON sans tout migrer. Le
 coût n'a pas disparu, il a été déplacé et multiplié.
 
 ## Ce qui se passe vraiment
@@ -48,7 +48,7 @@ Une décision qui préserve plusieurs futurs possibles a une **valeur d'option**
 peut-être un peu plus cher maintenant pour ne pas te fermer de portes. Choisir un schéma de
 base de données normalisé plutôt qu'un JSON, c'est payer un peu de temps de développement en
 plus maintenant pour garder la possibilité de faire des requêtes analytiques plus tard sans
-tout réécrire. La valeur d'option n'est pas gratuite non plus — sur-préserver des options
+tout réécrire. La valeur d'option n'est pas gratuite non plus : sur-préserver des options
 qu'on n'utilisera jamais est aussi un gaspillage.
 
 ```text
@@ -60,20 +60,20 @@ qu'on n'utilisera jamais est aussi un gaspillage.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Dette volontaire documentée | Coût de remboursement futur connu et planifié | Vitesse de livraison immédiate, pari maîtrisé | Contexte incertain, besoin de valider vite une hypothèse produit |
-| Investir dans une structure durable dès le départ | Coût immédiat plus élevé | Coût de changement futur réduit | Le domaine est stable, les requêtes futures sont déjà prévisibles |
+| Option                                            | Coût                                          | Bénéfice                                      | Quand choisir                                                     |
+| ------------------------------------------------- | --------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
+| Dette volontaire documentée                       | Coût de remboursement futur connu et planifié | Vitesse de livraison immédiate, pari maîtrisé | Contexte incertain, besoin de valider vite une hypothèse produit  |
+| Investir dans une structure durable dès le départ | Coût immédiat plus élevé                      | Coût de changement futur réduit               | Le domaine est stable, les requêtes futures sont déjà prévisibles |
 
 ## Pièges classiques
 
-- Prendre une dette sans la nommer comme telle — symptôme : personne ne sait qu'il faut la
+- Prendre une dette sans la nommer comme telle : symptôme : personne ne sait qu'il faut la
   rembourser, elle devient permanente par défaut.
-- Sur-ingénierer pour préserver une option qui ne sera jamais exercée — symptôme : temps de
+- Sur-ingénierer pour préserver une option qui ne sera jamais exercée : symptôme : temps de
   développement doublé pour une flexibilité jamais utilisée deux ans après.
 - Évaluer le coût de changement uniquement en lignes de code à modifier, en ignorant la
   coordination humaine nécessaire (autres équipes, migrations de données en production).
-- Confondre "dette technique" et "code mal écrit" — la dette est un choix économique
+- Confondre "dette technique" et "code mal écrit" : la dette est un choix économique
   délibéré, le mauvais code est souvent juste une erreur, pas un pari.
 
 ## Ce que tu dois savoir défendre

@@ -1,4 +1,4 @@
-# Challenge — Modéliser et faire tenir un domaine à l'échelle
+# Challenge : Modéliser et faire tenir un domaine à l'échelle
 
 ## Contexte
 
@@ -21,7 +21,7 @@ rapides sur un volume réaliste.
    volume, et la version corrigée (expand/contract ou `NOT VALID` + `VALIDATE`), avec le temps
    d'exécution mesuré des deux pour prouver la différence.
 5. Une requête de liste qui affiche, pour une entité parente, une information dérivée de ses
-   entités enfants (dernier relevé d'un logement, dernier emprunt d'un adhérent) — écrite d'abord
+   entités enfants (dernier relevé d'un logement, dernier emprunt d'un adhérent) : écrite d'abord
    en version N+1, puis corrigée en une requête groupée, avec le nombre de requêtes SQL mesuré
    avant et après.
 6. Un endpoint ou une fonction de pagination par curseur sur la table à fort volume, avec un test
@@ -33,7 +33,7 @@ rapides sur un volume réaliste.
 ## Critères de réussite mesurables
 
 - Les contraintes SQL rejettent effectivement une insertion qui violerait l'invariant qu'elles
-  sont censées garantir — prouvé par une tentative d'insertion qui échoue avec le bon message
+  sont censées garantir : prouvé par une tentative d'insertion qui échoue avec le bon message
   d'erreur, pas seulement affirmé.
 - La migration naïve, mesurée sur les 50 000 lignes, prend un temps significativement plus long
   ou verrouille la table (mesurable par un `EXPLAIN (ANALYZE, BUFFERS)` ou un chronomètre) que
@@ -43,11 +43,11 @@ rapides sur un volume réaliste.
 - Le test de stabilité de la pagination par curseur passe : aucune ligne perdue ni dupliquée
   après une insertion concurrente pendant la navigation.
 - Chaque invariant métier formulé en texte est retraçable jusqu'à une ligne de SQL ou une ligne
-  de code qui le garantit réellement — pas seulement documenté dans un commentaire.
+  de code qui le garantit réellement : pas seulement documenté dans un commentaire.
 
 ## Ce que ce challenge ne demande pas
 
 Il ne demande pas de construire une interface utilisateur ni un système de scopes
-d'autorisation complet (ça, c'est le niveau API Dojo) — le livrable est le schéma, les
+d'autorisation complet (ça, c'est le niveau API Dojo) : le livrable est le schéma, les
 migrations, et les requêtes, prouvés par des mesures et des tests qui échouent aux bons
 endroits sur les versions naïves.

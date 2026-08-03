@@ -1,4 +1,4 @@
-# CONTRIBUTING — comment améliorer ce curriculum
+# CONTRIBUTING : comment améliorer ce curriculum
 
 Ce dépôt se dégrade si on y ajoute du contenu tiède. La barre est haute exprès.
 

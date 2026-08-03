@@ -7,7 +7,7 @@ matériel, réservation de créneaux mur, inscriptions aux sorties) compte quatr
 Trois mois après le lancement, une dispute éclate en réunion : Farida pensait qu'une tâche
 marquée "faite" par Tom voulait dire "testée et déployée", Tom pensait que ça voulait dire
 "le code est écrit, quelqu'un d'autre doit tester". Résultat, une fonctionnalité cassée est
-restée en production dix jours sans que personne ne s'en sente responsable — chacun pensait
+restée en production dix jours sans que personne ne s'en sente responsable : chacun pensait
 que c'était la responsabilité de l'autre étape. Ce n'est pas un problème de compétence. Tom
 et Farida n'ont jamais eu la même définition du mot "fini", et personne ne l'a jamais écrite.
 
@@ -15,13 +15,13 @@ et Farida n'ont jamais eu la même définition du mot "fini", et personne ne l'a
 
 Un working agreement n'est pas un règlement intérieur ni une charte de valeurs. C'est une
 liste de réponses écrites à l'avance aux questions qui, sinon, se posent pour la première
-fois au pire moment — en pleine urgence, en plein désaccord, ou une fois le mal fait. Il ne
+fois au pire moment : en pleine urgence, en plein désaccord, ou une fois le mal fait. Il ne
 remplace pas le jugement de l'équipe, il évite que chaque situation nouvelle nécessite de
 réinventer une règle sous pression.
 
 ```text
 Sans working agreement                    Avec working agreement écrit
-                                           
+
 Question posée pour la première fois      Question déjà réglée à froid
 pendant l'urgence                                │
      │                                     Chacun connaît la règle avant
@@ -84,7 +84,7 @@ supprimer des données de prod)
 
 Le piège le plus courant n'est pas l'absence de hiérarchie, c'est l'ambiguïté sur qui a le
 dernier mot dans un désaccord technique entre pairs. Sans réponse écrite à cette question,
-la décision revient, de fait, à la personne qui insiste le plus longtemps — ce qui n'a
+la décision revient, de fait, à la personne qui insiste le plus longtemps : ce qui n'a
 aucun rapport avec la qualité de l'argument.
 
 ### 3. Les horaires et rythmes de revue
@@ -123,7 +123,7 @@ trois propriétés :
 1. **Vérifiable** : chaque règle peut être confirmée ou contredite par un fait observable
    ("la pull request a reçu une réponse sous 24h"), pas par une impression.
 2. **Daté et révisable** : il porte une date de rédaction et une date de prochaine révision
-   — un accord qui décrit une équipe d'il y a six mois ne sert plus à rien.
+   : un accord qui décrit une équipe d'il y a six mois ne sert plus à rien.
 3. **Négocié, pas imposé** : chaque membre de l'équipe a pu contester une règle avant
    qu'elle soit adoptée. Un working agreement imposé par une seule personne est suivi
    jusqu'à la première urgence, où chacun revient à ses propres réflexes.
@@ -140,25 +140,25 @@ Cycle de vie d'un working agreement
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Pas de working agreement écrit | Aucun coût de rédaction | Rapidité si l'équipe est très petite et de courte durée | Binôme sur un projet de quelques jours |
-| Working agreement minimal (définition de "fini" + délai de revue) | Une heure de rédaction | Couvre les deux frictions les plus fréquentes et les plus coûteuses | Équipe de deux à quatre personnes débutant une collaboration |
-| Working agreement complet (les cinq catégories) | Une demi-journée de rédaction, une révision périodique | Couvre la majorité des sources de friction avant qu'elles apparaissent | Équipe qui collabore plus d'un mois, ou avec un historique de friction |
+| Option                                                            | Coût                                                   | Bénéfice                                                               | Quand choisir                                                          |
+| ----------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Pas de working agreement écrit                                    | Aucun coût de rédaction                                | Rapidité si l'équipe est très petite et de courte durée                | Binôme sur un projet de quelques jours                                 |
+| Working agreement minimal (définition de "fini" + délai de revue) | Une heure de rédaction                                 | Couvre les deux frictions les plus fréquentes et les plus coûteuses    | Équipe de deux à quatre personnes débutant une collaboration           |
+| Working agreement complet (les cinq catégories)                   | Une demi-journée de rédaction, une révision périodique | Couvre la majorité des sources de friction avant qu'elles apparaissent | Équipe qui collabore plus d'un mois, ou avec un historique de friction |
 
 ## Pièges classiques
 
 - Rédiger un working agreement composé de bonnes intentions ("on communique de façon
-  transparente") sans critère vérifiable — le symptôme est que personne ne peut dire si la
+  transparente") sans critère vérifiable : le symptôme est que personne ne peut dire si la
   règle est respectée ou non.
-- Le faire rédiger par une seule personne puis l'imposer — le symptôme est que le document
+- Le faire rédiger par une seule personne puis l'imposer : le symptôme est que le document
   est suivi la première semaine puis oublié dès la première urgence.
-- Ne jamais le réviser — le symptôme est un document qui décrit une équipe et un contexte
+- Ne jamais le réviser : le symptôme est un document qui décrit une équipe et un contexte
   qui n'existent plus, cité par personne en cas de conflit.
-- Confondre working agreement et règlement disciplinaire — le symptôme est que l'équipe le
+- Confondre working agreement et règlement disciplinaire : le symptôme est que l'équipe le
   vit comme une contrainte imposée plutôt que comme un outil qu'elle a choisi pour se
   protéger elle-même.
-- Multiplier les règles au point que plus personne ne les connaît toutes — le symptôme est
+- Multiplier les règles au point que plus personne ne les connaît toutes : le symptôme est
   qu'on invoque le document seulement pour justifier une sanction, jamais pour prévenir un
   problème.
 

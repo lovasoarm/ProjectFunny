@@ -16,8 +16,8 @@ arrête le projet à mi-chemin. Ce qui existe : une base solide, zéro valeur li
 Le découpage d'un projet en couches techniques (d'abord la base de données, puis l'API,
 puis le frontend) donne l'illusion de progresser methodiquement, mais ne produit aucune
 valeur testable avant que toutes les couches soient terminées. À l'inverse, un découpage en
-tranches verticales — un scénario complet, du bouton cliqué jusqu'à la ligne en base, même
-limité à un seul commerçant et une seule tournée — produit une chose utilisable et testable
+tranches verticales : un scénario complet, du bouton cliqué jusqu'à la ligne en base, même
+limité à un seul commerçant et une seule tournée : produit une chose utilisable et testable
 en quelques jours. Ce niveau existe parce que la compétence de découpage n'est pas innée :
 la tentation naturelle d'un développeur est de construire par couches, parce que c'est ainsi
 qu'on raisonne techniquement. Il faut apprendre à raisonner par valeur livrée à la place.
@@ -41,7 +41,7 @@ rien d'utilisable avant la fin           dès la semaine 1
 - **Les estimations explosent silencieusement.** Sans tranches, l'incertitude s'accumule sans
   qu'aucun signal d'alerte n'apparaisse avant la date de livraison finale.
 - **Impossible de prioriser en cours de route.** Si tout est découpé par couche technique, tu
-  ne peux pas dire "livrons d'abord ce qui a le plus de valeur" — tout dépend de tout.
+  ne peux pas dire "livrons d'abord ce qui a le plus de valeur" : tout dépend de tout.
 - **Le retour terrain arrive trop tard.** Sans tranche livrée tôt, personne ne sait avant des
   semaines si l'hypothèse produit tient la route.
 

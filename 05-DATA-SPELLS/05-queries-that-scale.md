@@ -15,7 +15,7 @@ pour chacun, une requête séparée pour aller chercher son dernier relevé.
 
 Sur la copropriété de test (quatre logements), la page charge en 30 millisecondes. Sur la plus
 grosse copropriété gérée par le syndic (deux cents logements), la même page fait deux cent une
-requêtes séparées à la base à chaque affichage, chacune avec son aller-retour réseau — la page
+requêtes séparées à la base à chaque affichage, chacune avec son aller-retour réseau : la page
 met huit secondes à s'afficher, et le pic de charge simultané d'une dizaine de gestionnaires
 consultant leurs immeubles un lundi matin met la base à genoux. Le code n'a pas de bug logique :
 chaque requête individuelle est correcte, rapide, et retourne exactement ce qu'on lui demande.
@@ -27,7 +27,7 @@ Le problème est dans leur nombre, pas dans leur contenu.
 
 Le motif "N+1 requêtes" apparaît partout où une boucle applicative déclenche une requête par
 élément d'une liste précédemment récupérée. Il est invisible sur trois lignes de données, et
-devient le premier suspect de toute page lente en production dès que le volume grandit — parce
+devient le premier suspect de toute page lente en production dès que le volume grandit : parce
 que son coût croît linéairement avec le nombre de lignes affichées, pas avec la complexité de
 la fonctionnalité.
 
@@ -51,7 +51,7 @@ WHERE rang = 1;
 
 Deux requêtes au lieu de deux cent une : une pour les logements, une pour tous les derniers
 relevés d'un coup. Le motif général derrière la solution, valable même sans SQL : **récupérer
-toutes les clés d'abord, puis faire une seule requête groupée par ces clés — jamais une requête
+toutes les clés d'abord, puis faire une seule requête groupée par ces clés : jamais une requête
 par élément d'une boucle**, ce qu'un ORM appelle souvent "eager loading" ou "batch loading".
 
 ```text
@@ -61,14 +61,14 @@ Comment détecter un N+1 avant qu'il n'atteigne la production :
     de données (ex: "cette page ne doit jamais dépasser 5 requêtes SQL, qu'il y ait 4 ou 4000
     logements").
   - Charger un jeu de données de test réaliste en volume (des milliers de lignes), pas
-    seulement représentatif en variété — un N+1 sur 4 lignes ne se voit pas au chronomètre.
+    seulement représentatif en variété : un N+1 sur 4 lignes ne se voit pas au chronomètre.
 ```
 
 ### Pagination par curseur : la liste qui ne bouge pas sous tes pieds
 
 Le journal des relevés de compteur d'un immeuble entier grandit indéfiniment. Une pagination
 par offset (`OFFSET 200 LIMIT 50`) demande à la base de parcourir puis d'ignorer les deux cents
-premières lignes à chaque page — un coût qui croît avec la profondeur de pagination, et qui
+premières lignes à chaque page : un coût qui croît avec la profondeur de pagination, et qui
 devient instable si des relevés sont insérés pendant la navigation (une ligne peut apparaître
 deux fois sur deux pages successives, ou disparaître entièrement).
 
@@ -87,16 +87,16 @@ Index nécessaire pour que ce curseur reste rapide à toute profondeur :
 CREATE INDEX idx_releve_curseur ON releve (date_releve DESC, id DESC);
 
 Sans cet index, la clause WHERE + ORDER BY déclenche un tri complet de la table
-à chaque page — le curseur devient aussi lent qu'un offset profond, pour rien.
+à chaque page : le curseur devient aussi lent qu'un offset profond, pour rien.
 ```
 
 Le curseur doit toujours porter sur une combinaison de colonnes qui garantit un ordre total
-(aucune égalité possible entre deux lignes distinctes) — sinon deux relevés survenus à la même
+(aucune égalité possible entre deux lignes distinctes) : sinon deux relevés survenus à la même
 milliseconde peuvent se faire sauter mutuellement d'une page à l'autre.
 
 ### Transactions : délimiter ce qui doit réussir ou échouer ensemble
 
-Une transaction n'est pas "un bloc autour de plusieurs requêtes par précaution" — c'est la
+Une transaction n'est pas "un bloc autour de plusieurs requêtes par précaution" : c'est la
 déclaration explicite d'un invariant métier qui n'a de sens que si toutes les écritures qui le
 composent réussissent ensemble, ou aucune.
 
@@ -108,7 +108,7 @@ BEGIN;
   UPDATE materiel SET disponible = true WHERE id = $2;
 COMMIT;
 -- Si la deuxième instruction échoue (contrainte violée, connexion coupée), la transaction
--- entière est annulée — jamais un emprunt marqué "rendu" avec un matériel resté "indisponible".
+-- entière est annulée : jamais un emprunt marqué "rendu" avec un matériel resté "indisponible".
 ```
 
 Sans cette transaction, un incident réseau exactement entre les deux `UPDATE` laisse la base
@@ -135,7 +135,7 @@ REPEATABLE READ :
 
 SERIALIZABLE :
   Garantit que le résultat final est équivalent à une exécution des transactions l'une après
-  l'autre, jamais réellement en même temps — au prix d'échecs de transaction (`serialization
+  l'autre, jamais réellement en même temps : au prix d'échecs de transaction (`serialization
   failure`) que le code doit attraper et retenter.
 ```
 
@@ -148,7 +148,7 @@ temps, chacun en partant du relevé actuel affiché sur son écran (chargé une 
 Transaction A : lit le relevé (1000 kWh), calcule le nouveau total, écrit 1050.
 Transaction B : lit le relevé (1000 kWh, pas encore le 1050 de A), calcule, écrit 1030.
 
-Résultat final en base : 1030 — la correction de A a été silencieusement perdue, sans aucune
+Résultat final en base : 1030 : la correction de A a été silencieusement perdue, sans aucune
 erreur signalée à personne. C'est un "lost update", invisible avec READ COMMITTED puisque
 chaque transaction, prise isolément, est parfaitement correcte.
 ```
@@ -164,7 +164,7 @@ COMMIT;
 -- La transaction B, si elle tente le même SELECT ... FOR UPDATE sur la même ligne pendant
 -- que A n'a pas encore validé, est mise en attente jusqu'à ce que A committe ou annule.
 
--- Solution 2 : verrou optimiste, sans jamais bloquer personne — détecter le conflit
+-- Solution 2 : verrou optimiste, sans jamais bloquer personne : détecter le conflit
 -- au moment d'écrire plutôt que d'empêcher la lecture concurrente.
 UPDATE compteur SET valeur = $2, version = version + 1
 WHERE id = $1 AND version = $3;  -- $3 = version lue au moment du calcul
@@ -188,19 +188,19 @@ qu'on veut éviter tout blocage par défaut (le cas le plus courant d'une API we
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Requête groupée (batch) au lieu de N+1 | Requête un peu plus complexe à écrire | Coût constant quel que soit le nombre d'éléments affichés | Toujours, dès qu'une boucle applicative peut déclencher une requête |
-| Pagination par curseur | Pas de "aller à la page N" direct | Stable et performante à toute profondeur, même sous insertions concurrentes | Liste à croissance non bornée (journal de relevés, historique d'emprunts) |
-| Verrou pessimiste (`FOR UPDATE`) | Blocage d'autres transactions pendant la durée du verrou | Empêche le conflit avant qu'il n'arrive, simple à raisonner | Conflits fréquents, transaction courte, criticité forte de l'exactitude |
-| Verrou optimiste (colonne `version`) | Le code doit gérer l'échec et retenter explicitement | Aucun blocage, meilleure montée en charge | Conflits rares, API web à forte concurrence de lecture |
-| `SERIALIZABLE` partout | Échecs de transaction à gérer, coût de performance du moteur | Garantie la plus forte, zéro incohérence subtile possible | Sections critiques rares et bien identifiées, jamais par défaut sur toute l'API |
+| Option                                 | Coût                                                         | Bénéfice                                                                    | Quand choisir                                                                   |
+| -------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Requête groupée (batch) au lieu de N+1 | Requête un peu plus complexe à écrire                        | Coût constant quel que soit le nombre d'éléments affichés                   | Toujours, dès qu'une boucle applicative peut déclencher une requête             |
+| Pagination par curseur                 | Pas de "aller à la page N" direct                            | Stable et performante à toute profondeur, même sous insertions concurrentes | Liste à croissance non bornée (journal de relevés, historique d'emprunts)       |
+| Verrou pessimiste (`FOR UPDATE`)       | Blocage d'autres transactions pendant la durée du verrou     | Empêche le conflit avant qu'il n'arrive, simple à raisonner                 | Conflits fréquents, transaction courte, criticité forte de l'exactitude         |
+| Verrou optimiste (colonne `version`)   | Le code doit gérer l'échec et retenter explicitement         | Aucun blocage, meilleure montée en charge                                   | Conflits rares, API web à forte concurrence de lecture                          |
+| `SERIALIZABLE` partout                 | Échecs de transaction à gérer, coût de performance du moteur | Garantie la plus forte, zéro incohérence subtile possible                   | Sections critiques rares et bien identifiées, jamais par défaut sur toute l'API |
 
 ## Pièges classiques
 
 - **Le N+1 invisible en développement.** Symptôme : la page est rapide sur la base de test (peu
   de lignes) et devient inexploitable en production sans qu'aucune ligne de code n'ait changé
-  entre les deux — seul le volume a changé.
+  entre les deux : seul le volume a changé.
 - **L'index absent sur la colonne de tri du curseur.** Symptôme : la pagination par curseur,
   censée être rapide à toute profondeur, déclenche un tri complet de la table à chaque page,
   aussi lente qu'un offset profond qu'elle était censée remplacer.

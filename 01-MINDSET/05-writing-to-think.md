@@ -9,7 +9,7 @@ envoyée. Deux développeurs en discutent quinze minutes devant un tableau blanc
 d'accord à l'oral, et codent. Deux mois plus tard, un troisième développeur doit corriger un
 bug de recalcul et ne comprend pas pourquoi certains recalculs déclenchent un email au
 locataire et d'autres non. Il interroge les deux premiers, qui se souviennent différemment
-de la décision d'origine — chacun a retenu la moitié du raisonnement, et les deux moitiés ne
+de la décision d'origine : chacun a retenu la moitié du raisonnement, et les deux moitiés ne
 sont pas compatibles.
 
 ## Ce qui se passe vraiment
@@ -18,7 +18,7 @@ Une décision qui n'existe que dans une conversation orale n'existe pas vraiment
 existe dans deux ou trois mémoires humaines imparfaites, qui divergent avec le temps. Écrire
 une décision force à répondre à des questions qu'on esquive facilement à l'oral : quelles
 options ont vraiment été considérées, pourquoi celle-là précisément, qu'est-ce qu'on accepte
-de perdre. L'écriture n'est pas de la documentation après coup — c'est l'outil de pensée
+de perdre. L'écriture n'est pas de la documentation après coup : c'est l'outil de pensée
 lui-même. Beaucoup de décisions bancales à l'oral s'effondrent dès qu'on essaie de les
 écrire clairement, parce que l'écriture révèle les trous du raisonnement.
 
@@ -40,7 +40,7 @@ lui-même. Beaucoup de décisions bancales à l'oral s'effondrent dès qu'on ess
 
 Un **ADR** (Architecture Decision Record) est un document court qui capture une décision
 technique significative, au moment où elle est prise, avec son contexte et ses alternatives
-rejetées. Un ADR n'est pas un rapport exhaustif — c'est un instantané honnête d'un
+rejetées. Un ADR n'est pas un rapport exhaustif : c'est un instantané honnête d'un
 raisonnement, y compris de ses limites.
 
 Gabarit minimal d'un ADR :
@@ -79,14 +79,14 @@ Gabarit minimal d'un ADR :
 ```
 
 Deux sections font le travail réel : "Options considérées" prouve qu'on n'a pas pris la
-première idée venue, et "Conséquences" force à nommer ce qu'on accepte de perdre — y compris
+première idée venue, et "Conséquences" force à nommer ce qu'on accepte de perdre : y compris
 un seuil qui invaliderait la décision plus tard. Sans cette dernière section, un ADR devient
 une justification a posteriori plutôt qu'un raisonnement honnête.
 
 ### La RFC : proposer avant de trancher
 
 Une **RFC** (Request For Comments) se distingue de l'ADR par le moment où elle intervient :
-elle est écrite *avant* que la décision soit prise, pour solliciter la contradiction d'autres
+elle est écrite _avant_ que la décision soit prise, pour solliciter la contradiction d'autres
 personnes avant de s'engager. Une RFC est un brouillon assumé, pas une décision déguisée en
 question rhétorique.
 
@@ -131,7 +131,7 @@ Un texte qui défend correctement un choix a trois propriétés :
 
 1. Il nomme les options rejetées avec leurs mérites réels, pas des versions caricaturées
    faciles à battre.
-2. Il indique la condition qui ferait revenir sur la décision — un choix qui ne peut jamais
+2. Il indique la condition qui ferait revenir sur la décision : un choix qui ne peut jamais
    être remis en cause n'est pas défendu, il est figé.
 3. Il sépare les faits (ce qui a été mesuré ou observé) des jugements (ce qui a été estimé
    ou préféré), pour qu'un désaccord porte sur le bon terrain.
@@ -153,24 +153,24 @@ qu'il implique.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
+| Option                                          | Coût                                                | Bénéfice                                                                        | Quand choisir                                                            |
+| ----------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | Écrire un ADR pour chaque décision structurante | Temps de rédaction, discipline d'équipe à maintenir | Traçabilité, onboarding plus rapide, désaccords futurs argumentés sur des faits | Décision difficile à défaire, ou qui affecte plusieurs personnes/équipes |
-| Trancher à l'oral et avancer | Rapidité immédiate | Pas de friction sur les décisions mineures et réversibles | Décision locale, réversible en quelques minutes, sans impact externe |
+| Trancher à l'oral et avancer                    | Rapidité immédiate                                  | Pas de friction sur les décisions mineures et réversibles                       | Décision locale, réversible en quelques minutes, sans impact externe     |
 
 ## Pièges classiques
 
 - Écrire un ADR après coup, uniquement pour justifier une décision déjà prise et non
-  négociable — symptôme : la section "Options considérées" contient des options ridicules,
+  négociable : symptôme : la section "Options considérées" contient des options ridicules,
   jamais sérieusement envisagées.
-- Confondre une note de conception avec une liste de tâches techniques — symptôme : la note
+- Confondre une note de conception avec une liste de tâches techniques : symptôme : la note
   saute directement à l'implémentation sans jamais nommer le problème ni le critère de
   succès.
-- Poser des questions fermées dans une RFC — symptôme : personne ne répond, ou tout le monde
+- Poser des questions fermées dans une RFC : symptôme : personne ne répond, ou tout le monde
   répond "oui" sans avoir vraiment challengé le contenu.
-- Omettre la condition de révision d'un ADR — symptôme : la décision devient un dogme
+- Omettre la condition de révision d'un ADR : symptôme : la décision devient un dogme
   qu'il est politiquement délicat de remettre en cause, même quand le contexte a changé.
-- Mélanger faits et jugements dans le même paragraphe sans les distinguer — symptôme : les
+- Mélanger faits et jugements dans le même paragraphe sans les distinguer : symptôme : les
   désaccords en réunion tournent en rond parce que personne ne sait sur quoi il discute.
 
 ## Ce que tu dois savoir défendre

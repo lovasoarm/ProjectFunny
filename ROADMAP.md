@@ -1,9 +1,9 @@
-# ROADMAP — trois rythmes
+# ROADMAP : trois rythmes
 
 Choisis un rythme et tiens-le. Un parcours irrégulier coûte plus cher qu'un parcours lent :
 tu paies un droit d'entrée à chaque reprise.
 
-## Rythme SPRINT — 8 semaines, 12 h/semaine
+## Rythme SPRINT : 8 semaines, 12 h/semaine
 
 Pour quelqu'un entre deux postes ou en fin d'études.
 
@@ -20,12 +20,12 @@ S8  12 CAPSTONE-ARENA                   -> projet livré
 
 14 et 15 se lisent en fil rouge, quand le besoin apparaît. 13 démarre le jour où tu finis 12.
 
-## Rythme SAISON — 4 mois, 6 h/semaine
+## Rythme SAISON : 4 mois, 6 h/semaine
 
 Un niveau tous les 7 à 10 jours. Le capstone occupe le dernier mois entier.
 C'est le rythme recommandé si tu travailles à côté : la digestion compte autant que la lecture.
 
-## Rythme MARATHON — 6 mois, 4 h/semaine
+## Rythme MARATHON : 6 mois, 4 h/semaine
 
 Une séance de 2 h pour lire et réfléchir, une séance de 2 h pour produire le livrable.
 Ne lis jamais deux leçons sans produire quelque chose entre les deux.

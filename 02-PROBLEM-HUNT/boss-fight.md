@@ -1,10 +1,10 @@
-# Boss Fight — Problem Hunt
+# Boss Fight : Problem Hunt
 
 ## La situation
 
 Tu es sur le projet du réseau de cabinets vétérinaires (voir `challenge.md`). Ton document de
 cadrage est terminé et validé par la direction. Une semaine plus tard, en réunion de lancement
-technique, le directeur général — qui n'était pas présent lors du cadrage initial — dit ceci :
+technique, le directeur général : qui n'était pas présent lors du cadrage initial : dit ceci :
 
 > "En fait j'ai réfléchi, ce qu'il nous faut vraiment c'est une appli complète de gestion de
 > rendez-vous en ligne pour les propriétaires d'animaux, avec paiement intégré. Les urgences,
@@ -24,7 +24,7 @@ Rédige, en markdown, ta réponse telle que tu la formulerais réellement à l'o
 réunion, puis un paragraphe d'analyse à part expliquant ta stratégie. Ta réponse doit :
 
 - Ne pas rejeter l'idée du directeur général sur un ton de mépris ou de supériorité
-  méthodologique — il a un vrai enjeu business, pas une lubie.
+  méthodologique : il a un vrai enjeu business, pas une lubie.
 - Distinguer clairement, dans ton argumentation, le job to be done déjà identifié (urgences)
   du nouveau besoin proposé (image de marque, rendez-vous en ligne), sans prétendre qu'ils
   sont incompatibles à terme.
@@ -35,10 +35,10 @@ réunion, puis un paragraphe d'analyse à part expliquant ta stratégie. Ta rép
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est évalué | Signal d'échec |
-|---|---|---|
-| Respect du besoin de l'interlocuteur | La réponse reconnaît l'enjeu business réel du directeur | La réponse le traite comme une distraction sans valeur |
-| Usage du cadrage comme outil, pas comme dogme | Le cadrage sert à éclairer la décision, pas à la bloquer par principe | La réponse se limite à "on a déjà décidé, on ne change pas" |
-| Ancrage dans le réel | Au moins un signal faible ou une donnée concrète est cité | La réponse reste abstraite, sans preuve terrain |
-| Proposition constructive | Une troisième voie est proposée, avec un chemin concret | La réponse est un simple oui ou un simple non |
-| Tenue de la relation | Le ton reste collaboratif, pas défensif ni condescendant | Le ton laisse penser que le directeur a tort d'avoir une opinion |
+| Critère                                       | Ce qui est évalué                                                     | Signal d'échec                                                   |
+| --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Respect du besoin de l'interlocuteur          | La réponse reconnaît l'enjeu business réel du directeur               | La réponse le traite comme une distraction sans valeur           |
+| Usage du cadrage comme outil, pas comme dogme | Le cadrage sert à éclairer la décision, pas à la bloquer par principe | La réponse se limite à "on a déjà décidé, on ne change pas"      |
+| Ancrage dans le réel                          | Au moins un signal faible ou une donnée concrète est cité             | La réponse reste abstraite, sans preuve terrain                  |
+| Proposition constructive                      | Une troisième voie est proposée, avec un chemin concret               | La réponse est un simple oui ou un simple non                    |
+| Tenue de la relation                          | Le ton reste collaboratif, pas défensif ni condescendant              | Le ton laisse penser que le directeur a tort d'avoir une opinion |

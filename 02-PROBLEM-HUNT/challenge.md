@@ -1,4 +1,4 @@
-# Challenge — Problem Hunt
+# Challenge : Problem Hunt
 
 ## Contexte
 
@@ -14,7 +14,7 @@ Un document de cadrage, en markdown, structuré exactement comme suit :
 
 1. **Demande initiale vs besoin réel** : reformule la phrase de départ en identifiant au moins
    trois interprétations possibles différentes de "mieux gérer les urgences", et explique
-   laquelle tu retiendrais en priorité et pourquoi — en t'appuyant sur des signaux faibles
+   laquelle tu retiendrais en priorité et pourquoi : en t'appuyant sur des signaux faibles
    plausibles que tu inventes de façon crédible (contournement observé, tableau fantôme,
    plainte récurrente).
 2. **Jobs to be done** : au moins deux jobs distincts pour au moins deux rôles différents
@@ -43,7 +43,7 @@ Un document de cadrage, en markdown, structuré exactement comme suit :
   générale ("je veux une bonne appli").
 - Chaque non-objectif passe le test de la leçon 04 : si on le supprime, une décision de
   conception change réellement.
-- La métrique de succès ne peut pas monter sans que le symptôme initial diminue — vérifie-le
+- La métrique de succès ne peut pas monter sans que le symptôme initial diminue : vérifie-le
   explicitement en une phrase dans ton document.
 - Le seuil d'échec est un chiffre, pas une phrase vague comme "si ça ne marche pas bien".
 

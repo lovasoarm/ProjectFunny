@@ -1,16 +1,16 @@
-# Niveau 06 — Archi-Lab
+# Niveau 06 : Archi-Lab
 
 ## Ce que c'est
 
 Tu sais découper un projet en tickets, écrire du code qui marche, livrer un MVP. Ce niveau
 s'attaque à autre chose : la forme que prend ton code quand il grossit. Pas la syntaxe, pas le
-framework — la façon dont les morceaux se parlent entre eux, et ce qui se passe quand cette
+framework : la façon dont les morceaux se parlent entre eux, et ce qui se passe quand cette
 façon est mauvaise. Une architecture n'est pas un schéma qu'on dessine avant de coder. C'est
 la conséquence de mille petites décisions de couplage prises sans y penser. Ce niveau te
 donne le vocabulaire et les réflexes pour prendre ces décisions consciemment.
 
 Durée estimée : 8 à 12 heures, réparties sur plusieurs jours. C'est un niveau qui se digère mal
-d'un coup — laisse les idées infuser entre deux leçons.
+d'un coup : laisse les idées infuser entre deux leçons.
 
 Prérequis : avoir livré au moins un projet qui dépasse le stade du prototype (Niveau 03,
 MVP-Split, complété). Tu dois avoir déjà senti la douleur d'un fichier de 800 lignes qui fait
@@ -45,7 +45,7 @@ tout, sinon ces leçons resteront abstraites.
 ## Comment lire ce niveau
 
 Dans l'ordre, sans sauter. `02` et `03` sont le cœur théorique : tout le reste s'appuie dessus.
-`04` est le piège le plus sournois de ce niveau — la plupart des bugs de production que tu
+`04` est le piège le plus sournois de ce niveau : la plupart des bugs de production que tu
 verras dans ta carrière viennent de là. `05` referme la boucle en te donnant un cadre de
 décision, pas une religion ("microservices for ever" ou "monolithe for ever" sont deux sectes
 à fuir).

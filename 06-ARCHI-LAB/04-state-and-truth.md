@@ -33,7 +33,7 @@ Dérivés (peuvent être faux temporairement, jamais faire foi) :
 Règle : en cas de doute, on recompte depuis `reservations`, jamais depuis un dérivé.
 ```
 
-Le bug du panneau d'accueil n'est pas un bug de synchronisation réseau — c'est un bug de
+Le bug du panneau d'accueil n'est pas un bug de synchronisation réseau : c'est un bug de
 conception : le compteur `placesRestantes` a été traité comme une source de vérité alors que
 ce n'en était pas une. La correction ne consiste pas à "améliorer la synchronisation", mais à
 documenter explicitement que ce compteur est un dérivé, avec un mécanisme de réconciliation
@@ -76,7 +76,7 @@ solde de compte en retard", même si techniquement les deux caches se codent par
 Dupliquer une donnée pour la lecture (dénormalisation) est une technique saine, utilisée
 partout, à condition qu'une seule des copies soit désignée comme faisant foi. Le problème
 apparaît quand deux copies sont **toutes deux traitées comme faisant foi**, avec des chemins
-d'écriture indépendants — c'est là que naissent les divergences silencieuses.
+d'écriture indépendants : c'est là que naissent les divergences silencieuses.
 
 ```text
 Duplication saine (une source de vérité, un dérivé) :
@@ -97,14 +97,14 @@ Duplication dangereuse (deux écritures indépendantes, aucune source claire) :
 ```
 
 La règle pratique : si une donnée peut être écrite depuis plus d'un endroit du code, ce
-n'est presque jamais un problème en soi — mais si elle peut être écrite depuis plus d'une
+n'est presque jamais un problème en soi : mais si elle peut être écrite depuis plus d'une
 **source de calcul différente**, c'est un problème quasi certain à moyen terme.
 
 ### Cohérence éventuelle : accepter le décalage au lieu de le nier
 
 Dans un système distribué (plusieurs services, plusieurs bases, du cache, plusieurs
 utilisateurs simultanés), il est souvent impossible et même indésirable de garantir que
-"tout le monde voit la même chose au même instant" — le coût en latence et en complexité
+"tout le monde voit la même chose au même instant" : le coût en latence et en complexité
 serait disproportionné par rapport au problème réel. La cohérence éventuelle est le choix
 assumé d'accepter un décalage temporaire, borné et documenté, en échange de performance et de
 simplicité, à condition que ce décalage ne puisse jamais provoquer une décision irréversible
@@ -123,17 +123,17 @@ Inacceptable en cohérence éventuelle sans garde-fou supplémentaire :
 
 Le garde-fou classique est de séparer clairement "l'affichage" (peut être en cohérence
 éventuelle, sert à informer) de "la décision engageante" (doit vérifier la source de vérité
-au moment exact de l'action, avec une contrainte d'unicité en base si besoin — par exemple une
+au moment exact de l'action, avec une contrainte d'unicité en base si besoin : par exemple une
 contrainte SQL empêchant deux réservations sur la même place).
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Une seule source de vérité, tout le reste recalculé à la demande | Lectures plus lentes, plus de charge sur la source | Zéro risque de divergence | Donnée peu lue, ou système à faible charge |
-| Source de vérité + dérivés en cache avec TTL court | Complexité de gestion du cache, fenêtre de mensonge à documenter | Lectures rapides, charge réduite sur la source | Donnée lue très souvent, tolérance au décalage clairement acceptable |
-| Vérification synchrone au moment de l'action engageante | Un aller-retour supplémentaire vers la source de vérité au moment critique | Empêche les incohérences qui coûtent cher (double réservation, double débit) | Toute action irréversible ou financière |
-| Duplication avec deux chemins d'écriture indépendants | Divergences silencieuses inévitables à moyen terme | Aucun bénéfice réel, seulement une fausse impression de simplicité | Jamais — signal qu'il faut refactorer vers une source unique |
+| Option                                                           | Coût                                                                       | Bénéfice                                                                     | Quand choisir                                                        |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Une seule source de vérité, tout le reste recalculé à la demande | Lectures plus lentes, plus de charge sur la source                         | Zéro risque de divergence                                                    | Donnée peu lue, ou système à faible charge                           |
+| Source de vérité + dérivés en cache avec TTL court               | Complexité de gestion du cache, fenêtre de mensonge à documenter           | Lectures rapides, charge réduite sur la source                               | Donnée lue très souvent, tolérance au décalage clairement acceptable |
+| Vérification synchrone au moment de l'action engageante          | Un aller-retour supplémentaire vers la source de vérité au moment critique | Empêche les incohérences qui coûtent cher (double réservation, double débit) | Toute action irréversible ou financière                              |
+| Duplication avec deux chemins d'écriture indépendants            | Divergences silencieuses inévitables à moyen terme                         | Aucun bénéfice réel, seulement une fausse impression de simplicité           | Jamais : signal qu'il faut refactorer vers une source unique         |
 
 ## Pièges classiques
 
@@ -141,7 +141,7 @@ contrainte SQL empêchant deux réservations sur la même place).
   petit à petit de la réalité, personne ne s'en aperçoit jusqu'à un écart flagrant, et aucun
   job ne sait le recalculer proprement depuis la source.
 - **Le cache invalidé "à la main" au cas par cas.** Symptôme : chaque nouvel endroit du code
-  qui modifie la donnée doit se souvenir d'invalider le cache — un développeur l'oublie tôt
+  qui modifie la donnée doit se souvenir d'invalider le cache : un développeur l'oublie tôt
   ou tard, et le cache devient menteur en permanence sur certains chemins.
 - **La cohérence éventuelle appliquée à une décision engageante.** Symptôme : deux
   utilisateurs réservent la même ressource unique en même temps parce que la vérification de
@@ -149,10 +149,10 @@ contrainte SQL empêchant deux réservations sur la même place).
   de la source de vérité.
 - **La confusion entre "affiché" et "vrai".** Symptôme : une équipe débat pendant une heure de
   pourquoi deux écrans affichent des chiffres différents, sans jamais se demander laquelle des
-  deux sources fait réellement foi — la question n'a jamais été tranchée à la conception.
+  deux sources fait réellement foi : la question n'a jamais été tranchée à la conception.
 - **La duplication qui commence "temporaire" et devient permanente.** Symptôme : un champ
   copié d'une table à une autre "pour aller vite", sans jamais documenter qui doit le
-  maintenir à jour — six mois plus tard, plus personne ne sait lequel des deux est correct.
+  maintenir à jour : six mois plus tard, plus personne ne sait lequel des deux est correct.
 
 ## Ce que tu dois savoir défendre
 

@@ -1,4 +1,4 @@
-# Niveau 09 — Quality Shield
+# Niveau 09 : Quality Shield
 
 ## Ce que c'est
 
@@ -13,7 +13,7 @@ sans détruire la confiance de l'équipe.
 Durée estimée : 6 à 8 heures de lecture active, plus le challenge (mise en place d'un
 pipeline de qualité sur un projet existant, 4 à 6 heures).
 
-Prérequis : Niveau 07 (API Dojo) — tu dois avoir un système qui répond à des requêtes pour
+Prérequis : Niveau 07 (API Dojo) : tu dois avoir un système qui répond à des requêtes pour
 que la notion de test, d'observabilité et d'incident ait un sens concret.
 
 ## Ce que tu sais faire à la sortie

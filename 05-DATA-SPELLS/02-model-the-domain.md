@@ -7,7 +7,7 @@ bénévole qui a codé la première version du fichier de prêt a créé une tab
 colonnes `nom_adherent`, `materiel`, `date_emprunt`. Ça a marché six mois. Puis deux adhérents
 se sont appelés "Julien Petit" à un mois d'écart et le bénévole a rendu le mauvais baudrier au
 mauvais Julien. Puis un adhérent a emprunté deux baudriers le même jour et la ligne unique n'a
-pu en représenter qu'un — le second a été noté "à la main" sur un carnet, introuvable trois
+pu en représenter qu'un : le second a été noté "à la main" sur un carnet, introuvable trois
 semaines plus tard quand le matériel a été signalé manquant à l'inventaire annuel.
 
 Le bug n'est pas dans le code de prêt. Il est dans la modélisation initiale : "adhérent" a été
@@ -18,7 +18,7 @@ qu'est réellement un emprunt, et ce qui doit rester vrai en toutes circonstance
 
 ## Ce qui se passe vraiment
 
-### Une entité, ce n'est pas une table — c'est une identité qui dure
+### Une entité, ce n'est pas une table : c'est une identité qui dure
 
 Une entité du domaine existe indépendamment de la façon dont tu la stockes. Le test pour
 savoir si quelque chose mérite d'être une entité (avec sa propre identité, sa propre ligne, sa
@@ -31,7 +31,7 @@ téléphone. Un baudrier reste le même baudrier physique tout au long de sa vie
 plusieurs prêts et plusieurs contrôles de sécurité. Ce sont des entités : elles ont besoin d'un
 identifiant stable, indépendant de tout attribut descriptif.
 
-À l'inverse, une couleur de baudrier, une taille de chausson, ne sont pas des entités — ce sont
+À l'inverse, une couleur de baudrier, une taille de chausson, ne sont pas des entités : ce sont
 des attributs ou, au pire, des valeurs d'un petit référentiel fermé (une "value list").
 Le piège classique : promouvoir en entité à part entière quelque chose qui n'en est pas une,
 ce qui ajoute une jointure et une table à maintenir pour rien (sur-ingénierie), ou l'inverse,
@@ -58,7 +58,7 @@ Clé naturelle (numéro de licence FFME)     Clé technique (UUID généré par 
 
 Règle pratique : **une clé technique par défaut, une clé naturelle en contrainte d'unicité en
 plus si elle existe et qu'elle est stable.** Le numéro de licence FFME devient une colonne
-`UNIQUE`, pas la clé primaire — le jour où la fédération change son format de numérotation
+`UNIQUE`, pas la clé primaire : le jour où la fédération change son format de numérotation
 (c'est arrivé), tu changes une valeur dans une colonne, pas l'identifiant de toutes les lignes
 liées dans toutes les tables étrangères de la base.
 
@@ -75,13 +75,13 @@ Trois questions à te poser pour chaque paire d'entités liées :
 Adhérent ──────< Emprunt >────── Matériel
    1                                 1
         (un emprunt relie exactement un adhérent et un article de matériel,
-         à un instant donné — la relation ELLE-MÊME porte une date de début,
+         à un instant donné : la relation ELLE-MÊME porte une date de début,
          une date de retour prévue, une date de retour réelle)
 
 Cardinalité réelle : un adhérent a PLUSIEURS emprunts dans le temps (historique).
 Un article de matériel a PLUSIEURS emprunts dans le temps (historique).
 Mais à un instant T, un article de matériel ne peut être emprunté que par un seul adhérent
-à la fois (INVARIANT — voir plus bas).
+à la fois (INVARIANT : voir plus bas).
 ```
 
 Le piège du bénévole du club d'escalade : il a modélisé `Pret` comme s'il ne pouvait exister
@@ -101,7 +101,7 @@ Invariants du club d'escalade, formulés explicitement (ce qui n'avait jamais é
 
 ```text
 INV-1 : un article de matériel ne peut avoir qu'un emprunt "actif" (sans date de retour) à
-        la fois — impossible de le prêter deux fois en même temps.
+        la fois : impossible de le prêter deux fois en même temps.
 INV-2 : la date de retour réelle, si elle existe, est postérieure ou égale à la date d'emprunt.
 INV-3 : un adhérent dont l'adhésion a expiré ne peut pas démarrer un nouvel emprunt (mais garde
         le droit de rendre ce qu'il a déjà emprunté).
@@ -147,7 +147,7 @@ Même exercice sur le second fil rouge du niveau, en condensé :
 Copropriete (1) ──< Logement (n)
 Logement (1) ──< Occupation (n)          # historique : qui habite où, sur quelle période
 Compteur (1) ──< Releve (n)              # historique de lecture, jamais écrasé
-TarifEnergie (n) — période de validité   # jamais "le tarif", toujours "le tarif à telle date"
+TarifEnergie (n) : période de validité   # jamais "le tarif", toujours "le tarif à telle date"
 
 Invariants :
 INV-1 : les périodes d'Occupation d'un même Logement ne se chevauchent jamais.
@@ -159,17 +159,17 @@ INV-3 : à toute date donnée, il existe exactement un TarifEnergie applicable, 
 
 Remarque le motif qui revient : "un logement" n'est pas assez, il faut "qui occupe ce logement
 et depuis quand" ; "le tarif" n'est pas assez, il faut "le tarif valable à telle date". C'est le
-fil conducteur de tout ce niveau — modéliser sans le temps produit un modèle qui ment dès que la
+fil conducteur de tout ce niveau : modéliser sans le temps produit un modèle qui ment dès que la
 réalité bouge.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Clé technique partout + clé naturelle en `UNIQUE` | Une colonne et un index en plus | Stabilité totale des relations même si la donnée métier change | Par défaut, presque toujours |
-| Clé naturelle comme clé primaire | Simplicité apparente, pas de colonne supplémentaire | Lisibilité immédiate en debug | Référentiel vraiment figé à vie (code ISO pays, par exemple) |
+| Option                                                                   | Coût                                                              | Bénéfice                                                                                                  | Quand choisir                                                                 |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Clé technique partout + clé naturelle en `UNIQUE`                        | Une colonne et un index en plus                                   | Stabilité totale des relations même si la donnée métier change                                            | Par défaut, presque toujours                                                  |
+| Clé naturelle comme clé primaire                                         | Simplicité apparente, pas de colonne supplémentaire               | Lisibilité immédiate en debug                                                                             | Référentiel vraiment figé à vie (code ISO pays, par exemple)                  |
 | Modéliser une relation many-to-many avec table de jonction dès le départ | Une table de plus, une jointure de plus dans les requêtes simples | Peut porter des attributs propres à la relation (date, quantité, statut) et supporte le many-to-many réel | Dès que la relation peut se répéter dans le temps ou porter une donnée propre |
-| Modéliser en 1-n en attendant d'avoir un vrai besoin de many-to-many | Migration future nécessaire si le besoin apparaît | Simplicité tant que la réalité est vraiment 1-n | Cardinalité réelle du domaine vérifiée à 1-n, pas une supposition de confort |
+| Modéliser en 1-n en attendant d'avoir un vrai besoin de many-to-many     | Migration future nécessaire si le besoin apparaît                 | Simplicité tant que la réalité est vraiment 1-n                                                           | Cardinalité réelle du domaine vérifiée à 1-n, pas une supposition de confort  |
 
 ## Pièges classiques
 
@@ -177,7 +177,7 @@ réalité bouge.
   ressemblent ("Julien Petit" et "Julien Petit") sont traités comme la même entité, ou
   inversement une faute de frappe casse silencieusement une jointure logique.
 - **L'état courant sans historique.** Symptôme : une colonne `statut` ou `adresse` écrasée à
-  chaque changement — impossible de répondre "qui habitait ce logement le 3 mars", la réponse
+  chaque changement : impossible de répondre "qui habitait ce logement le 3 mars", la réponse
   n'existe plus.
 - **L'invariant seulement dans la tête du développeur.** Symptôme : une règle métier appliquée
   dans un seul endroit du code (un formulaire) mais absente de la base ; une autre route API,
@@ -187,13 +187,13 @@ réalité bouge.
   jamais servir à rien.
 - **La cardinalité supposée au lieu de vérifiée.** Symptôme : un modèle "un adhérent, un
   emprunt actif" codé en dur, qui casse le jour où un adhérent emprunte deux articles à la fois
-  — une situation pourtant normale et prévisible dès le premier jour si on avait posé la
+  : une situation pourtant normale et prévisible dès le premier jour si on avait posé la
   question.
 
 ## Ce que tu dois savoir défendre
 
 - Donne un exemple où transformer un attribut en entité à part entière était la bonne décision,
-  et un exemple où ça aurait été de la sur-ingénierie — explique le critère qui les distingue.
+  et un exemple où ça aurait été de la sur-ingénierie : explique le critère qui les distingue.
 - Pourquoi préfère-t-on une clé technique à une clé naturelle dans la majorité des cas, alors
   que la clé naturelle semble plus simple à lire ?
 - Prends un invariant du club d'escalade ou de la refacturation d'énergie et explique comment

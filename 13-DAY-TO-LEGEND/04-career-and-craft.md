@@ -8,7 +8,7 @@ responsabilité. Le second a changé trois fois de contexte : deux ans sur un pr
 paiement à fort trafic, deux ans sur un outil interne qu'il a dû concevoir de zéro, deux ans
 en tant que référent technique d'une petite équipe. Sur le papier, "6 ans d'expérience" les
 place au même niveau. Face à un problème inédit en entretien, l'écart de jugement entre les
-deux est immense — pas parce que le premier est moins intelligent, mais parce que la
+deux est immense : pas parce que le premier est moins intelligent, mais parce que la
 seniorité ne se mesure pas en années, elle se mesure en diversité de situations
 correctement digérées et en niveau de responsabilité réellement exercé sur des décisions
 qui comptaient.
@@ -17,7 +17,7 @@ qui comptaient.
 
 ### Ce que "senior" veut dire, au-delà du titre
 
-Le titre "senior" est attribué de façon très inégale d'une entreprise à l'autre — dans
+Le titre "senior" est attribué de façon très inégale d'une entreprise à l'autre : dans
 certaines, il arrive après 18 mois, dans d'autres après 8 ans. Le titre n'est donc pas un
 signal fiable. Ce qui l'est, ce sont des capacités observables, indépendantes de qui te les
 a accordées :
@@ -85,7 +85,7 @@ usage. La discipline n'est pas d'en produire plus, c'est de ne pas les perdre.
 
 ### Le vrai coût de l'immobilité de confort
 
-Rester longtemps au même poste n'est pas une erreur en soi — l'expertise verticale profonde
+Rester longtemps au même poste n'est pas une erreur en soi : l'expertise verticale profonde
 demande du temps et de la continuité (Niveau 13, leçon 01, compromis). L'erreur est de le
 faire par défaut, sans avoir vérifié régulièrement, via une checklist honnête, que ce poste
 continue de produire de la croissance et pas seulement du confort :
@@ -107,12 +107,12 @@ Checklist annuelle de vérité (à se poser seul, honnêtement, une fois par an)
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Rester longtemps sur un même produit/équipe | Risque de plateau sans discipline de vérification | Expertise verticale profonde, confiance d'équipe élevée | Une fois qu'une base large de compétences existe déjà, et si la checklist annuelle reste positive |
-| Changer régulièrement de contexte | Coût de ramp-up, perte de continuité relationnelle | Large exposition, détection rapide des angles morts | Début à milieu de carrière, ou après un plateau confirmé |
-| Accepter un projet moins bien payé mais formateur | Coût financier direct, parfois coût de statut perçu | Compétence rare acquise, meilleure négociation future | Quand l'écart de formation est net et le coût financier absorbable |
-| Documenter systématiquement son travail (portfolio) | Temps de rédaction, discipline continue | Réputation vérifiable, négociation facilitée, mémoire externe fiable | Toujours, dès la première décision qui en vaut la peine |
+| Option                                              | Coût                                                | Bénéfice                                                             | Quand choisir                                                                                     |
+| --------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Rester longtemps sur un même produit/équipe         | Risque de plateau sans discipline de vérification   | Expertise verticale profonde, confiance d'équipe élevée              | Une fois qu'une base large de compétences existe déjà, et si la checklist annuelle reste positive |
+| Changer régulièrement de contexte                   | Coût de ramp-up, perte de continuité relationnelle  | Large exposition, détection rapide des angles morts                  | Début à milieu de carrière, ou après un plateau confirmé                                          |
+| Accepter un projet moins bien payé mais formateur   | Coût financier direct, parfois coût de statut perçu | Compétence rare acquise, meilleure négociation future                | Quand l'écart de formation est net et le coût financier absorbable                                |
+| Documenter systématiquement son travail (portfolio) | Temps de rédaction, discipline continue             | Réputation vérifiable, négociation facilitée, mémoire externe fiable | Toujours, dès la première décision qui en vaut la peine                                           |
 
 ## Pièges classiques
 

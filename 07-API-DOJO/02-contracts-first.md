@@ -7,11 +7,11 @@ partenaires : un comparateur de prix, un cabinet d'audit énergétique, et le se
 de reporting. Un développeur remarque que le champ `unit` (toujours `"kWh"`) est redondant
 puisqu'il ne varie jamais, et le supprime pour "nettoyer la réponse" dans le même commit qui
 ajoute un nouveau champ `co2Estimate`. Déploiement un vendredi soir, aucun changement de
-version d'API affiché nulle part — c'est toujours `/v1/consumptions`. Le comparateur de prix,
+version d'API affiché nulle part : c'est toujours `/v1/consumptions`. Le comparateur de prix,
 qui lisait `response.unit` pour l'afficher à côté du chiffre, plante en production le samedi
 matin sur une exception "cannot read property of undefined", pendant le pic de trafic du
 week-end où les gens comparent leurs fournisseurs. Personne dans l'équipe de refacturation
-n'a fait exprès de casser quoi que ce soit — supprimer un champ qui semble inutile ressemble
+n'a fait exprès de casser quoi que ce soit : supprimer un champ qui semble inutile ressemble
 à un ménage, pas à une décision de rupture de contrat. C'est exactement le problème : ça en
 était une, et personne ne l'a vue.
 
@@ -19,7 +19,7 @@ n'a fait exprès de casser quoi que ce soit — supprimer un champ qui semble in
 
 ### Un contrat, c'est ce que le client peut supposer vrai sans te demander
 
-Le contrat d'une API n'est pas sa documentation — la documentation peut être fausse ou en
+Le contrat d'une API n'est pas sa documentation : la documentation peut être fausse ou en
 retard. Le contrat, c'est l'ensemble des garanties sur lesquelles un client a le droit de
 s'appuyer sans risquer une casse au prochain déploiement. Tant que ces garanties sont
 respectées, tu peux changer n'importe quoi à l'intérieur de ton système. Dès qu'une seule est
@@ -38,7 +38,7 @@ GET /v1/consumptions/{siteId}
     periodeDebut: string ISO-8601 (requis)
     periodeFin: string ISO-8601 (requis)
     valeurKwh: number (requis, >= 0)
-    unit: string (requis, toujours "kWh" pour l'instant — mais présent, ne pas retirer)
+    unit: string (requis, toujours "kWh" pour l'instant : mais présent, ne pas retirer)
   Réponse 404 : si siteId inconnu
   Réponse 403 : si le token n'a pas le scope "consumptions:read" sur ce site
 
@@ -48,7 +48,7 @@ GET /v1/consumptions/{siteId}
   - L'ordre des champs JSON n'est jamais garanti.
 ```
 
-Ce document se discute et se revoit *avant* d'écrire une ligne d'implémentation, avec les
+Ce document se discute et se revoit _avant_ d'écrire une ligne d'implémentation, avec les
 équipes consommatrices si elles existent. Un champ qu'on veut retirer devient une conversation
 explicite ("qui utilise `unit` aujourd'hui ?") au lieu d'un ménage solitaire un vendredi soir.
 
@@ -84,11 +84,11 @@ Changement                              Ascendant-compatible ?
 ─────────────────────────────────────  ───────────────────────
 Ajouter un champ optionnel en réponse   Oui
 Ajouter un endpoint                     Oui
-Ajouter une valeur d'énumération        Non — un client avec un switch/case exhaustif
+Ajouter une valeur d'énumération        Non : un client avec un switch/case exhaustif
                                          qui ne gère pas la valeur inconnue peut planter
                                          ou, pire, mal se comporter silencieusement
 Retirer un champ, même "inutile"        Non, presque toujours
-Rendre un champ optionnel obligatoire   Non — les anciens clients ne l'envoient pas
+Rendre un champ optionnel obligatoire   Non : les anciens clients ne l'envoient pas
 Changer number en string                Non, casse tout parseur strict côté client
 Ajouter un champ obligatoire en entrée  Non, sauf valeur par défaut appliquée côté serveur
 ```
@@ -96,7 +96,7 @@ Ajouter un champ obligatoire en entrée  Non, sauf valeur par défaut appliquée
 Le cas des énumérations mérite un arrêt : ajouter une valeur semble anodin, mais un client
 qui fait `switch (status) { case "OPEN": ...; case "CLOSED": ...; default: throw }` plante
 sur toute nouvelle valeur. La bonne pratique côté client est de toujours prévoir un cas par
-défaut qui dégrade proprement (afficher "statut inconnu" plutôt que planter) — mais tu ne
+défaut qui dégrade proprement (afficher "statut inconnu" plutôt que planter) : mais tu ne
 contrôles pas comment un client externe a écrit son code, donc côté API, traite toute
 extension d'énumération comme un changement à risque, à documenter et si possible à
 introduire progressivement.
@@ -127,10 +127,10 @@ Stratégies de versionnage, avec leur coût réel :
 ```
 
 Le choix le plus robuste en pratique combine les deux dernières approches : versionner
-uniquement quand un changement est *réellement* non rétrocompatible (rare si le contrat est
+uniquement quand un changement est _réellement_ non rétrocompatible (rare si le contrat est
 pris au sérieux), et pousser fort vers des changements additifs le reste du temps. Verser
 dans `/v2/` à la moindre modification produit un cimetière de versions que personne ne migre
-jamais — le pire état possible, pire encore que ne pas versionner du tout.
+jamais : le pire état possible, pire encore que ne pas versionner du tout.
 
 ### Le cycle de vie d'une rupture de contrat assumée
 
@@ -152,12 +152,12 @@ qui appelle encore l'ancienne version.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Contrat formel écrit avant le code (OpenAPI/JSON Schema) | Temps de rédaction et de revue avant de coder, discipline de mise à jour | Rupture détectable automatiquement (diff de schéma en CI), onboarding de nouveaux consommateurs facilité | Dès qu'un deuxième consommateur existe ou est prévu |
-| Contrat implicite ("le code fait foi") | Rien à écrire à l'avance | Vitesse initiale | Prototype à un seul consommateur interne, jetable sous peu |
-| Versionnage dans l'URL | Endpoints dupliqués à maintenir en parallèle pendant la transition | Simplicité de routage, visibilité dans les logs | API publique avec des consommateurs externes non coordonnés |
-| Additif uniquement, sans version | Discipline stricte, impossible de corriger une erreur de conception sans contournement | Zéro gestion de version, migration continue sans à-coup | API interne à consommateurs peu nombreux et coordonnés |
+| Option                                                   | Coût                                                                                   | Bénéfice                                                                                                 | Quand choisir                                               |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Contrat formel écrit avant le code (OpenAPI/JSON Schema) | Temps de rédaction et de revue avant de coder, discipline de mise à jour               | Rupture détectable automatiquement (diff de schéma en CI), onboarding de nouveaux consommateurs facilité | Dès qu'un deuxième consommateur existe ou est prévu         |
+| Contrat implicite ("le code fait foi")                   | Rien à écrire à l'avance                                                               | Vitesse initiale                                                                                         | Prototype à un seul consommateur interne, jetable sous peu  |
+| Versionnage dans l'URL                                   | Endpoints dupliqués à maintenir en parallèle pendant la transition                     | Simplicité de routage, visibilité dans les logs                                                          | API publique avec des consommateurs externes non coordonnés |
+| Additif uniquement, sans version                         | Discipline stricte, impossible de corriger une erreur de conception sans contournement | Zéro gestion de version, migration continue sans à-coup                                                  | API interne à consommateurs peu nombreux et coordonnés      |
 
 ## Pièges classiques
 

@@ -7,7 +7,7 @@ les tarifs horaires en base ou les calculer à la volée depuis un service exter
 discussion a lieu à l'oral en réunion, personne ne prend de notes structurées, une décision
 émerge par lassitude plutôt que par conviction. Six mois plus tard, un nouveau développeur
 demande "pourquoi c'est fait comme ça", personne ne se souvient exactement des raisons, et
-l'équipe repart dans le même débat depuis zéro — deuxième fois pour le même coût cognitif.
+l'équipe repart dans le même débat depuis zéro : deuxième fois pour le même coût cognitif.
 
 ## Ce qui se passe vraiment
 
@@ -22,13 +22,13 @@ Enjeu qui engage plusieurs équipes  →  RFC (Request for Comments)
 Enjeu qui doit convaincre une direction non technique →  One-pager
 ```
 
-### ADR — pour une décision d'équipe, traçable, rarement contestée après coup
+### ADR : pour une décision d'équipe, traçable, rarement contestée après coup
 
 ```text
 # ADR-0007 : Stockage des tarifs horaires en base plutôt qu'appel à la volée
 
 ## Statut
-Acceptée — 2024-03-12
+Acceptée : 2024-03-12
 
 ## Contexte
 Le service externe de tarifs horaires a une latence moyenne de 400ms et une
@@ -46,10 +46,10 @@ volée pendant le calcul de facture.
 - Nécessite un job de synchronisation à monitorer.
 ```
 
-Une bonne ADR nomme une conséquence négative réelle, pas seulement des bénéfices — sinon ce
+Une bonne ADR nomme une conséquence négative réelle, pas seulement des bénéfices : sinon ce
 n'est pas une décision, c'est une publicité.
 
-### RFC — pour un changement qui traverse plusieurs équipes ou services
+### RFC : pour un changement qui traverse plusieurs équipes ou services
 
 Une RFC diffère d'une ADR par son intention : elle sollicite un retour avant que la décision
 ne soit prise, pas après. Structure minimale : problème, contraintes connues, options
@@ -62,7 +62,7 @@ ADR  → documente une décision déjà prise, pour la mémoire future.
 RFC  → propose une décision, ouverte à contestation, avant qu'elle ne soit prise.
 ```
 
-### One-pager — pour convaincre une audience non technique
+### One-pager : pour convaincre une audience non technique
 
 Un one-pager ne contient jamais de détail d'implémentation. Il répond à trois questions en
 une page : quel problème métier concret cela résout, quel est le coût (temps, argent,
@@ -71,12 +71,12 @@ non expliqué.
 
 ## Compromis
 
-| Format | Coût de rédaction | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Rien d'écrit | Nul | Rapide sur l'instant | Décision réversible en une commande, une seule personne concernée |
-| ADR | 15-30 minutes | Mémoire durable, évite de rejouer le débat | Décision d'architecture qui engage l'équipe plus de quelques semaines |
-| RFC | Plusieurs heures, cycle de relecture | Aligne plusieurs équipes avant l'implémentation, réduit le risque de blocage a posteriori | Changement qui traverse des frontières d'équipe ou de service |
-| One-pager | 30-60 minutes | Obtient un budget ou un accord d'une audience non technique | Décision qui nécessite une validation hiérarchique ou financière |
+| Format       | Coût de rédaction                    | Bénéfice                                                                                  | Quand choisir                                                         |
+| ------------ | ------------------------------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Rien d'écrit | Nul                                  | Rapide sur l'instant                                                                      | Décision réversible en une commande, une seule personne concernée     |
+| ADR          | 15-30 minutes                        | Mémoire durable, évite de rejouer le débat                                                | Décision d'architecture qui engage l'équipe plus de quelques semaines |
+| RFC          | Plusieurs heures, cycle de relecture | Aligne plusieurs équipes avant l'implémentation, réduit le risque de blocage a posteriori | Changement qui traverse des frontières d'équipe ou de service         |
+| One-pager    | 30-60 minutes                        | Obtient un budget ou un accord d'une audience non technique                               | Décision qui nécessite une validation hiérarchique ou financière      |
 
 ## Pièges classiques
 

@@ -3,11 +3,11 @@
 ## La scène
 
 On te donne accès au dépôt d'un logiciel de gestion de bibliothèque pour un réseau de clubs
-d'escalade — prêt de matériel, réservation de créneaux de mur, suivi des adhésions. 55 000
+d'escalade : prêt de matériel, réservation de créneaux de mur, suivi des adhésions. 55 000
 lignes, TypeScript côté serveur, React côté client, une base PostgreSQL avec 40 tables. Ta
 mission : proposer une estimation crédible pour ajouter un système de liste d'attente sur les
 créneaux complets. Tu as trois heures avant la réunion de cadrage. Personne ne va t'expliquer
-le système avant — c'est à toi de te faire une carte.
+le système avant : c'est à toi de te faire une carte.
 
 ## Ce qui se passe vraiment
 
@@ -23,7 +23,7 @@ Phase 4 (45 min)  Lire l'historique (commits, PR, tickets) sur la zone ciblée
 Phase 5 (15 min)  Écrire la synthèse avant de l'oublier
 ```
 
-### Phase 1 — Cartographie du terrain (30 min)
+### Phase 1 : Cartographie du terrain (30 min)
 
 Tu ne lis aucune ligne de logique métier. Tu cherches la structure.
 
@@ -50,7 +50,7 @@ club-lib/
 └── notifications/  → emails, rappels
 ```
 
-### Phase 2 — Suivre un cas d'usage réel de bout en bout (45 min)
+### Phase 2 : Suivre un cas d'usage réel de bout en bout (45 min)
 
 Choisis une action utilisateur concrète et proche de ta mission : "un adhérent réserve un
 créneau". Trace-la du clic jusqu'à l'écriture en base, sans dévier vers du code annexe.
@@ -83,7 +83,7 @@ BookingRepository.create()
 INSERT INTO bookings (...)
 ```
 
-### Phase 3 — Zones à fort risque et forte inertie (45 min)
+### Phase 3 : Zones à fort risque et forte inertie (45 min)
 
 Une fois le flux principal compris, cherche ce qui va résister à ton changement.
 
@@ -96,9 +96,9 @@ Une fois le flux principal compris, cherche ce qui va résister à ton changemen
   chose que tu ne vois pas.
 - Cherche les tests existants sur la zone. Un dossier `booking/` avec zéro test signifie que
   ton estimation doit inclure le temps d'écrire un filet de sécurité avant de toucher quoi
-  que ce soit — sinon tu ne sauras jamais si tu as cassé un cas déjà géré.
+  que ce soit : sinon tu ne sauras jamais si tu as cassé un cas déjà géré.
 
-### Phase 4 — Lire l'historique ciblé (45 min)
+### Phase 4 : Lire l'historique ciblé (45 min)
 
 Cherche, uniquement sur les fichiers de la zone `booking/`, les messages de commit et les
 tickets liés qui mentionnent des bugs passés ou des décisions de design.
@@ -112,7 +112,7 @@ Un commit qui dit "revert : la version optimiste de la réservation créait des 
 réservations en cas de forte charge un samedi matin" t'apprend en une ligne une contrainte
 de concurrence que tu aurais découverte en production sinon.
 
-### Phase 5 — Synthèse écrite (15 min)
+### Phase 5 : Synthèse écrite (15 min)
 
 Tu écris, avant la réunion, une synthèse d'une page :
 
@@ -129,11 +129,11 @@ dès que tu passes à autre chose, et tu recommenceras l'enquête depuis zéro d
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Lire tout le dossier concerné avant d'agir | Très long, risque de te perdre dans du code mort | Compréhension exhaustive | Zone très critique (paiement, sécurité) où l'exhaustivité prime |
-| Méthode en 5 phases (ce document) | Compréhension volontairement partielle mais actionnable | Rapide, donne un diagnostic utilisable en heures | Cas général, deadline courte, besoin de décider vite |
-| Demander directement à un ancien de l'équipe | Quasi instantané si la personne est disponible et honnête | Contexte impossible à retrouver dans le code seul | Toujours en complément, jamais en remplacement — la mémoire humaine est partielle et biaisée |
+| Option                                       | Coût                                                      | Bénéfice                                          | Quand choisir                                                                                |
+| -------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Lire tout le dossier concerné avant d'agir   | Très long, risque de te perdre dans du code mort          | Compréhension exhaustive                          | Zone très critique (paiement, sécurité) où l'exhaustivité prime                              |
+| Méthode en 5 phases (ce document)            | Compréhension volontairement partielle mais actionnable   | Rapide, donne un diagnostic utilisable en heures  | Cas général, deadline courte, besoin de décider vite                                         |
+| Demander directement à un ancien de l'équipe | Quasi instantané si la personne est disponible et honnête | Contexte impossible à retrouver dans le code seul | Toujours en complément, jamais en remplacement : la mémoire humaine est partielle et biaisée |
 
 ## Pièges classiques
 
@@ -144,7 +144,7 @@ dès que tu passes à autre chose, et tu recommenceras l'enquête depuis zéro d
   compréhension (le flux métier qui t'intéresse).** Symptôme : tu sais démarrer le serveur
   mais tu ne sais toujours pas où vit la règle métier que tu cherches.
 - **Tu lis le code sans jamais lancer l'application.** Symptôme : tu as une théorie du
-  comportement qui ne correspond pas à ce que fait réellement le système en vrai — clique,
+  comportement qui ne correspond pas à ce que fait réellement le système en vrai : clique,
   observe, puis seulement va vérifier dans le code.
 - **Tu ignores les tests existants en te disant qu'ils sont accessoires.** Symptôme : les
   tests sont souvent la documentation la plus honnête du comportement attendu, plus fiable

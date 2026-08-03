@@ -1,4 +1,4 @@
-# Boss Fight — Le partenaire pressé et le token trop large
+# Boss Fight : Le partenaire pressé et le token trop large
 
 ## La situation
 
@@ -17,7 +17,7 @@ partenaire attend une clé, et tu es seul sur ce sujet dans l'équipe cette sema
 ## Les contraintes réelles
 
 - Le contrat commercial signé ne mentionne aucune exigence technique précise sur le
-  périmètre d'accès — c'est un flou que le commercial n'a pas identifié comme un risque.
+  périmètre d'accès : c'est un flou que le commercial n'a pas identifié comme un risque.
 - L'API actuelle n'a pas encore de système de scopes fins par client final ; seul le token
   "admin" global du reporting interne existe aujourd'hui comme modèle réutilisable rapide.
 - Une fuite de données de consommation vers un tiers non autorisé constitue, dans ce secteur,
@@ -47,10 +47,10 @@ Produis une décision écrite (une page maximum) qui :
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est évalué |
-|---|---|
-| Refus argumenté des deux raccourcis | Le refus s'appuie sur un mécanisme du niveau (scope, moindre privilège, frontière de confiance, transmission de secret), pas sur une prudence générique |
-| Solution livrable en trois jours | La proposition est réellement réalisable dans le délai avec les moyens actuels, sans exiger un système générique complet non existant |
-| Réponse au manque d'outillage | La solution minimale (table de correspondance vérifiée à l'appel) résout le problème réel sans sur-ingénierie disproportionnée au délai |
-| Mécanisme anti-récidive | L'engagement proposé s'intègre à un processus existant (signature commerciale) et est vérifiable, pas un vœu pieux |
-| Ton | La décision est assumée et défendable simultanément devant le commercial pressé et le partenaire qui attend sa clé, sans céder sur le fond pour gagner du temps |
+| Critère                             | Ce qui est évalué                                                                                                                                               |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Refus argumenté des deux raccourcis | Le refus s'appuie sur un mécanisme du niveau (scope, moindre privilège, frontière de confiance, transmission de secret), pas sur une prudence générique         |
+| Solution livrable en trois jours    | La proposition est réellement réalisable dans le délai avec les moyens actuels, sans exiger un système générique complet non existant                           |
+| Réponse au manque d'outillage       | La solution minimale (table de correspondance vérifiée à l'appel) résout le problème réel sans sur-ingénierie disproportionnée au délai                         |
+| Mécanisme anti-récidive             | L'engagement proposé s'intègre à un processus existant (signature commerciale) et est vérifiable, pas un vœu pieux                                              |
+| Ton                                 | La décision est assumée et défendable simultanément devant le commercial pressé et le partenaire qui attend sa clé, sans céder sur le fond pour gagner du temps |

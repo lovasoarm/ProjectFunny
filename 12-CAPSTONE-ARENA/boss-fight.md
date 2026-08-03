@@ -1,4 +1,4 @@
-# Boss Fight — Le pivot à J-10
+# Boss Fight : Le pivot à J-10
 
 ## La situation
 
@@ -27,11 +27,11 @@ Rédige, comme un livrable réel :
 
 ## Grille d'évaluation
 
-| Critère | Points | Ce qui est vérifié |
-|---|---|---|
-| Diagnostic technique correct | 30 | Tu identifies précisément où le fuseau horaire est stocké ou implicite dans ton système (créneaux, capacité, notifications) et l'impact réel de son absence |
-| Distinction panique vs impact réel | 20 | Tu ne traites pas tout le système comme cassé alors que seule une partie l'est réellement |
-| Qualité de la proposition de traitement | 25 | La proposition est réaliste par rapport au délai restant, avec un compromis assumé (report, effort, ou délai) |
-| Communication client | 25 | La réponse au client est honnête, sans jargon, sans minimiser ni dramatiser, et propose une option concrète plutôt qu'un simple constat de problème |
+| Critère                                 | Points | Ce qui est vérifié                                                                                                                                          |
+| --------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Diagnostic technique correct            | 30     | Tu identifies précisément où le fuseau horaire est stocké ou implicite dans ton système (créneaux, capacité, notifications) et l'impact réel de son absence |
+| Distinction panique vs impact réel      | 20     | Tu ne traites pas tout le système comme cassé alors que seule une partie l'est réellement                                                                   |
+| Qualité de la proposition de traitement | 25     | La proposition est réaliste par rapport au délai restant, avec un compromis assumé (report, effort, ou délai)                                               |
+| Communication client                    | 25     | La réponse au client est honnête, sans jargon, sans minimiser ni dramatiser, et propose une option concrète plutôt qu'un simple constat de problème         |
 
 Score minimal pour valider : 70/100.

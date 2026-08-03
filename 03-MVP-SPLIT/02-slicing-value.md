@@ -25,7 +25,7 @@ enregistrer qu'une corde précise est empruntée par un membre précis, et voir 
 n'apparaît plus comme disponible." Ça suppose une table membres minimale (juste un nom), une
 table matériel minimale (juste un identifiant et un statut), un formulaire simple, une route
 API, un affichage de disponibilité. Limité, mais complet et testable en vrai dès la fin de
-la tranche — un bénévole peut l'utiliser au prochain créneau du club.
+la tranche : un bénévole peut l'utiliser au prochain créneau du club.
 
 ```text
 Couches horizontales                    Tranches verticales
@@ -55,7 +55,7 @@ mais ne produit rien d'exploitable en pratique.
 - Une tranche est vraie si un utilisateur réel peut l'utiliser sans dépendre d'une tranche
   future non encore livrée.
 - Une tranche est fausse si elle nécessite "juste encore un petit bout" pour devenir utile
-  (exemple : afficher le catalogue de matériel sans pouvoir encore rien emprunter — ça ne
+  (exemple : afficher le catalogue de matériel sans pouvoir encore rien emprunter : ça ne
   change le quotidien de personne).
 - Une tranche est vraie si elle peut être mesurée : on peut compter combien de fois elle a
   été utilisée en vrai.
@@ -64,21 +64,21 @@ mais ne produit rien d'exploitable en pratique.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Découpage vertical strict | Duplique parfois du code entre tranches (une table réutilisée est étendue plutôt que reconstruite proprement dès le début) | Valeur livrée dès la première tranche, retour terrain rapide | Presque toujours, en particulier en début de projet ou avec un budget incertain |
-| Découpage horizontal complet avant toute livraison | Rassure sur la propreté de l'architecture initiale | Retarde tout retour terrain de plusieurs semaines, risque d'investir dans une architecture pour un besoin mal validé | Seulement quand le besoin est déjà validé à 100 % par ailleurs et que le risque produit est nul |
-| Mélange : fondations minimales communes puis tranches verticales | Demande de la discipline pour ne pas dériver vers "encore une fondation" | Bon compromis entre propreté et vitesse de livraison | Projets où plusieurs tranches partageront un socle évident (authentification, par exemple) |
+| Option                                                           | Coût                                                                                                                       | Bénéfice                                                                                                             | Quand choisir                                                                                   |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Découpage vertical strict                                        | Duplique parfois du code entre tranches (une table réutilisée est étendue plutôt que reconstruite proprement dès le début) | Valeur livrée dès la première tranche, retour terrain rapide                                                         | Presque toujours, en particulier en début de projet ou avec un budget incertain                 |
+| Découpage horizontal complet avant toute livraison               | Rassure sur la propreté de l'architecture initiale                                                                         | Retarde tout retour terrain de plusieurs semaines, risque d'investir dans une architecture pour un besoin mal validé | Seulement quand le besoin est déjà validé à 100 % par ailleurs et que le risque produit est nul |
+| Mélange : fondations minimales communes puis tranches verticales | Demande de la discipline pour ne pas dériver vers "encore une fondation"                                                   | Bon compromis entre propreté et vitesse de livraison                                                                 | Projets où plusieurs tranches partageront un socle évident (authentification, par exemple)      |
 
 ## Pièges classiques
 
 - Appeler "MVP" une version qui contient encore toutes les fonctionnalités mais "en plus
-  moche" — ce n'est pas un découpage par valeur, c'est juste une version bâclée du même
+  moche" : ce n'est pas un découpage par valeur, c'est juste une version bâclée du même
   périmètre complet.
 - Croire qu'une fondation technique solide dès le départ fera gagner du temps plus tard,
   alors qu'elle retarde la première validation terrain, qui est souvent bien plus précieuse.
 - Découper par écran plutôt que par scénario complet ("d'abord l'écran de connexion, puis
-  l'écran de liste") — un écran seul, sans le flux qui le traverse, ne livre rien d'utile.
+  l'écran de liste") : un écran seul, sans le flux qui le traverse, ne livre rien d'utile.
 - Négliger la mesurabilité d'une tranche : si tu ne peux pas dire combien de fois elle a servi
   après livraison, tu ne sauras jamais si elle valait la peine d'être construite en premier.
 

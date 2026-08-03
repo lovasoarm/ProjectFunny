@@ -4,12 +4,12 @@
 
 Le cabinet d'audit énergétique, partenaire de la plateforme de refacturation, reçoit un
 token d'API pour "récupérer la consommation de ses clients". Par facilité, l'équipe interne
-lui génère un token identique à celui utilisé par le service de reporting interne — un token
+lui génère un token identique à celui utilisé par le service de reporting interne : un token
 "admin" qui a accès à tous les sites, de tous les clients, pas seulement ceux de ce cabinet.
 Six mois plus tard, un stagiaire de ce cabinet, en testant une intégration, boucle
 accidentellement sur tous les identifiants de site de 1 à 999999 et récupère les données de
 consommation de milliers de foyers qui n'ont jamais entendu parler de ce cabinet d'audit.
-Personne n'a piraté quoi que ce soit. Le token fonctionnait exactement comme configuré — le
+Personne n'a piraté quoi que ce soit. Le token fonctionnait exactement comme configuré : le
 problème est que "fonctionnait" et "aurait dû fonctionner" n'avaient jamais été distingués.
 
 ## Ce qui se passe vraiment
@@ -38,20 +38,20 @@ Clé API statique       "Cette clé a été émise par nous"   Que le porteur ac
                                                             partenaire d'origine (vol de clé)
 JWT signé              "Ce contenu n'a pas été modifié     Que le token n'a pas été volé ni
                         depuis son émission par nous"      rejoué avant son expiration
-Token opaque + session Rien en lui-même — la vérité vit    Ne fonctionne pas sans un aller-
+Token opaque + session Rien en lui-même : la vérité vit    Ne fonctionne pas sans un aller-
 côté serveur           côté serveur, révocable à tout      retour de vérification ; latence
                        instant                             additionnelle par rapport au JWT
 ```
 
 Le piège classique du JWT : parce qu'il est auto-porteur (le serveur peut le valider sans
-appeler une base), on oublie qu'un JWT volé reste valide jusqu'à expiration — il n'existe pas
+appeler une base), on oublie qu'un JWT volé reste valide jusqu'à expiration : il n'existe pas
 de révocation immédiate native. La durée de vie courte (minutes, pas jours) et un token de
 rafraîchissement séparé, révocable, compensent ce manque.
 
 ### Scopes : réduire ce qu'un token prouvé peut faire
 
-Un scope répond à la question qu'authn ne répond jamais : *une fois que je sais qui tu es,
-que puis-je te laisser faire précisément ?*
+Un scope répond à la question qu'authn ne répond jamais : _une fois que je sais qui tu es,
+que puis-je te laisser faire précisément ?_
 
 ```json
 {
@@ -80,7 +80,7 @@ Principe du moindre privilège appliqué à un scope d'API :
 
 Une frontière de confiance est le point où des données ou une requête passent d'une zone où
 elles sont contrôlées à une zone où elles ne le sont plus. Chaque franchissement de frontière
-exige sa propre vérification — faire confiance à une vérification faite "plus haut" dans la
+exige sa propre vérification : faire confiance à une vérification faite "plus haut" dans la
 chaîne est l'erreur la plus fréquente en sécurité applicative.
 
 ```text
@@ -89,7 +89,7 @@ Appli mobile vétérinaire  ──[frontière 1: internet public]──>  API Ga
 
 API Gateway  ──[frontière 2: réseau interne]──>  Service Rendez-vous
         │ le gateway a vérifié le token, MAIS le service ne doit pas supposer que
-        │ "ça vient du gateway donc c'est propre" — un autre service interne compromis
+        │ "ça vient du gateway donc c'est propre" : un autre service interne compromis
         │ ou mal écrit peut appeler directement le Service Rendez-vous en contournant le gateway
 
 Service Rendez-vous  ──[frontière 3: appel base de données]──>  Base de données
@@ -99,7 +99,7 @@ Service Rendez-vous  ──[frontière 3: appel base de données]──>  Base d
 
 Chaque frontière doit revalider ce qui la traverse, même si une frontière précédente l'a
 déjà fait. "Le frontend valide déjà ce champ" n'est jamais une raison de ne pas revalider
-côté serveur — le frontend est sous le contrôle de l'utilisateur, pas le tien, dès l'instant
+côté serveur : le frontend est sous le contrôle de l'utilisateur, pas le tien, dès l'instant
 où le code tourne sur son appareil.
 
 ### Secrets : ce qu'on ne met jamais dans un contrat ni dans un dépôt
@@ -120,12 +120,12 @@ Toujours :
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Scopes fins + périmètre de ressources explicite (siteIds) | Configuration plus lourde à l'émission de chaque token, plus de logique de vérification | Un token volé ou mal configuré limite les dégâts au strict périmètre prévu | Tout accès partenaire ou tiers, dès qu'une donnée sensible est en jeu |
-| Token "admin" unique réutilisé partout | Zéro configuration, rapide à mettre en place | Aucun | Jamais en dehors d'un script interne jetable à usage unique et éphémère |
-| JWT auto-porteur | Pas d'appel réseau pour valider, faible latence | Scalabilité de la vérification | Sessions courtes, API à fort volume où l'appel de vérification serait un goulot |
-| Token opaque + vérification serveur | Latence additionnelle sur chaque appel | Révocation immédiate possible à tout instant | Accès sensibles où une révocation instantanée doit être garantie (accès partenaire suspecté compromis) |
+| Option                                                    | Coût                                                                                    | Bénéfice                                                                   | Quand choisir                                                                                          |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Scopes fins + périmètre de ressources explicite (siteIds) | Configuration plus lourde à l'émission de chaque token, plus de logique de vérification | Un token volé ou mal configuré limite les dégâts au strict périmètre prévu | Tout accès partenaire ou tiers, dès qu'une donnée sensible est en jeu                                  |
+| Token "admin" unique réutilisé partout                    | Zéro configuration, rapide à mettre en place                                            | Aucun                                                                      | Jamais en dehors d'un script interne jetable à usage unique et éphémère                                |
+| JWT auto-porteur                                          | Pas d'appel réseau pour valider, faible latence                                         | Scalabilité de la vérification                                             | Sessions courtes, API à fort volume où l'appel de vérification serait un goulot                        |
+| Token opaque + vérification serveur                       | Latence additionnelle sur chaque appel                                                  | Révocation immédiate possible à tout instant                               | Accès sensibles où une révocation instantanée doit être garantie (accès partenaire suspecté compromis) |
 
 ## Pièges classiques
 
@@ -133,7 +133,7 @@ Toujours :
   données qui ne le concernent pas, découvert seulement au moment d'un incident ou d'un audit.
 - **La confiance en cascade non revalidée.** Symptôme : un service interne accepte n'importe
   quelle requête venant du réseau interne sans revérifier de token, parce que "c'est interne
-  donc c'est sûr" — jusqu'à ce qu'un autre service interne, compromis ou buggé, en abuse.
+  donc c'est sûr" : jusqu'à ce qu'un autre service interne, compromis ou buggé, en abuse.
 - **Le scope large "temporaire" qui devient permanent.** Symptôme : un accès élargi accordé
   pour débloquer un test un vendredi, jamais retiré, retrouvé un an plus tard en audit.
 - **Le secret dans un commit historique.** Symptôme : même après suppression du fichier, le

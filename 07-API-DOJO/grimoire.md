@@ -1,4 +1,4 @@
-# Grimoire — API Dojo
+# Grimoire : API Dojo
 
 ## Vocabulaire
 
@@ -52,7 +52,7 @@
       boucle serrée.
 - [ ] Aucun secret n'apparaît dans le code source, une URL, ou un log.
 
-## Stratégie de versionnage — arbre de décision
+## Stratégie de versionnage : arbre de décision
 
 ```text
 Le changement retire, renomme ou change le type d'un champ existant ?
@@ -79,4 +79,4 @@ Volume non borné ou en forte croissance, ou insertions/suppressions fréquentes
 Avant de livrer un endpoint, demande-toi : "si cet appelant retente cette requête trois fois
 d'affilée à cause d'un réseau instable, qu'est-ce qui se passe exactement dans mon système ?"
 Si la réponse n'est pas "rien de plus qu'une seule tentative", l'idempotence n'est pas
-réglée — indépendamment de ce que dit le reste du code.
+réglée : indépendamment de ce que dit le reste du code.

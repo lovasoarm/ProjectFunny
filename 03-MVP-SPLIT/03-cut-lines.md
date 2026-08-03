@@ -6,7 +6,7 @@ Un cabinet de kinésithérapeutes veut un système de gestion de créneaux avec 
 automatique : si un patient annule, le premier de la liste d'attente reçoit une proposition
 automatique par SMS, avec un délai de réponse de dix minutes avant de proposer au suivant.
 L'équipe veut livrer vite. Un développeur inexpérimenté coupe la feature en "d'abord le SMS,
-la logique de délai viendra après" — et livre un système qui envoie un SMS à tout le monde en
+la logique de délai viendra après" : et livre un système qui envoie un SMS à tout le monde en
 même temps dès qu'un créneau se libère. Résultat : plusieurs patients se présentent pour le
 même créneau, le cabinet doit gérer des conflits en direct au téléphone. La coupe a cassé
 l'utilité de la fonctionnalité au lieu de la réduire proprement.
@@ -17,7 +17,7 @@ Couper une feature ne veut pas dire retirer une partie au hasard ni retirer la p
 semble techniquement la plus simple à reporter. Couper une feature veut dire trouver la ligne
 qui sépare "un scénario complet mais réduit en ampleur" d'"une fonctionnalité qui ne marche
 plus du tout dans son intention initiale". La bonne coupe pour la liste d'attente n'est pas de
-retirer le délai de réponse — c'est ce délai qui rend le système utilisable sans créer de
+retirer le délai de réponse : c'est ce délai qui rend le système utilisable sans créer de
 conflit. La bonne coupe est plutôt de réduire l'ampleur : liste d'attente activable pour un
 seul praticien d'abord, ou liste d'attente limitée à cinq patients maximum au lieu d'illimitée.
 
@@ -73,16 +73,16 @@ if (shouldOfferWaitlist(cancelledSlot.therapistId)) {
 ```
 
 Le flag permet de tester la fonctionnalité en conditions réelles avec un seul praticien
-volontaire, de mesurer son effet, puis de l'étendre progressivement — sans jamais avoir livré
+volontaire, de mesurer son effet, puis de l'étendre progressivement : sans jamais avoir livré
 une version cassée à l'ensemble du cabinet.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Couper par réduction de portée (moins d'utilisateurs, moins de volume) | Demande d'identifier clairement l'invariant à préserver | Livraison rapide d'un scénario honnête et complet | Cas général, à privilégier par défaut |
-| Couper en retirant une étape du scénario | Rapide à décider | Casse souvent l'intention de la feature, comme dans l'exemple du SMS | Seulement si l'étape retirée est réellement optionnelle pour l'utilisateur |
-| Utiliser un feature flag pour livrer en continu | Ajoute une petite complexité de configuration et de nettoyage ultérieur du flag | Réduit le risque de merge tardif et permet un test progressif | Dès que plusieurs personnes travaillent sur le même code en parallèle |
+| Option                                                                 | Coût                                                                            | Bénéfice                                                             | Quand choisir                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Couper par réduction de portée (moins d'utilisateurs, moins de volume) | Demande d'identifier clairement l'invariant à préserver                         | Livraison rapide d'un scénario honnête et complet                    | Cas général, à privilégier par défaut                                      |
+| Couper en retirant une étape du scénario                               | Rapide à décider                                                                | Casse souvent l'intention de la feature, comme dans l'exemple du SMS | Seulement si l'étape retirée est réellement optionnelle pour l'utilisateur |
+| Utiliser un feature flag pour livrer en continu                        | Ajoute une petite complexité de configuration et de nettoyage ultérieur du flag | Réduit le risque de merge tardif et permet un test progressif        | Dès que plusieurs personnes travaillent sur le même code en parallèle      |
 
 ## Pièges classiques
 

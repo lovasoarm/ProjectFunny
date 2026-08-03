@@ -18,10 +18,10 @@ Une demande formulée par un client, un manager ou un product owner n'est presqu
 besoin réel. C'est une solution que la personne a déjà imaginée dans sa tête, habillée en
 demande. Le rôle du développeur sénior n'est pas d'exécuter la solution imaginée, c'est de
 remonter jusqu'au problème qu'elle est censée résoudre, puis de vérifier que la solution
-proposée est effectivement la meilleure réponse à ce problème — parfois oui, souvent non.
+proposée est effectivement la meilleure réponse à ce problème : parfois oui, souvent non.
 
 Ce niveau existe parce que sans lui, tu deviens un excellent exécutant de mauvaises idées.
-Et le pire, c'est que ton code sera propre, testé, bien architecturé — ce qui rend l'échec
+Et le pire, c'est que ton code sera propre, testé, bien architecturé : ce qui rend l'échec
 invisible pendant longtemps, jusqu'à ce que les métriques d'usage tombent et que quelqu'un
 demande "pourquoi personne n'utilise ça ?".
 
@@ -42,7 +42,7 @@ Demande formulée           Besoin réel               Solution correcte
 - **Le scope grossit sans fin.** Sans besoin clarifié, chaque nouvelle idée du client semble
   légitime, parce qu'il n'y a pas de référence stable à laquelle la comparer.
 - **Les métriques de succès n'existent pas**, donc personne ne peut dire objectivement si le
-  projet a réussi ou échoué — ce qui ouvre la porte à des débats politiques plutôt que factuels.
+  projet a réussi ou échoué : ce qui ouvre la porte à des débats politiques plutôt que factuels.
 
 ## Ce que tu dois savoir défendre
 

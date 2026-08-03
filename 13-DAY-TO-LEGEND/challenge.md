@@ -1,4 +1,4 @@
-# Challenge — Construire et tenir une routine 12 semaines
+# Challenge : Construire et tenir une routine 12 semaines
 
 ## Contexte
 
@@ -14,7 +14,7 @@ générique de la routine du niveau.
    t'autorises un jour de forte charge (jamais zéro, toujours un minimum non négociable).
 2. Un pool d'au moins 15 situations de kata de décision, tirées de ton propre domaine
    (le domaine du projet fil rouge des niveaux précédents, ou ton contexte professionnel
-   réel) — pas les exemples du niveau, qui sont des amorces, pas une bibliothèque finale.
+   réel) : pas les exemples du niveau, qui sont des amorces, pas une bibliothèque finale.
 3. Un journal tenu sur 12 semaines, au format trois lignes défini dans la leçon 02, sans
    trou de plus de trois jours consécutifs.
 4. Une relecture groupée du journal après la semaine 6, puis après la semaine 12, chacune
@@ -28,7 +28,7 @@ générique de la routine du niveau.
 - Taux de tenue de la routine sur 12 semaines ≥ 80% des jours ouvrés (mesuré par les entrées
   de journal, pas par déclaration).
 - Les deux notes de relecture (semaine 6 et 12) identifient chacune un motif différent, pas
-  le même reformulé deux fois — sinon la relecture n'a pas été honnête.
+  le même reformulé deux fois : sinon la relecture n'a pas été honnête.
 - Le pool de 15 situations contient au moins deux cas issus d'un vrai incident ou d'une
   vraie décision de ton contexte professionnel, pas seulement des cas imaginés.
 - Le portfolio contient au moins un artefact que tu accepterais de montrer à un recruteur

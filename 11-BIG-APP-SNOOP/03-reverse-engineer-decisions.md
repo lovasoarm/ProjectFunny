@@ -23,7 +23,7 @@ l'ordre, parce que chacune élimine des hypothèses pour la suivante.
 4. Cette contrainte existe-t-elle encore ?    → décide si le code est une dette ou un besoin
 ```
 
-### Question 1 — Quand ce code a-t-il été écrit
+### Question 1 : Quand ce code a-t-il été écrit
 
 L'historique git donne une date. Croise-la avec ce que tu sais du produit à cette période
 (taille de l'équipe, version de la stack, présence ou non de tel client majeur). Un design
@@ -35,15 +35,15 @@ git log --diff-filter=A --follow -- server/billing/computeTotal.ts
 # date de création → recoupe avec le changelog produit ou les tickets de la période
 ```
 
-### Question 2 — Quel problème résolvait-il alors
+### Question 2 : Quel problème résolvait-il alors
 
 Le code que tu lis aujourd'hui répond peut-être à un problème qui n'existe plus. La table
 `invoice_lines_v2` a peut-être été créée pour supporter un changement de règle de TVA à une
 date donnée, sans que l'ancienne table ni les factures historiques ne puissent être migrées
-rétroactivement — la loi interdit parfois de recalculer une facture déjà émise. Le doublon
+rétroactivement : la loi interdit parfois de recalculer une facture déjà émise. Le doublon
 n'est pas de la paresse, c'est une frontière légale figée dans le schéma.
 
-### Question 3 — Quelle contrainte externe l'a façonné
+### Question 3 : Quelle contrainte externe l'a façonné
 
 Classe la contrainte probable dans une des familles suivantes, parce que chacune a une
 signature différente dans le code :
@@ -65,7 +65,7 @@ Le cas `if (clinicId === 'CLINIQUE_LYON_CENTRE')` sent la contrainte contractuel
 réglementaire locale (peut-être un régime de TVA différent en fonction d'une convention
 spécifique à ce site). Avant de le supprimer, tu cherches le ticket ou le commit associé.
 
-### Question 4 — Cette contrainte existe-t-elle encore
+### Question 4 : Cette contrainte existe-t-elle encore
 
 C'est la question qui transforme l'enquête en décision. Trois issues possibles :
 
@@ -81,12 +81,12 @@ Contrainte inconnaissable   → tu ne peux pas vérifier (personne ne se souvien
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Supposer que tout code "moche" est de la dette à supprimer | Risque de casser une contrainte encore active, souvent découvert en production | Rapide à décider | Jamais sans vérification préalable |
-| Poser la question aux personnes encore présentes | Rapide si la mémoire existe | Fiable si la personne était là et se souvient bien | Toujours en première option si disponible |
-| Reconstruire la contrainte par l'enquête (git, tickets, commentaires) | Plus long, demande de la méthode | Fonctionne même si personne ne se souvient | Cas général, surtout sur du code ancien sans mémoire vivante |
-| Écrire un test de caractérisation avant de toucher au code douteux | Coût d'écriture du test | Filet de sécurité qui révèle immédiatement si tu casses un comportement caché | Systématique dès que la contrainte reste incertaine |
+| Option                                                                | Coût                                                                           | Bénéfice                                                                      | Quand choisir                                                |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Supposer que tout code "moche" est de la dette à supprimer            | Risque de casser une contrainte encore active, souvent découvert en production | Rapide à décider                                                              | Jamais sans vérification préalable                           |
+| Poser la question aux personnes encore présentes                      | Rapide si la mémoire existe                                                    | Fiable si la personne était là et se souvient bien                            | Toujours en première option si disponible                    |
+| Reconstruire la contrainte par l'enquête (git, tickets, commentaires) | Plus long, demande de la méthode                                               | Fonctionne même si personne ne se souvient                                    | Cas général, surtout sur du code ancien sans mémoire vivante |
+| Écrire un test de caractérisation avant de toucher au code douteux    | Coût d'écriture du test                                                        | Filet de sécurité qui révèle immédiatement si tu casses un comportement caché | Systématique dès que la contrainte reste incertaine          |
 
 ## Pièges classiques
 
@@ -98,7 +98,7 @@ Contrainte inconnaissable   → tu ne peux pas vérifier (personne ne se souvien
   semaines plus tard à la clôture comptable.
 - **Tu prends un commentaire ancien pour une vérité actuelle.** Symptôme : le commentaire dit
   "temporaire, à corriger après la migration" mais la migration a eu lieu il y a quatre ans
-  et personne ne l'a jamais retiré — le commentaire ment par obsolescence, pas par malice.
+  et personne ne l'a jamais retiré : le commentaire ment par obsolescence, pas par malice.
 - **Tu ne distingues pas contrainte légale et contrainte de confort d'équipe.** Symptôme :
   tu traites une préférence d'ancien développeur avec la même rigidité qu'une obligation
   fiscale, ce qui te fait rater des simplifications sûres.

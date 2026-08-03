@@ -1,11 +1,11 @@
-# Niveau 07 — API Dojo
+# Niveau 07 : API Dojo
 
 ## Ce que c'est
 
 Tu sais écrire un endpoint qui répond `200 OK` avec le bon JSON. Ce niveau s'attaque à
 autre chose : ce qui se passe quand ton API n'est plus seule dans la pièce. Dès qu'un
-deuxième système appelle le tien — une appli mobile, un partenaire, un cron de nuit qui
-retente trois fois — ton code n'est plus un script qui répond à une requête, c'est un
+deuxième système appelle le tien : une appli mobile, un partenaire, un cron de nuit qui
+retente trois fois : ton code n'est plus un script qui répond à une requête, c'est un
 contrat public que des inconnus vont violer, mal lire, appeler en double, et attaquer.
 Une API n'est pas une fonction exposée sur le réseau. C'est une promesse écrite, versionnée,
 et défendue dans le temps. Ce niveau te donne les réflexes pour tenir cette promesse sans
@@ -14,7 +14,7 @@ que ton système ne s'effondre au premier appelant capricieux.
 Durée estimée : 8 à 12 heures, réparties sur plusieurs jours.
 
 Prérequis : avoir livré au moins une API HTTP qui fonctionne (Niveau 03 ou équivalent), et
-avoir complété le Niveau 06 — Archi-Lab. Tu dois savoir ce qu'est une couche domaine avant
+avoir complété le Niveau 06 : Archi-Lab. Tu dois savoir ce qu'est une couche domaine avant
 d'apprendre à protéger sa frontière publique ; sans ça, "contrat d'API" restera un mot vide.
 
 ## Ce que tu sais faire à la sortie
@@ -35,11 +35,11 @@ d'apprendre à protéger sa frontière publique ; sans ça, "contrat d'API" rest
 Trois systèmes reviennent dans tout le niveau, pour que les leçons s'empilent au lieu de
 se contredire :
 
-- **Le cabinet vétérinaire** — une API de prise de rendez-vous et de dossiers patients,
+- **Le cabinet vétérinaire** : une API de prise de rendez-vous et de dossiers patients,
   appelée par une appli mobile grand public et par un logiciel de comptabilité tiers.
-- **Les tournées de livraison** — une API qui expose l'état des tournées à des chauffeurs
+- **Les tournées de livraison** : une API qui expose l'état des tournées à des chauffeurs
   via une appli terrain à connexion instable, et à des clients via un portail de suivi.
-- **La refacturation d'énergie** — une API B2B exposée à des partenaires qui interrogent des
+- **La refacturation d'énergie** : une API B2B exposée à des partenaires qui interrogent des
   volumes de consommation, avec des contraintes réglementaires sur qui a le droit de voir quoi.
 
 ## Structure du niveau
@@ -60,7 +60,7 @@ se contredire :
 
 Dans l'ordre. `02` pose le socle : tant que tu ne sais pas ce qu'est un contrat stable, les
 leçons suivantes n'ont pas de fondation. `03` et `04` sont les deux niveaux de défense d'une
-API exposée — l'un contre les pannes et la concurrence, l'autre contre les acteurs malveillants
+API exposée : l'un contre les pannes et la concurrence, l'autre contre les acteurs malveillants
 ou simplement mal informés. `05` referme la boucle avec les questions qui apparaissent une
 fois que l'API a du succès et du trafic réel, ce qui est le meilleur problème à avoir et
 aussi celui que le plus de gens ratent.

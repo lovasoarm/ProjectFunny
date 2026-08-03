@@ -4,7 +4,7 @@
 
 L'équipe qui construit le système de refacturation d'énergie pour un syndic de 40 immeubles
 choisit, sans y réfléchir, le flux Git utilisé sur le dernier projet de chacun de ses trois
-développeurs — trois flux différents, jamais discutés ensemble. Karim crée une branche par
+développeurs : trois flux différents, jamais discutés ensemble. Karim crée une branche par
 fonctionnalité et la garde ouverte trois semaines "le temps de bien la finir". Léa pousse
 directement sur la branche principale, habituée à un ancien projet solo. Youssef ouvre des
 pull requests mais personne n'a fixé de délai de revue, alors elles s'accumulent. Le jour où
@@ -15,8 +15,8 @@ heures, à trier commit par commit ce qui peut partir et ce qui doit être exclu
 
 ## Ce qui se passe vraiment
 
-Git n'impose aucun flux de travail. Il offre des primitives — branches, commits, merges,
-tags — et le flux qu'une équipe choisit détermine si le travail parallèle de plusieurs
+Git n'impose aucun flux de travail. Il offre des primitives : branches, commits, merges,
+tags : et le flux qu'une équipe choisit détermine si le travail parallèle de plusieurs
 personnes s'additionne proprement ou se percute. Le choix du flux n'est pas une question
 d'habitude ou de préférence esthétique : c'est un compromis entre la vitesse de release
 souhaitée, la taille de l'équipe, et le niveau de risque tolérable sur la branche partagée.
@@ -66,7 +66,7 @@ develop  ──●──●──●──●──●──●──●──�
 - **Coût** : plus de branches à gérer, plus de cérémonie à chaque étape, latence plus
   grande entre "le code est écrit" et "le code est en production".
 - **Bénéfice** : sépare clairement ce qui est stable, ce qui est en préparation, et ce qui
-  est un correctif urgent — utile quand une release nécessite une validation formelle
+  est un correctif urgent : utile quand une release nécessite une validation formelle
   (réglementaire, contractuelle) avant publication.
 - **Quand choisir** : releases planifiées et espacées (mensuelles, trimestrielles), contexte
   où publier une régression coûte très cher (systèmes réglementés, contrats de service
@@ -113,7 +113,7 @@ Semaine 3 : validation sur le pilote, flag activé progressivement sur les 40 im
   généralisation, permet de désactiver instantanément une fonctionnalité qui pose problème
   sans redéployer.
 - **Quand choisir** : fonctionnalité risquée ou longue à construire dans un flux
-  trunk-based ; jamais pour du code qui n'a aucune raison d'être désactivé un jour — un flag
+  trunk-based ; jamais pour du code qui n'a aucune raison d'être désactivé un jour : un flag
   qui ne sera jamais retiré est de la dette, pas un outil.
 
 ## Pull requests : la revue comme angle mort couvert
@@ -125,14 +125,14 @@ request efficace a des propriétés précises :
 
 ```text
 Pull request faible                       Pull request efficace
-                                           
+
 Titre : "fix"                             Titre : "corrige le double comptage
                                            des tantièmes sur immeubles avec
                                            parkings détachés"
-                                           
+
 Description : vide ou "voir le code"      Description : quoi, pourquoi, comment
                                            vérifié, ce qui reste hors périmètre
-                                           
+
 400 lignes changées, 12 fichiers          Une seule responsabilité claire,
 touchés, 3 sujets mélangés                relisible en moins de 20 minutes
 
@@ -140,7 +140,7 @@ Relecteur : "LGTM" sans commentaire       Relecteur : au moins une question ou
                                            un point vérifié activement
 ```
 
-Une pull request trop grosse n'est pas relue, elle est approuvée par lassitude — ce qui
+Une pull request trop grosse n'est pas relue, elle est approuvée par lassitude : ce qui
 annule tout le bénéfice de la revue. La règle pratique : si une pull request prend plus de
 20-30 minutes à relire sérieusement, elle doit être découpée.
 
@@ -158,14 +158,14 @@ Deux modèles de release coexistent avec les deux flux ci-dessus :
 
 ```text
 Déploiement continu                       Release planifiée
-                                           
+
 petit changement ──► prod                 accumulation de changements
    (minutes)                                       │
 petit changement ──► prod                    vérification formelle
    (minutes)                                       │
 petit changement ──► prod                     publication groupée
    (minutes)                                    (semaines/mois)
-   
+
 Risque par déploiement : faible           Risque par déploiement : plus élevé,
 Fréquence : élevée                        mais plus maîtrisé si le contexte
                                            l'exige (réglementaire, contractuel)
@@ -173,26 +173,26 @@ Fréquence : élevée                        mais plus maîtrisé si le contexte
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Trunk-based + feature flags | Discipline de découpage fine, complexité de code des flags | Releases fréquentes, branche toujours publiable, feedback rapide | Équipe qui publie souvent, produit qui évolue vite |
-| GitFlow | Plus de cérémonie, latence plus grande avant publication | Séparation claire stable / en cours / correctif urgent | Releases espacées, contexte réglementé ou contractuel strict |
-| Pull requests systématiques, petites | Ralentit légèrement chaque fusion individuelle | Angle mort couvert par un regard extérieur avant intégration | Toujours, sauf travail strictement solo |
-| Pas de revue, push direct sur la branche partagée | Rapidité immédiate | Aucun, sauf projet solo ou prototype jetable | Jamais en équipe sur un système qui reste en production |
+| Option                                            | Coût                                                       | Bénéfice                                                         | Quand choisir                                                |
+| ------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------ |
+| Trunk-based + feature flags                       | Discipline de découpage fine, complexité de code des flags | Releases fréquentes, branche toujours publiable, feedback rapide | Équipe qui publie souvent, produit qui évolue vite           |
+| GitFlow                                           | Plus de cérémonie, latence plus grande avant publication   | Séparation claire stable / en cours / correctif urgent           | Releases espacées, contexte réglementé ou contractuel strict |
+| Pull requests systématiques, petites              | Ralentit légèrement chaque fusion individuelle             | Angle mort couvert par un regard extérieur avant intégration     | Toujours, sauf travail strictement solo                      |
+| Pas de revue, push direct sur la branche partagée | Rapidité immédiate                                         | Aucun, sauf projet solo ou prototype jetable                     | Jamais en équipe sur un système qui reste en production      |
 
 ## Pièges classiques
 
 - Choisir un flux Git par habitude personnelle sans le confronter au rythme de release réel
-  de l'équipe — le symptôme est un flux GitFlow appliqué à une équipe qui voudrait publier
+  de l'équipe : le symptôme est un flux GitFlow appliqué à une équipe qui voudrait publier
   chaque jour, ou l'inverse.
-- Garder une branche de fonctionnalité ouverte plusieurs semaines — le symptôme est un
+- Garder une branche de fonctionnalité ouverte plusieurs semaines : le symptôme est un
   conflit de fusion massif et un travail dupliqué découvert trop tard.
-- Utiliser un feature flag comme excuse pour fusionner du code non testé — le symptôme est
+- Utiliser un feature flag comme excuse pour fusionner du code non testé : le symptôme est
   un flag qui, une fois activé, révèle des bugs qu'une vraie revue aurait trouvés.
-- Laisser des feature flags obsolètes s'accumuler dans le code — le symptôme est une base
+- Laisser des feature flags obsolètes s'accumuler dans le code : le symptôme est une base
   de code truffée de conditions mortes que plus personne n'ose supprimer par peur de casser
   quelque chose.
-- Ouvrir des pull requests énormes qui mélangent plusieurs sujets — le symptôme est une
+- Ouvrir des pull requests énormes qui mélangent plusieurs sujets : le symptôme est une
   revue superficielle ou une approbation par lassitude plutôt que par vérification réelle.
 
 ## Ce que tu dois savoir défendre

@@ -16,7 +16,7 @@ Ce n'est pas un manque de compétence technique. C'est un manque de méthode d'e
 ## Ce qui casse sans ce niveau
 
 - **Tu lis linéairement un système qui n'est pas linéaire.** Le code s'exécute dans un ordre,
-  mais sa logique de conception suit un autre ordre — celui des responsabilités métier. Lire
+  mais sa logique de conception suit un autre ordre : celui des responsabilités métier. Lire
   fichier par fichier dans l'ordre alphabétique ou dans l'ordre d'appel te noie, parce que tu
   accumules des détails avant d'avoir la carte qui leur donne un sens.
 - **Tu juges un design avant de comprendre ses contraintes.** Tu vois une fonction de 400
@@ -26,7 +26,7 @@ Ce n'est pas un manque de compétence technique. C'est un manque de méthode d'e
   de l'équipe en place et te fait rater la vraie leçon.
 - **Tu ne sais pas où est le risque.** Dans un système inconnu, certains fichiers sont
   cosmétiques et d'autres sont le cœur battant qui, s'il casse, arrête l'entreprise. Sans
-  méthode, tu traites les deux avec la même prudence — trop pour l'un, pas assez pour l'autre.
+  méthode, tu traites les deux avec la même prudence : trop pour l'un, pas assez pour l'autre.
 - **Tu proposes des réécritures qui répètent des erreurs déjà commises et corrigées.** Le
   code que tu trouves "mal fait" a souvent déjà été "bien fait" dans une version antérieure,
   puis changé pour une raison que le commit d'origine explique et que tu n'as pas lue.
@@ -36,7 +36,7 @@ Ce n'est pas un manque de compétence technique. C'est un manque de méthode d'e
 Un gros code base est un artefact archéologique. Il porte les traces de décisions produit,
 de contraintes techniques disparues, de rapports de force d'équipe, de deadlines qui ont
 forcé des compromis. Lire ce code sans reconstruire ce contexte, c'est lire les ruines d'une
-ville sans savoir qu'elle a survécu à trois guerres et un tremblement de terre — tu vois des
+ville sans savoir qu'elle a survécu à trois guerres et un tremblement de terre : tu vois des
 murs bizarrement placés et tu conclus que les architectes étaient mauvais.
 
 ```text

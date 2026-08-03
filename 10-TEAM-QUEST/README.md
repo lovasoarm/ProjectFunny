@@ -1,4 +1,4 @@
-# Niveau 10 — Team Quest
+# Niveau 10 : Team Quest
 
 ## Ce que c'est
 
@@ -13,7 +13,7 @@ qui tient sous pression sans dégénérer en silence ou en conflit ouvert.
 Durée estimée : 5 à 6 heures de lecture active, plus le challenge (rédiger et faire valider
 un working agreement pour une équipe réelle ou simulée, 2 à 3 heures).
 
-Prérequis : Niveau 08 (Roadmap Run) — les accords d'équipe n'ont de sens que rapportés à un
+Prérequis : Niveau 08 (Roadmap Run) : les accords d'équipe n'ont de sens que rapportés à un
 plan et des jalons partagés.
 
 ## Ce que tu sais faire à la sortie
@@ -43,7 +43,7 @@ plan et des jalons partagés.
 ## Comment lire ce niveau
 
 Dans l'ordre. `02` pose le cadre, `03` l'outille techniquement, `04` te donne les réflexes
-pour quand le cadre ne suffit plus — parce qu'il ne suffit jamais complètement.
+pour quand le cadre ne suffit plus : parce qu'il ne suffit jamais complètement.
 
 ## Ce qui ne se passe pas ici
 

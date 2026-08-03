@@ -1,4 +1,4 @@
-# Grimoire — Niveau 08 : Roadmap Run
+# Grimoire : Niveau 08 : Roadmap Run
 
 ## La règle en une phrase
 
@@ -55,5 +55,5 @@ avec des données réelles." Une réponse invérifiable n'est pas un signal, c'e
 
 ## Phrase à ressortir en réunion de planning
 
-"Avant de donner une date, je veux d'abord savoir ce qu'on ne sait pas — et vérifier la
+"Avant de donner une date, je veux d'abord savoir ce qu'on ne sait pas : et vérifier la
 partie qui coûterait le plus cher si on se trompait."

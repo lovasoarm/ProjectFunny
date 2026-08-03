@@ -1,9 +1,9 @@
-# Challenge — MVP Split
+# Challenge : MVP Split
 
 ## Contexte
 
 Reprends le cadrage produit dans le niveau 02 (cabinets vétérinaires, gestion des urgences
-inter-cabinets) — ou le tien si tu as fait le challenge précédent sur un autre cas. Le besoin
+inter-cabinets) : ou le tien si tu as fait le challenge précédent sur un autre cas. Le besoin
 retenu est : permettre à une secrétaire d'un cabinet de signaler une urgence qui déborde de sa
 capacité, et de voir en temps réel quel autre cabinet du réseau peut la prendre en charge, sans
 passer par le groupe WhatsApp actuel. La direction veut un premier résultat livrable et

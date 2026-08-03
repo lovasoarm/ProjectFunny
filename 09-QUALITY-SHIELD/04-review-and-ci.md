@@ -6,7 +6,7 @@ Deux développeurs de l'équipe tournées de livraison ont une revue de code qui
 minutes sur une pull request de dix lignes : ils débattent de l'emplacement d'une accolade,
 du nom d'une variable (`tour` contre `deliveryRun`), et de l'usage de `const` contre `let`.
 La pull request est approuvée. Elle contient un bug qui envoie la notification de livraison
-au mauvais client si deux tournées démarrent à la même minute — personne ne l'a vu, parce
+au mauvais client si deux tournées démarrent à la même minute : personne ne l'a vu, parce
 que personne n'a lu la logique métier, occupés qu'ils étaient par le style. Trois semaines
 plus tard, la même équipe passe une CI de 25 minutes à chaque pull request, avec des tests
 qui échouent de façon aléatoire une fois sur cinq sans rapport avec le changement testé.
@@ -20,7 +20,7 @@ attraper.
 ### La revue de code a un objectif précis, qui n'est pas le style
 
 Une revue de code sert à faire relire une décision par quelqu'un qui n'a pas les mêmes
-angles morts que l'auteur — pas à faire respecter des préférences esthétiques
+angles morts que l'auteur : pas à faire respecter des préférences esthétiques
 interchangeables. Le style de code (indentation, nommage, organisation des imports) doit
 être réglé par un outil automatique (linter, formateur), jamais débattu à l'oral en revue :
 c'est un gaspillage de l'attention humaine sur un problème que la machine résout mieux et
@@ -49,7 +49,7 @@ Mauvais commentaire de revue :
 
 Bon commentaire de revue :
   "Si deux tournées démarrent à la même minute exacte, cette clé de notification
-   `tourStartMinute` sera identique pour les deux — est-ce voulu ? Je pense que ça
+   `tourStartMinute` sera identique pour les deux : est-ce voulu ? Je pense que ça
    enverrait la notif de la tournée B au chauffeur de la tournée A."
   → pointe un risque métier concret, vérifiable, avec un scénario précis.
 ```
@@ -60,7 +60,7 @@ La CI (intégration continue) exécute automatiquement, à chaque changement, ce
 ne devrait pas avoir à vérifier à la main : les tests, le linter, le typage, parfois un scan
 de sécurité. Sa valeur dépend entièrement de sa fiabilité : une CI qui échoue au hasard sans
 rapport avec le changement (test flaky) apprend à l'équipe à l'ignorer, ce qui annule
-totalement son utilité — un garde-fou qu'on enjambe systématiquement n'en est plus un.
+totalement son utilité : un garde-fou qu'on enjambe systématiquement n'en est plus un.
 
 ```text
 Pipeline CI d'une pull request
@@ -109,7 +109,7 @@ test("la tournée du jour est bien filtrée", () => {
 
 Règle non négociable : un test flaky détecté doit être corrigé ou désactivé explicitement
 avec un ticket de suivi, jamais laissé tel quel "parce qu'il finit toujours par passer au
-deuxième essai" — chaque relance ignorée érode un peu plus la confiance de l'équipe dans
+deuxième essai" : chaque relance ignorée érode un peu plus la confiance de l'équipe dans
 tout le système de CI, y compris les échecs qui comptent vraiment.
 
 ### Garde-fous automatiques au-delà des tests
@@ -126,27 +126,27 @@ systématiquement :
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Revue de code centrée sur le style | Débats longs, faible valeur ajoutée | Illusion de rigueur | Jamais — remplacer par un linter automatique |
-| Revue de code centrée sur la logique et les risques | Demande une vraie lecture, plus lente par ligne | Attrape les bugs métier et les angles morts | Systématique sur toute pull request qui touche une logique non triviale |
-| CI complète à chaque push (lint, tests, sécurité) | Temps d'exécution, coût d'infrastructure | Empêche les régressions d'entrer dans la branche principale | Systématique sur tout projet avec plus d'un contributeur |
-| Ignorer ou relancer un test flaky sans le corriger | Rapide sur le moment | Érode la confiance dans toute la CI à moyen terme | Jamais comme pratique répétée |
-| Bloquer le merge tant que la CI n'est pas verte | Peut ralentir une urgence ponctuelle | Empêche une régression connue de partir en prod | Par défaut, avec une procédure explicite et tracée pour les rares dérogations |
+| Option                                              | Coût                                            | Bénéfice                                                    | Quand choisir                                                                 |
+| --------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Revue de code centrée sur le style                  | Débats longs, faible valeur ajoutée             | Illusion de rigueur                                         | Jamais : remplacer par un linter automatique                                  |
+| Revue de code centrée sur la logique et les risques | Demande une vraie lecture, plus lente par ligne | Attrape les bugs métier et les angles morts                 | Systématique sur toute pull request qui touche une logique non triviale       |
+| CI complète à chaque push (lint, tests, sécurité)   | Temps d'exécution, coût d'infrastructure        | Empêche les régressions d'entrer dans la branche principale | Systématique sur tout projet avec plus d'un contributeur                      |
+| Ignorer ou relancer un test flaky sans le corriger  | Rapide sur le moment                            | Érode la confiance dans toute la CI à moyen terme           | Jamais comme pratique répétée                                                 |
+| Bloquer le merge tant que la CI n'est pas verte     | Peut ralentir une urgence ponctuelle            | Empêche une régression connue de partir en prod             | Par défaut, avec une procédure explicite et tracée pour les rares dérogations |
 
 ## Pièges classiques
 
 - Une revue de code qui débat du style pendant que la logique métier fautive passe sans
-  question — le symptôme est un bug qui aurait dû être vu, découvert seulement en
+  question : le symptôme est un bug qui aurait dû être vu, découvert seulement en
   production.
-- Un test flaky ignoré et relancé systématiquement — le symptôme est que l'équipe finit par
+- Un test flaky ignoré et relancé systématiquement : le symptôme est que l'équipe finit par
   relancer aussi les échecs réels sans les regarder, pensant qu'ils sont "encore" flaky.
 - Une CI si lente que l'équipe la contourne (merge direct, ou attente en fin de journée) —
   le symptôme est une accumulation de changements non vérifiés qui cassent ensemble.
 - Un garde-fou de sécurité (scan de dépendances, détection de secrets) absent de la CI,
   découvert seulement après une fuite ou un audit externe.
 - Une dérogation exceptionnelle pour merger sans CI verte qui devient une habitude non
-  tracée — le symptôme est que plus personne ne sait pourquoi la CI existe encore.
+  tracée : le symptôme est que plus personne ne sait pourquoi la CI existe encore.
 
 ## Ce que tu dois savoir défendre
 

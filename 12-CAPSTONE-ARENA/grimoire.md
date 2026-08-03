@@ -1,4 +1,4 @@
-# Grimoire — Capstone Arena
+# Grimoire : Capstone Arena
 
 ## Ordre de production, jamais dans le désordre
 
@@ -28,7 +28,7 @@ Un test automatisé de concurrence prouve que ça résiste dans le cas qui casse
 Sur un point signalé comme sensible dans le brief, seule la deuxième preuve compte.
 ```
 
-## Grille chiffrée — rappel des seuils
+## Grille chiffrée : rappel des seuils
 
 ```text
 < 60   non validé

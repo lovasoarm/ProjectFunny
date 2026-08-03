@@ -6,7 +6,7 @@ Tu cherches à approfondir la conception de systèmes distribués pour le suivi 
 livraison en temps réel. Tu tombes sur un article de blog très partagé, truffé de captures
 d'écran d'une console cloud qui n'existe plus sous cette forme deux ans plus tard, et de
 noms de services qui ont changé trois fois depuis. L'article est mort avant que tu aies fini
-de le lire. Ce niveau ne te donne donc pas une liste de liens — les liens périment. Il te
+de le lire. Ce niveau ne te donne donc pas une liste de liens : les liens périment. Il te
 donne une méthode pour trouver toi-même des ressources durables, et les catégories de
 sources qui vieillissent bien par nature.
 
@@ -23,7 +23,7 @@ Vieillit mal                              Vieillit bien
 version 4.2 de l'outil Y"                 ne peuvent pas garantir
                                            simultanément cohérence, disponibilité
                                            et tolérance au partitionnement"
-                                           (contrainte du théorème CAP — vraie
+                                           (contrainte du théorème CAP : vraie
                                            quel que soit l'outil)
 
 "Les 10 meilleures librairies             "Comment décider quand une
@@ -45,7 +45,7 @@ JavaScript en 2024"                       dépendance externe vaut son coût
    identique quel que soit le domaine technique.
 3. **Les papiers de recherche fondateurs, même anciens.** Un papier sur les transactions
    distribuées ou sur la complexité algorithmique publié il y a vingt ans décrit toujours
-   une contrainte vraie aujourd'hui — les contraintes mathématiques ne périment pas.
+   une contrainte vraie aujourd'hui : les contraintes mathématiques ne périment pas.
 4. **La documentation officielle d'un standard, pas d'un produit.** Un standard (protocole
    HTTP, format de données, norme de sécurité) a un cycle de vie mesuré en décennies. La
    documentation d'un produit propriétaire a un cycle de vie mesuré en mois.
@@ -70,23 +70,23 @@ ou seulement COMMENT contourner cette contrainte avec l'outil du moment ?"
 Plutôt qu'une liste de liens qui périmera, voici les requêtes de recherche qui restent
 efficaces dans le temps :
 
-- `[nom de l'entreprise] post-mortem [type d'incident]` — trouve des retours d'expérience
+- `[nom de l'entreprise] post-mortem [type d'incident]` : trouve des retours d'expérience
   réels, peu importe l'année.
-- `[concept technique] paper original` — remonte à la source plutôt qu'à une vulgarisation
+- `[concept technique] paper original` : remonte à la source plutôt qu'à une vulgarisation
   qui peut avoir déformé le concept.
-- `[standard ou protocole] RFC` — pour les standards internet, la RFC originale reste la
+- `[standard ou protocole] RFC` : pour les standards internet, la RFC originale reste la
   référence la plus stable qui existe.
-- `[nom du projet open-source] design doc` ou `architecture decision` — la plupart des
+- `[nom du projet open-source] design doc` ou `architecture decision` : la plupart des
   grands projets publient leurs décisions d'architecture, une mine de compromis réels
   documentés.
 
 ## Compromis
 
-| Approche | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Suivre des tutoriels d'actualité sur l'outil du moment | Rapide, opérationnel immédiatement | Périme vite, n'enseigne pas le mécanisme sous-jacent | Pour une tâche ponctuelle urgente sur un outil précis |
-| Investir dans les mécanismes et contraintes générales | Plus lent, moins immédiatement applicable | Reste vrai des années, transférable à tout nouvel outil | Investissement de fond, en continu, hors urgence |
-| Lire le code source de projets reconnus | Coût de temps élevé, exige un bagage technique | Compréhension profonde, pas seulement une recette | Sur un sujet que tu utilises régulièrement dans ton métier |
+| Approche                                               | Coût                                           | Bénéfice                                                | Quand choisir                                              |
+| ------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------- |
+| Suivre des tutoriels d'actualité sur l'outil du moment | Rapide, opérationnel immédiatement             | Périme vite, n'enseigne pas le mécanisme sous-jacent    | Pour une tâche ponctuelle urgente sur un outil précis      |
+| Investir dans les mécanismes et contraintes générales  | Plus lent, moins immédiatement applicable      | Reste vrai des années, transférable à tout nouvel outil | Investissement de fond, en continu, hors urgence           |
+| Lire le code source de projets reconnus                | Coût de temps élevé, exige un bagage technique | Compréhension profonde, pas seulement une recette       | Sur un sujet que tu utilises régulièrement dans ton métier |
 
 ## Pièges classiques
 

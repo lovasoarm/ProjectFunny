@@ -40,7 +40,9 @@ Pagination par curseur (basée sur une clé stable, ex: dernier ID vu) :
 
 ```json
 {
-  "data": [ /* 50 rendez-vous */ ],
+  "data": [
+    /* 50 rendez-vous */
+  ],
   "pagination": {
     "nextCursor": "apt_9981",
     "hasMore": true
@@ -56,7 +58,7 @@ exactement le problème que la pagination devait résoudre.
 
 ### Rate limiting : protéger le système d'un client, même honnête
 
-Le cron du logiciel comptable de la scène n'est pas malveillant — il est juste mal
+Le cron du logiciel comptable de la scène n'est pas malveillant : il est juste mal
 configuré. Le rate limiting protège le système de ce cas bien plus fréquent que l'attaque
 délibérée : un partenaire en boucle infinie accidentelle, un script de test oublié en
 production, une resynchronisation trop agressive après une panne.
@@ -118,7 +120,7 @@ Client                          Serveur
 
 Le piège du cache n'est jamais technique, il est humain : décider une durée de fraîcheur
 (`max-age`) exige de répondre à "à quel point puis-je tolérer une donnée légèrement
-périmée ?" — une décision métier, pas un réglage arbitraire copié d'un tutoriel.
+périmée ?" : une décision métier, pas un réglage arbitraire copié d'un tutoriel.
 
 ### Charges utiles : ne transmettre que ce qui sert
 
@@ -153,12 +155,12 @@ Techniques qui réduisent la latence PERÇUE sans réduire la latence RÉELLE :
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Pagination par curseur | Pas de "aller à la page N" direct, un peu plus complexe à implémenter | Stable et performant à tout volume | Listes à croissance non bornée (historique, journal d'événements) |
-| Pagination par offset | Instable et coûteuse à grand volume | Simplicité, navigation directe par numéro de page | Petites listes bornées, tableaux de bord internes à faible volume |
-| Rate limiting en token bucket | Implémentation et état à maintenir (compteurs, expiration) | Absorbe les pics courts sans punir un usage normal, protège des boucles accidentelles | Toute API exposée à plus d'un client non totalement maîtrisé |
-| Cache HTTP avec ETag | Complexité de calcul d'empreinte, risque de servir une donnée périmée si mal invalidé | Réduction drastique du trafic redondant, réponses quasi instantanées sur données inchangées | Données lues souvent, modifiées rarement (historique, référentiels) |
+| Option                        | Coût                                                                                  | Bénéfice                                                                                    | Quand choisir                                                       |
+| ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Pagination par curseur        | Pas de "aller à la page N" direct, un peu plus complexe à implémenter                 | Stable et performant à tout volume                                                          | Listes à croissance non bornée (historique, journal d'événements)   |
+| Pagination par offset         | Instable et coûteuse à grand volume                                                   | Simplicité, navigation directe par numéro de page                                           | Petites listes bornées, tableaux de bord internes à faible volume   |
+| Rate limiting en token bucket | Implémentation et état à maintenir (compteurs, expiration)                            | Absorbe les pics courts sans punir un usage normal, protège des boucles accidentelles       | Toute API exposée à plus d'un client non totalement maîtrisé        |
+| Cache HTTP avec ETag          | Complexité de calcul d'empreinte, risque de servir une donnée périmée si mal invalidé | Réduction drastique du trafic redondant, réponses quasi instantanées sur données inchangées | Données lues souvent, modifiées rarement (historique, référentiels) |
 
 ## Pièges classiques
 

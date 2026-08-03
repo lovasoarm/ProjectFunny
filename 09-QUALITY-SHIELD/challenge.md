@@ -1,11 +1,13 @@
-# Challenge — Le bouclier qualité du système de tournées
+# Challenge : Le bouclier qualité du système de tournées
 
 ## Contexte
+
 Tu reprends le système de tournées de livraison frigorifique du fil rouge de ce niveau. Il
 fonctionne, mais n'a aucun des quatre bouclier vus dans ce niveau. Ta mission : les
 construire, priorisés par coût de panne réel, pas par exhaustivité.
 
 ## Livrable
+
 1. Une matrice écrite (tableau) des cinq zones les plus critiques du système (ex :
    conformité chaîne du froid, affectation de tournée, facturation), avec pour chacune :
    coût de panne estimé, niveau de test choisi (unitaire, intégration, e2e) et pourquoi.
@@ -23,6 +25,7 @@ construire, priorisés par coût de panne réel, pas par exhaustivité.
    (chronologie, cause immédiate/structurelle, ce qui a fonctionné, actions assignées).
 
 ## Critères de réussite mesurables
+
 - La matrice de priorisation justifie chaque choix par un coût de panne concret, pas par
   "c'est facile à tester" ou "c'est la norme de l'équipe".
 - Le test d'intégration de conformité chaîne du froid échoue si on lui injecte un relevé de
@@ -40,6 +43,7 @@ construire, priorisés par coût de panne réel, pas par exhaustivité.
   actions concrètes assignées et datées, aucune formulée comme "faire plus attention".
 
 ## Ce qui n'est pas demandé
+
 Pas besoin de couvrir 100 % du système ni d'atteindre un pourcentage de couverture donné. Le
 jury évalue la justesse des priorités et la fiabilité réelle des mécanismes construits, pas
 leur exhaustivité.

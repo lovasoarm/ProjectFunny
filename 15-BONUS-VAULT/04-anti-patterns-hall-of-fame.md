@@ -35,7 +35,7 @@ La règle "un créneau vétérinaire ne peut pas être réservé moins de deux h
 est codée à trois endroits différents (formulaire de prise de rendez-vous, API, job de
 rappel automatique). Symptôme : la règle change une fois, dans un seul des trois endroits,
 et un client peut réserver un créneau dans l'heure via l'API alors que le formulaire le
-bloque — un bug invisible tant que personne ne compare les deux chemins.
+bloque : un bug invisible tant que personne ne compare les deux chemins.
 
 ### Le Faux Consensus de Réunion (décision jamais vraiment prise)
 
@@ -81,15 +81,15 @@ sans aucun des bénéfices de scalabilité qui justifiaient le choix chez l'entr
 
 ## Compromis
 
-| Anti-pattern | Coût d'ignorer | Coût de corriger tôt | Coût de corriger tard |
-|---|---|---|---|
-| God Object | Fichier de plus en plus risqué à toucher | Refactoring ciblé, modéré | Refactoring complet sous pression, risqué |
-| Copier-Coller Métier | Bugs d'incohérence discrets | Centraliser la règle, simple | Chercher toutes les occurrences en production, lent |
-| Faux Consensus | Reprises de travail multiples | Reformuler explicitement en fin de réunion, gratuit | Conflit d'équipe après coup |
-| Test Alibi | Fausse confiance en la couverture | Réécrire l'assertion, rapide | Bug découvert en production, coûteux |
-| Dette Technique Silencieuse | Ralentissement progressif inexpliqué | Nommer et estimer, discipline légère | Zone du code que plus personne ne veut toucher |
-| Héros Systémique | Dépendance critique sur une personne | Documenter et faire des binômes, effort régulier | Crise à son départ |
-| Cargo Cult Architectural | Complexité opérationnelle non justifiée | Choisir selon le contexte réel, effort de jugement | Migration inverse coûteuse |
+| Anti-pattern                | Coût d'ignorer                           | Coût de corriger tôt                                | Coût de corriger tard                               |
+| --------------------------- | ---------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| God Object                  | Fichier de plus en plus risqué à toucher | Refactoring ciblé, modéré                           | Refactoring complet sous pression, risqué           |
+| Copier-Coller Métier        | Bugs d'incohérence discrets              | Centraliser la règle, simple                        | Chercher toutes les occurrences en production, lent |
+| Faux Consensus              | Reprises de travail multiples            | Reformuler explicitement en fin de réunion, gratuit | Conflit d'équipe après coup                         |
+| Test Alibi                  | Fausse confiance en la couverture        | Réécrire l'assertion, rapide                        | Bug découvert en production, coûteux                |
+| Dette Technique Silencieuse | Ralentissement progressif inexpliqué     | Nommer et estimer, discipline légère                | Zone du code que plus personne ne veut toucher      |
+| Héros Systémique            | Dépendance critique sur une personne     | Documenter et faire des binômes, effort régulier    | Crise à son départ                                  |
+| Cargo Cult Architectural    | Complexité opérationnelle non justifiée  | Choisir selon le contexte réel, effort de jugement  | Migration inverse coûteuse                          |
 
 ## Pièges classiques
 
@@ -97,7 +97,7 @@ sans aucun des bénéfices de scalabilité qui justifiaient le choix chez l'entr
   facilement le Héros Systémique dans une autre équipe sans remarquer que tu en es un dans
   la tienne.
 - **Corriger la forme sans corriger la cause.** Symptôme : découper le God Object en
-  plusieurs fichiers sans jamais clarifier les responsabilités — le God Object se
+  plusieurs fichiers sans jamais clarifier les responsabilités : le God Object se
   reconstitue ailleurs, juste réparti différemment.
 - **Traiter ces anti-patterns comme des fautes morales plutôt que des dérives structurelles.**
   Symptôme : blâmer une personne pour un God Object qui s'est construit sur trois ans, par

@@ -9,7 +9,7 @@ coder, tu poses trois questions et tu découvres que le vrai problème est aille
 vétérinaires notent les dates de rappel sur un carnet papier que la secrétaire recopie
 "quand elle a le temps" dans un tableur, deux fois par mois. La moitié des rappels n'existe
 même pas dans un fichier numérique. Un SMS automatique branché sur des données incomplètes
-enverrait des rappels à moitié des clients et rien aux autres — pire que le problème initial,
+enverrait des rappels à moitié des clients et rien aux autres : pire que le problème initial,
 parce que ça donnerait une fausse impression de fiabilité.
 
 ## Ce qui se passe vraiment
@@ -21,7 +21,7 @@ Trois couches à séparer systématiquement quand quelqu'un te fait une demande 
   ou a vu ailleurs.
 - **Le besoin** : le problème réel derrière la demande ("les clients ne reviennent pas à temps
   pour les vaccins, ce qui coûte du chiffre d'affaires et met en danger la santé animale").
-  Le besoin explique *pourquoi* la demande existe.
+  Le besoin explique _pourquoi_ la demande existe.
 - **La contrainte** : ce qui limite les solutions possibles ("les dates de rappel ne sont pas
   fiables dans le système actuel", "la secrétaire n'a pas le temps de faire une saisie
   manuelle supplémentaire", "le budget mensuel pour les SMS est de 30 euros").
@@ -72,26 +72,26 @@ Règles concrètes :
 Un signal faible est un indice discret qui annonce un problème avant qu'il devienne visible
 dans les métriques officielles.
 
-| Signal faible | Ce qu'il révèle |
-|---|---|
-| Un tableur "de secours" maintenu à la main en parallèle du système officiel | Le système officiel ne couvre pas un besoin réel |
-| Un ticket de support qui revient sous des formulations différentes | Le vrai problème n'a jamais été traité, seulement ses symptômes |
-| Une tâche que "seule une personne sait faire" dans l'équipe | Un processus non documenté et fragile, souvent invisible du management |
-| Une fonctionnalité demandée "pour tout le monde" mais utilisée par une seule personne en pratique | Un besoin individuel déguisé en besoin collectif |
-| Un export manuel régulier vers Excel puis remanipulation | L'outil ne restitue pas les données sous la forme dont on a réellement besoin |
+| Signal faible                                                                                     | Ce qu'il révèle                                                               |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Un tableur "de secours" maintenu à la main en parallèle du système officiel                       | Le système officiel ne couvre pas un besoin réel                              |
+| Un ticket de support qui revient sous des formulations différentes                                | Le vrai problème n'a jamais été traité, seulement ses symptômes               |
+| Une tâche que "seule une personne sait faire" dans l'équipe                                       | Un processus non documenté et fragile, souvent invisible du management        |
+| Une fonctionnalité demandée "pour tout le monde" mais utilisée par une seule personne en pratique | Un besoin individuel déguisé en besoin collectif                              |
+| Un export manuel régulier vers Excel puis remanipulation                                          | L'outil ne restitue pas les données sous la forme dont on a réellement besoin |
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Interviewer plusieurs rôles avant de cadrer | Du temps, parfois perçu comme lent par le client pressé | Vision fidèle du besoin réel, évite un aller-retour coûteux après livraison | Toujours, sauf urgence vitale documentée |
-| Prendre la demande telle quelle et coder vite | Rapidité immédiate apparente | Risque élevé de livrer une solution au mauvais problème | Uniquement sur un prototype jetable, jamais sur un vrai livrable |
-| Se fier aux métriques déclaratives ("les gens disent que...") | Faible coût de collecte | Fiable seulement pour des opinions, pas des comportements | Jamais comme seule source pour décider du scope |
+| Option                                                        | Coût                                                    | Bénéfice                                                                    | Quand choisir                                                    |
+| ------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Interviewer plusieurs rôles avant de cadrer                   | Du temps, parfois perçu comme lent par le client pressé | Vision fidèle du besoin réel, évite un aller-retour coûteux après livraison | Toujours, sauf urgence vitale documentée                         |
+| Prendre la demande telle quelle et coder vite                 | Rapidité immédiate apparente                            | Risque élevé de livrer une solution au mauvais problème                     | Uniquement sur un prototype jetable, jamais sur un vrai livrable |
+| Se fier aux métriques déclaratives ("les gens disent que...") | Faible coût de collecte                                 | Fiable seulement pour des opinions, pas des comportements                   | Jamais comme seule source pour décider du scope                  |
 
 ## Pièges classiques
 
 - Accepter la première explication donnée par le client comme le besoin final, sans demander
-  "pourquoi" une deuxième ou une troisième fois — le symptôme est pris pour la cause profonde.
+  "pourquoi" une deuxième ou une troisième fois : le symptôme est pris pour la cause profonde.
 - Confondre l'absence de plainte avec l'absence de problème : beaucoup d'utilisateurs
   contournent en silence plutôt que de se plaindre.
 - Interroger uniquement la personne qui a formulé la demande (souvent un manager) et jamais

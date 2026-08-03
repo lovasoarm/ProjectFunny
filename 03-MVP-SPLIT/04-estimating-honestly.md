@@ -4,7 +4,7 @@
 
 Une régie de refacturation d'énergie pour un ensemble de copropriétés demande "combien de
 temps pour ajouter la répartition automatique des charges de chauffage collectif selon les
-relevés de sous-compteurs ?" Un développeur répond "trois jours" — un chiffre unique, donné
+relevés de sous-compteurs ?" Un développeur répond "trois jours" : un chiffre unique, donné
 en réunion, sans avoir ouvert le code. Trois semaines plus tard, la fonctionnalité n'est
 toujours pas livrée : les sous-compteurs de trois fabricants différents ne renvoient pas le
 même format de données, deux immeubles ont des règles de répartition dérogatoires votées en
@@ -36,7 +36,7 @@ Estimation honnête (fourchette + sources d'incertitude) :
    d'inspection des formats de données réels."
 ```
 
-La deuxième version ne demande pas plus de travail à produire — elle demande d'admettre, à
+La deuxième version ne demande pas plus de travail à produire : elle demande d'admettre, à
 voix haute, ce qu'on ne sait pas encore. C'est souvent la partie inconfortable de l'exercice,
 pas la partie technique.
 
@@ -71,7 +71,7 @@ assumée comme telle.
 
 L'effet tunnel se produit quand une équipe s'engage sur une estimation optimiste puis, en
 cours de route, préfère continuer à foncer dans le plan initial plutôt que de remonter un
-signal d'alerte — parce qu'admettre un dépassement en cours de route semble pire que d'espérer
+signal d'alerte : parce qu'admettre un dépassement en cours de route semble pire que d'espérer
 rattraper le retard plus tard. Résultat : le dépassement, au lieu d'être signalé tôt et petit,
 n'apparaît que juste avant l'échéance, en grand, quand il est trop tard pour ajuster le
 périmètre ou la date sans dégâts.
@@ -89,22 +89,22 @@ Jour 1 ── Jour 4 ── Jour 8 ── Jour 12 ── Jour 15
         +2 jours prévus"     prévu, +1 jour"
 ```
 
-Le remède n'est pas d'estimer mieux du premier coup — c'est impossible avec de l'inconnu
-réel — mais de prévoir des points de contrôle rapprochés où l'estimation se met à jour
+Le remède n'est pas d'estimer mieux du premier coup : c'est impossible avec de l'inconnu
+réel : mais de prévoir des points de contrôle rapprochés où l'estimation se met à jour
 publiquement, en petits ajustements, plutôt qu'en un seul choc final.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Fourchette avec sources d'incertitude explicites | Demande d'expliciter ce qu'on ne sait pas, parfois inconfortable | Protège la crédibilité de l'équipe et permet d'anticiper les points à investiguer | Systématiquement pour toute tâche non triviale |
-| Chiffre unique donné à l'instinct | Rapide et rassurant en réunion | Transfère tout le risque d'incertitude sur la personne qui livre, casse la confiance à l'écart | Jamais, sauf tâche vraiment triviale et déjà faite plusieurs fois |
-| Points de contrôle rapprochés pendant l'exécution | Demande une discipline de reporting régulier | Évite l'effet tunnel, permet d'ajuster le périmètre tôt plutôt que tard | Dès que la tâche dépasse 2-3 jours ou comporte de l'inconnu |
+| Option                                            | Coût                                                             | Bénéfice                                                                                       | Quand choisir                                                     |
+| ------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Fourchette avec sources d'incertitude explicites  | Demande d'expliciter ce qu'on ne sait pas, parfois inconfortable | Protège la crédibilité de l'équipe et permet d'anticiper les points à investiguer              | Systématiquement pour toute tâche non triviale                    |
+| Chiffre unique donné à l'instinct                 | Rapide et rassurant en réunion                                   | Transfère tout le risque d'incertitude sur la personne qui livre, casse la confiance à l'écart | Jamais, sauf tâche vraiment triviale et déjà faite plusieurs fois |
+| Points de contrôle rapprochés pendant l'exécution | Demande une discipline de reporting régulier                     | Évite l'effet tunnel, permet d'ajuster le périmètre tôt plutôt que tard                        | Dès que la tâche dépasse 2-3 jours ou comporte de l'inconnu       |
 
 ## Pièges classiques
 
 - Donner un chiffre unique en réunion sous pression sociale, sans avoir eu le temps
-  d'inspecter le problème — le symptôme est qu'on ne peut pas dire ce qui ferait varier ce
+  d'inspecter le problème : le symptôme est qu'on ne peut pas dire ce qui ferait varier ce
   chiffre.
 - Estimer une tâche non découpée, ce qui masque systématiquement les sous-tâches invisibles
   (formats de données réels, cas dérogatoires, comportements de panne).

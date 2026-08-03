@@ -23,8 +23,8 @@ c'est toi qui as écrit le formulaire qui l'empêche. Tu sais qu'un seul serveur
 donc pas de concurrence surprise. Tu peux casser un format de réponse un mardi et le
 redéployer le même jour, parce que "les deux bouts" sont dans le même déploiement.
 
-Le jour où un deuxième appelant existe — une appli mobile, un partenaire, un service tiers,
-même un autre projet écrit par une autre équipe dans la même entreprise — toutes ces
+Le jour où un deuxième appelant existe : une appli mobile, un partenaire, un service tiers,
+même un autre projet écrit par une autre équipe dans la même entreprise : toutes ces
 hypothèses s'effondrent en même temps, et aucune ne prévient avant de casser quelque chose :
 
 ```text
@@ -64,10 +64,10 @@ qui s'effondre dès qu'elle rencontre un vrai appelant extérieur :
 1. **Écrire le contrat avant le code**, pour que "casser un client" devienne une décision
    consciente et versionnée, jamais un accident de refactoring.
 2. **Rendre les erreurs exploitables et les opérations rejouables sans danger**, pour que
-   les retries — inévitables sur un réseau réel — ne dupliquent jamais une action.
+   les retries : inévitables sur un réseau réel : ne dupliquent jamais une action.
 3. **Séparer qui es-tu de ce que tu as le droit de faire**, pour qu'un token volé ou mal
    scope ne devienne pas une fuite de données ou une facture modifiée sans autorisation.
-4. **Anticiper le succès** : pagination, limites de débit, cache — les problèmes qui
+4. **Anticiper le succès** : pagination, limites de débit, cache : les problèmes qui
    n'existent pas à dix appels par jour et qui deviennent une panne à dix mille.
 5. **Penser en dehors de ton propre déploiement** : ton API vit plus longtemps et plus
    largement que le code qui l'a écrite au départ.

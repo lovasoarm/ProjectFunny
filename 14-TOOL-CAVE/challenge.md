@@ -1,10 +1,10 @@
-# Challenge — Niveau 14 : Tool Cave
+# Challenge : Niveau 14 : Tool Cave
 
 ## Contexte
 
 Tu vas prouver que tu maîtrises ton outillage sur un cas réel, pas sur un exercice jouet.
 Choisis un bug réel non trivial dans un projet que tu as déjà écrit ou dans un projet
-open-source connu (pas un bug que tu inventes pour l'occasion — un vrai, déjà là, jamais
+open-source connu (pas un bug que tu inventes pour l'occasion : un vrai, déjà là, jamais
 complètement compris).
 
 ## Livrable
@@ -24,7 +24,7 @@ Un document unique (`debug-report.md`, 1 à 3 pages) contenant, dans l'ordre :
 6. **Un test de non-régression** qui aurait attrapé ce bug avant qu'il ne parte en
    production.
 
-## Deuxième partie — configuration d'outillage
+## Deuxième partie : configuration d'outillage
 
 Documente, dans une section séparée du même fichier :
 
@@ -38,13 +38,13 @@ Documente, dans une section séparée du même fichier :
 
 ## Critères de réussite mesurables
 
-- Le bug choisi est réel, pas inventé — vérifiable par l'historique Git ou l'issue tracker.
+- Le bug choisi est réel, pas inventé : vérifiable par l'historique Git ou l'issue tracker.
 - Les hypothèses sont formulées avant la lecture de la solution, pas reconstruites après
   coup pour faire joli (si tu connaissais déjà la cause avant de commencer, choisis un autre
   bug).
 - Le nombre d'étapes de bissection est cohérent avec une progression logarithmique, pas un
   tâtonnement déguisé en méthode.
-- Le test de non-régression échoue sur le code buggé et passe sur le code corrigé — vérifié,
+- Le test de non-régression échoue sur le code buggé et passe sur le code corrigé : vérifié,
   pas affirmé.
 - Au moins un des trois cas d'usage IA documentés contient une correction réelle apportée
   par ta revue critique, pas seulement une validation complaisante.

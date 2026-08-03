@@ -1,4 +1,4 @@
-# Boss Fight — MVP Split
+# Boss Fight : MVP Split
 
 ## La situation
 
@@ -7,7 +7,7 @@ première tranche doit être livrée en fin de semaine 1 pour un test avec un ca
 En semaine 1, à mi-parcours, le développeur qui travaille avec toi te dit :
 
 > "En creusant, je me rends compte que gérer la disponibilité en temps réel des autres
-> cabinets, c'est plus compliqué que prévu — il faut gérer les cas où un cabinet ferme
+> cabinets, c'est plus compliqué que prévu : il faut gérer les cas où un cabinet ferme
 > exceptionnellement, où le vétérinaire de garde change en cours de journée, où deux urgences
 > arrivent en même temps sur le même cabinet. Je pense qu'on devrait retarder la livraison de
 > la tranche 1 d'une semaine pour bien faire les choses, plutôt que de livrer quelque chose de
@@ -37,10 +37,10 @@ Rédige, en markdown :
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est évalué | Signal d'échec |
-|---|---|---|
-| Identification de l'invariant | La décision distingue clairement ce qui est vital de ce qui est un cas limite gérable | Tous les cas cités sont traités comme également critiques, ou tous comme négligeables sans distinction |
-| Cohérence entre les deux messages | Le message au développeur et celui au directeur racontent la même réalité, sans double discours | Le développeur et le directeur reçoivent des versions incompatibles de la situation |
-| Gestion de la pression sans céder ni ignorer | La décision tient compte des deux contraintes réelles (qualité et calendrier) sans sacrifier silencieusement l'une des deux | La décision ignore une des deux pressions sans l'assumer explicitement |
-| Honnêteté sur l'état d'avancement | Le directeur reçoit une information vraie, même si elle implique une limite assumée pour vendredi | Le message enjolive l'état réel pour éviter un désagrément immédiat |
-| Cap sur l'intention de l'outil | La version livrée vendredi, même réduite, reste honnête pour l'utilisateur qui s'en sert | La version livrée donne une fausse impression de fiabilité qu'elle n'a pas |
+| Critère                                      | Ce qui est évalué                                                                                                           | Signal d'échec                                                                                         |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Identification de l'invariant                | La décision distingue clairement ce qui est vital de ce qui est un cas limite gérable                                       | Tous les cas cités sont traités comme également critiques, ou tous comme négligeables sans distinction |
+| Cohérence entre les deux messages            | Le message au développeur et celui au directeur racontent la même réalité, sans double discours                             | Le développeur et le directeur reçoivent des versions incompatibles de la situation                    |
+| Gestion de la pression sans céder ni ignorer | La décision tient compte des deux contraintes réelles (qualité et calendrier) sans sacrifier silencieusement l'une des deux | La décision ignore une des deux pressions sans l'assumer explicitement                                 |
+| Honnêteté sur l'état d'avancement            | Le directeur reçoit une information vraie, même si elle implique une limite assumée pour vendredi                           | Le message enjolive l'état réel pour éviter un désagrément immédiat                                    |
+| Cap sur l'intention de l'outil               | La version livrée vendredi, même réduite, reste honnête pour l'utilisateur qui s'en sert                                    | La version livrée donne une fausse impression de fiabilité qu'elle n'a pas                             |

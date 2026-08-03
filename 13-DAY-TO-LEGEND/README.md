@@ -1,4 +1,4 @@
-# Niveau 13 — Day-to-Legend
+# Niveau 13 : Day-to-Legend
 
 ## Ce que c'est
 
@@ -12,7 +12,7 @@ confondent "travailler beaucoup" avec "s'entraîner". Ce niveau sépare les deux
 une routine concrète, tenable sur douze semaines, pour que ta courbe de compétence continue
 de monter après que ce curriculum soit fini.
 
-Durée estimée : pas une durée d'étude — un mode de vie professionnel à installer. Compte
+Durée estimée : pas une durée d'étude : un mode de vie professionnel à installer. Compte
 trois semaines pour que la routine tienne sans effort de volonté, douze pour voir l'effet
 sur ton niveau réel.
 
@@ -50,7 +50,7 @@ qu'on cherche à améliorer.
 
 `01` pose le diagnostic. `02` te donne la routine minimale à installer cette semaine. `03`
 t'explique pourquoi certaines semaines de routine ne produisent aucun progrès visible, et ce
-qu'il faut changer dans ce cas. `04` élargit l'horizon de la semaine au métier entier — ce
+qu'il faut changer dans ce cas. `04` élargit l'horizon de la semaine au métier entier : ce
 niveau referme la boucle sur ta trajectoire de carrière, pas seulement ta compétence
 technique du moment.
 

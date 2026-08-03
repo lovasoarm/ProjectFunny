@@ -1,4 +1,4 @@
-# Challenge — Autopsie d'un dépôt inconnu
+# Challenge : Autopsie d'un dépôt inconnu
 
 ## Consigne
 
@@ -36,7 +36,7 @@ Un document d'une à deux pages contenant :
 - Au moins une des trois zones à risque est justifiée par une donnée vérifiable (une
   commande `git log` exécutée et son résultat cité, pas une impression).
 - La contrainte reconstruite en point 5 est confirmée ou infirmée par une source concrète
-  (message de commit, ticket lié, commentaire de code cité mot pour mot) — pas une pure
+  (message de commit, ticket lié, commentaire de code cité mot pour mot) : pas une pure
   supposition non vérifiée.
 - L'estimation finale est une fourchette (pas un chiffre unique) avec au moins deux sources
   d'incertitude distinctes nommées.
@@ -44,7 +44,7 @@ Un document d'une à deux pages contenant :
 ## Ce qui invalide le challenge
 
 - Choisir un dépôt que tu connais déjà ou auquel tu as déjà contribué.
-- Dépasser largement le budget de temps sans le signaler — le but est la méthode sous
+- Dépasser largement le budget de temps sans le signaler : le but est la méthode sous
   contrainte, pas l'exhaustivité.
 - Une contrainte "reconstruite" sans aucune preuve citée : une hypothèse non vérifiée n'est
   pas une reconstruction, c'est une divination.

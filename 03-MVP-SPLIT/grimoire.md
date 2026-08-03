@@ -1,4 +1,4 @@
-# Grimoire — MVP Split
+# Grimoire : MVP Split
 
 ## Vocabulaire
 
@@ -17,7 +17,7 @@
 - **Effet tunnel** : dérive où une équipe continue sur un plan optimiste sans signaler les
   écarts en cours de route, jusqu'à un dépassement révélé trop tard pour être corrigé.
 - **Coût d'opportunité** : ce qu'on sacrifie ailleurs si on accepte une demande de périmètre
-  supplémentaire — l'argument qui rend un refus compréhensible plutôt qu'arbitraire.
+  supplémentaire : l'argument qui rend un refus compréhensible plutôt qu'arbitraire.
 - **Dette technique assumée** : raccourci pris consciemment, écrit quelque part, avec une
   échéance de remboursement.
 - **Dette technique subie** : raccourci pris sous pression, jamais écrit, découvert plus tard
@@ -67,5 +67,5 @@ PAS MAINTENANT → bonne idée, mauvais moment, avec condition de réexamen
 - "Une fourchette avec ses raisons vaut mieux qu'un chiffre qui rassure sur le moment."
 - "Découper avant d'estimer, jamais l'inverse."
 - "Un écart signalé tôt et petit vaut mieux qu'un écart découvert tard et grand."
-- "Chaque dette technique doit être écrite, sinon elle n'existe pas — jusqu'au jour où elle
+- "Chaque dette technique doit être écrite, sinon elle n'existe pas : jusqu'au jour où elle
   explose."

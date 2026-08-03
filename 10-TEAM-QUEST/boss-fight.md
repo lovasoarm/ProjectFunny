@@ -1,4 +1,4 @@
-# Boss Fight — Un conflit de merge humain, pas technique
+# Boss Fight : Un conflit de merge humain, pas technique
 
 ## La situation
 
@@ -11,10 +11,10 @@ mutuellement jusqu'à cet après-midi, où les deux branches sont arrivées en m
 la revue.
 
 Les deux solutions marchent techniquement. Celle de Malik est plus simple, mais suppose que
-le capteur envoie une donnée toutes les minutes — une hypothèse non vérifiée sur le matériel
+le capteur envoie une donnée toutes les minutes : une hypothèse non vérifiée sur le matériel
 réellement utilisé par les chauffeurs. Celle d'Inès gère les données manquantes du capteur
 mais rajoute une complexité que personne d'autre dans l'équipe ne comprend encore
-complètement. Aucun des deux ne veut abandonner son travail — chacun y a passé deux jours
+complètement. Aucun des deux ne veut abandonner son travail : chacun y a passé deux jours
 pleins. Le ton commence à monter en fin de réunion : Malik dit qu'Inès complique tout par
 principe, Inès dit que Malik ignore un vrai risque terrain. La release doit partir demain
 matin. Tu es la troisième personne dans la pièce, pas leur responsable hiérarchique, mais la
@@ -29,7 +29,7 @@ parole complète. Elle doit :
    point de désaccord vérifiable (ici : est-ce que le capteur envoie effectivement une
    donnée toutes les minutes en conditions réelles ?).
 2. Proposer une méthode concrète pour vérifier ce point avant la release, plutôt que de
-   trancher sur une opinion — ou, si le temps ne le permet pas avant demain matin, proposer
+   trancher sur une opinion : ou, si le temps ne le permet pas avant demain matin, proposer
    une décision par défaut qui minimise le risque en attendant la vérification.
 3. Traiter explicitement le coût humain de la situation (deux jours de travail de chacun,
    aucun des deux n'a tort sur le fond) sans pour autant sacrifier la qualité de la décision
@@ -39,12 +39,12 @@ parole complète. Elle doit :
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est raté | Ce qui est réussi |
-|---|---|---|
-| Identification du vrai désaccord | Tu discutes des deux solutions comme des préférences esthétiques | Tu identifies l'hypothèse vérifiable (fiabilité du capteur) qui devrait trancher |
-| Gestion de la pression de la deadline | Tu forces une décision arbitraire juste pour "avancer" avant la release | Tu proposes une vérification rapide ou une décision par défaut prudente si le temps manque |
-| Gestion humaine | Tu ignores la frustration de Malik et Inès, ou tu la calmes sans rien résoudre sur le fond | Tu reconnais le coût du travail de chacun sans que ça t'empêche de choisir la meilleure décision technique disponible |
-| Réflexe systémique | Tu règles seulement le conflit du jour | Tu proposes un changement concret du working agreement pour éviter le prochain doublon |
+| Critère                               | Ce qui est raté                                                                            | Ce qui est réussi                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Identification du vrai désaccord      | Tu discutes des deux solutions comme des préférences esthétiques                           | Tu identifies l'hypothèse vérifiable (fiabilité du capteur) qui devrait trancher                                      |
+| Gestion de la pression de la deadline | Tu forces une décision arbitraire juste pour "avancer" avant la release                    | Tu proposes une vérification rapide ou une décision par défaut prudente si le temps manque                            |
+| Gestion humaine                       | Tu ignores la frustration de Malik et Inès, ou tu la calmes sans rien résoudre sur le fond | Tu reconnais le coût du travail de chacun sans que ça t'empêche de choisir la meilleure décision technique disponible |
+| Réflexe systémique                    | Tu règles seulement le conflit du jour                                                     | Tu proposes un changement concret du working agreement pour éviter le prochain doublon                                |
 
 ## Ce que ce boss fight entraîne vraiment
 

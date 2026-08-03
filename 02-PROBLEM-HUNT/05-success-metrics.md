@@ -6,7 +6,7 @@ Une bibliothèque de club d'escalade développe un outil de réservation de cré
 d'entraînement, pour éviter les conflits de réservation griffonnés sur un carnet. Trois mois
 après le lancement, le comité directeur demande "est-ce que ça marche ?" L'équipe répond :
 "on a 40 comptes créés et 300 vues de page." Personne ne sait dire si c'est un succès. Le
-carnet papier, lui, était consulté par tout le monde, tout le temps — mais personne n'avait
+carnet papier, lui, était consulté par tout le monde, tout le temps : mais personne n'avait
 défini avant le lancement ce que "ça marche" voulait dire précisément. L'outil est peut-être
 un succès, peut-être un échec silencieux : sans seuil défini d'avance, la question ne se
 tranche pas, elle se discute indéfiniment selon l'humeur de la réunion.
@@ -30,13 +30,13 @@ Téléchargements de l'appli      % d'utilisateurs qui reviennent réserver
 ```
 
 La différence tient à une question simple : est-ce que cette métrique peut monter sans que le
-problème initial soit résolu ? Si oui, c'est une métrique de vanité — elle mesure l'activité
+problème initial soit résolu ? Si oui, c'est une métrique de vanité : elle mesure l'activité
 autour du produit, pas son utilité réelle.
 
 ## Le seuil d'échec, défini avant de coder
 
 Un seuil d'échec est un chiffre fixé avant le lancement, en dessous duquel l'équipe s'engage à
-reconnaître que le produit, dans sa forme actuelle, ne fonctionne pas — et à en tirer une
+reconnaître que le produit, dans sa forme actuelle, ne fonctionne pas : et à en tirer une
 décision (pivoter, arrêter, refaire une itération sur un point précis). Sans ce seuil écrit à
 l'avance, chaque résultat décevant se rationalise après coup ("ce n'est pas si mal", "il faut
 laisser le temps à l'adoption"), et le produit continue d'exister par inertie plutôt que par
@@ -48,7 +48,7 @@ Avant de coder, on écrit :
     sans recours au carnet papier en parallèle.
   Seuil d'échec : si moins de 50% des séances passent par l'outil
     après 6 semaines d'usage réel, l'outil ne remplace pas le carnet
-    — on retourne comprendre pourquoi avant de continuer à l'améliorer.
+    : on retourne comprendre pourquoi avant de continuer à l'améliorer.
 
 Six semaines plus tard, on mesure 22%.
   → seuil non atteint, décision prise à l'avance : on arrête d'ajouter
@@ -70,18 +70,18 @@ comportement facilement stimulable par un rappel ou une notification.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Métrique reliée directement au symptôme initial (conflits de créneaux évités) | Parfois plus difficile à instrumenter techniquement | Dit vraiment si le problème est résolu | Toujours en priorité, même si l'instrumentation demande du travail |
-| Métrique d'activité facile à mesurer (comptes créés, vues) | Rapide à obtenir dès le lancement | Se fait manipuler par n'importe quelle action marketing, ne dit rien sur l'utilité | Uniquement en complément, jamais comme métrique de décision |
-| Pas de seuil d'échec défini | Évite une conversation inconfortable en amont | Chaque résultat se rationalise après coup, aucun produit n'est jamais officiellement un échec | Jamais |
+| Option                                                                        | Coût                                                | Bénéfice                                                                                      | Quand choisir                                                      |
+| ----------------------------------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Métrique reliée directement au symptôme initial (conflits de créneaux évités) | Parfois plus difficile à instrumenter techniquement | Dit vraiment si le problème est résolu                                                        | Toujours en priorité, même si l'instrumentation demande du travail |
+| Métrique d'activité facile à mesurer (comptes créés, vues)                    | Rapide à obtenir dès le lancement                   | Se fait manipuler par n'importe quelle action marketing, ne dit rien sur l'utilité            | Uniquement en complément, jamais comme métrique de décision        |
+| Pas de seuil d'échec défini                                                   | Évite une conversation inconfortable en amont       | Chaque résultat se rationalise après coup, aucun produit n'est jamais officiellement un échec | Jamais                                                             |
 
 ## Pièges classiques
 
 - Choisir une métrique de vanité parce qu'elle est facile à obtenir dès le premier jour, alors
   que la vraie métrique demande d'attendre plusieurs semaines d'usage réel.
 - Définir le seuil d'échec après avoir vu les premiers résultats, ce qui permet de l'ajuster
-  pour qu'il corresponde toujours au chiffre obtenu — le seuil doit être écrit avant.
+  pour qu'il corresponde toujours au chiffre obtenu : le seuil doit être écrit avant.
 - Confondre "la métrique est bonne" et "le produit est fini" : une métrique de succès atteinte
   signale un vrai problème résolu, pas l'absence de tout problème restant.
 - Mesurer un seul indicateur global sans regarder s'il cache des écarts importants entre

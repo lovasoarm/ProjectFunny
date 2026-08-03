@@ -42,14 +42,14 @@ Entrée →│                               │→ Sortie
 
 Le vrai travail de modélisation consiste à répondre, pour chaque nouvelle feature, à trois
 questions : quel état partagé est touché ? qui d'autre le lit ou l'écrit en même temps ? et
-où est la frontière du système — jusqu'où va ma responsabilité, à partir d'où je fais
+où est la frontière du système : jusqu'où va ma responsabilité, à partir d'où je fais
 confiance à un tiers (une API externe, un autre service) ?
 
 Dans l'exemple du chauffeur, la vraie question n'était pas "où stocker le champ" mais "cette
 donnée doit-elle être une source de vérité unique et cohérente, ou une valeur qui peut être
 légèrement en retard sans conséquence ?". Une position GPS pour affichage sur une carte peut
 être en retard de quelques secondes. Une position GPS utilisée pour calculer un ETA facturé
-au client ne le peut pas de la même façon — il faut décider explicitement, pas par défaut.
+au client ne le peut pas de la même façon : il faut décider explicitement, pas par défaut.
 
 ```sql
 -- Modèle explicite : séparer l'état "affichage" (tolère l'incohérence)
@@ -69,26 +69,26 @@ CREATE TABLE position_verrouillee_pour_calcul (
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Un seul état partagé pour tout usage | Simple à coder au départ | Risque de conditions de course dès que deux usages ont des exigences différentes | Prototype jetable, faible enjeu de cohérence |
-| Séparer l'état par exigence de cohérence | Plus de code, plus de tables/structures | Élimine une classe entière de bugs de concurrence | Dès qu'un même état sert à la fois de l'affichage et du calcul métier facturé |
+| Option                                   | Coût                                    | Bénéfice                                                                         | Quand choisir                                                                 |
+| ---------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Un seul état partagé pour tout usage     | Simple à coder au départ                | Risque de conditions de course dès que deux usages ont des exigences différentes | Prototype jetable, faible enjeu de cohérence                                  |
+| Séparer l'état par exigence de cohérence | Plus de code, plus de tables/structures | Élimine une classe entière de bugs de concurrence                                | Dès qu'un même état sert à la fois de l'affichage et du calcul métier facturé |
 
 ## Pièges classiques
 
 - Ajouter un champ à une entité existante sans se demander qui d'autre la lit en concurrence
-  — symptôme : bug de course qui n'apparaît qu'en charge réelle, jamais en local.
-- Confondre "frontière du système" avec "frontière du code" — symptôme : faire confiance
+  : symptôme : bug de course qui n'apparaît qu'en charge réelle, jamais en local.
+- Confondre "frontière du système" avec "frontière du code" : symptôme : faire confiance
   aveuglément à une API tierce parce qu'elle est "dans le même repo" logique.
-- Ignorer les effets de bord d'une fonction qu'on pense "pure" — symptôme : un test qui passe
+- Ignorer les effets de bord d'une fonction qu'on pense "pure" : symptôme : un test qui passe
   en isolation mais casse en série parce qu'un effet de bord persiste entre deux tests.
-- Traiter tout état comme devant être parfaitement cohérent — symptôme : sur-ingénierie de
+- Traiter tout état comme devant être parfaitement cohérent : symptôme : sur-ingénierie de
   verrous et de transactions là où une incohérence de quelques secondes serait sans impact.
 
 ## Ce que tu dois savoir défendre
 
 1. Pour un système que tu connais, identifie une donnée qui devrait être un état "tolérant à
-   l'incohérence" et une autre qui doit être strictement cohérente — justifie la différence.
+   l'incohérence" et une autre qui doit être strictement cohérente : justifie la différence.
 2. Explique pourquoi ajouter un champ à une table existante n'est jamais un acte neutre du
    point de vue du modèle en système.
 3. Donne un exemple d'effet de bord qu'on oublie facilement de considérer comme tel.

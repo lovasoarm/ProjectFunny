@@ -1,4 +1,4 @@
-# Grimoire — Big App Snoop
+# Grimoire : Big App Snoop
 
 ## La méthode en une page
 

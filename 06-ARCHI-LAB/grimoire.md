@@ -1,4 +1,4 @@
-# Grimoire — Archi-Lab
+# Grimoire : Archi-Lab
 
 ## Vocabulaire
 
@@ -8,7 +8,7 @@
   ensemble (une seule raison de changer par module = forte cohésion).
 - **Dépendance dirigée** : une flèche "A dépend de B" qui doit toujours pouvoir se dessiner
   sans jamais former de cycle dans le graphe global du système.
-- **Inversion de dépendance** : le domaine définit une interface, l'infra l'implémente — la
+- **Inversion de dépendance** : le domaine définit une interface, l'infra l'implémente : la
   flèche de dépendance va de l'infra vers le domaine, pas l'inverse.
 - **Source de vérité** : la copie d'une donnée désignée comme faisant foi en cas de
   désaccord ; tout le reste est un dérivé reconstructible.

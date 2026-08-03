@@ -16,7 +16,7 @@ une appli moderne adaptée à mon profil".
 Un **job to be done** décrit ce que l'utilisateur essaie d'accomplir, indépendamment de qui
 il est. La question n'est pas "qui est mon utilisateur" mais "quel progrès cherche-t-il à
 faire, dans quel contexte, avec quelle contrainte". Un persona décrit une personne ; un job
-décrit une situation à résoudre. Le job survit aux changements de personas — le prochain
+décrit une situation à résoudre. Le job survit aux changements de personas : le prochain
 livreur, quel que soit son âge ou son mode de vie, aura le même besoin de signaler un
 changement d'adresse sans lâcher son guidon.
 
@@ -39,12 +39,12 @@ Un persona est utile s'il change une décision de conception. Il est décoratif 
 qu'à illustrer une slide ou à donner un sentiment de rigueur méthodologique sans influencer
 quoi que ce soit dans le produit.
 
-| Test | Persona utile | Persona décoratif |
-|---|---|---|
-| "Si je supprime ce persona, est-ce que je changerais une décision de conception ?" | Oui — sans lui, on n'aurait pas pensé à l'usage mains libres | Non — la fiche pourrait disparaître, rien ne change dans le produit |
-| Source de l'information | Observation ou interview réelle d'un utilisateur concret | Extrapolation générique ("les jeunes aiment le mobile") |
-| Niveau de détail utile | Contexte d'usage, contrainte physique ou organisationnelle, fréquence | Âge, loisirs, prénom inventé, photo stock |
-| Rôle dans les décisions | Sert d'arbitre quand deux choix de conception s'opposent | Décore un document sans jamais être reconsulté |
+| Test                                                                               | Persona utile                                                         | Persona décoratif                                                   |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| "Si je supprime ce persona, est-ce que je changerais une décision de conception ?" | Oui : sans lui, on n'aurait pas pensé à l'usage mains libres          | Non : la fiche pourrait disparaître, rien ne change dans le produit |
+| Source de l'information                                                            | Observation ou interview réelle d'un utilisateur concret              | Extrapolation générique ("les jeunes aiment le mobile")             |
+| Niveau de détail utile                                                             | Contexte d'usage, contrainte physique ou organisationnelle, fréquence | Âge, loisirs, prénom inventé, photo stock                           |
+| Rôle dans les décisions                                                            | Sert d'arbitre quand deux choix de conception s'opposent              | Décore un document sans jamais être reconsulté                      |
 
 Un persona décoratif est reconnaissable à un symptôme simple : personne dans l'équipe ne le
 mentionne plus après la phase de cadrage. Un persona utile, à l'inverse, revient
@@ -70,22 +70,22 @@ Utilisateur : livreur à vélo
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Construire des jobs to be done à partir d'interviews réelles | Demande du temps de terrain | Base solide, résiste aux changements de profil utilisateur | Systématiquement en début de cadrage |
-| Utiliser des personas détaillés (âge, style de vie, photo) | Rapide à produire en atelier | Séduisant en réunion mais rarement actionnable | Uniquement en complément d'un job to be done, jamais seul |
-| Ignorer les jobs et concevoir "pour tout le monde" | Semble économiser du temps de cadrage | Produit une fonctionnalité diluée qui ne sert bien personne | Jamais, sauf produit jetable sans enjeu |
+| Option                                                       | Coût                                  | Bénéfice                                                    | Quand choisir                                             |
+| ------------------------------------------------------------ | ------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------- |
+| Construire des jobs to be done à partir d'interviews réelles | Demande du temps de terrain           | Base solide, résiste aux changements de profil utilisateur  | Systématiquement en début de cadrage                      |
+| Utiliser des personas détaillés (âge, style de vie, photo)   | Rapide à produire en atelier          | Séduisant en réunion mais rarement actionnable              | Uniquement en complément d'un job to be done, jamais seul |
+| Ignorer les jobs et concevoir "pour tout le monde"           | Semble économiser du temps de cadrage | Produit une fonctionnalité diluée qui ne sert bien personne | Jamais, sauf produit jetable sans enjeu                   |
 
 ## Pièges classiques
 
 - Construire des personas riches en détails biographiques mais vides de contrainte d'usage
-  réelle — le symptôme est qu'aucune décision de conception ne cite jamais le persona.
+  réelle : le symptôme est qu'aucune décision de conception ne cite jamais le persona.
 - Confondre "utilisateur qui paie" et "utilisateur qui utilise" : le gérant du club qui commande
   l'outil n'est pas forcément celui qui devra s'en servir tous les jours.
 - Réduire un utilisateur à un seul job alors qu'il en a plusieurs, contradictoires en termes
   de contraintes d'interface (urgence vs précision, par exemple).
 - Créer un job to be done à partir d'une intuition d'équipe sans jamais l'avoir vérifié sur le
-  terrain — le symptôme est qu'aucune citation d'interview ne l'appuie.
+  terrain : le symptôme est qu'aucune citation d'interview ne l'appuie.
 
 ## Ce que tu dois savoir défendre
 

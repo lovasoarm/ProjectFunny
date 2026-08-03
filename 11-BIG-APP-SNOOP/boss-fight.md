@@ -1,4 +1,4 @@
-# Boss Fight — La réunion de cadrage dans deux heures
+# Boss Fight : La réunion de cadrage dans deux heures
 
 ## La situation
 
@@ -39,13 +39,13 @@ Ton message final à ton manager doit contenir :
 
 ## Grille d'évaluation
 
-| Critère | Points | Ce qui est vérifié |
-|---|---|---|
-| Répartition du temps réaliste et justifiée | 20 | Tu expliques pourquoi tu donnes plus de temps à telle phase qu'à telle autre vu le contexte (deadline courte, domaine légal sensible) |
-| Distinction claire entre vérifié et supposé | 25 | Chaque affirmation de ton message est étiquetée : preuve trouvée, ou hypothèse à confirmer |
-| Identification du risque légal/métier | 20 | Tu identifies que "dossier médical non validé" touche potentiellement une exigence de traçabilité, sans l'avoir confirmée, et tu le signales comme point à vérifier avant tout engagement de délai |
-| Honnêteté de l'avis de faisabilité | 20 | Tu ne donnes pas un chiffre de délai précis sans base solide ; tu proposes une fourchette ou un délai d'investigation supplémentaire clairement justifié |
-| Communication utilisable en réunion | 15 | Le message est écrit pour un manager pressé : court, structuré, actionnable, sans jargon d'enquête inutile |
+| Critère                                     | Points | Ce qui est vérifié                                                                                                                                                                                 |
+| ------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Répartition du temps réaliste et justifiée  | 20     | Tu expliques pourquoi tu donnes plus de temps à telle phase qu'à telle autre vu le contexte (deadline courte, domaine légal sensible)                                                              |
+| Distinction claire entre vérifié et supposé | 25     | Chaque affirmation de ton message est étiquetée : preuve trouvée, ou hypothèse à confirmer                                                                                                         |
+| Identification du risque légal/métier       | 20     | Tu identifies que "dossier médical non validé" touche potentiellement une exigence de traçabilité, sans l'avoir confirmée, et tu le signales comme point à vérifier avant tout engagement de délai |
+| Honnêteté de l'avis de faisabilité          | 20     | Tu ne donnes pas un chiffre de délai précis sans base solide ; tu proposes une fourchette ou un délai d'investigation supplémentaire clairement justifié                                           |
+| Communication utilisable en réunion         | 15     | Le message est écrit pour un manager pressé : court, structuré, actionnable, sans jargon d'enquête inutile                                                                                         |
 
 Score minimal pour valider le niveau : 75/100, avec au moins 20/25 sur le critère de
-distinction vérifié/supposé — c'est le cœur de la compétence testée par ce niveau.
+distinction vérifié/supposé : c'est le cœur de la compétence testée par ce niveau.

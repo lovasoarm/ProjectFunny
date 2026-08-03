@@ -1,4 +1,4 @@
-# Niveau 15 — Bonus Vault
+# Niveau 15 : Bonus Vault
 
 ## Ce que c'est
 
@@ -10,7 +10,7 @@ différentes, dans toutes les équipes techniques.
 
 Ce n'est pas un niveau à traverser dans l'ordre. C'est un coffre à ouvrir quand tu es en
 situation réelle : tu dois trancher une décision d'architecture contestée, préparer une mise
-en prod, gérer un incident, ou onboarder quelqu'un — et tu n'as pas le temps de réinventer le
+en prod, gérer un incident, ou onboarder quelqu'un : et tu n'as pas le temps de réinventer le
 format depuis zéro.
 
 Durée estimée : pas de durée de lecture linéaire. Consultation ponctuelle, au moment où le
@@ -29,7 +29,7 @@ vrai incident (Niveaux 6 à 12).
   mise en prod, revue de code, gestion d'incident, onboarding.
 - Tu sais où chercher une réponse durable plutôt qu'un tutoriel qui périme en six mois.
 - Tu reconnais, nommés et illustrés, les anti-patterns qui reviennent dans toutes les
-  équipes techniques — et tu sais les repérer avant qu'ils ne deviennent la norme du projet.
+  équipes techniques : et tu sais les repérer avant qu'ils ne deviennent la norme du projet.
 
 ## Structure du niveau
 
@@ -46,7 +46,7 @@ vrai incident (Niveaux 6 à 12).
 
 Ouvre `01` la première fois qu'une décision technique dépasse le cadre d'une seule
 personne. Ouvre `02` avant chaque mise en prod, revue, incident ou arrivée d'une nouvelle
-personne dans l'équipe — pas après. `03` te donne où chercher quand un problème neuf sort du
+personne dans l'équipe : pas après. `03` te donne où chercher quand un problème neuf sort du
 cadre de ce curriculum. `04` se lit comme un miroir : la plupart des anti-patterns décrits,
 tu les as déjà commis ou vus commettre, et les nommer est la première étape pour les éviter.
 

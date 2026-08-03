@@ -1,4 +1,4 @@
-# Boss Fight — Un sponsor qui veut une date avant que tu aies un plan
+# Boss Fight : Un sponsor qui veut une date avant que tu aies un plan
 
 ## La situation
 
@@ -19,26 +19,26 @@ de tout le monde sauf le tien.
 Rédige, comme si tu répondais réellement au directeur au téléphone, ta réponse complète.
 Elle doit :
 
-1. Ne pas donner de date ferme sans avoir vérifié le risque le plus cher — mais sans dire
+1. Ne pas donner de date ferme sans avoir vérifié le risque le plus cher : mais sans dire
    simplement "je ne sais pas", ce qui ne rassure personne et ne répond pas au besoin réel
    du directeur (rassurer le conseil syndical dans deux heures).
 2. Proposer une alternative concrète que le directeur peut réellement utiliser dans sa
-   réunion de 11h — par exemple un engagement vérifiable à court terme plutôt qu'une date
+   réunion de 11h : par exemple un engagement vérifiable à court terme plutôt qu'une date
    finale incertaine.
 3. Expliquer, en une ou deux phrases utilisables par un non-technicien, pourquoi donner une
    date maintenant serait plus risqué que d'attendre trois jours pour vérifier les
    tantièmes.
 4. Fixer toi-même, dans ta réponse, une date de rendez-vous où tu reviendras avec une
-   vraie date — pas "je te tiens au courant", un engagement précis et daté.
+   vraie date : pas "je te tiens au courant", un engagement précis et daté.
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est raté | Ce qui est réussi |
-|---|---|---|
-| Gestion de la pression | Tu cèdes et donnes une date pour faire plaisir, ou tu refuses sèchement sans proposer d'alternative | Tu proposes une alternative concrète et utilisable dans les deux heures |
-| Communication du risque | Tu utilises du jargon de planning ("on n'a pas fini le risk assessment") | Tu formules le risque en conséquence business compréhensible ("si les tantièmes sont faux, certains copropriétaires seront sur- ou sous-facturés, ce qui est pire qu'un retard") |
-| Engagement | Tu restes vague sur la suite ("je te recontacte") | Tu fixes une date précise de retour avec un livrable nommé |
-| Cohérence avec le niveau | Tu donnes une date basée sur une somme de tâches connues | Tu expliques que la date dépend d'abord de la vérification du risque le plus cher |
+| Critère                  | Ce qui est raté                                                                                     | Ce qui est réussi                                                                                                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gestion de la pression   | Tu cèdes et donnes une date pour faire plaisir, ou tu refuses sèchement sans proposer d'alternative | Tu proposes une alternative concrète et utilisable dans les deux heures                                                                                                          |
+| Communication du risque  | Tu utilises du jargon de planning ("on n'a pas fini le risk assessment")                            | Tu formules le risque en conséquence business compréhensible ("si les tantièmes sont faux, certains copropriétaires seront sur- ou sous-facturés, ce qui est pire qu'un retard") |
+| Engagement               | Tu restes vague sur la suite ("je te recontacte")                                                   | Tu fixes une date précise de retour avec un livrable nommé                                                                                                                       |
+| Cohérence avec le niveau | Tu donnes une date basée sur une somme de tâches connues                                            | Tu expliques que la date dépend d'abord de la vérification du risque le plus cher                                                                                                |
 
 ## Ce que ce boss fight entraîne vraiment
 

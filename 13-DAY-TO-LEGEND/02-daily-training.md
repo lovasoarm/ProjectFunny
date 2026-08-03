@@ -18,7 +18,7 @@ pouvait tenir.
 Une routine d'entraînement d'ingénieur fonctionne sur le même principe qu'un programme
 sportif sérieux : la régularité bat l'intensité. Vingt minutes par jour, cinq jours sur
 sept, pendant douze semaines, produit infiniment plus de progrès qu'une session de trois
-heures un dimanche sur deux — parce que la mémoire et le jugement se construisent par
+heures un dimanche sur deux : parce que la mémoire et le jugement se construisent par
 répétition espacée, pas par accumulation brute d'heures.
 
 ```text
@@ -46,7 +46,7 @@ d'apprentissage différents et complémentaires. Aucune des trois ne remplace le
 └─────────────────────┴───────────────────────┴────────────────────────┘
 ```
 
-### Pilier 1 — Lecture de code (10-15 min/jour)
+### Pilier 1 : Lecture de code (10-15 min/jour)
 
 Objectif : lire du code écrit par d'autres, dans un projet réel, pas un tutoriel. La lecture
 de code entraîne un muscle différent de l'écriture : comprendre une intention à partir de
@@ -55,17 +55,17 @@ sa trace, sans l'avoir vécue.
 Méthode concrète :
 
 1. Choisis un projet open source dans un domaine qui t'intéresse (pas forcément ton stack
-   actuelle — lire du code Rust quand tu écris du TypeScript t'apprend des idées de
+   actuelle : lire du code Rust quand tu écris du TypeScript t'apprend des idées de
    structuration que ton langage habituel cache).
 2. Ne lis jamais un fichier isolé. Pars d'un comportement observable ("comment ce système
    gère un timeout réseau ?") et remonte le code jusqu'à trouver la réponse. C'est la
    méthode d'exploration du Niveau 11 (Big-App-Snoop), appliquée en continu et en petites
    doses.
 3. Note une phrase par session : "ce que j'aurais fait différemment, et pourquoi eux ont
-   choisi ça" — même si tu conclus qu'ils ont raison. L'important est de formuler
+   choisi ça" : même si tu conclus qu'ils ont raison. L'important est de formuler
    explicitement le compromis, pas de juger.
 
-### Pilier 2 — Kata de décision (10-15 min/jour, 3-4 fois/semaine)
+### Pilier 2 : Kata de décision (10-15 min/jour, 3-4 fois/semaine)
 
 Un kata de code classique (implémenter FizzBuzz vingt fois) muscle la vitesse d'écriture.
 Un kata de **décision** muscle autre chose : la vitesse et la qualité du jugement face à une
@@ -75,12 +75,12 @@ expérimentés en syntaxe mais lents en arbitrage.
 Format d'un kata de décision (15 minutes, chronométrées) :
 
 ```text
-1. Tire une situation d'un pool (voir plus bas) — 1 min de lecture
-2. Écris, sans recherche externe, ta décision en 5 lignes maximum — 8 min
+1. Tire une situation d'un pool (voir plus bas) : 1 min de lecture
+2. Écris, sans recherche externe, ta décision en 5 lignes maximum : 8 min
    (contexte + décision + justification + compromis explicite + ce qui te ferait changer d'avis)
 3. Compare avec une réponse de référence si tu en as une (collègue, mentor, ADR existant
-   d'un projet réel) — 5 min
-4. Note en une ligne l'écart principal entre ta réponse et la référence — 1 min
+   d'un projet réel) : 5 min
+4. Note en une ligne l'écart principal entre ta réponse et la référence : 1 min
 ```
 
 Pool de situations à faire tourner (exemples, à enrichir avec des cas de ton propre
@@ -100,45 +100,45 @@ Le but n'est pas de "avoir raison". C'est d'entraîner le réflexe de produire u
 justifiée et falsifiable (qui dit ce qui la remettrait en cause) en un temps court, plutôt
 que de tourner en rond ou d'attendre qu'un supérieur décide à ta place.
 
-### Pilier 3 — Journal (5 min/jour, fin de journée)
+### Pilier 3 : Journal (5 min/jour, fin de journée)
 
 Le journal n'est pas un carnet de pensées libres. C'est un outil de détection de patterns
-sur toi-même, que ta mémoire seule ne peut pas fournir — la mémoire réécrit le passé pour le
+sur toi-même, que ta mémoire seule ne peut pas fournir : la mémoire réécrit le passé pour le
 rendre cohérent avec ce que tu crois déjà de toi.
 
 Format minimal, trois lignes, chaque jour :
 
 ```text
 1. Une décision technique ou de priorité que j'ai prise aujourd'hui, en une phrase.
-2. Ce qui m'a fait hésiter avant de trancher (si rien, l'écrire aussi — c'est une info).
+2. Ce qui m'a fait hésiter avant de trancher (si rien, l'écrire aussi : c'est une info).
 3. Une chose que je referais différemment si c'était à refaire demain.
 ```
 
 Après quatre à six semaines, relis les entrées d'un coup, en cherchant des motifs répétés :
 "j'hésite systématiquement sur les choix de nommage", "je sous-estime toujours le temps
 d'une migration de données", "je documente ma décision seulement quand quelqu'un me le
-demande". Ces motifs sont invisibles jour par jour et évidents en relecture groupée — c'est
+demande". Ces motifs sont invisibles jour par jour et évidents en relecture groupée : c'est
 le seul mécanisme fiable pour détecter ses propres angles morts récurrents.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Routine minimale quotidienne (20-30 min) | Progrès lent perçu au jour le jour | Tenable des mois, effet composé réel sur 12 semaines | Régime par défaut, toute l'année |
-| Sessions longues occasionnelles (weekend) | Fatigue, taux d'abandon élevé, pas de répétition espacée | Sensation de "gros progrès" ponctuel | En complément, jamais en remplacement du quotidien |
-| Lecture seule, sans kata ni journal | Zéro friction, facile à tenir | Progrès de vocabulaire, pas de jugement | Jamais suffisant seul — à combiner obligatoirement |
-| Kata seul, sans lecture ni journal | Bon entraînement de vitesse de décision | Risque de renforcer de mauvais réflexes sans référence externe | Seulement si tu as déjà un mentor ou une source de correction régulière |
+| Option                                    | Coût                                                     | Bénéfice                                                       | Quand choisir                                                           |
+| ----------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Routine minimale quotidienne (20-30 min)  | Progrès lent perçu au jour le jour                       | Tenable des mois, effet composé réel sur 12 semaines           | Régime par défaut, toute l'année                                        |
+| Sessions longues occasionnelles (weekend) | Fatigue, taux d'abandon élevé, pas de répétition espacée | Sensation de "gros progrès" ponctuel                           | En complément, jamais en remplacement du quotidien                      |
+| Lecture seule, sans kata ni journal       | Zéro friction, facile à tenir                            | Progrès de vocabulaire, pas de jugement                        | Jamais suffisant seul : à combiner obligatoirement                      |
+| Kata seul, sans lecture ni journal        | Bon entraînement de vitesse de décision                  | Risque de renforcer de mauvais réflexes sans référence externe | Seulement si tu as déjà un mentor ou une source de correction régulière |
 
 ## Pièges classiques
 
 - **Le kata sans référence de correction.** Symptôme : tu t'entraînes à décider vite, mais
-  jamais à comparer avec une décision experte — tu renforces potentiellement de mauvais
+  jamais à comparer avec une décision experte : tu renforces potentiellement de mauvais
   réflexes avec de plus en plus de confiance.
 - **Le journal qui devient un journal intime.** Symptôme : les entrées s'allongent, deviennent
   émotionnelles plutôt que factuelles, tu arrêtes de les relire en groupe parce qu'il y en a
   trop à parcourir. Reviens au format trois lignes strict.
 - **La routine dépendante d'un contexte parfait.** Symptôme : tu ne t'entraînes que quand tu
-  as "le temps", donc jamais en période chargée — exactement les périodes où l'entraînement
+  as "le temps", donc jamais en période chargée : exactement les périodes où l'entraînement
   aurait le plus de valeur pour tester ton jugement sous pression réelle.
 - **La lecture de code passive, sans production écrite.** Symptôme : tu as l'impression
   d'apprendre en lisant, mais tu ne pourrais pas restituer une seule décision précise du code

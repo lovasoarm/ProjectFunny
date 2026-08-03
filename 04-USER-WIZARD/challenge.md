@@ -1,11 +1,14 @@
-# Challenge — Le planning du cabinet qui ne ment jamais
+# Challenge : Le planning du cabinet qui ne ment jamais
 
 ## Contexte
+
 Tu livres l'écran de planning journalier du cabinet vétérinaire, utilisé par l'accueil toute la
 journée sur un poste moyen et une connexion instable.
 
 ## Livrable
+
 Un écran de planning + un formulaire de prise de rendez-vous, avec :
+
 1. Un parcours écrit (`flow.md` ou schéma) listant le chemin heureux et au moins six embranchements
    d'erreur, avant tout code d'écran.
 2. Un composant de planning modélisé en union discriminée avec au minimum les états : idle,
@@ -18,6 +21,7 @@ Un écran de planning + un formulaire de prise de rendez-vous, avec :
 6. Un squelette de chargement dont la forme correspond au contenu réel.
 
 ## Critères de réussite mesurables
+
 - En coupant le réseau après le clic sur "Réserver", l'UI passe par un état visible distinct de
   "loading" classique (état incertain), et ne recrée pas de doublon au retour du réseau.
 - En envoyant trois fois la même requête de création (via curl, avec la même clé d'idempotence), un
@@ -32,5 +36,6 @@ Un écran de planning + un formulaire de prise de rendez-vous, avec :
   appel direct (testé avec curl en contournant l'UI).
 
 ## Ce qui n'est pas demandé
+
 Pas de design visuel abouti, pas de responsive complet. Le jury n'évalue pas l'esthétique, il évalue
 la robustesse des états et des parcours.

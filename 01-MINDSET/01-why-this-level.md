@@ -14,6 +14,7 @@ qui, dans ce système, ne devait jamais changer.
 
 Sans ce niveau, chaque décision technique se prend sur l'intuition du moment. Avec lui, tu
 disposes de quatre leviers qui transforment une intuition en raisonnement vérifiable :
+
 - voir les frontières et les états d'un système (leçon 02),
 - chiffrer le coût réel d'un choix (leçon 03),
 - traiter l'incertitude comme une donnée à réduire, pas à ignorer (leçon 04),
@@ -34,6 +35,6 @@ disposes de quatre leviers qui transforment une intuition en raisonnement vérif
 
 1. Donne un exemple où une feature "petite" a cassé un invariant caché faute de modèle
    explicite du système.
-2. Pourquoi "coder vite" n'est pas en contradiction avec ce niveau — précise à quel moment
+2. Pourquoi "coder vite" n'est pas en contradiction avec ce niveau : précise à quel moment
    la vitesse redevient un problème.
-3. Quel est le lien entre les 4 leçons de ce niveau — pourquoi ne peux-tu pas en sauter une.
+3. Quel est le lien entre les 4 leçons de ce niveau : pourquoi ne peux-tu pas en sauter une.

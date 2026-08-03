@@ -1,12 +1,12 @@
-# Grimoire — Day-to-Legend
+# Grimoire : Day-to-Legend
 
 ## Vocabulaire
 
 - **Pratique délibérée** : entraînement ciblé, juste au-delà de la zone de confort, avec
-  feedback rapide et spécifique — par opposition au travail ordinaire qui optimise la
+  feedback rapide et spécifique : par opposition au travail ordinaire qui optimise la
   livraison, pas la progression.
 - **Boucle de feedback fermée** : correction basée uniquement sur ton propre jugement, sans
-  référence externe — plafonne rapidement ta progression au niveau que tu avais déjà.
+  référence externe : plafonne rapidement ta progression au niveau que tu avais déjà.
 - **Zone d'apprentissage efficace** : niveau de difficulté juste au-delà du confortable ; ni
   trop facile (ennui, zéro gain), ni trop difficile (frustration sans gain exploitable).
 - **Plateau de progression** : stagnation malgré un travail continu ; causé le plus souvent

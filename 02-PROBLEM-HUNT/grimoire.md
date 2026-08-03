@@ -1,4 +1,4 @@
-# Grimoire — Problem Hunt
+# Grimoire : Problem Hunt
 
 ## Vocabulaire
 

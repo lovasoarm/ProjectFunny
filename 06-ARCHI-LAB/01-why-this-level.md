@@ -5,9 +5,9 @@
 Le cabinet vétérinaire pour lequel tu as construit l'appli de gestion de créneaux a du succès.
 Six mois après la mise en ligne, l'équipe demande une deuxième clinique, un système de
 rappels SMS, et la possibilité pour les vétérinaires de voir leur planning depuis une appli
-mobile. Ton code — un seul projet Express avec des routes qui parlent directement à la base
+mobile. Ton code : un seul projet Express avec des routes qui parlent directement à la base
 de données, un peu de logique métier éparpillée dans les contrôleurs et le reste dans des
-triggers SQL — a très bien fonctionné jusqu'ici. Tu ouvres le fichier `routes/appointments.js`
+triggers SQL : a très bien fonctionné jusqu'ici. Tu ouvres le fichier `routes/appointments.js`
 pour ajouter la fonctionnalité de rappel SMS. Il fait 640 lignes. Il gère la création de
 rendez-vous, la vérification de disponibilité, le calcul de prix, l'envoi d'email de
 confirmation, et la mise à jour du stock de vaccins. Tu ne sais plus par où commencer sans
@@ -19,7 +19,7 @@ et le calcul de prix partagent une variable qu'aucun des deux n'était censé mo
 
 Sans compréhension de l'architecture, tu développes une intuition fausse : "le code marche,
 donc il est bien structuré". Cette intuition tient tant que le projet est petit et que tu es
-seul dessus. Elle s'effondre exactement au moment où le projet devient intéressant — quand il
+seul dessus. Elle s'effondre exactement au moment où le projet devient intéressant : quand il
 faut le faire évoluer sous contrainte, avec plusieurs personnes, sans tout réécrire.
 
 Trois symptômes précis apparaissent, toujours dans le même ordre :
@@ -35,7 +35,7 @@ Trois symptômes précis apparaissent, toujours dans le même ordre :
    demande de lire tout le code plutôt qu'une carte des responsabilités.
 
 Ces trois symptômes ont un point commun : ils ne viennent jamais d'un manque de compétence en
-syntaxe. Ils viennent de dépendances mal placées — du code qui sait des choses qu'il ne
+syntaxe. Ils viennent de dépendances mal placées : du code qui sait des choses qu'il ne
 devrait pas savoir, et qui donc casse dès que ces choses changent.
 
 ## Ce que l'architecture n'est pas
@@ -74,7 +74,7 @@ Bonne architecture (couplage explicite et limité) :
 ## Pourquoi c'est difficile à apprendre seul
 
 Le problème d'architecture ne se voit pas sur un petit projet. Un CRUD de 500 lignes tient
-debout avec n'importe quelle structure, bonne ou mauvaise — c'est justement ce qui rend
+debout avec n'importe quelle structure, bonne ou mauvaise : c'est justement ce qui rend
 l'apprentissage piégeux : tu peux passer des années à coder des petits projets et ne jamais
 rencontrer la douleur qui justifie ces leçons. Elle apparaît à partir d'un seuil : plusieurs
 développeurs, plusieurs mois de vie du projet, ou plusieurs fonctionnalités qui se chevauchent

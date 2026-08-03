@@ -5,7 +5,7 @@
 Une mise en prod du système de tournées de livraison se fait un jeudi après-midi sans
 checklist, "parce qu'on connaît la procédure par cœur". Le job de migration de base tourne,
 mais personne n'a vérifié que le job précédent (nettoyage de vieilles tournées) était bien
-terminé — les deux se chevauchent, la table est verrouillée en plein import, trois chauffeurs
+terminé : les deux se chevauchent, la table est verrouillée en plein import, trois chauffeurs
 reçoivent des tournées vides le vendredi matin. Rien de nouveau ne s'est passé : c'est un
 oubli déjà commis deux fois auparavant, jamais transformé en vérification systématique.
 
@@ -13,7 +13,7 @@ oubli déjà commis deux fois auparavant, jamais transformé en vérification sy
 
 Une checklist n'existe pas pour compenser un manque de compétence. Elle existe parce que la
 mémoire humaine sous pression ou sous routine oublie systématiquement les mêmes étapes,
-indépendamment du niveau d'expertise — c'est un phénomène documenté dans tous les métiers à
+indépendamment du niveau d'expertise : c'est un phénomène documenté dans tous les métiers à
 forte charge cognitive (aviation, chirurgie), pas une spécificité du développement logiciel.
 
 ```text
@@ -32,7 +32,7 @@ les mêmes pièges, au hasard             points, dans le même ordre, sans
 - [ ] Les métriques à surveiller après déploiement sont identifiées à l'avance (pas
       découvertes après coup en cherchant quoi regarder).
 - [ ] Une personne est explicitement responsable de surveiller les 30 minutes suivant le
-      déploiement — pas "l'équipe" en général.
+      déploiement : pas "l'équipe" en général.
 - [ ] Le déploiement a lieu à un horaire où une intervention rapide est possible en cas de
       problème (jamais un vendredi 17h sur un système critique).
 
@@ -42,11 +42,11 @@ les mêmes pièges, au hasard             points, dans le même ordre, sans
       par ligne.
 - [ ] Les cas limites du domaine métier précis sont couverts, pas seulement le chemin
       heureux.
-- [ ] Les tests ajoutés échoueraient sur l'ancien code et passent sur le nouveau — vérifié,
+- [ ] Les tests ajoutés échoueraient sur l'ancien code et passent sur le nouveau : vérifié,
       pas supposé.
 - [ ] Aucune règle métier n'est dupliquée silencieusement à un autre endroit du code déjà
       existant.
-- [ ] Je signale au moins un point précis, positif ou négatif — une revue qui approuve sans
+- [ ] Je signale au moins un point précis, positif ou négatif : une revue qui approuve sans
       commentaire n'a souvent pas vraiment eu lieu.
 
 ### Gestion d'incident
@@ -54,7 +54,7 @@ les mêmes pièges, au hasard             points, dans le même ordre, sans
 - [ ] L'impact utilisateur réel est mesuré avant de chercher la cause (qui est affecté,
       combien, depuis quand).
 - [ ] Une communication de statut est envoyée aux parties prenantes avant d'avoir la
-      solution complète — le silence pendant un incident coûte plus cher que l'incident lui-
+      solution complète : le silence pendant un incident coûte plus cher que l'incident lui-
       même en confiance.
 - [ ] La priorité est donnée à limiter l'impact (rollback, feature flag) avant de comprendre
       la cause racine complète.
@@ -68,18 +68,18 @@ les mêmes pièges, au hasard             points, dans le même ordre, sans
 - [ ] Une première tâche réelle mais à faible risque est identifiée à l'avance, livrable en
       2-3 jours, pour créer un premier cycle de feedback rapide.
 - [ ] Un point de contact unique est désigné pour les questions, pas "toute l'équipe" par
-      défaut — la diffusion de responsabilité réduit la probabilité qu'une question trouve
+      défaut : la diffusion de responsabilité réduit la probabilité qu'une question trouve
       une réponse.
 - [ ] La documentation d'architecture existante est vérifiée à jour avant d'être partagée —
       une documentation obsolète est pire que l'absence de documentation.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Pas de checklist, confiance dans l'expérience | Zéro coût de maintenance | Rapide sur les cas triviaux, mais répète les mêmes oublis | Jamais sur un moment à fort enjeu ou irréversible |
-| Checklist rigide, jamais mise à jour | Coût de rédaction initial | Fausse sécurité si elle ne reflète plus la réalité du système | À éviter — une checklist doit être révisée après chaque incident qu'elle n'a pas prévenu |
-| Checklist courte et vivante, révisée après incident | Discipline de mise à jour continue | Vérification systématique des vrais points de rupture historiques | Approche par défaut recommandée pour les quatre moments listés ici |
+| Option                                              | Coût                               | Bénéfice                                                          | Quand choisir                                                                            |
+| --------------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Pas de checklist, confiance dans l'expérience       | Zéro coût de maintenance           | Rapide sur les cas triviaux, mais répète les mêmes oublis         | Jamais sur un moment à fort enjeu ou irréversible                                        |
+| Checklist rigide, jamais mise à jour                | Coût de rédaction initial          | Fausse sécurité si elle ne reflète plus la réalité du système     | À éviter : une checklist doit être révisée après chaque incident qu'elle n'a pas prévenu |
+| Checklist courte et vivante, révisée après incident | Discipline de mise à jour continue | Vérification systématique des vrais points de rupture historiques | Approche par défaut recommandée pour les quatre moments listés ici                       |
 
 ## Pièges classiques
 

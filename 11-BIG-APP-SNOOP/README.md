@@ -1,11 +1,11 @@
-# Niveau 11 — Big App Snoop
+# Niveau 11 : Big App Snoop
 
 ## Ce que c'est
 
 Jusqu'ici tu as construit. Des projets à toi, nés d'une feuille blanche, où chaque décision
 t'appartenait. Ce niveau t'envoie ailleurs : dans le code de quelqu'un d'autre, gros, ancien,
 mal documenté, plein de décisions que personne ne t'explique. C'est ce qui t'attend dans 90%
-des emplois réels — tu n'arrives presque jamais sur un projet vierge, tu arrives sur un
+des emplois réels : tu n'arrives presque jamais sur un projet vierge, tu arrives sur un
 existant de 200 000 lignes avec trois générations de développeurs qui ont laissé des traces
 contradictoires.
 
@@ -59,6 +59,6 @@ demande de refaire l'exercice seul, sur un dépôt que personne ne t'a préparé
 ## Ce qui ne se passe pas ici
 
 Tu n'écris presque pas de code neuf dans ce niveau. L'objectif est la lecture, l'enquête et
-la restitution écrite de ce que tu as compris — pas la contribution. Si tu veux contribuer
+la restitution écrite de ce que tu as compris : pas la contribution. Si tu veux contribuer
 pour de vrai à un projet open source, c'est une suite naturelle une fois ce niveau terminé,
 pas un objectif de ce niveau.

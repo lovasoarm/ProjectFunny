@@ -1,17 +1,18 @@
 # Accessibilité utile, perception de vitesse, et les dangers de l'optimisme
 
 ## Le piège
+
 L'application du cabinet vétérinaire passe tous les tests manuels de l'équipe : rapide sur le
 Wi-Fi du bureau, jolie sur l'écran 27 pouces du designer. En vrai usage : l'assistante vétérinaire
 qui a une tendinite au poignet ne peut pas utiliser la souris toute la journée et navigue au
-clavier — le focus disparaît visuellement dès qu'elle tabule dans le formulaire, elle ne sait jamais
+clavier : le focus disparaît visuellement dès qu'elle tabule dans le formulaire, elle ne sait jamais
 où elle est. Le client au téléphone en salle d'attente, en 4G faible, voit une interface qui "clique
 sans rien faire" pendant deux secondes avant de réagir. Le rendez-vous "confirmé instantanément" en
-UI optimiste s'avère en fait refusé cinq secondes plus tard — trop tard, le client a déjà raccroché
+UI optimiste s'avère en fait refusé cinq secondes plus tard : trop tard, le client a déjà raccroché
 en pensant avoir un rendez-vous.
 
 Trois sujets différents, une même cause : on a conçu pour son propre poste, sa propre connexion, sa
-propre paire de mains — pas pour les conditions réelles d'usage.
+propre paire de mains : pas pour les conditions réelles d'usage.
 
 ## Ce qui se passe vraiment
 
@@ -26,10 +27,10 @@ qui a le plus d'impact rapporté au coût) :
 
 ```html
 <!-- Mauvais : une div avec un onClick n'est ni focusable ni activable au clavier -->
-<div onClick={confirmAppointment}>Confirmer</div>
+<div onClick="{confirmAppointment}">Confirmer</div>
 
 <!-- Bon : un vrai bouton hérite gratuitement du focus, de Entrée/Espace, du rôle sémantique -->
-<button type="button" onClick={confirmAppointment}>Confirmer</button>
+<button type="button" onClick="{confirmAppointment}">Confirmer</button>
 ```
 
 **2. Le focus est visible et suit le sens de l'action, pas juste l'ordre du DOM.**
@@ -79,6 +80,7 @@ vitesse complètement différente selon ce qu'ils affichent pendant l'attente.
 ```
 
 Techniques qui changent la perception sans changer le temps réel serveur :
+
 - Squelette (skeleton) qui a la même forme que le contenu final, affiché immédiatement.
 - Feedback de clic instantané (changement d'état du bouton en moins de 100ms), avant même que la
   requête réseau ne soit terminée.
@@ -139,19 +141,20 @@ l'interface. Trois dangers concrets :
 Règle pratique : l'UI optimiste convient aux actions réversibles, à faible risque de conflit,
 où l'échec est rare et sans conséquence grave (archiver, aimer, marquer comme lu). Elle est
 dangereuse pour les actions irréversibles ou à forte concurrence (réserver un créneau, débiter un
-paiement, envoyer un message définitif) — là, mieux vaut un état "en cours" honnête plutôt qu'un
+paiement, envoyer un message définitif) : là, mieux vaut un état "en cours" honnête plutôt qu'un
 succès emprunté.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| UI optimiste avec rollback explicite | Code de compensation à écrire, gestion du cas d'échec | Interface perçue comme instantanée | Actions réversibles, faible risque de conflit (archiver, marquer lu) |
-| UI pessimiste (attendre la confirmation serveur) | Latence perçue plus élevée | Jamais de mensonge affiché | Actions irréversibles ou à fort enjeu (réservation, paiement) |
-| Squelette de chargement adapté à la forme du contenu | Un peu de CSS/composants dédiés | Réduit le layout shift et la perception de lenteur | Tout chargement de plus de 300ms |
-| Accessibilité clavier dès la conception | Discipline sur les composants (vrais boutons, focus géré) | Coût quasi nul en amont, énorme en correctif | Toujours — c'est un sous-ensemble d'usage réel, pas une option |
+| Option                                               | Coût                                                      | Bénéfice                                           | Quand choisir                                                        |
+| ---------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------- |
+| UI optimiste avec rollback explicite                 | Code de compensation à écrire, gestion du cas d'échec     | Interface perçue comme instantanée                 | Actions réversibles, faible risque de conflit (archiver, marquer lu) |
+| UI pessimiste (attendre la confirmation serveur)     | Latence perçue plus élevée                                | Jamais de mensonge affiché                         | Actions irréversibles ou à fort enjeu (réservation, paiement)        |
+| Squelette de chargement adapté à la forme du contenu | Un peu de CSS/composants dédiés                           | Réduit le layout shift et la perception de lenteur | Tout chargement de plus de 300ms                                     |
+| Accessibilité clavier dès la conception              | Discipline sur les composants (vrais boutons, focus géré) | Coût quasi nul en amont, énorme en correctif       | Toujours : c'est un sous-ensemble d'usage réel, pas une option       |
 
 ## Pièges classiques
+
 - Un composant custom "bouton" est construit sur une `div` stylée, invisible au clavier et aux
   lecteurs d'écran, découvert seulement lors d'un audit tardif.
 - Un revert d'UI optimiste se fait sans message : l'utilisateur ne comprend pas pourquoi une ligne
@@ -162,6 +165,7 @@ succès emprunté.
   vérification serveur derrière : deux personnes voient chacune "leur" créneau confirmé.
 
 ## Ce que tu dois savoir défendre
+
 - Donne un exemple d'action où l'UI optimiste est un bon choix, et un exemple où elle est
   dangereuse. Explique la différence de critère entre les deux.
 - Pourquoi un squelette de chargement réduit-il la perception de lenteur sans changer le temps de

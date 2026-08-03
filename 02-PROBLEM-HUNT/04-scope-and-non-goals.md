@@ -15,7 +15,7 @@ d'argent entre parents, pour des raisons d'assurance et de responsabilité. Le c
 
 Un non-objectif n'est pas une liste de fonctionnalités reportées à plus tard. C'est une
 décision explicite, écrite avant que la pression n'arrive, sur ce que le produit refuse de
-faire — parce que le faire créerait un risque, une complexité ou une dérive de mission plus
+faire : parce que le faire créerait un risque, une complexité ou une dérive de mission plus
 coûteuse que le bénéfice apporté. Un non-objectif protège l'architecture en empêchant qu'elle
 absorbe silencieusement des responsabilités qu'elle n'a jamais été conçue pour porter.
 
@@ -61,7 +61,7 @@ est-ce que le non-objectif suffit, seul, à la refuser sans débat de fond ?
 Un non-objectif enterré dans un compte-rendu de réunion de cadrage ne sert à rien six mois
 plus tard, quand la personne qui doit trancher n'était pas dans la salle. Il doit vivre dans
 un document que les nouvelles personnes de l'équipe lisent en arrivant, et être reformulé
-chaque fois qu'une décision technique en dépend directement — en commentaire dans le code,
+chaque fois qu'une décision technique en dépend directement : en commentaire dans le code,
 si besoin, à l'endroit précis où quelqu'un pourrait être tenté de le violer.
 
 ```ts
@@ -79,11 +79,11 @@ interface TripRequest {
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Écrire des non-objectifs précis et vérifiables | Demande une vraie décision, parfois inconfortable, en amont | Tranche les débats futurs sans reconvoquer tout le monde | Systématiquement, dès qu'un risque de dérive de mission existe |
-| Écrire des non-objectifs vagues ("rester simple") | Rapide, ne froisse personne | Ne sert à rien au moment où on en aurait besoin | Jamais, sauf à vouloir se donner l'illusion d'avoir cadré |
-| Ne pas écrire de non-objectifs du tout | Semble faire gagner du temps de cadrage | Chaque demande de périmètre devient un débat de fond répété | Uniquement sur un prototype jetable sans suite |
+| Option                                            | Coût                                                        | Bénéfice                                                    | Quand choisir                                                  |
+| ------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
+| Écrire des non-objectifs précis et vérifiables    | Demande une vraie décision, parfois inconfortable, en amont | Tranche les débats futurs sans reconvoquer tout le monde    | Systématiquement, dès qu'un risque de dérive de mission existe |
+| Écrire des non-objectifs vagues ("rester simple") | Rapide, ne froisse personne                                 | Ne sert à rien au moment où on en aurait besoin             | Jamais, sauf à vouloir se donner l'illusion d'avoir cadré      |
+| Ne pas écrire de non-objectifs du tout            | Semble faire gagner du temps de cadrage                     | Chaque demande de périmètre devient un débat de fond répété | Uniquement sur un prototype jetable sans suite                 |
 
 ## Pièges classiques
 

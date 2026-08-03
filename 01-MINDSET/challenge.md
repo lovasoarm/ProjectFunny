@@ -1,4 +1,4 @@
-# Challenge — Note de conception + ADR sur ton projet fil rouge
+# Challenge : Note de conception + ADR sur ton projet fil rouge
 
 ## Contexte
 
@@ -17,6 +17,7 @@ invités, ou la suppression de compte.
 
 Choisis, sur ton projet fil rouge, une décision technique ou produit qui remplit ces trois
 conditions :
+
 - elle a au moins deux options sérieusement défendables (pas une option évidente et un
   épouvantail) ;
 - elle est coûteuse à défaire une fois prise (règle du Niveau 01, leçon 03) ;
@@ -27,6 +28,7 @@ Livre deux documents distincts, dans un dossier `decisions/` de ton projet :
 ### 1. Une note de conception (`design-doc-XX.md`)
 
 Doit contenir, dans cet ordre :
+
 - **Problème** : ce qui est observé ou anticipé, pour qui, avec quel impact si rien n'est
   fait.
 - **Contraintes** : ce qui est non négociable (délai, budget, compétences de l'équipe,
@@ -40,10 +42,11 @@ Doit contenir, dans cet ordre :
 ### 2. Un ADR (`ADR-XX-titre.md`)
 
 Doit contenir, dans cet ordre :
+
 - **Statut** et date.
 - **Contexte** : peut reprendre le problème de la note de conception, en plus court.
 - **Options considérées** : au minimum trois options réelles, chacune avec son coût et son
-  bénéfice — pas de version caricaturée pour faire gagner ton option préférée d'avance.
+  bénéfice : pas de version caricaturée pour faire gagner ton option préférée d'avance.
 - **Décision** : l'option choisie, en une phrase.
 - **Justification** : pourquoi celle-là précisément, en distinguant explicitement les faits
   vérifiables des jugements assumés (leçon 05).
@@ -55,16 +58,16 @@ Doit contenir, dans cet ordre :
 Ton livrable est validé si, et seulement si :
 
 1. La note de conception contient au moins une hypothèse avec un seuil chiffré et une
-   expérience concrète, réalisable en moins d'une journée, pour la tester — pas "on
+   expérience concrète, réalisable en moins d'une journée, pour la tester : pas "on
    demandera aux utilisateurs" sans préciser comment ni à combien.
-2. L'ADR présente au moins trois options, et pour chacune un coût *et* un bénéfice réels —
+2. L'ADR présente au moins trois options, et pour chacune un coût _et_ un bénéfice réels —
    si une option n'a aucun bénéfice listé, elle est probablement un épouvantail à retirer.
 3. La section "Conséquences" de l'ADR contient une condition de révision observable et
-   vérifiable (un seuil, un événement, une métrique) — pas "on réévaluera si besoin".
+   vérifiable (un seuil, un événement, une métrique) : pas "on réévaluera si besoin".
 4. Un tiers qui n'a jamais discuté du projet avec toi peut lire les deux documents et
    reconstituer, sans te poser de question, pourquoi tu as choisi cette option plutôt que les
    deux autres.
-5. Aucun des deux documents ne dépasse une page A4 imprimée (environ 500 mots) — la
+5. Aucun des deux documents ne dépasse une page A4 imprimée (environ 500 mots) : la
    contrainte de longueur force à couper le remplissage et garder l'essentiel.
 
 ## Comment savoir si tu as raté

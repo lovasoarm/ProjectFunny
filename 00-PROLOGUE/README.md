@@ -1,4 +1,4 @@
-# Niveau 00 — Prologue
+# Niveau 00 : Prologue
 
 ## Ce que c'est
 
@@ -33,7 +33,7 @@ Prérequis : aucun. C'est l'entrée du jeu.
 ## Comment lire ce niveau
 
 Dans l'ordre. Chaque fichier suppose le précédent lu. Ne saute pas `04-rules-of-the-game.md`
-même s'il te semble être du bon sens — c'est le fichier que tu relis dans six mois quand un
+même s'il te semble être du bon sens : c'est le fichier que tu relis dans six mois quand un
 projet dérape.
 
 ## Ce qui ne se passe pas ici

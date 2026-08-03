@@ -9,7 +9,7 @@ revienne. L'appli, programmée pour ne jamais laisser un chauffeur bloqué, rete
 automatiquement trente secondes plus tard. Cette fois la requête passe et reçoit un `200`.
 Résultat côté serveur : deux enregistrements de confirmation, un appel automatique au client
 final ("votre colis a été livré") envoyé deux fois, et une anomalie dans le calcul de la
-prime du chauffeur qui compte le colis deux fois. Personne n'a rien fait de faux — le réseau
+prime du chauffeur qui compte le colis deux fois. Personne n'a rien fait de faux : le réseau
 a fait exactement ce que fait un réseau mobile réel, et l'appli a fait exactement ce qu'on
 lui demande de faire pour rester utilisable sur le terrain. Le trou est ailleurs : le serveur
 n'avait aucun moyen de savoir que la deuxième requête était une répétition de la première, et
@@ -30,7 +30,7 @@ jamais laquelle de ces trois choses s'est produite :
    traitement au moment où la connexion a coupé.         concurrence avec elle-même
 ```
 
-Le seul choix qui existe vraiment n'est pas "retenter ou pas" — sans retry, une coupure
+Le seul choix qui existe vraiment n'est pas "retenter ou pas" : sans retry, une coupure
 réseau anodine devient un échec permanent pour l'utilisateur, ce qui est pire. Le choix est
 **"comment rendre le retry sans danger"**. C'est exactement ce que l'idempotence résout.
 
@@ -45,7 +45,7 @@ GET     → idempotent par nature (lire deux fois ne change rien)
 PUT     → idempotent par nature SI le corps décrit l'état final complet
           (remplacer "adresse = rue X" deux fois de suite donne le même état)
 DELETE  → idempotent par nature (supprimer un objet déjà supprimé = déjà à l'état voulu)
-POST    → PAS idempotent par nature — chaque appel dit "crée une nouvelle chose"
+POST    → PAS idempotent par nature : chaque appel dit "crée une nouvelle chose"
           POST /deliveries/482/confirm appelé deux fois = deux confirmations, sauf garde-fou
 ```
 
@@ -93,7 +93,7 @@ async function handleConfirm(req: Request) {
 
 Point-clé souvent raté : la clé d'idempotence doit être générée **au moment de l'intention
 utilisateur** (le clic), pas à chaque tentative réseau. Si l'appli génère une nouvelle clé à
-chaque retry automatique, la déduplication ne sert à rien — c'est exactement l'erreur qui a
+chaque retry automatique, la déduplication ne sert à rien : c'est exactement l'erreur qui a
 créé le doublon dans la scène du chauffeur.
 
 ### Codes d'erreur : lisibles par une machine avant d'être lisibles par un humain
@@ -113,7 +113,7 @@ Un contrat d'erreur sérieux sépare ces deux besoins :
 
 `code` est un identifiant stable, testé par le code client (`if (error.code ===
 "SLOT_ALREADY_BOOKED")`), qui ne change jamais même si `message` est traduit ou reformulé.
-`retryable` dit explicitement au client s'il vaut la peine de réessayer — une information que
+`retryable` dit explicitement au client s'il vaut la peine de réessayer : une information que
 le seul code HTTP ne porte pas toujours sans ambiguïté (voir plus bas). `details` porte des
 données structurées exploitables (proposer le créneau suivant, afficher qui a réservé) sans
 avoir à parser un message en langage naturel, qui casse à la moindre reformulation.
@@ -137,14 +137,14 @@ Code   Sens réel pour un client automatique
 429    Trop de requêtes. Retenter APRÈS le délai indiqué (header
        Retry-After) a de bonnes chances de réussir.
 500    Erreur inattendue côté serveur. Retenter peut réussir si transitoire,
-       mais sans certitude — c'est là que l'idempotence protège vraiment.
+       mais sans certitude : c'est là que l'idempotence protège vraiment.
 503    Service temporairement indisponible. Retenter après un backoff a de
        bonnes chances de réussir.
 ```
 
 Le piège le plus commun : traiter tout code `>= 500` comme "à retenter aveuglément" et tout
 code `4xx` comme "erreur définitive". C'est globalement vrai sauf pour `409` et `429`, qui
-sont des `4xx` explicitement faits pour être retentés — mais pas n'importe comment.
+sont des `4xx` explicitement faits pour être retentés : mais pas n'importe comment.
 
 ### Retries avec backoff exponentiel et gigue
 
@@ -161,13 +161,13 @@ Tentative 4 : attendre ~4s  (+ gigue)
 Tentative 5 : attendre ~8s  (+ gigue), puis abandonner et remonter l'échec à l'humain
 
 La gigue (jitter) évite que tous les clients retentent EXACTEMENT au même instant après
-une panne partagée — sans elle, les tentatives se resynchronisent en vagues, créant des
+une panne partagée : sans elle, les tentatives se resynchronisent en vagues, créant des
 pics de charge périodiques au lieu d'un trafic lissé.
 ```
 
 ### Timeouts : décider en combien de temps "je ne sais pas" devient "j'abandonne"
 
-Un appel sans timeout n'échoue jamais explicitement — il reste juste suspendu, consommant une
+Un appel sans timeout n'échoue jamais explicitement : il reste juste suspendu, consommant une
 connexion, un thread, un slot de file d'attente, jusqu'à ce que la ressource sous-jacente
 lâche pour une raison sans rapport apparent. Chaque appel réseau doit avoir un timeout
 explicite, choisi en fonction de ce que l'opération fait, pas d'une valeur par défaut copiée
@@ -180,18 +180,18 @@ Appel à un service tiers lent connu (facturation    → timeout généreux, MAI
 externe, relevé de compteur physique)                 idempotency key posé avant l'appel
 ```
 
-Un timeout côté client ne dit pas "l'opération a échoué côté serveur" — il dit seulement
+Un timeout côté client ne dit pas "l'opération a échoué côté serveur" : il dit seulement
 "je ne sais plus". C'est le même problème que la coupure réseau de la scène, et la même
 solution s'applique : ne jamais retenter une opération à effet sans clé d'idempotence.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Idempotency key obligatoire sur tout POST à effet | Le client doit générer et transmettre une clé, le serveur doit stocker un historique de clés (avec expiration) | Retries sûrs, zéro duplication même sur réseau instable | Toute opération à effet (paiement, création, confirmation) appelée depuis un client sur réseau non fiable |
-| Pas d'idempotency key, `POST` nu | Rien à implémenter côté client ni serveur | Simplicité | Opérations à très faible enjeu, ou appelées uniquement depuis un environnement réseau fiable et contrôlé |
-| Codes d'erreur structurés (`code` + `retryable`) | Discipline de nommage stable, tests de non-régression sur les codes | Clients automatiques fiables, moins de code fragile basé sur du texte parsé | Dès qu'un client automatique (pas seulement un humain) consomme les erreurs |
-| Backoff exponentiel avec jitter | Latence perçue plus longue en cas de panne réelle avant abandon | Évite l'effondrement en cascade d'un service déjà fragile | Tout appel réseau retenté automatiquement, en particulier vers un service partagé |
+| Option                                            | Coût                                                                                                           | Bénéfice                                                                    | Quand choisir                                                                                             |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Idempotency key obligatoire sur tout POST à effet | Le client doit générer et transmettre une clé, le serveur doit stocker un historique de clés (avec expiration) | Retries sûrs, zéro duplication même sur réseau instable                     | Toute opération à effet (paiement, création, confirmation) appelée depuis un client sur réseau non fiable |
+| Pas d'idempotency key, `POST` nu                  | Rien à implémenter côté client ni serveur                                                                      | Simplicité                                                                  | Opérations à très faible enjeu, ou appelées uniquement depuis un environnement réseau fiable et contrôlé  |
+| Codes d'erreur structurés (`code` + `retryable`)  | Discipline de nommage stable, tests de non-régression sur les codes                                            | Clients automatiques fiables, moins de code fragile basé sur du texte parsé | Dès qu'un client automatique (pas seulement un humain) consomme les erreurs                               |
+| Backoff exponentiel avec jitter                   | Latence perçue plus longue en cas de panne réelle avant abandon                                                | Évite l'effondrement en cascade d'un service déjà fragile                   | Tout appel réseau retenté automatiquement, en particulier vers un service partagé                         |
 
 ## Pièges classiques
 

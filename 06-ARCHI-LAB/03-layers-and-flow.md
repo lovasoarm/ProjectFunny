@@ -10,7 +10,7 @@ le gestionnaire de route HTTP `POST /reservations`, avec un appel SQL pour chaqu
 les réservations par téléphone, un job automatique qui libère les créneaux non confirmés après
 15 minutes, et des tests automatisés sur la règle des 3 réservations actives (un bug a laissé
 passer un adhérent avec 7 réservations simultanées). Tu réalises que la règle des 3
-réservations n'existe nulle part sous une forme isolée — elle est mélangée à du code HTTP, du
+réservations n'existe nulle part sous une forme isolée : elle est mélangée à du code HTTP, du
 SQL, et de la sérialisation JSON. Il faut la réécrire trois fois : une pour la route HTTP
 existante, une pour la commande vocale, une pour le job automatique. Et la tester correctement
 supposerait de monter un serveur HTTP complet avec une vraie base de données.
@@ -73,7 +73,7 @@ import { db } from "../infra/database"; // le Domaine connaît l'infra concrète
 async function peutReserver(adherentId: string): Promise<boolean> {
   const reservations = await db.query(
     "SELECT COUNT(*) FROM reservations WHERE adherent_id = $1 AND statut = 'active'",
-    [adherentId]
+    [adherentId],
   );
   return reservations[0].count < 3;
 }
@@ -86,7 +86,7 @@ base de données. Changer de base de données oblige à retoucher la règle mét
 Avec inversion de dépendance :
 
 ```typescript
-// domaine/reservation.ts — ne connaît AUCUN détail technique
+// domaine/reservation.ts : ne connaît AUCUN détail technique
 interface ReservationRepository {
   compterReservationsActives(adherentId: string): Promise<number>;
 }
@@ -95,10 +95,10 @@ function peutReserver(nbReservationsActives: number): boolean {
   return nbReservationsActives < 3; // règle pure, testable sans I/O
 }
 
-// application/reserverCreneau.ts — orchestre, connaît l'interface, pas l'implémentation
+// application/reserverCreneau.ts : orchestre, connaît l'interface, pas l'implémentation
 async function reserverCreneau(
   adherentId: string,
-  repo: ReservationRepository
+  repo: ReservationRepository,
 ): Promise<Resultat> {
   const nb = await repo.compterReservationsActives(adherentId);
   if (!peutReserver(nb)) {
@@ -107,12 +107,12 @@ async function reserverCreneau(
   // ... suite de l'orchestration
 }
 
-// infra/postgresReservationRepository.ts — implémente l'interface, connaît SQL
+// infra/postgresReservationRepository.ts : implémente l'interface, connaît SQL
 class PostgresReservationRepository implements ReservationRepository {
   async compterReservationsActives(adherentId: string): Promise<number> {
     const rows = await db.query(
       "SELECT COUNT(*) FROM reservations WHERE adherent_id = $1 AND statut = 'active'",
-      [adherentId]
+      [adherentId],
     );
     return rows[0].count;
   }
@@ -124,7 +124,7 @@ Résultat concret pour l'exemple du club d'escalade :
 - La règle `peutReserver` se teste avec un simple nombre entier, aucune base de données à
   monter, un test qui tourne en microsecondes.
 - Le cas d'usage `reserverCreneau` se réutilise tel quel pour la route HTTP, la commande
-  vocale, et le job automatique — seule la couche UI change, pas la logique.
+  vocale, et le job automatique : seule la couche UI change, pas la logique.
 - Remplacer PostgreSQL par un autre système de stockage revient à écrire une nouvelle classe
   qui implémente `ReservationRepository`, sans toucher au domaine ni aux cas d'usage.
 
@@ -153,30 +153,30 @@ langage du protocole utilisé.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Séparation stricte en 4 couches avec interfaces | Plus de fichiers, plus d'indirection, courbe d'apprentissage pour l'équipe | Testabilité du métier sans I/O, réutilisation multi-canal, remplacement d'infra sans casse | Règles métier non triviales, produit destiné à vivre et évoluer |
-| Domaine et Infra fusionnés (accès direct à la base dans les règles) | Règles non testables sans I/O, changement de techno = réécriture du métier | Rapidité d'écriture initiale, moins de fichiers à naviguer | CRUD sans règle métier significative, prototype jetable |
-| Cas d'usage fusionné avec l'UI (logique dans le contrôleur) | Logique dupliquée dès qu'un deuxième canal d'entrée apparaît (CLI, job, API) | Une seule couche à comprendre pour un flux simple | Un seul canal d'entrée prévu à vie, projet de très petite taille |
+| Option                                                              | Coût                                                                         | Bénéfice                                                                                   | Quand choisir                                                    |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Séparation stricte en 4 couches avec interfaces                     | Plus de fichiers, plus d'indirection, courbe d'apprentissage pour l'équipe   | Testabilité du métier sans I/O, réutilisation multi-canal, remplacement d'infra sans casse | Règles métier non triviales, produit destiné à vivre et évoluer  |
+| Domaine et Infra fusionnés (accès direct à la base dans les règles) | Règles non testables sans I/O, changement de techno = réécriture du métier   | Rapidité d'écriture initiale, moins de fichiers à naviguer                                 | CRUD sans règle métier significative, prototype jetable          |
+| Cas d'usage fusionné avec l'UI (logique dans le contrôleur)         | Logique dupliquée dès qu'un deuxième canal d'entrée apparaît (CLI, job, API) | Une seule couche à comprendre pour un flux simple                                          | Un seul canal d'entrée prévu à vie, projet de très petite taille |
 
 ## Pièges classiques
 
 - **L'entité domaine qui porte des annotations d'infra.** Symptôme : une classe métier
-  `Reservation` décorée avec `@Entity()` et `@Column()` d'un ORM — le domaine est en fait
+  `Reservation` décorée avec `@Entity()` et `@Column()` d'un ORM : le domaine est en fait
   couplé à un framework de persistance précis, l'inversion n'existe que sur le papier.
 - **Le "cas d'usage" qui ne fait qu'un appel direct au repository.** Symptôme : une couche
-  application qui existe en apparence mais qui n'orchestre rien — signe qu'on a ajouté une
+  application qui existe en apparence mais qui n'orchestre rien : signe qu'on a ajouté une
   couche par cargo-culte plutôt que parce qu'elle porte une vraie responsabilité.
 - **La règle métier dupliquée entre frontend et backend.** Symptôme : la validation "3
   réservations actives max" écrite en JavaScript côté client pour l'UX ET en SQL côté serveur
-  pour la sécurité, sans qu'aucune des deux ne soit la source de vérité documentée — elles
+  pour la sécurité, sans qu'aucune des deux ne soit la source de vérité documentée : elles
   divergent au premier changement de règle oublié d'un côté.
 - **L'interface trop large côté Infra.** Symptôme : `ReservationRepository` expose une
-  méthode `executerRequeteSQL(query: string)` — l'abstraction ne protège plus rien, n'importe
+  méthode `executerRequeteSQL(query: string)` : l'abstraction ne protège plus rien, n'importe
   quel détail SQL peut fuiter dans le domaine par ce trou.
 - **Les couches respectées en théorie, violées par un raccourci "juste cette fois".**
   Symptôme : un import direct de la couche Infra depuis un composant UI pour "gagner du
-  temps" sur une fonctionnalité urgente — ce raccourci devient permanent dans 90% des cas.
+  temps" sur une fonctionnalité urgente : ce raccourci devient permanent dans 90% des cas.
 
 ## Ce que tu dois savoir défendre
 

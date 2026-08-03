@@ -5,7 +5,7 @@
 Un cabinet vétérinaire à trois praticiens veut ouvrir la prise de rendez-vous en ligne.
 L'équipe technique débat pendant deux jours pour savoir si le système doit gérer les
 créneaux récurrents (vaccination annuelle, suivi de convalescence) dès la première version.
-Personne ne sait combien de clients utiliseraient réellement cette fonctionnalité — le
+Personne ne sait combien de clients utiliseraient réellement cette fonctionnalité : le
 cabinet n'a jamais eu de statistiques là-dessus, seulement l'intuition d'une secrétaire.
 L'équipe construit quand même un moteur de récurrence complet, avec exceptions, décalages
 de jours fériés, et règles de conflit. Trois mois plus tard : douze utilisateurs sur quatre
@@ -38,7 +38,7 @@ le coût de se tromper si on construit dessus sans la vérifier.
 
 ### Formuler une hypothèse testable
 
-Une hypothèse mal formée ne peut pas être invalidée — elle est donc inutile, même si elle
+Une hypothèse mal formée ne peut pas être invalidée : elle est donc inutile, même si elle
 est vraie. Comparer :
 
 ```text
@@ -52,7 +52,7 @@ est vraie. Comparer :
 ```
 
 La bonne hypothèse contient un seuil chiffré. Sans seuil, n'importe quel résultat pourra être
-interprété après coup comme une confirmation — c'est le biais de confirmation en action.
+interprété après coup comme une confirmation : c'est le biais de confirmation en action.
 
 ### Le coût de la preuve, pas seulement le coût de la construction
 
@@ -86,7 +86,7 @@ moins.
 Parfois, l'expérience elle-même coûte plus cher que d'assumer le risque directement. C'est
 là qu'intervient le **pari le moins cher** : quand plusieurs options restent incertaines
 même après avoir réduit ce qu'on pouvait réduire, on choisit celle dont l'erreur coûte le
-moins cher à corriger — pas celle qui semble la plus probable de réussir.
+moins cher à corriger : pas celle qui semble la plus probable de réussir.
 
 ```text
    Option A : construire le moteur de récurrence complet
@@ -113,8 +113,8 @@ découvrir avant de m'engager plus loin ?
 
 Toutes les erreurs ne coûtent pas pareil dans les deux sens. Se tromper en construisant une
 fonctionnalité inutile coûte du temps de développement. Se tromper en ne construisant pas une
-fonctionnalité critique — par exemple un rappel de rendez-vous qui évite des rendez-vous
-manqués, donc des pertes de revenu pour le cabinet — peut coûter bien plus cher et plus vite.
+fonctionnalité critique : par exemple un rappel de rendez-vous qui évite des rendez-vous
+manqués, donc des pertes de revenu pour le cabinet : peut coûter bien plus cher et plus vite.
 Avant de choisir le pari le moins cher, il faut évaluer le coût des deux sens de l'erreur, pas
 un seul.
 
@@ -129,23 +129,23 @@ un seul.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Construire l'expérience la moins chère avant la solution complète | Temps de conception de l'expérience, délai avant la fonctionnalité finale | Information fiable à faible coût, décision fondée sur des faits | L'incertitude est haute et le coût de se tromper en construisant est élevé |
-| Assumer directement le pari le moins cher, sans expérience préalable | Risque de devoir défaire un choix | Rapidité, pas de temps perdu à instrumenter une expérience | L'expérience coûterait presque aussi cher que la solution elle-même, ou le délai est inacceptable |
+| Option                                                               | Coût                                                                      | Bénéfice                                                        | Quand choisir                                                                                     |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Construire l'expérience la moins chère avant la solution complète    | Temps de conception de l'expérience, délai avant la fonctionnalité finale | Information fiable à faible coût, décision fondée sur des faits | L'incertitude est haute et le coût de se tromper en construisant est élevé                        |
+| Assumer directement le pari le moins cher, sans expérience préalable | Risque de devoir défaire un choix                                         | Rapidité, pas de temps perdu à instrumenter une expérience      | L'expérience coûterait presque aussi cher que la solution elle-même, ou le délai est inacceptable |
 
 ## Pièges classiques
 
 - Construire une expérience si coûteuse qu'elle revient à construire la solution complète —
   symptôme : le "prototype" prend autant de temps que la vraie fonctionnalité.
-- Formuler une hypothèse sans seuil chiffré — symptôme : après coup, tout le monde interprète
+- Formuler une hypothèse sans seuil chiffré : symptôme : après coup, tout le monde interprète
   le résultat dans le sens qui l'arrange.
-- Confondre "le pari le moins cher" avec "le pari le plus probable" — symptôme : on choisit
+- Confondre "le pari le moins cher" avec "le pari le plus probable" : symptôme : on choisit
   l'option qu'on préfère intuitivement et on justifie a posteriori que c'était la moins
   risquée.
-- Ignorer l'asymétrie des erreurs — symptôme : on optimise pour éviter de perdre du temps de
+- Ignorer l'asymétrie des erreurs : symptôme : on optimise pour éviter de perdre du temps de
   développement, en ignorant un coût métier bien plus élevé côté "ne pas construire".
-- Attendre une certitude totale avant d'agir — symptôme : le projet n'avance plus, chaque
+- Attendre une certitude totale avant d'agir : symptôme : le projet n'avance plus, chaque
   décision est reportée en attendant "plus de données" qui ne viendront jamais gratuitement.
 
 ## Ce que tu dois savoir défendre
@@ -153,6 +153,6 @@ un seul.
 1. Transforme une intuition vague ("les utilisateurs vont adorer ça") en hypothèse testable
    avec un seuil chiffré.
 2. Donne un exemple où l'expérience la moins chère aurait coûté plus cher que la solution
-   complète — pourquoi, dans ce cas précis, ne pas expérimenter était le bon choix.
+   complète : pourquoi, dans ce cas précis, ne pas expérimenter était le bon choix.
 3. Explique la différence entre "le pari le moins cher" et "le pari le plus probable de
    réussir", avec un exemple où les deux mènent à des choix opposés.

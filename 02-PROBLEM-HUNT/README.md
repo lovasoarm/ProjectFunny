@@ -1,17 +1,17 @@
-# Niveau 02 — Problem Hunt
+# Niveau 02 : Problem Hunt
 
 ## Ce que c'est
 
 Ce niveau apprend à chasser le vrai problème avant de chasser la solution. La compétence
 n'est pas "coder vite", c'est "coder la bonne chose". Un développeur qui livre une feature
 parfaitement construite mais qui répond à une mauvaise demande a produit de la dette, pas
-de la valeur — et il l'a fait avec zéro bug, ce qui rend l'erreur encore plus difficile à
+de la valeur : et il l'a fait avec zéro bug, ce qui rend l'erreur encore plus difficile à
 détecter en revue de code.
 
 Ici tu apprends à démonter une demande, à repérer les signaux faibles qui trahissent un besoin
 mal formulé, à distinguer les utilisateurs qui comptent de ceux qu'on invente pour se rassurer,
 à écrire des non-objectifs qui protègent l'architecture, et à définir un seuil d'échec avant
-de coder — pas après avoir livré, quand tout le monde est déjà en mode justification.
+de coder : pas après avoir livré, quand tout le monde est déjà en mode justification.
 
 Durée estimée : 6 à 9 heures, réparties sur plusieurs jours (les interviews et l'analyse de
 signaux faibles demandent du recul, pas de la vitesse).
@@ -54,7 +54,7 @@ Dans l'ordre, sans sauter `01-why-this-level.md`. Les leçons 02 à 05 forment u
 tu ne peux pas écrire de bons non-objectifs (04) si tu n'as pas identifié le vrai besoin (02)
 ni les bons utilisateurs (03). Le `challenge.md` te demande d'appliquer les quatre leçons sur
 un cas réel, pas un cas jouet. Le `boss-fight.md` te met dans une situation où quelqu'un te
-pousse à sauter cette étape — c'est le vrai test.
+pousse à sauter cette étape : c'est le vrai test.
 
 ## Ce qui ne se passe pas ici
 

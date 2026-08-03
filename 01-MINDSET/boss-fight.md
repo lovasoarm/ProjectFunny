@@ -1,4 +1,4 @@
-# Boss fight — Un lead conteste ton choix en réunion
+# Boss fight : Un lead conteste ton choix en réunion
 
 ## La scène
 
@@ -16,22 +16,23 @@ Un lead technique, présent pour la première fois à une réunion sur ce projet
 > exactement ce problème sur un projet précédent, et on l'a payé cher six mois après."
 
 Il n'est pas hostile, mais il est catégorique, et il a une expérience concrète derrière son
-objection. La salle attend ta réponse. Tu ne peux pas répondre "on verra plus tard" — c'est
+objection. La salle attend ta réponse. Tu ne peux pas répondre "on verra plus tard" : c'est
 une réunion de décision, pas de brainstorming.
 
 ## Ce qu'on attend de toi
 
 Rédige, comme si tu répondais en réunion puis par écrit dans l'ADR mis à jour, une réponse
 qui :
+
 - ne rejette pas l'objection sans l'avoir réellement pesée (le lead a raison sur un point
   précis : lequel ?) ;
-- ne cède pas non plus immédiatement par confort social — si ta décision reste défendable
+- ne cède pas non plus immédiatement par confort social : si ta décision reste défendable
   compte tenu du contexte réel du projet, dis-le et explique pourquoi son expérience
   précédente ne s'applique pas forcément telle quelle ici ;
 - s'appuie sur des faits vérifiables du projet (volume attendu, contraintes de délai,
   compétences de l'équipe) plutôt que sur une préférence esthétique pour l'une ou l'autre
   architecture ;
-- propose, si pertinent, un compromis à coût mesuré plutôt qu'un choix binaire — par exemple
+- propose, si pertinent, un compromis à coût mesuré plutôt qu'un choix binaire : par exemple
   une dette volontaire documentée avec un seuil de migration explicite (leçon 03).
 
 Livre un court texte (une demi-page) qui pourrait être ajouté tel quel à la section
@@ -40,14 +41,14 @@ en compte, pas juste survolée.
 
 ## Grille d'évaluation
 
-| Critère | Ce qui est évalué | Échec typique |
-|---|---|---|
-| Reconnaissance du point valide | Le texte identifie précisément ce que le lead a raison de signaler (perte d'information si un jour un historique fin est nécessaire) | Réponse défensive qui ignore l'objection ou la caricature |
-| Distinction contexte / généralité | Le texte explique pourquoi l'expérience du lead sur un autre projet ne se transpose pas automatiquement (volume différent, besoin métier différent, délai différent) | Le texte traite l'analogie comme automatiquement valide ou automatiquement invalide sans l'examiner |
+| Critère                                      | Ce qui est évalué                                                                                                                                                        | Échec typique                                                                                                           |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Reconnaissance du point valide               | Le texte identifie précisément ce que le lead a raison de signaler (perte d'information si un jour un historique fin est nécessaire)                                     | Réponse défensive qui ignore l'objection ou la caricature                                                               |
+| Distinction contexte / généralité            | Le texte explique pourquoi l'expérience du lead sur un autre projet ne se transpose pas automatiquement (volume différent, besoin métier différent, délai différent)     | Le texte traite l'analogie comme automatiquement valide ou automatiquement invalide sans l'examiner                     |
 | Fondation sur des faits, pas des préférences | Le texte cite au moins un élément vérifiable du projet réel (volume de tournées/jour, fréquence des demandes du service client, délai de livraison de la fonctionnalité) | Le texte reste au niveau des principes généraux ("la simplicité c'est important") sans jamais toucher au projet concret |
-| Réversibilité explicite | Le texte propose un seuil ou un signal observable qui déclencherait la migration vers une table d'événements, si le choix actuel est maintenu | Le choix est présenté comme définitif et fermé, sans condition de révision |
-| Absence de céder par confort social | Si la décision initiale reste justifiée compte tenu du contexte, le texte le dit clairement sans se rétracter juste parce que le lead est catégorique | Le texte change de position uniquement à cause du ton assuré de l'interlocuteur, sans nouvel argument |
-| Longueur et densité | Le texte tient dans environ 200 mots, sans détour | Réponse diluée qui noie l'argument dans des formules de politesse |
+| Réversibilité explicite                      | Le texte propose un seuil ou un signal observable qui déclencherait la migration vers une table d'événements, si le choix actuel est maintenu                            | Le choix est présenté comme définitif et fermé, sans condition de révision                                              |
+| Absence de céder par confort social          | Si la décision initiale reste justifiée compte tenu du contexte, le texte le dit clairement sans se rétracter juste parce que le lead est catégorique                    | Le texte change de position uniquement à cause du ton assuré de l'interlocuteur, sans nouvel argument                   |
+| Longueur et densité                          | Le texte tient dans environ 200 mots, sans détour                                                                                                                        | Réponse diluée qui noie l'argument dans des formules de politesse                                                       |
 
 ## Ce que tu dois savoir défendre
 

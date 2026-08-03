@@ -3,7 +3,7 @@
 Chaque étude applique la méthode des deux leçons précédentes sur un domaine différent. Lis-les
 en te forçant à deviner la contrainte avant de lire la réponse.
 
-## Étude 1 — Plateforme de réservation (restaurants)
+## Étude 1 : Plateforme de réservation (restaurants)
 
 ### Ce que tu trouves
 
@@ -16,14 +16,14 @@ async function confirmSlot(slotId: string, partySize: number) {
   const slot = await db.slots.findById(slotId);
 
   // Pourquoi verrouiller la ligne avant de lire la capacité restante ?
-  await db.query('SELECT * FROM slots WHERE id = $1 FOR UPDATE', [slotId]);
+  await db.query("SELECT * FROM slots WHERE id = $1 FOR UPDATE", [slotId]);
 
   if (slot.remainingCapacity < partySize) {
     throw new SlotFullError();
   }
 
   await db.slots.decrementCapacity(slotId, partySize);
-  await db.bookings.create({ slotId, partySize, status: 'confirmed' });
+  await db.bookings.create({ slotId, partySize, status: "confirmed" });
 }
 ```
 
@@ -56,7 +56,7 @@ concurrente mérite une recherche d'historique avant suppression. La redondance 
 est souvent la trace d'une race condition déjà vécue et corrigée.
 ```
 
-## Étude 2 — Back-office logistique (tournées de livraison)
+## Étude 2 : Back-office logistique (tournées de livraison)
 
 ### Ce que tu trouves
 
@@ -106,7 +106,7 @@ débit. Vérifie les quotas et la fiabilité du service tiers avant de proposer 
 synchrone "plus simple".
 ```
 
-## Étude 3 — Suivi de capteurs (surveillance de température en chambre froide)
+## Étude 3 : Suivi de capteurs (surveillance de température en chambre froide)
 
 ### Ce que tu trouves
 

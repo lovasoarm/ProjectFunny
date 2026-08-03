@@ -1,4 +1,4 @@
-# Grimoire — Bonus Vault
+# Grimoire : Bonus Vault
 
 ## Choisir un format de décision
 
@@ -9,17 +9,17 @@ Traverse plusieurs équipes        → RFC
 Doit convaincre une audience non technique → one-pager
 ```
 
-## ADR — squelette minimal
+## ADR : squelette minimal
 
 ```text
 # ADR-NNNN : [titre court, verbe d'action]
-## Statut (proposée / acceptée / dépréciée) — date
+## Statut (proposée / acceptée / dépréciée) : date
 ## Contexte (contraintes connues au moment de la décision)
 ## Décision (une phrase, sans ambiguïté)
 ## Conséquences (+ bénéfices, - coûts réels, jamais uniquement des +)
 ```
 
-## Checklists — les quatre moments à risque
+## Checklists : les quatre moments à risque
 
 ```text
 Mise en prod   → rollback testé, fenêtre sans chevauchement, métriques définies avant
@@ -38,7 +38,7 @@ Sources qui durent : livres de mécanismes, post-mortems publics, papiers fondat
 documentation de standards, code source de projets reconnus et anciens.
 ```
 
-## Anti-patterns — reconnaissance rapide
+## Anti-patterns : reconnaissance rapide
 
 ```text
 God Object              → un fichier que plus personne ne comprend en entier

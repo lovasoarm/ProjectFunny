@@ -18,14 +18,14 @@ viennent de produire, ensemble, quelque chose de pire que ce que chacun aurait p
 
 Le code est un artefact technique gouverné par des règles explicites : un compilateur
 refuse une syntaxe invalide, un type-checker refuse un type incompatible. Le travail
-d'équipe est gouverné par des règles implicites — et une règle implicite n'existe que dans
+d'équipe est gouverné par des règles implicites : et une règle implicite n'existe que dans
 la tête de celui qui l'a en tête. Tant que personne ne la rend explicite, chacun suit sa
 propre version, découvre l'écart au moment de la friction, et interprète cet écart comme un
 défaut de caractère de l'autre plutôt que comme l'absence d'un accord.
 
 ```text
 Règle implicite non dite                  Règle explicite écrite
-                                           
+
   Léa pense : "on prévient avant           Working agreement : "toute modification
   de toucher un fichier partagé"           d'un fichier partagé plus de 30 min
        │                                   se signale dans le canal d'équipe
@@ -43,15 +43,15 @@ Ce niveau attaque trois couches de ce problème, chacune correspondant à un mom
 de la collaboration :
 
 1. **Le working agreement** (leçon 02) : rend explicites les règles qui, sinon, restent
-   dans la tête de chacun jusqu'à ce qu'elles se heurtent — définition de "fini", qui
+   dans la tête de chacun jusqu'à ce qu'elles se heurtent : définition de "fini", qui
    décide quoi, comment on se prévient, comment on planifie une absence.
 2. **Le flux Git** (leçon 03) : donne une structure technique au travail parallèle, pour
    que deux personnes puissent avancer en même temps sur le même système sans que l'une
    écrase le travail de l'autre ni bloque une release en cours à cause d'un chantier
    inachevé.
 3. **La communication sous pression** (leçon 04) : parce qu'aucun accord écrit ne couvre
-   tous les cas, et que c'est précisément dans les cas non couverts — désaccord technique,
-   demande intenable, décision urgente — que l'équipe se joue vraiment.
+   tous les cas, et que c'est précisément dans les cas non couverts : désaccord technique,
+   demande intenable, décision urgente : que l'équipe se joue vraiment.
 
 ### Le coût, toujours le coût
 
@@ -65,21 +65,21 @@ chaud coûte une relation.
 
 ## Compromis
 
-| Option | Coût | Bénéfice | Quand choisir |
-|---|---|---|---|
-| Pas d'accords explicites, "ça se fait naturellement" | Aucun coût immédiat, semble fluide au début | Rapidité de démarrage sur une équipe très petite et très alignée | Binôme temporaire, projet de quelques jours, jamais une équipe qui dure |
-| Working agreement écrit et Git flow choisi | Coût d'une réunion de cadrage et de sa révision périodique | Les désaccords se règlent sur des règles connues de tous, pas sur des intentions supposées | Toute équipe de plus de deux personnes qui collabore plus d'une ou deux semaines |
+| Option                                               | Coût                                                       | Bénéfice                                                                                   | Quand choisir                                                                    |
+| ---------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Pas d'accords explicites, "ça se fait naturellement" | Aucun coût immédiat, semble fluide au début                | Rapidité de démarrage sur une équipe très petite et très alignée                           | Binôme temporaire, projet de quelques jours, jamais une équipe qui dure          |
+| Working agreement écrit et Git flow choisi           | Coût d'une réunion de cadrage et de sa révision périodique | Les désaccords se règlent sur des règles connues de tous, pas sur des intentions supposées | Toute équipe de plus de deux personnes qui collabore plus d'une ou deux semaines |
 
 ## Pièges classiques
 
-- Croire qu'une bonne ambiance efface le besoin de règles écrites — le symptôme apparaît au
+- Croire qu'une bonne ambiance efface le besoin de règles écrites : le symptôme apparaît au
   premier désaccord réel, quand chacun découvre que l'autre avait une règle différente en
   tête.
-- Rédiger un working agreement une fois et ne plus jamais le relire — le symptôme est un
+- Rédiger un working agreement une fois et ne plus jamais le relire : le symptôme est un
   document qui décrit une équipe qui n'existe plus, ignoré parce qu'obsolète.
-- Confondre flux Git et discipline d'équipe — le symptôme est une équipe qui a un flux
+- Confondre flux Git et discipline d'équipe : le symptôme est une équipe qui a un flux
   Git impeccable sur le papier mais des branches vivantes trois semaines sans être fusionnées.
-- Traiter tout désaccord comme un problème de personnalité — le symptôme est qu'on change
+- Traiter tout désaccord comme un problème de personnalité : le symptôme est qu'on change
   les gens au lieu de changer les règles, et le même conflit revient avec la personne
   suivante.
 
