@@ -1,5 +1,16 @@
 # Niveau 08 : Roadmap Run
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../07-API-DOJO/README.md) | [Niveau suivant](../09-QUALITY-SHIELD/README.md)
+
+**Ce niveau reutilise :** [03-MVP-SPLIT](../03-MVP-SPLIT/04-estimating-honestly.md) : l'estimation honnete et l'effet tunnel, reutilises pour batir un planning risk-first.
+
+**Auto-test d'entree :**
+1. Qu'est-ce qui distingue un changement d'API retrocompatible d'un changement qui casse les clients existants ?
+2. A quoi sert une cle d'idempotence, et que se passe-t-il sans elle sur un retry ?
+3. Quelle est la difference entre authentification et autorisation ?
+
+**Temps de lecture :** environ 100 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Tu sais découper un problème (Niveau 02), construire un MVP (Niveau 03), poser une
@@ -29,16 +40,13 @@ bloquant.
 
 ## Structure du niveau
 
-```text
-08-ROADMAP-RUN/
-├── 01-why-this-level.md          → pourquoi les plannings optimistes tuent les projets
-├── 02-phases-and-milestones.md   → découper en phases livrables, jalons vérifiables
-├── 03-risk-first-planning.md     → attaquer le risque le plus cher en premier
-├── 04-tracking-reality.md        → avancement réel vs déclaré, signaux de dérive
-├── challenge.md                  → construire une roadmap risk-first sur un projet réel
-├── boss-fight.md                 → un sponsor qui veut une date avant que tu aies un plan
-└── grimoire.md                   → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : pourquoi les plannings optimistes tuent les projets
+- [02-phases-and-milestones.md](02-phases-and-milestones.md) : découper en phases livrables, jalons vérifiables
+- [03-risk-first-planning.md](03-risk-first-planning.md) : attaquer le risque le plus cher en premier
+- [04-tracking-reality.md](04-tracking-reality.md) : avancement réel vs déclaré, signaux de dérive
+- [challenge.md](challenge.md) : construire une roadmap risk-first sur un projet réel
+- [boss-fight.md](boss-fight.md) : un sponsor qui veut une date avant que tu aies un plan
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

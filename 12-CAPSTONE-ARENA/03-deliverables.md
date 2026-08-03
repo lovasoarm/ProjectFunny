@@ -60,3 +60,55 @@ ci-dessous doit pouvoir être jugé sans que tu sois présent pour l'expliquer o
   ensuite.
 - Ce qui distingue, dans ta roadmap post-V1, une dette technique assumée d'un report de
   fonctionnalité : et pourquoi les deux n'appellent pas le même traitement.
+
+## Arborescence de livraison imposée
+
+Le dossier final du capstone respecte exactement cette structure. Une arborescence qui
+s'écarte de ce gabarit (fichier manquant, dossier renommé, fichier à la racine qui devrait
+être dans `ADR/`) est un défaut éliminatoire de la grille, indépendamment de la qualité du
+contenu.
+
+```text
+capstone/
++-- cahierdescharges.md
++-- README.md
++-- TDD_JOURNAL.md
++-- POSTMORTEM.md
++-- REVUE-DE-RISQUES.md
++-- ADR/
+|   +-- ADR-0001-....md
+|   \-- ADR-000N-....md
++-- src/
+|   \-- (code de la V1)
+\-- tests/
+    \-- (dont le test de concurrence sur le comptage de capacité)
+```
+
+- `cahierdescharges.md` : reformulation finale du besoin, incluant les hypothèses du Livrable 1
+  et les ajustements survenus après changement de spec (voir `05-changement-de-spec.md`).
+- `README.md` : comment lancer le projet, jeu de données de démonstration, limites connues.
+- `TDD_JOURNAL.md` : journal daté des décisions de conception et des changements de spec, avec
+  leur coût mesuré en fichiers touchés et en heures.
+- `POSTMORTEM.md` : ce qui a mal tourné, ce qui a bien tourné, ce que tu ferais différemment.
+- `REVUE-DE-RISQUES.md` : revue de risques du projet (sécurité, coûts, données personnelles),
+  produite selon le gabarit du Niveau 15 (voir `../15-BONUS-VAULT/challenge.md`).
+- `ADR/` : un fichier par décision structurante, au format du Niveau 15
+  (`../15-BONUS-VAULT/01-decision-templates.md`).
+- `src/` : le code de la V1.
+- `tests/` : les tests automatisés, en particulier celui qui prouve la résistance du comptage
+  de capacité à l'accès concurrent.
+
+## Revue de risques : contenu minimal de REVUE-DE-RISQUES.md
+
+Le fichier `REVUE-DE-RISQUES.md` couvre au minimum trois familles de risques, chacune avec au
+moins deux risques identifiés, une probabilité, un impact et une mitigation :
+
+```text
+Sécurité            : ex. accès concurrent au comptage de capacité, fuite de session
+Coûts                : ex. dépassement du délai de deux mois, dépendance à un service payant
+Données personnelles : ex. données d'adhérents partagées entre trois salles indépendantes
+```
+
+Ce fichier doit être signé et daté par toi avant la présentation finale : une revue de
+risques non signée ne compte pas comme livrée, au même titre qu'une note de cadrage non
+datée.

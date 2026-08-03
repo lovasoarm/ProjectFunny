@@ -52,3 +52,26 @@ Produis une décision écrite (une page maximum) qui :
 | Réponse aux microservices         | L'argument utilise au moins un des quatre critères de décision du niveau, appliqué avec des faits du cas (une seule équipe, pas de contrainte de conformité isolée) |
 | Mécanisme anti-récidive           | L'engagement proposé est vérifiable (fait partie d'une définition de "terminé", d'un critère de revue de code), pas un vœu pieux                                    |
 | Ton                               | La décision est assumée et défendable devant le CTO et le développeur senior en même temps, sans chercher à plaire aux deux à la fois par du flou                   |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Refus argumenté des deux extrêmes | 25 |
+| Troisième voie réalisable | 20 |
+| Réponse aux microservices | 20 |
+| Mécanisme anti-récidive | 20 |
+| Ton | 15 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Refus argumenté des deux extrêmes" est noté en dessous de 10/25, le total est plafonné à 50/100 : accepter l'un des deux extrêmes sans le nommer comme un extrême montre que le vocabulaire de couplage du niveau n'a pas été assimilé.

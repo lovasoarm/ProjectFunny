@@ -151,6 +151,14 @@ requête HTTP. Il ne renvoie jamais de code de statut HTTP, jamais de JSON. Il r
 concepts métier ("créneau indisponible"), et c'est la couche UI qui les traduit dans le
 langage du protocole utilisé.
 
+Analogie : Analogie : les couches et l'inversion de dépendance, c'est la chaîne de commandement d'une
+régie de spectacle où le metteur en scène ordonne sans exécuter, et la relation entre la
+passerelle et la salle des machines en navigation maritime, où la passerelle décide du cap
+et la machine obéit sans connaître la destination.
+Où l'analogie casse : le régisseur et le mécanicien restent des humains capables d'interpréter
+un ordre flou. Une couche infra mal inversée ne devine rien, elle exécute exactement ce que
+l'interface lui permet, et une dépendance dans le mauvais sens oblige à réécrire le contrat.
+
 ## Compromis
 
 | Option                                                              | Coût                                                                         | Bénéfice                                                                                   | Quand choisir                                                    |

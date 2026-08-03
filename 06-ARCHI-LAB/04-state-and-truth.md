@@ -126,6 +126,14 @@ Le garde-fou classique est de séparer clairement "l'affichage" (peut être en c
 au moment exact de l'action, avec une contrainte d'unicité en base si besoin : par exemple une
 contrainte SQL empêchant deux réservations sur la même place).
 
+Analogie : Analogie : la source de vérité et le cache, c'est le dossier patient de référence aux
+urgences que chaque service consulte plutôt que de refaire l'anamnèse, et le carnet de route
+que le chef de cordée tient à jour pendant une course en montagne.
+Où l'analogie casse : un dossier patient ou un carnet de route se corrige d'un trait de stylo
+et tout le monde relit le même papier immédiatement. Un cache technique peut continuer de
+mentir à des clients différents pendant plusieurs secondes après que la vérité a changé, sans
+qu'aucun d'eux ne le sache.
+
 ## Compromis
 
 | Option                                                           | Coût                                                                       | Bénéfice                                                                     | Quand choisir                                                        |

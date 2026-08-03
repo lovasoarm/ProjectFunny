@@ -58,3 +58,27 @@ en compte, pas juste survolée.
    client) qui, s'il était dépassé, justifierait de migrer vers une table d'événements.
 3. Explique la différence entre céder à une objection parce qu'elle est fondée et céder à une
    objection parce qu'elle est exprimée avec assurance.
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Reconnaissance du point valide | 20 |
+| Distinction contexte / généralité | 15 |
+| Fondation sur des faits, pas des préférences | 15 |
+| Réversibilité explicite | 15 |
+| Absence de céder par confort social | 25 |
+| Longueur et densité | 10 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Absence de céder par confort social" est noté en dessous de 10/25, le total est plafonné à 55/100 quel que soit le reste : céder à une objection uniquement parce qu'elle est exprimée avec assurance annule la valeur de tout raisonnement par ailleurs correct.

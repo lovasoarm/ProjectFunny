@@ -1,5 +1,16 @@
 # Niveau 13 : Day-to-Legend
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../12-CAPSTONE-ARENA/README.md) | [Niveau suivant](../14-TOOL-CAVE/README.md)
+
+**Ce niveau reutilise :** [12-CAPSTONE-ARENA](../12-CAPSTONE-ARENA/04-evaluation-grid.md) : la grille d'evaluation chiffree, reutilisee comme modele pour batir ton propre suivi de progression.
+
+**Auto-test d'entree :**
+1. Qu'est-ce qu'un working agreement, et a quel probleme repond-il ?
+2. Cite deux flux Git differents et le critere qui fait choisir l'un plutot que l'autre.
+3. Pourquoi dire non a une demande intenable ne doit-il pas casser la relation avec la personne qui demande ?
+
+**Temps de lecture :** environ 120 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Douze niveaux t'ont donné des méthodes : découper, modéliser, architecturer, tester,
@@ -35,16 +46,13 @@ qu'on cherche à améliorer.
 
 ## Structure du niveau
 
-```text
-13-DAY-TO-LEGEND/
-├── 01-why-this-level.md      → pourquoi la plupart des devs plafonnent après 3-5 ans
-├── 02-daily-training.md      → routine quotidienne : lecture, katas, journal
-├── 03-learning-loops.md      → boucles de feedback, deliberate practice, sortir des plateaux
-├── 04-career-and-craft.md    → seniorité réelle, choix de projets, réputation technique
-├── challenge.md              → construire et tenir une routine 12 semaines
-├── boss-fight.md             → une évaluation de performance floue, sans métrique juste
-└── grimoire.md                → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : pourquoi la plupart des devs plafonnent après 3-5 ans
+- [02-daily-training.md](02-daily-training.md) : routine quotidienne : lecture, katas, journal
+- [03-learning-loops.md](03-learning-loops.md) : boucles de feedback, deliberate practice, sortir des plateaux
+- [04-career-and-craft.md](04-career-and-craft.md) : seniorité réelle, choix de projets, réputation technique
+- [challenge.md](challenge.md) : construire et tenir une routine 12 semaines
+- [boss-fight.md](boss-fight.md) : une évaluation de performance floue, sans métrique juste
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

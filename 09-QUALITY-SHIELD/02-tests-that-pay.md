@@ -79,6 +79,14 @@ frontière entre modules, parcours complet) ce bug serait-il visible avant
 la production ?"
 ```
 
+Analogie : Analogie : des tests qui rapportent, c'est un menuisier qui vérifie l'équerrage d'un
+assemblage avant de le coller définitivement, et un protocole de triage aux urgences qui
+vérifie les mêmes signes vitaux sur chaque patient pour ne rater aucune urgence connue.
+Où l'analogie casse : l'équerrage ou le protocole de triage se vérifient en quelques
+secondes avec un outil simple. Une suite de tests logiciels coûte du temps à écrire et à
+maintenir à chaque changement de code, tester ne devient jamais gratuit comme relire un
+angle au niveau à bulle.
+
 ## Exemple concret : où mettre l'effort sur le système de tournées
 
 ```typescript

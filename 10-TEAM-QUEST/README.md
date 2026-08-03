@@ -1,5 +1,16 @@
 # Niveau 10 : Team Quest
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../09-QUALITY-SHIELD/README.md) | [Niveau suivant](../11-BIG-APP-SNOOP/README.md)
+
+**Ce niveau reutilise :** [08-ROADMAP-RUN](../08-ROADMAP-RUN/04-tracking-reality.md) : les signaux de derive, reutilises pour reperer un desaccord d'equipe avant qu'il bloque un jalon.
+
+**Auto-test d'entree :**
+1. Sur quel critere choisis-tu quoi tester : une regle de couverture ou le cout reel d'une panne ?
+2. Qu'est-ce qu'un postmortem sans blame, et pourquoi cette contrainte existe-t-elle ?
+3. Que doit permettre une bonne observabilite sans avoir a se connecter en SSH ?
+
+**Temps de lecture :** environ 140 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Tout ce que tu as appris jusqu'ici marche à une personne. Ce niveau ajoute la variable qui
@@ -29,16 +40,13 @@ plan et des jalons partagés.
 
 ## Structure du niveau
 
-```text
-10-TEAM-QUEST/
-├── 01-why-this-level.md              → pourquoi de bons devs produisent une mauvaise équipe
-├── 02-working-agreements.md          → les règles qu'on écrit avant d'en avoir besoin
-├── 03-git-and-flow.md                → branches, PR, releases, feature flags
-├── 04-communication-under-pressure.md→ désaccords, escalade, dire non
-├── challenge.md                      → rédiger et faire vivre un working agreement
-├── boss-fight.md                     → un conflit de merge humain, pas technique
-└── grimoire.md                       → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : pourquoi de bons devs produisent une mauvaise équipe
+- [02-working-agreements.md](02-working-agreements.md) : les règles qu'on écrit avant d'en avoir besoin
+- [03-git-and-flow.md](03-git-and-flow.md) : branches, PR, releases, feature flags
+- [04-communication-under-pressure.md](04-communication-under-pressure.md) : désaccords, escalade, dire non
+- [challenge.md](challenge.md) : rédiger et faire vivre un working agreement
+- [boss-fight.md](boss-fight.md) : un conflit de merge humain, pas technique
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

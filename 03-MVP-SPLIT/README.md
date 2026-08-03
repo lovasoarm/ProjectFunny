@@ -1,5 +1,16 @@
 # Niveau 03 : MVP Split
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../02-PROBLEM-HUNT/README.md) | [Niveau suivant](../04-USER-WIZARD/README.md)
+
+**Ce niveau reutilise :** [02-PROBLEM-HUNT](../02-PROBLEM-HUNT/04-scope-and-non-goals.md) : les non-objectifs et la metrique de succes, qui donnent les bornes du decoupage en tranches.
+
+**Auto-test d'entree :**
+1. Quelle est la difference entre une demande et un besoin reel ?
+2. A quoi sert une section de non-objectifs, concretement, sur les choix d'architecture ?
+3. Comment distingues-tu un persona utile d'un persona decoratif ?
+
+**Temps de lecture :** environ 110 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Ce niveau apprend à découper un problème déjà bien compris (Niveau 02 fait) en tranches
@@ -35,17 +46,14 @@ Sans ça, découper un problème mal posé ne fait que produire des tranches inu
 
 ## Structure du niveau
 
-```text
-03-MVP-SPLIT/
-├── 01-why-this-level.md         → ce qui casse quand on découpe mal ou pas du tout
-├── 02-slicing-value.md           → tranches verticales vs couches horizontales
-├── 03-cut-lines.md               → où couper une feature sans la casser, feature flags
-├── 04-estimating-honestly.md     → incertitude, découpage, budget de temps, effet tunnel
-├── 05-when-to-say-no.md          → arbitrage, coût d'opportunité, dette assumée
-├── challenge.md                   → exercice appliqué, livrable, critères mesurables
-├── boss-fight.md                   → situation adverse + grille d'évaluation
-└── grimoire.md                     → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse quand on découpe mal ou pas du tout
+- [02-slicing-value.md](02-slicing-value.md) : tranches verticales vs couches horizontales
+- [03-cut-lines.md](03-cut-lines.md) : où couper une feature sans la casser, feature flags
+- [04-estimating-honestly.md](04-estimating-honestly.md) : incertitude, découpage, budget de temps, effet tunnel
+- [05-when-to-say-no.md](05-when-to-say-no.md) : arbitrage, coût d'opportunité, dette assumée
+- [challenge.md](challenge.md) : exercice appliqué, livrable, critères mesurables
+- [boss-fight.md](boss-fight.md) : situation adverse + grille d'évaluation
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

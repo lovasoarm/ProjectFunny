@@ -46,3 +46,25 @@ Ce n'est pas un exercice de planning, c'est un exercice de posture sous pression
 compétence technique de ce niveau (risk-first planning) ne sert à rien si tu craques dès
 qu'un sponsor insiste. Le vrai boss ici, c'est l'envie de faire plaisir tout de suite au
 détriment de la vérité trois semaines plus tard.
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Gestion de la pression | 20 |
+| Communication du risque | 30 |
+| Engagement | 25 |
+| Cohérence avec le niveau | 25 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Communication du risque" est noté en dessous de 12/30, le total est plafonné à 50/100 : donner une date sans exposer le risque qui la menace revient à mentir par omission au sponsor, ce qui coûte plus cher que dire non tout de suite.

@@ -184,6 +184,13 @@ Un timeout côté client ne dit pas "l'opération a échoué côté serveur" : i
 "je ne sais plus". C'est le même problème que la coupure réseau de la scène, et la même
 solution s'applique : ne jamais retenter une opération à effet sans clé d'idempotence.
 
+Analogie : Analogie : gérer les erreurs et l'idempotence, c'est le tri des urgences hospitalières qui
+reconnaît un patient déjà pris en charge pour ne pas le réenregistrer, et un appel de détresse
+en navigation maritime qu'il faut pouvoir répéter sans déclencher deux sauvetages.
+Où l'analogie casse : un soignant ou un opérateur radio reconnaissent un visage ou une voix.
+Un serveur ne reconnaît une requête répétée que si le client a pris soin d'envoyer une clé
+d'idempotence, sinon deux appels identiques sont deux événements distincts pour lui.
+
 ## Compromis
 
 | Option                                            | Coût                                                                                                           | Bénéfice                                                                    | Quand choisir                                                                                             |

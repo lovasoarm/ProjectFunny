@@ -186,6 +186,13 @@ Règle pratique : verrou pessimiste quand les conflits sont fréquents et la tra
 (éviter de faire attendre grand monde) ; verrou optimiste quand les conflits sont rares et
 qu'on veut éviter tout blocage par défaut (le cas le plus courant d'une API web).
 
+Analogie : Analogie : faire tenir des requêtes à l'échelle, c'est préparer chaque plat un par un en
+cuisine de restaurant en service plutôt que d'envoyer toute la commande d'un coup, et doser
+son effort en course en montagne pour ne pas s'écrouler avant le sommet.
+Où l'analogie casse : un cuisinier voit tout de suite s'il rate un envoi, et un coureur sent
+la fatigue monter. Un N+1 ou une transaction mal isolée reste invisible sur dix lignes de
+test et n'explose qu'à dix mille lignes en production, sans aucun signal d'alerte.
+
 ## Compromis
 
 | Option                                 | Coût                                                         | Bénéfice                                                                    | Quand choisir                                                                   |

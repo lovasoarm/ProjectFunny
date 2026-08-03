@@ -157,6 +157,13 @@ pas être découpé proprement : il doit d'abord être refactoré en interne, si
 le rend plus cher à corriger, pas moins.
 ```
 
+Analogie : Analogie : choisir entre monolithe modulaire et services, c'est décider si l'atelier de
+menuiserie fabrique un meuble d'un seul bloc ou en modules livrés séparément, et décider si
+une cordée avance groupée ou se scinde en équipes autonomes en course en montagne.
+Où l'analogie casse : un menuisier ou une cordée peuvent changer d'avis en cours de route sans
+coût organisationnel durable. Scinder un système en services crée des frontières réseau, des
+équipes et des contrats qui coûtent cher à refusionner bien après la décision initiale.
+
 ## Compromis
 
 | Option                                        | Coût                                                                                 | Bénéfice                                                                          | Quand choisir                                                                                            |

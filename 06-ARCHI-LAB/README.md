@@ -1,5 +1,16 @@
 # Niveau 06 : Archi-Lab
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../05-DATA-SPELLS/README.md) | [Niveau suivant](../07-API-DOJO/README.md)
+
+**Ce niveau reutilise :** [05-DATA-SPELLS](../05-DATA-SPELLS/03-relations-and-normalization.md) : normalisation et source de verite d'une donnee, reutilisees pour poser les frontieres entre couches.
+
+**Auto-test d'entree :**
+1. Quelle est la difference entre normaliser un schema et le denormaliser sciemment ?
+2. Pourquoi une migration doit-elle etre reversible, meme sous pression de delai ?
+3. Qu'est-ce qui rend une requete lente a l'echelle alors qu'elle est rapide avec trois lignes de test ?
+
+**Temps de lecture :** environ 175 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Tu sais découper un projet en tickets, écrire du code qui marche, livrer un MVP. Ce niveau
@@ -30,17 +41,14 @@ tout, sinon ces leçons resteront abstraites.
 
 ## Structure du niveau
 
-```text
-06-ARCHI-LAB/
-├── 01-why-this-level.md         → ce qui casse sans architecture pensée
-├── 02-boundaries-and-coupling.md → couplage, cohésion, modules, dépendances dirigées
-├── 03-layers-and-flow.md         → UI / cas d'usage / domaine / infra, inversion de dépendance
-├── 04-state-and-truth.md         → source de vérité, cache, duplication, cohérence éventuelle
-├── 05-choosing-architecture.md   → monolithe modulaire vs services : critères, coûts réels
-├── challenge.md                  → exercice appliqué et livrable noté
-├── boss-fight.md                 → situation adverse réaliste + grille d'évaluation
-└── grimoire.md                   → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse sans architecture pensée
+- [02-boundaries-and-coupling.md](02-boundaries-and-coupling.md) : couplage, cohésion, modules, dépendances dirigées
+- [03-layers-and-flow.md](03-layers-and-flow.md) : UI / cas d'usage / domaine / infra, inversion de dépendance
+- [04-state-and-truth.md](04-state-and-truth.md) : source de vérité, cache, duplication, cohérence éventuelle
+- [05-choosing-architecture.md](05-choosing-architecture.md) : monolithe modulaire vs services : critères, coûts réels
+- [challenge.md](challenge.md) : exercice appliqué et livrable noté
+- [boss-fight.md](boss-fight.md) : situation adverse réaliste + grille d'évaluation
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

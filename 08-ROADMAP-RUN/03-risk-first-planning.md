@@ -85,6 +85,13 @@ de chutes de façon fiable"              trouve vraiment : dans les deux
                                            six semaines dessus
 ```
 
+Analogie : Analogie : planifier par les risques, c'est le tri des urgences hospitalières qui traite
+d'abord ce qui peut tuer avant ce qui fait mal, et un capitaine en navigation maritime qui
+étudie d'abord les zones de tempête avant de tracer sa route la plus courte.
+Où l'analogie casse : un soignant ou un capitaine observent souvent directement la gravité ou
+la météo. Un risque projet reste largement invisible tant qu'on n'a pas construit la partie
+qui le révèle, on planifie contre une incertitude qu'aucun instrument ne mesure d'avance.
+
 ## Compromis
 
 | Option                                                   | Coût                                                       | Bénéfice                                                        | Quand choisir                                                                |

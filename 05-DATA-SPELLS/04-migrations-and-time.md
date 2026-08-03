@@ -214,6 +214,12 @@ Le choix par défaut sain : trigger pour la garantie de complétude, avec l'acte
 une variable de session (`SET LOCAL app.current_user_id = '...'`) posée par le code applicatif
 au début de chaque transaction : combinant la garantie du trigger et la connaissance de l'acteur.
 
+Analogie : Analogie : faire évoluer un schéma vivant, c'est changer de voile en pleine mer sans arrêter
+le bateau, et opérer un patient aux urgences sans jamais interrompre sa respiration.
+Où l'analogie casse : en mer on peut réduire la voilure une minute, et un anesthésiste peut
+mettre en pause certains gestes. Une migration tourne sur une base que des milliers de
+requêtes lisent et écrivent en continu, sans aucune fenêtre de silence possible.
+
 ## Compromis
 
 | Option                                    | Coût                                                               | Bénéfice                                                          | Quand choisir                                                                               |

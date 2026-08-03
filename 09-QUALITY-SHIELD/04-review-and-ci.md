@@ -124,6 +124,14 @@ systématiquement :
 - Vérification que les secrets (clés API) ne sont jamais commités en clair dans le code.
 ```
 
+Analogie : Analogie : la revue de code et la CI, c'est un second menuisier qui vérifie l'assemblage
+avant qu'il ne parte en livraison, et la vérification du matériel par un coéquipier avant de
+s'encorder en course en montagne.
+Où l'analogie casse : le second menuisier ou le coéquipier vérifient un objet physique fini
+sous leurs yeux. Un relecteur de code ou une CI ne voient qu'un diff texte et des tests
+automatisés, ils peuvent laisser passer un comportement que rien ne rend visible avant
+l'exécution en production.
+
 ## Compromis
 
 | Option                                              | Coût                                            | Bénéfice                                                    | Quand choisir                                                                 |

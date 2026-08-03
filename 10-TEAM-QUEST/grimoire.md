@@ -1,5 +1,25 @@
 # Grimoire : Niveau 10 : Team Quest
 
+| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- | --- |
+| Working agreement | Ensemble de regles explicites et verifiables qu'une equipe adopte pour regler a l'avance les questions qui, sinon, se posent pour la premiere fois sous pression. | Chaque conflit redecouvre une regle qui n'existait que dans une seule tete, au pire moment. | Ton working agreement est-il ecrit, date, et relu recemment, ou existe-t-il seulement dans les tetes ? |
+| Definition of Done | Liste verifiable de conditions qui definissent "fini" pour une tache, independante de l'impression de la personne qui l'a realisee. | Deux personnes appellent "fini" deux choses differentes, et le desaccord n'explose qu'a la livraison. | Ta definition de "fini" est-elle une liste verifiable, ou une impression personnelle ? |
+| Trunk-based development | Flux Git ou tout le monde travaille a partir d'une branche unique, toujours deployable, avec des branches de travail tres courtes. | Des branches longues divergent et le merge final devient un conflit majeur. | Ton flux Git correspond-il a ton rythme de release reel, ou a une habitude recopiee ? |
+| GitFlow | Flux Git avec branches separees pour le developpement en cours, les releases en preparation, et les correctifs urgents. | Une release freinee par une branche de developpement non isolee bloque un correctif urgent. | Pourquoi GitFlow plutot que trunk-based pour ton equipe et ton rythme de release ? |
+| Feature flag | Condition dans le code qui active ou desactive une fonctionnalite sans nouveau deploiement, decouplant "code en production" de "fonctionnalite visible". | Une fonctionnalite non finie doit attendre un deploiement complet pour etre desactivee en urgence. | Comment desactiverais-tu une fonctionnalite en production sans redeployer ? |
+| Escalade | Action de remonter un probleme a quelqu'un qui a le pouvoir de le resoudre quand on ne l'a pas soi-meme, avec des faits et une proposition, pas seulement un signalement de detresse. | Un blocage reste local trop longtemps, ou remonte sans faits ni proposition et ne se resout pas plus vite. | Quand escalades-tu exactement, et avec quoi dans les mains a ce moment-la ? |
+| Qui decide quoi | Table qui fixe, pour chaque type de decision (implementation locale, architecture partagee, priorite produit, decision irreversible), qui tranche en cas de desaccord. | Un desaccord technique tourne en rond parce que personne ne sait qui a le dernier mot. | Qui decide, dans ton equipe, en cas de desaccord sur une decision irreversible ? |
+| Signaux qu'un working agreement est mort | Plus personne ne le cite, il decrit une equipe ou un outillage qui n'existe plus, ou une regle y figure alors que tout le monde la contourne. | L'equipe suit des regles fantomes qui ne correspondent plus a la realite, sans le dire. | Quel signal montrerait que ton working agreement actuel est deja mort ? |
+
+## Comportements evalues en boss-fight
+
+| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+| --- | --- | --- |
+| Identification du vrai désaccord (justification par un mécanisme) | Tu identifies l'hypothèse vérifiable (fiabilité du capteur) qui devrait trancher | Tu discutes des deux solutions comme des préférences esthétiques |
+| Gestion de la pression de la deadline (compromis nommé et assumé) | Tu proposes une vérification rapide ou une décision par défaut prudente si le temps manque | Tu forces une décision arbitraire juste pour "avancer" avant la release |
+| Gestion humaine | Tu reconnais le coût du travail de chacun sans que ça t'empêche de choisir la meilleure décision technique disponible | Tu ignores la frustration de Malik et Inès, ou tu la calmes sans rien résoudre sur le fond |
+| Réflexe systémique | Tu proposes un changement concret du working agreement pour éviter le prochain doublon | Tu règles seulement le conflit du jour |
+
 ## La règle en une phrase
 
 Une règle qui n'est pas écrite n'existe que dans une seule tête à la fois, et elle ne se
@@ -20,31 +40,31 @@ révèle qu'au moment du conflit.
 ## Matrice de choix de flux Git
 
 ```text
-                     release fréquente        release espacée / réglementée
-équipe petite        trunk-based +            GitFlow allégé (sans toutes
-(2-4 personnes)      feature flags            les branches intermédiaires)
+                     release frequente        release espacee / reglementee
+equipe petite        trunk-based +            GitFlow allege (sans toutes
+(2-4 personnes)      feature flags            les branches intermediaires)
 
-équipe plus grande   trunk-based +             GitFlow complet, avec branches
-(5+ personnes)       feature flags,            de release et hotfix dédiées
+equipe plus grande   trunk-based +             GitFlow complet, avec branches
+(5+ personnes)       feature flags,            de release et hotfix dediees
                       discipline de
-                      découpage stricte
+                      decoupage stricte
 ```
 
 ## Arbre : dois-je escalader maintenant ?
 
 ```text
-Le problème peut-il être résolu par les personnes
-directement impliquées, avec l'info disponible ?
-        │
-   ┌────┴────┐
+Le probleme peut-il etre resolu par les personnes
+directement impliquees, avec l'info disponible ?
+        |
+   +----+----+
   oui        non
-   │          │
-Résoudre    Le coût d'attendre dépasse-t-il le coût
-localement  de déranger quelqu'un au-dessus ?
-                    │
-              ┌─────┴─────┐
+   |          |
+Resoudre    Le cout d'attendre depasse-t-il le cout
+localement  de deranger quelqu'un au-dessus ?
+                    |
+              +-----+-----+
              oui          non
-              │            │
+              |            |
          Escalader     Documenter, fixer une
          avec faits +  date limite avant
          proposition   escalade automatique
@@ -69,23 +89,6 @@ localement  de déranger quelqu'un au-dessus ?
 - Plus personne ne le cite, même en cas de désaccord.
 - Il décrit une équipe ou un outillage qui n'existe plus.
 - Une règle y figure alors que tout le monde la contourne systématiquement sans le dire.
-
-## Vocabulaire
-
-- **Working agreement** : ensemble de règles explicites et vérifiables qu'une équipe adopte
-  pour régler à l'avance les questions qui, sinon, se posent pour la première fois sous
-  pression.
-- **Definition of Done** : liste vérifiable de conditions qui définissent "fini" pour une
-  tâche, indépendante de l'impression de la personne qui l'a réalisée.
-- **Trunk-based development** : flux Git où tout le monde travaille à partir d'une branche
-  unique, toujours déployable, avec des branches de travail très courtes.
-- **GitFlow** : flux Git avec branches séparées pour le développement en cours, les
-  releases en préparation, et les correctifs urgents.
-- **Feature flag** : condition dans le code qui active ou désactive une fonctionnalité sans
-  nouveau déploiement, découplant "code en production" de "fonctionnalité visible".
-- **Escalade** : action de remonter un problème à quelqu'un qui a le pouvoir de le résoudre
-  quand on ne l'a pas soi-même, avec des faits et une proposition, pas seulement un
-  signalement de détresse.
 
 ## Phrase à ressortir en cas de désaccord qui monte
 

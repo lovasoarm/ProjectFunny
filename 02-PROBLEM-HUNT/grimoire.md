@@ -1,26 +1,26 @@
 # Grimoire : Problem Hunt
 
-## Vocabulaire
+| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- | --- |
+| Demande | Ce que la personne dit vouloir ("il nous faudrait un tableau de bord") | Tu construis exactement ce qui a été dit, sans jamais interroger le problème sous-jacent | Que ferait cette personne aujourd'hui si tu ne construisais rien ? |
+| Besoin réel | Le problème sous-jacent que la demande tente de résoudre, souvent différent de la demande formulée | Tu livres une solution qui ne change aucun comportement observable | Quelle friction concrète, vécue aujourd'hui, ce besoin décrit-il ? |
+| Contrainte | Ce qui limite la solution (budget, réglementation, matériel existant, formation des utilisateurs) | Tu conçois une solution irréalisable ou inutilisable dans le contexte réel | Quelle contrainte du projet rend certaines solutions impossibles d'emblée ? |
+| Signal faible | Indice observable qu'un besoin existe déjà et se débrouille sans solution officielle (tableur fantôme, contournement manuel, ticket récurrent, groupe de messagerie parallèle) | Tu cadres sur une intuition invérifiable au lieu d'une preuve terrain | Quel signal faible concret, pas hypothétique, appuie ce besoin ? |
+| Job to be done | Ce que l'utilisateur essaie d'accomplir, indépendamment de qui il est. Format : "Quand [situation], je veux [action], pour pouvoir [bénéfice réel]" | Tu conçois pour un profil de personne plutôt que pour une situation réelle qu'elle traverse | Peux-tu formuler ce besoin au format job to be done, sans nommer de persona ? |
+| Persona utile vs décoratif | Utile : influence directement une décision de conception vérifiable. Décoratif : illustre un document sans jamais changer une décision | Le document se remplit de fiches jamais reconsultées, aucune décision n'en dépend | Quelle décision de conception cette fiche persona a-t-elle réellement changée ? |
+| Non-objectif | Décision explicite de ne jamais faire quelque chose, avec sa raison (risque, coût, complexité), écrite avant que la pression n'arrive | Le périmètre s'étend sous pression, sans refus assumé, faute d'avoir été posé à l'avance | Si tu supprimais ce non-objectif, quelle décision de conception changerait ? |
+| Métrique de vanité vs métrique de succès produit | Vanité : peut monter sans que le problème réel soit résolu. Succès produit : reliée directement au symptôme initial, ne peut pas monter artificiellement | Tu pilotes le projet sur un chiffre qui rassure sans jamais prouver que le problème est résolu | Cette métrique peut-elle monter si le vrai problème n'est pas résolu ? |
+| Seuil d'échec | Chiffre fixé avant le lancement, en dessous duquel l'équipe s'engage à reconnaître un échec et à décider (pivoter, arrêter, réitérer) | Le jugement du succès se fait après coup, ajusté pour coller au résultat obtenu | Dans six semaines, quel chiffre te ferait dire honnêtement que ça n'a pas marché ? |
 
-- **Demande** : ce que la personne dit vouloir ("il nous faudrait un tableau de bord").
-- **Besoin réel** : le problème sous-jacent que la demande tente de résoudre, souvent
-  différent de la demande formulée.
-- **Contrainte** : ce qui limite la solution (budget, réglementation, matériel existant,
-  formation des utilisateurs).
-- **Signal faible** : indice observable qu'un besoin existe déjà et se débrouille sans
-  solution officielle (tableur fantôme, contournement manuel, ticket récurrent, groupe de
-  messagerie parallèle).
-- **Job to be done** : ce que l'utilisateur essaie d'accomplir, indépendamment de qui il est.
-  Format : "Quand [situation], je veux [action], pour pouvoir [bénéfice réel]."
-- **Persona utile** : influence directement une décision de conception vérifiable.
-- **Persona décoratif** : illustre un document sans jamais changer une décision.
-- **Non-objectif** : décision explicite de ne jamais faire quelque chose, avec sa raison
-  (risque, coût, complexité), écrite avant que la pression n'arrive.
-- **Métrique de vanité** : peut monter sans que le problème réel soit résolu.
-- **Métrique de succès produit** : reliée directement au symptôme initial, ne peut pas
-  monter artificiellement sans progrès réel.
-- **Seuil d'échec** : chiffre fixé avant le lancement, en dessous duquel l'équipe s'engage à
-  reconnaître un échec et à décider (pivoter, arrêter, réitérer).
+## Comportements évalués en boss-fight
+
+| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+| --- | --- | --- |
+| Respect du besoin de l'interlocuteur | La réponse reconnaît l'enjeu business réel du directeur | La réponse le traite comme une distraction sans valeur |
+| Usage du cadrage comme outil, pas comme dogme (compromis nommé et assumé) | Le cadrage sert à éclairer la décision, pas à la bloquer par principe | La réponse se limite à "on a déjà décidé, on ne change pas" |
+| Ancrage dans le réel (justification par un mécanisme) | Au moins un signal faible ou une donnée concrète est cité | La réponse reste abstraite, sans preuve terrain |
+| Proposition constructive | Une troisième voie est proposée, avec un chemin concret | La réponse est un simple oui ou un simple non |
+| Tenue de la relation (honnêteté sans mépris ni capitulation) | Le ton reste collaboratif, pas défensif ni condescendant | Le ton laisse penser que le directeur a tort d'avoir une opinion |
 
 ## Checklist avant de coder quoi que ce soit
 

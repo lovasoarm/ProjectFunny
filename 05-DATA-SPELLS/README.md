@@ -1,5 +1,16 @@
 # Niveau 05 : Data Spells
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../04-USER-WIZARD/README.md) | [Niveau suivant](../06-ARCHI-LAB/README.md)
+
+**Ce niveau reutilise :** [04-USER-WIZARD](../04-USER-WIZARD/03-states-and-empty-cases.md) : les etats obligatoires d'un affichage (vide, chargement, erreur), qui deviennent des contraintes sur le modele de donnees.
+
+**Auto-test d'entree :**
+1. Cite les cinq etats obligatoires de tout affichage de donnees.
+2. Pourquoi un double submit sur un formulaire peut-il creer deux fois la meme ressource si l'idempotence n'est pas geree ?
+3. Qu'est-ce qu'une UI optimiste, et quel est son risque principal ?
+
+**Temps de lecture :** environ 195 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce niveau en une phrase
 
 Modéliser des données qui restent vraies dans dix ans, sous concurrence, avec de l'historique, et
@@ -39,14 +50,14 @@ domaines avec de vrais invariants temporels et une vraie concurrence d'accès.
 
 ## Plan du niveau
 
-1. `01-why-this-level.md` : ce qui casse quand le modèle de données est pensé après le code.
-2. `02-model-the-domain.md` : entités, invariants, clés naturelles vs techniques.
-3. `03-relations-and-normalization.md` : normaliser puis dénormaliser sciemment.
-4. `04-migrations-and-time.md` : migrations réversibles, historique, soft delete, audit.
-5. `05-queries-that-scale.md` : index, N+1, pagination par curseur, transactions et isolation.
-6. `challenge.md` : exercice appliqué et critères de réussite mesurables.
-7. `boss-fight.md` : situation adverse réaliste, avec grille d'évaluation.
-8. `grimoire.md` : mémo dense à garder sous la main.
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse quand le modèle de données est pensé après le code.
+- [02-model-the-domain.md](02-model-the-domain.md) : entités, invariants, clés naturelles vs techniques.
+- [03-relations-and-normalization.md](03-relations-and-normalization.md) : normaliser puis dénormaliser sciemment.
+- [04-migrations-and-time.md](04-migrations-and-time.md) : migrations réversibles, historique, soft delete, audit.
+- [05-queries-that-scale.md](05-queries-that-scale.md) : index, N+1, pagination par curseur, transactions et isolation.
+- [challenge.md](challenge.md) : exercice appliqué et critères de réussite mesurables.
+- [boss-fight.md](boss-fight.md) : situation adverse réaliste, avec grille d'évaluation.
+- [grimoire.md](grimoire.md) : mémo dense à garder sous la main.
 
 ## Durée estimée
 

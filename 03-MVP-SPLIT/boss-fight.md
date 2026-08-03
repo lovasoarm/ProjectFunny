@@ -44,3 +44,26 @@ Rédige, en markdown :
 | Gestion de la pression sans céder ni ignorer | La décision tient compte des deux contraintes réelles (qualité et calendrier) sans sacrifier silencieusement l'une des deux | La décision ignore une des deux pressions sans l'assumer explicitement                                 |
 | Honnêteté sur l'état d'avancement            | Le directeur reçoit une information vraie, même si elle implique une limite assumée pour vendredi                           | Le message enjolive l'état réel pour éviter un désagrément immédiat                                    |
 | Cap sur l'intention de l'outil               | La version livrée vendredi, même réduite, reste honnête pour l'utilisateur qui s'en sert                                    | La version livrée donne une fausse impression de fiabilité qu'elle n'a pas                             |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Identification de l'invariant | 25 |
+| Cohérence entre les deux messages | 20 |
+| Gestion de la pression sans céder ni ignorer | 20 |
+| Honnêteté sur l'état d'avancement | 20 |
+| Cap sur l'intention de l'outil | 15 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Identification de l'invariant" est noté en dessous de 10/25, le total est plafonné à 50/100 : sans l'invariant correctement identifié, la découpe proposée peut sembler cohérente en surface tout en cassant la valeur livrée.

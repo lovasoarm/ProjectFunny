@@ -42,3 +42,26 @@ réunion, puis un paragraphe d'analyse à part expliquant ta stratégie. Ta rép
 | Ancrage dans le réel                          | Au moins un signal faible ou une donnée concrète est cité             | La réponse reste abstraite, sans preuve terrain                  |
 | Proposition constructive                      | Une troisième voie est proposée, avec un chemin concret               | La réponse est un simple oui ou un simple non                    |
 | Tenue de la relation                          | Le ton reste collaboratif, pas défensif ni condescendant              | Le ton laisse penser que le directeur a tort d'avoir une opinion |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Respect du besoin de l'interlocuteur | 15 |
+| Usage du cadrage comme outil, pas comme dogme | 25 |
+| Ancrage dans le réel | 20 |
+| Proposition constructive | 20 |
+| Tenue de la relation | 20 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Usage du cadrage comme outil, pas comme dogme" est noté en dessous de 10/25, le total est plafonné à 55/100 : brandir le document de cadrage comme un mur au lieu d'un outil de décision est l'échec exact que ce niveau existe pour éviter.

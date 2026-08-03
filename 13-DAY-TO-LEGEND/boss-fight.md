@@ -47,3 +47,25 @@ Produis un plan d'un mois (une page) qui :
 | Sélection des trois décisions       | Le critère de sélection est explicite et défendable, pas "les plus impressionnantes à raconter"                                                       |
 | Proposition de grille au manager    | La grille profite objectivement à tous les candidats, pas seulement à toi : sinon elle sera perçue comme une manipulation et se retournera contre toi |
 | Honnêteté sur les limites           | Le plan ne prétend pas rattraper en un mois ce qui demande douze semaines ; il assume la limite et mise sur la qualité plutôt que le volume           |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Reconstruction honnête du portfolio | 25 |
+| Sélection des trois décisions | 25 |
+| Proposition de grille au manager | 20 |
+| Honnêteté sur les limites | 30 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Honnêteté sur les limites" est noté en dessous de 12/30, le total est plafonné à 50/100 : un portfolio qui enjolive ou tait ses limites vaut moins qu'un CV vide, parce qu'il ment à un futur employeur ou à toi-même sur ce que tu sais vraiment faire.

@@ -143,6 +143,13 @@ Le critère : dénormaliser une donnée qui doit rester figée pour des raisons 
 synchronisée avec sa source pour économiser une jointure est une dette technique qui finira par
 mentir.
 
+Analogie : Analogie : normaliser puis dénormaliser sciemment, c'est organiser le garde-manger d'une
+cuisine de restaurant en service, et choisir sa route en navigation maritime entre la ligne
+directe et le détour qui évite les hauts-fonds.
+Où l'analogie casse : un garde-manger mal rangé se corrige en une nuit, et une route de
+navigation se recalcule à la prochaine sortie. Un schéma dénormalisé mal choisi doit être
+corrigé sur des données déjà écrites, avec des lecteurs qui comptent dessus en direct.
+
 ## Compromis
 
 | Option                                         | Coût                                                                       | Bénéfice                                                                  | Quand choisir                                                    |

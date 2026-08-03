@@ -1,51 +1,88 @@
-# Boss Fight : La réunion de cadrage dans deux heures
+# Boss Fight : Le code moche avait une raison
 
 ## La situation
 
-Tu viens d'être affecté à l'équipe qui maintient le logiciel de gestion d'un cabinet
-vétérinaire multi-sites (plannings, dossiers animaux, facturation, stock de médicaments).
-Le dépôt fait 90 000 lignes, six ans d'historique, deux développeurs sont partis sans
-documentation laissée. Ton manager t'écrit ce message à 9h :
+Tu rejoins l'équipe qui maintient le logiciel de refacturation d'énergie d'un syndic
+d'immeubles (répartition des charges de chauffage collectif entre copropriétaires selon des
+relevés de compteurs). Le dépôt fait 120 000 lignes, huit ans d'historique, quatre
+générations de développeurs. En parcourant `chargeSplitter.ts`, tu tombes sur ceci :
 
-> "Le client veut savoir si on peut ajouter la possibilité de bloquer automatiquement un
-> créneau si le vétérinaire n'a pas encore validé le dossier médical de l'animal précédent.
-> Réunion de cadrage avec le client à 11h. J'ai besoin de ton avis technique avant, même
-> partiel. Tu es le seul dispo, les deux autres sont en congés."
+```ts
+function splitHeatingCost(building: Building, readings: Reading[]): Allocation[] {
+  // NE PAS SIMPLIFIER. Voir ticket SUPPORT-4471.
+  if (building.constructionYear < 1975) {
+    return splitByLegacyCoefficient(building, readings);
+  }
+  if (building.hasIndividualMeters === false) {
+    return splitBySurfaceOnly(building, readings);
+  }
+  return splitByConsumption(building, readings);
+}
+```
 
-Tu n'as jamais ouvert ce dépôt avant ce matin. Tu as deux heures, pas trois. Le client
-attend une réponse crédible, pas un "je ne sais pas encore".
-
-## Les contraintes qui pèsent sur toi
-
-- Budget de temps divisé par 1,5 par rapport à ta méthode habituelle.
-- Aucun ancien de l'équipe disponible pour répondre à tes questions.
-- Le domaine (dossiers médicaux vétérinaires) a des implications légales que tu ne connais
-  pas encore (traçabilité, responsabilité en cas d'erreur de dossier).
-- Tu dois produire quelque chose d'utilisable en réunion, pas juste pour toi.
+Trois branches, un commentaire agressif sans explication, un numéro de ticket que tu n'as
+pas accès à l'outil de support pour consulter (l'équipe a changé d'outil de ticketing deux
+fois depuis). Ton premier réflexe est de fusionner les deux premières branches, qui te
+semblent redondantes. Ne le fais pas avant d'avoir lu la suite de cette page.
 
 ## Ta mission
 
-Rédige, comme si tu la vivais réellement, la façon dont tu répartirais ces deux heures et le
-message que tu enverrais à ton manager avant la réunion de 11h. Sois concret : quelles
-commandes tu lancerais, quels fichiers tu chercherais en premier, ce que tu accepterais de
-dire "je ne sais pas encore" et ce que tu refuserais d'affirmer sans preuve.
+Avant de juger, avant de proposer quoi que ce soit, tu dois mener une enquête d'archéologie
+de code et écrire un rapport qui répond, dans l'ordre, aux quatre questions suivantes,
+chacune appuyée sur une preuve concrète que tu décrirais aller chercher (commit, commentaire,
+structure de données, norme du secteur) :
 
-Ton message final à ton manager doit contenir :
+1. **Quand chacune des trois branches a-t-elle été introduite ?** Décris comment tu le
+   déterminerais (quelle commande, sur quel fichier) et ce que la chronologie relative des
+   trois branches (laquelle est arrivée en premier) te dit déjà avant même de lire le contenu
+   des commits.
+2. **Quelle contrainte disparue ou toujours active explique le seuil "1975" ?** Ce nombre
+   n'est presque certainement pas arbitraire dans le domaine de l'énergie et du bâtiment en
+   France. Formule une hypothèse vérifiable et le moyen de la confirmer sans deviner au
+   hasard.
+3. **Que signifie concrètement `hasIndividualMeters === false`, et quelle obligation légale
+   ou contractuelle peut forcer un mode de répartition différent quand il n'y a pas de
+   compteur individuel ?** Encore une fois : formule une hypothèse et un moyen de la vérifier,
+   pas une affirmation en l'air.
+4. **Le ticket SUPPORT-4471 est-il perdu pour de bon, et si oui, qu'est-ce que ça change à
+   ta décision ?** Décris ce que tu ferais si aucune trace de ce ticket n'existe plus nulle
+   part : comment tu traites une contrainte "inconnaissable" au sens de
+   [03-reverse-engineer-decisions.md](03-reverse-engineer-decisions.md).
 
-- Ce que tu as pu vérifier avec certitude en deux heures.
-- Ce qui reste une hypothèse non vérifiée, explicitement marquée comme telle.
-- Un avis de faisabilité (pas un chiffrage précis) avec les risques identifiés.
-- Ce que tu recommandes de dire au client en réunion sur les points encore incertains.
+Ton rapport final doit se terminer par une recommandation explicite : tu gardes le code tel
+quel, tu le gardes mais tu le documentes, ou tu proposes un changement précis avec le test de
+caractérisation qui le protège. Chaque option est valable si elle est justifiée par ton
+enquête, aucune n'est valable si elle repose sur un jugement esthétique du code.
+
+## Ce que tu dois montrer, concrètement
+
+- Une méthode d'archéologie explicite : quelles commandes, dans quel ordre, pour reconstruire
+  la date et le contexte de chaque branche du code.
+- Une hypothèse de contrainte pour le seuil "1975" et pour l'absence de compteurs
+  individuels, chacune formulée comme une affirmation vérifiable, pas comme une certitude.
+- Un traitement explicite du cas où la preuve n'existe plus (ticket disparu) : tu ne dois
+  jamais conclure "donc ce n'est plus nécessaire" à partir d'une absence de preuve.
+- Une recommandation finale cohérente avec ce que ton enquête a réellement trouvé, pas avec
+  ce que tu aurais préféré trouver.
 
 ## Grille d'évaluation
 
-| Critère                                     | Points | Ce qui est vérifié                                                                                                                                                                                 |
-| ------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Répartition du temps réaliste et justifiée  | 20     | Tu expliques pourquoi tu donnes plus de temps à telle phase qu'à telle autre vu le contexte (deadline courte, domaine légal sensible)                                                              |
-| Distinction claire entre vérifié et supposé | 25     | Chaque affirmation de ton message est étiquetée : preuve trouvée, ou hypothèse à confirmer                                                                                                         |
-| Identification du risque légal/métier       | 20     | Tu identifies que "dossier médical non validé" touche potentiellement une exigence de traçabilité, sans l'avoir confirmée, et tu le signales comme point à vérifier avant tout engagement de délai |
-| Honnêteté de l'avis de faisabilité          | 20     | Tu ne donnes pas un chiffre de délai précis sans base solide ; tu proposes une fourchette ou un délai d'investigation supplémentaire clairement justifié                                           |
-| Communication utilisable en réunion         | 15     | Le message est écrit pour un manager pressé : court, structuré, actionnable, sans jargon d'enquête inutile                                                                                         |
+| Critère                                                  | Points | Ce qui est vérifié                                                                                                                                     |
+| ---------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Méthode d'archéologie avant jugement                     | 20     | Tu décris une séquence d'enquête concrète (commandes, sources) avant toute conclusion sur la qualité du code, dans l'ordre chronologie puis contexte     |
+| Hypothèses de contrainte formulées comme vérifiables      | 25     | Chaque hypothèse (seuil 1975, absence de compteurs) est énoncée avec le moyen exact de la confirmer ou de l'infirmer, pas comme une affirmation définitive |
+| Traitement correct de l'absence de preuve                 | 25     | Face au ticket disparu, tu traites la contrainte comme active par défaut et proposes un test de caractérisation, sans jamais conclure d'une absence de preuve à une absence de besoin |
+| Recommandation finale cohérente avec l'enquête            | 20     | Ta décision finale (garder, documenter, ou changer avec filet) découle logiquement de ce que ton enquête a réellement établi, pas d'un jugement esthétique initial |
+| Absence de jugement de qualité prématuré                  | 10     | Aucune phrase du type "c'est mal fait" ou "il faut réécrire" n'apparaît avant la section de recommandation finale                                          |
 
-Score minimal pour valider le niveau : 75/100, avec au moins 20/25 sur le critère de
-distinction vérifié/supposé : c'est le cœur de la compétence testée par ce niveau.
+Score minimal pour valider le niveau : 78/100, avec au moins 20/25 sur le critère de
+traitement de l'absence de preuve : c'est le cœur du boss-fight, la tentation de conclure vite
+face à une contrainte qu'on ne peut plus vérifier.
+
+## Ce qui fait perdre automatiquement, quel que soit le score
+
+- Proposer de fusionner ou simplifier le code avant la section de recommandation finale.
+- Affirmer que le seuil "1975" ou l'absence de ticket "prouve" que la contrainte a disparu :
+  une absence de preuve n'est jamais une preuve d'absence.
+- Ne mentionner aucune méthode concrète pour dater les branches (uniquement des suppositions
+  sur le contenu, sans jamais évoquer l'historique git ou une autre source vérifiable).

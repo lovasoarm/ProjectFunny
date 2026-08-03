@@ -1,5 +1,16 @@
 # Niveau 00 : Prologue
 
+[Sommaire](../CURRICULUM.md) | Niveau precedent : aucun | [Niveau suivant](../01-MINDSET/README.md)
+
+**Ce niveau reutilise :** Rien : c'est le point d'entree du parcours, il n'y a pas de niveau amont.
+
+**Auto-test d'entree :**
+1. Es-tu pret a lire ce curriculum dans l'ordre sans sauter d'etape meme si un chapitre te semble deja connu ?
+2. Sais-tu deja pourquoi "j'ai code cette feature" n'est pas en soi une preuve de competence ?
+3. As-tu un projet fil rouge reel (ou es-tu pret a en choisir un) pour appliquer chaque niveau, plutot que de rester en lecture passive ?
+
+**Temps de lecture :** environ 100 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Ce niveau n'apprend aucune technologie. Il installe les règles du jeu avant que tu touches
@@ -21,14 +32,11 @@ Prérequis : aucun. C'est l'entrée du jeu.
 
 ## Structure du niveau
 
-```text
-00-PROLOGUE/
-├── 01-why-this-quest.md          → pourquoi la plupart des devs stagnent
-├── 02-how-to-use-this-curriculum.md → règle du livrable, rythme, auto-évaluation
-├── 03-the-map.md                  → les 16 niveaux, ce qu'ils débloquent
-├── 04-rules-of-the-game.md        → les 7 règles du joueur
-└── grimoire.md                    → mémo dense
-```
+- [01-why-this-quest.md](01-why-this-quest.md) : pourquoi la plupart des devs stagnent
+- [02-how-to-use-this-curriculum.md](02-how-to-use-this-curriculum.md) : règle du livrable, rythme, auto-évaluation
+- [03-the-map.md](03-the-map.md) : les 16 niveaux, ce qu'ils débloquent
+- [04-rules-of-the-game.md](04-rules-of-the-game.md) : les 7 règles du joueur
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

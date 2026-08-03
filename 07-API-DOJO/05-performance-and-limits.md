@@ -153,6 +153,14 @@ Techniques qui réduisent la latence PERÇUE sans réduire la latence RÉELLE :
     (statut "en cours de traitement" visible, pas une roue qui tourne sans information)
 ```
 
+Analogie : Analogie : pagination, rate limiting et cache HTTP, c'est une cuisine de restaurant en
+service qui refuse d'envoyer toute la carte d'un coup et régule les commandes acceptées par
+le pass, et un coureur de montagne qui rationne son effort et ses ravitaillements pour ne pas
+craquer avant l'arrivée.
+Où l'analogie casse : un chef ou un coureur ajustent leur rythme en sentant leur propre
+fatigue. Un serveur ne perçoit sa charge qu'à travers des métriques déclarées à l'avance, et
+un client mal limité peut continuer de taper dessus sans qu'aucune sensation ne l'arrête.
+
 ## Compromis
 
 | Option                        | Coût                                                                                  | Bénéfice                                                                                    | Quand choisir                                                       |

@@ -62,6 +62,13 @@ avance bien"                           réelle en mode avion puis reconnecté,
                                         devant le product owner"
 ```
 
+Analogie : Analogie : découper en phases livrables, c'est un menuisier qui livre d'abord le prototype
+d'un tiroir avant de lancer la série, et un alpiniste qui fixe des camps intermédiaires
+vérifiables avant de viser le sommet.
+Où l'analogie casse : le prototype de tiroir et le camp de base restent vrais tant que
+personne n'y touche. Un jalon logiciel peut être invalidé rétroactivement par une découverte
+faite dans une phase suivante, ce qui n'arrive pas à un objet en bois déjà livré.
+
 ## Exemple : squelette de plan par tranches
 
 ```text

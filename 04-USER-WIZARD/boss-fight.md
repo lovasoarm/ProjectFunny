@@ -43,3 +43,25 @@ Une proposition écrite (une page maximum) qui :
 | Qualité de l'alternative proposée   | Refuse sans alternative, ou accepte l'optimiste pur sans garde-fou | Propose un compromis vague                            | Propose un mécanisme précis (feedback instantané + confirmation réelle) réalisable dans le délai         |
 | Communication vers le non-technique | Utilise du jargon (race condition, idempotence) sans traduire      | Reste compréhensible mais générique                   | Convainc avec un exemple concret et un chiffre                                                           |
 | Honnêteté sur les limites           | Prétend que tout est faisable                                      | Dit que ce n'est pas faisable sans expliquer pourquoi | Explique la contrainte réelle (temps de réponse backend) et propose un plan pour l'améliorer après lundi |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Compréhension du risque métier | 30 |
+| Qualité de l'alternative proposée | 25 |
+| Communication vers le non-technique | 20 |
+| Honnêteté sur les limites | 25 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Compréhension du risque métier" est noté en dessous de 12/30, le total est plafonné à 50/100 : ignorer ou minimiser le risque de double rendez-vous rend le reste de la proposition dangereux à livrer, aussi bien écrit soit-il.

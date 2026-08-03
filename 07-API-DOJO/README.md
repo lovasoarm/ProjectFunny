@@ -1,5 +1,16 @@
 # Niveau 07 : API Dojo
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../06-ARCHI-LAB/README.md) | [Niveau suivant](../08-ROADMAP-RUN/README.md)
+
+**Ce niveau reutilise :** [06-ARCHI-LAB](../06-ARCHI-LAB/03-layers-and-flow.md) : les couches UI / cas d'usage / domaine / infra, reutilisees pour situer la frontiere publique d'un contrat d'API.
+
+**Auto-test d'entree :**
+1. Qu'est-ce qu'un couplage fort, et comment le reperer dans du code que tu n'as jamais vu ?
+2. Quelle couche a le droit de connaitre quelle autre, dans le modele UI / cas d'usage / domaine / infra ?
+3. Pourquoi le choix entre monolithe modulaire et services doit-il etre chiffre plutot que tranche par slogan ?
+
+**Temps de lecture :** environ 185 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Tu sais écrire un endpoint qui répond `200 OK` avec le bon JSON. Ce niveau s'attaque à
@@ -44,17 +55,14 @@ se contredire :
 
 ## Structure du niveau
 
-```text
-07-API-DOJO/
-├── 01-why-this-level.md            → ce qui casse sans discipline d'API
-├── 02-contracts-first.md           → contrat avant code, versionnage, compatibilité
-├── 03-errors-and-idempotence.md    → codes, erreurs exploitables, retries, idempotency keys
-├── 04-auth-and-trust.md            → authn vs authz, tokens, scopes, frontières de confiance
-├── 05-performance-and-limits.md    → pagination, rate limiting, cache HTTP, latence perçue
-├── challenge.md                    → exercice appliqué et livrable noté
-├── boss-fight.md                   → situation adverse réaliste + grille d'évaluation
-└── grimoire.md                     → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse sans discipline d'API
+- [02-contracts-first.md](02-contracts-first.md) : contrat avant code, versionnage, compatibilité
+- [03-errors-and-idempotence.md](03-errors-and-idempotence.md) : codes, erreurs exploitables, retries, idempotency keys
+- [04-auth-and-trust.md](04-auth-and-trust.md) : authn vs authz, tokens, scopes, frontières de confiance
+- [05-performance-and-limits.md](05-performance-and-limits.md) : pagination, rate limiting, cache HTTP, latence perçue
+- [challenge.md](challenge.md) : exercice appliqué et livrable noté
+- [boss-fight.md](boss-fight.md) : situation adverse réaliste + grille d'évaluation
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

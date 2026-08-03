@@ -47,3 +47,25 @@ Une réponse écrite (une page maximum) qui :
 | Coordination de l'équipe         | Laisse les deux développeurs agir chacun de leur côté | Désigne une action, sans rôle clair            | Centralise clairement la décision, empêche les actions parallèles non coordonnées          |
 | Séparation réparation/analyse    | Cherche la cause exacte avant d'agir sur l'impact     | Répare d'abord, sans le formuler explicitement | Explique clairement pourquoi il répare avant de comprendre en détail, et reporte l'analyse |
 | Communication pendant l'incident | Ne communique qu'une fois résolu                      | Communique une fois, en fin d'incident         | Prévoit une communication régulière pendant l'incident, y compris "on ne sait pas encore"  |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Décision sous incertitude | 30 |
+| Coordination de l'équipe | 25 |
+| Séparation réparation/analyse | 25 |
+| Communication pendant l'incident | 20 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Décision sous incertitude" est noté en dessous de 12/30, le total est plafonné à 50/100 : un incident géré par une décision précipitée ou paralysée aggrave la panne, indépendamment de la qualité du postmortem qui suivra.

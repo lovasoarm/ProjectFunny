@@ -1,5 +1,16 @@
 # Niveau 09 : Quality Shield
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../08-ROADMAP-RUN/README.md) | [Niveau suivant](../10-TEAM-QUEST/README.md)
+
+**Ce niveau reutilise :** [07-API-DOJO](../07-API-DOJO/03-errors-and-idempotence.md) : les erreurs exploitables et l'idempotence, reutilisees pour decider quoi tester et quoi observer.
+
+**Auto-test d'entree :**
+1. Qu'est-ce qu'un jalon reel, par opposition a un jalon decoratif ?
+2. Pourquoi faut-il attaquer le risque le plus cher d'un projet en premier plutot qu'en dernier ?
+3. Donne un exemple de signal de derive qu'on peut reperer avant que le retard soit officiel.
+
+**Temps de lecture :** environ 155 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Ton code marche. Il tourne en démo, les tests que tu as écrits passent, tout le monde est
@@ -29,17 +40,14 @@ que la notion de test, d'observabilité et d'incident ait un sens concret.
 
 ## Structure du niveau
 
-```text
-09-QUALITY-SHIELD/
-├── 01-why-this-level.md          → pourquoi "ça marche chez moi" ne suffit jamais
-├── 02-tests-that-pay.md          → pyramide vs trophée, quoi tester selon le coût de panne
-├── 03-observability.md           → logs structurés, métriques, traces, alertes utiles
-├── 04-review-and-ci.md           → revue de code utile, CI, garde-fous automatiques
-├── 05-incidents-and-postmortem.md→ gestion d'incident, postmortem sans blâme
-├── challenge.md                  → construire le bouclier qualité d'un service réel
-├── boss-fight.md                 → un incident en production, un dimanche, sans ton lead
-└── grimoire.md                   → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : pourquoi "ça marche chez moi" ne suffit jamais
+- [02-tests-that-pay.md](02-tests-that-pay.md) : pyramide vs trophée, quoi tester selon le coût de panne
+- [03-observability.md](03-observability.md) : logs structurés, métriques, traces, alertes utiles
+- [04-review-and-ci.md](04-review-and-ci.md) : revue de code utile, CI, garde-fous automatiques
+- [05-incidents-and-postmortem.md](05-incidents-and-postmortem.md) : gestion d'incident, postmortem sans blâme
+- [challenge.md](challenge.md) : construire le bouclier qualité d'un service réel
+- [boss-fight.md](boss-fight.md) : un incident en production, un dimanche, sans ton lead
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 

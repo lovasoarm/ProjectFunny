@@ -117,6 +117,14 @@ Règle de fond : alerter sur des symptômes visibles par l'utilisateur (taux d'e
 perçue, échec de paiement), pas sur des causes internes possibles (CPU, mémoire) sauf si
 elles ont un lien démontré et immédiat avec un impact utilisateur.
 
+Analogie : Analogie : l'observabilité, c'est les retours son et lumière qu'un régisseur surveille en
+régie de spectacle pour savoir ce qui se passe sans monter sur scène, et les instruments de
+navigation qui indiquent cap, vitesse et profondeur sans que le capitaine ait besoin de
+regarder par-dessus bord.
+Où l'analogie casse : les retours de régie et les instruments de navigation captent une
+réalité physique continue. Un système logiciel ne produit que les logs, métriques et traces
+qu'on a explicitement décidé d'émettre, tout le reste demeure invisible même en incident grave.
+
 ## Le coût caché de la sur-instrumentation
 
 Logger chaque ligne de code, tracer chaque appel de fonction interne, alerter sur chaque

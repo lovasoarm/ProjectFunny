@@ -1,5 +1,16 @@
 # Niveau 04 : User Wizard
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../03-MVP-SPLIT/README.md) | [Niveau suivant](../05-DATA-SPELLS/README.md)
+
+**Ce niveau reutilise :** [03-MVP-SPLIT](../03-MVP-SPLIT/02-slicing-value.md) : la tranche verticale, reutilisee ici pour livrer un parcours utilisateur complet plutot qu'un ecran isole.
+
+**Auto-test d'entree :**
+1. Qu'est-ce qu'une tranche verticale, par opposition a une couche horizontale ?
+2. Pourquoi une estimation qui cache son incertitude derriere un chiffre unique est-elle malhonnete ?
+3. Donne un exemple concret ou dire non a un ajout de perimetre protege la livraison.
+
+**Temps de lecture :** environ 165 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce niveau en une phrase
 
 Construire des interfaces qui disent la vérité à l'utilisateur : ce qui se passe, ce qui a marché,
@@ -39,14 +50,14 @@ trois personnes qui attendent).
 
 ## Plan du niveau
 
-1. `01-why-this-level.md` : ce qui casse en prod quand personne n'a pensé aux états et aux flux.
-2. `02-flows-before-screens.md` : dessiner le parcours et ses erreurs avant de dessiner l'écran.
-3. `03-states-and-empty-cases.md` : les cinq états obligatoires de tout affichage.
-4. `04-forms-that-dont-lie.md` : validation double, messages utiles, idempotence.
-5. `05-accessibility-and-speed.md` : a11y utile, perception de latence, UI optimiste et ses pièges.
-6. `challenge.md` : exercice appliqué et critères de réussite mesurables.
-7. `boss-fight.md` : situation adverse réaliste, avec grille d'évaluation.
-8. `grimoire.md` : mémo dense à garder sous la main.
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse en prod quand personne n'a pensé aux états et aux flux.
+- [02-flows-before-screens.md](02-flows-before-screens.md) : dessiner le parcours et ses erreurs avant de dessiner l'écran.
+- [03-states-and-empty-cases.md](03-states-and-empty-cases.md) : les cinq états obligatoires de tout affichage.
+- [04-forms-that-dont-lie.md](04-forms-that-dont-lie.md) : validation double, messages utiles, idempotence.
+- [05-accessibility-and-speed.md](05-accessibility-and-speed.md) : a11y utile, perception de latence, UI optimiste et ses pièges.
+- [challenge.md](challenge.md) : exercice appliqué et critères de réussite mesurables.
+- [boss-fight.md](boss-fight.md) : situation adverse réaliste, avec grille d'évaluation.
+- [grimoire.md](grimoire.md) : mémo dense à garder sous la main.
 
 ## Durée estimée
 

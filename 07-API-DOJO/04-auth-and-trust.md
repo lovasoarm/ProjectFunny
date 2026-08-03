@@ -118,6 +118,14 @@ Toujours :
   - Un secret compromis doit pouvoir être révoqué en minutes, pas nécessiter un redéploiement
 ```
 
+Analogie : Analogie : authentification et autorisation, c'est le contrôle d'accès en régie de spectacle
+qui distingue le badge qui prouve qui tu es du laissez-passer qui dit où tu as le droit
+d'aller, et le bracelet d'identification aux urgences qui prouve l'identité sans dire quels
+soins sont autorisés.
+Où l'analogie casse : un badge ou un bracelet volé se repère souvent à vue par un humain
+vigilant. Un token volé est indiscernable du vrai pour un système automatisé tant que le
+scope ou l'expiration n'a pas été vérifié.
+
 ## Compromis
 
 | Option                                                    | Coût                                                                                    | Bénéfice                                                                   | Quand choisir                                                                                          |

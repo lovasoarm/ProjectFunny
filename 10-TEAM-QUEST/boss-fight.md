@@ -54,3 +54,25 @@ de calmer la tension immédiate en évitant la vraie question (quelle hypothèse
 et la tentation inverse de trancher vite pour tenir la deadline, au prix d'ignorer un risque
 terrain réel. Un ingénieur senior ne supprime pas ce genre de tension, il la transforme en
 question vérifiable.
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Identification du vrai désaccord | 30 |
+| Gestion de la pression de la deadline | 20 |
+| Gestion humaine | 25 |
+| Réflexe systémique | 25 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Identification du vrai désaccord" est noté en dessous de 12/30, le total est plafonné à 50/100 : traiter un désaccord technique de fond comme un simple conflit de personnes (ou l'inverse) fait échouer toute la médiation qui suit.

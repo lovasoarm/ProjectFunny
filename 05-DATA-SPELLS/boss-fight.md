@@ -57,3 +57,26 @@ Produis une décision écrite (une page maximum) qui :
 | Cohérence de la lecture du tarif applicable   | La solution garantit que chaque facture lit le tarif en vigueur à la date de la consommation qu'elle facture, pas à la date du calcul                          |
 | Robustesse face à l'incertitude réglementaire | La décision reste correcte que le recalcul rétroactif soit finalement exigé ou non, sans pari risqué sur l'une ou l'autre issue                                |
 | Vérifiabilité                                 | La vérification proposée est concrète et exécutable, pas un vœu pieux ("on testera bien")                                                                      |
+
+## Seuil de validation chiffré
+
+| Critère | Points |
+| --- | --- |
+| Refus argumenté de l'UPDATE en place | 25 |
+| Schéma minimal livrable en un jour | 20 |
+| Cohérence de la lecture du tarif applicable | 20 |
+| Robustesse face à l'incertitude réglementaire | 20 |
+| Vérifiabilité | 15 |
+| **Total** | **100** |
+
+```text
+< 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
+50-69  --> valide avec reserve, identifie le critere le plus faible avant de le compter comme acquis
+70-89  --> valide, le reflexe est en place
+90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
+```
+
+Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+texte rendu est bien écrit.
+
+**Éliminatoire :** Si "Refus argumenté de l'UPDATE en place" est noté en dessous de 10/25, le total est plafonné à 50/100 : accepter ou ne pas refuser clairement l'UPDATE en place produit une facturation fausse en production, quelle que soit la qualité du reste de la copie.

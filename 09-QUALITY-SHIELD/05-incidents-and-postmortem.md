@@ -122,6 +122,14 @@ la résolution du prochain incident.
 Un postmortem sans action assignée et datée n'a produit aucun changement : il a juste
 documenté un problème qui se reproduira.
 
+Analogie : Analogie : gérer un incident et écrire un post-mortem, c'est la prise en charge d'un patient
+critique aux urgences suivie du débriefing qui reconstruit chaque décision, et le rapport
+qu'un équipage rédige après un homme à la mer en navigation maritime.
+Où l'analogie casse : un débriefing médical ou un rapport de mer s'appuient sur des témoins
+qui ont vécu l'instant en direct. Un post-mortem logiciel doit souvent reconstruire une
+séquence à partir de logs partiels, sans aucune trace explicite de ce que faisait le code au
+moment de la panne.
+
 ## Compromis
 
 | Option                                              | Coût                                                                         | Bénéfice                                                                   | Quand choisir                                                |

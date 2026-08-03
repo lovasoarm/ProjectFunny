@@ -1,5 +1,16 @@
 # Niveau 02 : Problem Hunt
 
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../01-MINDSET/README.md) | [Niveau suivant](../03-MVP-SPLIT/README.md)
+
+**Ce niveau reutilise :** [01-MINDSET](../01-MINDSET/03-cost-of-decisions.md) : le cout reel d'une decision, reutilise pour chiffrer le cout d'un mauvais cadrage.
+
+**Auto-test d'entree :**
+1. Donne un exemple de decision ou le cout de changement est faible au debut et enorme six mois plus tard.
+2. Qu'est-ce qu'une hypothese testable, et en quoi differe-t-elle d'une intuition non verifiee ?
+3. Pourquoi ecrire un ADR avant de coder change-t-il la qualite de la decision elle-meme, pas seulement sa tracabilite ?
+
+**Temps de lecture :** environ 105 minutes (leçons + README, hors challenge et boss-fight).
+
 ## Ce que c'est
 
 Ce niveau apprend à chasser le vrai problème avant de chasser la solution. La compétence
@@ -36,17 +47,14 @@ du code n'est pas une fin en soi.
 
 ## Structure du niveau
 
-```text
-02-PROBLEM-HUNT/
-├── 01-why-this-level.md       → ce qui casse quand on saute la chasse au problème
-├── 02-find-the-real-need.md   → demande vs besoin vs contrainte, interviews, signaux faibles
-├── 03-users-and-jobs.md       → jobs to be done, personas utiles vs décoratifs
-├── 04-scope-and-non-goals.md  → écrire les non-objectifs, effet sur l'architecture
-├── 05-success-metrics.md      → métrique produit vs vanité, seuil d'échec défini d'avance
-├── challenge.md                → exercice appliqué, livrable, critères mesurables
-├── boss-fight.md                → situation adverse + grille d'évaluation
-└── grimoire.md                  → mémo dense
-```
+- [01-why-this-level.md](01-why-this-level.md) : ce qui casse quand on saute la chasse au problème
+- [02-find-the-real-need.md](02-find-the-real-need.md) : demande vs besoin vs contrainte, interviews, signaux faibles
+- [03-users-and-jobs.md](03-users-and-jobs.md) : jobs to be done, personas utiles vs décoratifs
+- [04-scope-and-non-goals.md](04-scope-and-non-goals.md) : écrire les non-objectifs, effet sur l'architecture
+- [05-success-metrics.md](05-success-metrics.md) : métrique produit vs vanité, seuil d'échec défini d'avance
+- [challenge.md](challenge.md) : exercice appliqué, livrable, critères mesurables
+- [boss-fight.md](boss-fight.md) : situation adverse + grille d'évaluation
+- [grimoire.md](grimoire.md) : mémo dense
 
 ## Comment lire ce niveau
 
