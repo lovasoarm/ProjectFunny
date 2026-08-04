@@ -15,6 +15,10 @@ difficulté si tu veux pratiquer sur un domaine qui te motive plus. Vérifie toi
 taille exacte avec `cloc` ou `git ls-files | wc -l` avant de t'engager : les ordres de
 grandeur ci-dessous datent de la rédaction de ce document et bougent avec chaque release.
 
+```text
+# verifie le 2026-08-04 : taille, structure interne et activite des trois depots cites
+```
+
 | Dépôt                                             | Domaine                                              | Taille (ordre de grandeur)                       | Difficulté |
 | -------------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------- | ---------- |
 | `plausible/analytics` (github.com/plausible/analytics) | Web analytics respectueux de la vie privée, Elixir/Phoenix + un peu de TypeScript | environ 40 000 à 60 000 lignes applicatives, quelques centaines de fichiers | Facile a moyenne : stack unique, périmètre métier resserré |

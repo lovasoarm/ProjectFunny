@@ -43,6 +43,14 @@ Produis une décision écrite (une page maximum) qui :
    reproduise une troisième fois (par exemple : le refactoring minimal fait partie de la
    définition de "terminé" de ce ticket, pas une tâche séparée reportable).
 
+## Partie orale (obligatoire)
+
+Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
+répondant à voix haute au CTO et au développeur senior comme si tu étais réellement en situation :
+sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
+l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
+où ta réponse orale était plus faible que ta réponse écrite.
+
 ## Grille d'évaluation
 
 | Critère                           | Ce qui est évalué                                                                                                                                                   |
@@ -52,6 +60,7 @@ Produis une décision écrite (une page maximum) qui :
 | Réponse aux microservices         | L'argument utilise au moins un des quatre critères de décision du niveau, appliqué avec des faits du cas (une seule équipe, pas de contrainte de conformité isolée) |
 | Mécanisme anti-récidive           | L'engagement proposé est vérifiable (fait partie d'une définition de "terminé", d'un critère de revue de code), pas un vœu pieux                                    |
 | Ton                               | La décision est assumée et défendable devant le CTO et le développeur senior en même temps, sans chercher à plaire aux deux à la fois par du flou                   |
+| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti ; une réponse orale qui appauvrit le texte ou dépasse 3 minutes ne vaut pas le maximum |
 
 ## Seuil de validation chiffré
 
@@ -62,7 +71,8 @@ Produis une décision écrite (une page maximum) qui :
 | Réponse aux microservices | 20 |
 | Mécanisme anti-récidive | 20 |
 | Ton | 15 |
-| **Total** | **100** |
+| Justesse à l'oral sous contrainte | 20 |
+| **Total** | **120** |
 
 ```text
 < 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
@@ -71,7 +81,7 @@ Produis une décision écrite (une page maximum) qui :
 90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
 ```
 
-Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+Seuil de passage : 84/120. En dessous, le niveau n'est pas considéré comme acquis, même si le
 texte rendu est bien écrit.
 
-**Éliminatoire :** Si "Refus argumenté des deux extrêmes" est noté en dessous de 10/25, le total est plafonné à 50/100 : accepter l'un des deux extrêmes sans le nommer comme un extrême montre que le vocabulaire de couplage du niveau n'a pas été assimilé.
+**Éliminatoire :** Si "Refus argumenté des deux extrêmes" est noté en dessous de 10/25, le total est plafonné à 60/120 : accepter l'un des deux extrêmes sans le nommer comme un extrême montre que le vocabulaire de couplage du niveau n'a pas été assimilé.

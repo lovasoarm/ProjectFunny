@@ -68,3 +68,6 @@ simule exactement cette pression.
 Pas de code de production détaillé, pas de choix de stack technique. Ce niveau produit un plan
 de livraison en tranches avec des estimations honnêtes, pas une implémentation. L'exécution
 technique du découpage arrive dans les niveaux suivants.
+
+Avant de continuer : passe par [RETRO-BLOC-1-CADRAGE.md](../RETRO-BLOC-1-CADRAGE.md), la
+rétrospective du bloc Cadrage que tu viens de terminer.

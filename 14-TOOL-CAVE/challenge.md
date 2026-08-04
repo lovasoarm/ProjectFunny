@@ -55,3 +55,9 @@ Documente, dans une section séparée du même fichier :
   résolu par la méthode.
 - Des hypothèses vagues non falsifiables ("ça devait être un problème de state").
 - Une revue critique de l'IA qui se limite à "c'était bon du premier coup" sur les trois cas.
+
+## Durée cible
+
+4 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

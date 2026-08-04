@@ -45,6 +45,14 @@ Produis une décision écrite (une page maximum) qui :
    case "accès API requis" dans le processus de signature commerciale déclenche
    automatiquement une revue technique avant signature, pas après).
 
+## Partie orale (obligatoire)
+
+Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
+répondant à voix haute au commercial pressé et au partenaire comme si tu étais réellement en situation :
+sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
+l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
+où ta réponse orale était plus faible que ta réponse écrite.
+
 ## Grille d'évaluation
 
 | Critère                             | Ce qui est évalué                                                                                                                                               |
@@ -54,6 +62,7 @@ Produis une décision écrite (une page maximum) qui :
 | Réponse au manque d'outillage       | La solution minimale (table de correspondance vérifiée à l'appel) résout le problème réel sans sur-ingénierie disproportionnée au délai                         |
 | Mécanisme anti-récidive             | L'engagement proposé s'intègre à un processus existant (signature commerciale) et est vérifiable, pas un vœu pieux                                              |
 | Ton                                 | La décision est assumée et défendable simultanément devant le commercial pressé et le partenaire qui attend sa clé, sans céder sur le fond pour gagner du temps |
+| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti ; une réponse orale qui appauvrit le texte ou dépasse 3 minutes ne vaut pas le maximum |
 
 ## Seuil de validation chiffré
 
@@ -64,7 +73,8 @@ Produis une décision écrite (une page maximum) qui :
 | Réponse au manque d'outillage | 20 |
 | Mécanisme anti-récidive | 20 |
 | Ton | 15 |
-| **Total** | **100** |
+| Justesse à l'oral sous contrainte | 20 |
+| **Total** | **120** |
 
 ```text
 < 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
@@ -73,7 +83,7 @@ Produis une décision écrite (une page maximum) qui :
 90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
 ```
 
-Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+Seuil de passage : 84/120. En dessous, le niveau n'est pas considéré comme acquis, même si le
 texte rendu est bien écrit.
 
-**Éliminatoire :** Si "Refus argumenté des deux raccourcis" est noté en dessous de 10/25, le total est plafonné à 50/100 : un contrat d'API qui accepte un raccourci dangereux casse des clients réels, ce que ce niveau entier vise à empêcher.
+**Éliminatoire :** Si "Refus argumenté des deux raccourcis" est noté en dessous de 10/25, le total est plafonné à 60/120 : un contrat d'API qui accepte un raccourci dangereux casse des clients réels, ce que ce niveau entier vise à empêcher.

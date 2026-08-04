@@ -57,3 +57,6 @@ pour quand le cadre ne suffit plus : parce qu'il ne suffit jamais complètement.
 
 Ce niveau n'enseigne pas le management au sens hiérarchique. Il s'adresse à des pairs qui
 doivent collaborer, avec ou sans manager dans la pièce.
+
+Avant de continuer : passe par [RETRO-BLOC-3-CONDUITE.md](../RETRO-BLOC-3-CONDUITE.md), la
+rétrospective du bloc Conduite que tu viens de terminer.

@@ -49,3 +49,9 @@ Un plan de découpage en tranches, en markdown, structuré comme suit :
 
 Un fichier markdown unique, nommé `decoupage-urgences-veto.md`, respectant la structure
 ci-dessus.
+
+## Durée cible
+
+6 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

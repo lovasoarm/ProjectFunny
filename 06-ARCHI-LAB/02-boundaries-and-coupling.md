@@ -141,7 +141,7 @@ Trois questions à te poser sur un module que tu regardes pour la première fois
    elles modifier le même fichier ? Si oui systématiquement, c'est que la frontière du module
    ne correspond à aucune frontière métier réelle.
 
-Analogie : Analogie : le couplage et la cohésion, c'est assembler des meubles à l'atelier de menuiserie
+Analogie : le couplage et la cohésion, c'est assembler des meubles à l'atelier de menuiserie
 avec des pièces qui s'emboîtent sans se percer mutuellement, et câbler une régie de spectacle
 où chaque poste reste pilotable sans dérégler les autres.
 Où l'analogie casse : un meuble mal assemblé se démonte et se refait à froid, et un régisseur

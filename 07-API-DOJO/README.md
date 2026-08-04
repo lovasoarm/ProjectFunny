@@ -80,3 +80,6 @@ Swagger vs autre générateur). Il t'apprend les forces qui s'appliquent quel qu
 protocole choisi : un contrat instable casse des clients en REST comme en gRPC, une clé
 d'idempotence manquante double une facture peu importe le framework. Le vocabulaire d'outil
 changera au fil de ta carrière ; les problèmes de ce niveau ne changeront pas.
+
+Avant de continuer : passe par [RETRO-BLOC-2-BUILD.md](../RETRO-BLOC-2-BUILD.md), la
+rétrospective du bloc Build que tu viens de terminer.

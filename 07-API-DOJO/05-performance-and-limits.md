@@ -64,6 +64,7 @@ délibérée : un partenaire en boucle infinie accidentelle, un script de test o
 production, une resynchronisation trop agressive après une panne.
 
 ```text
+# verifie le 2026-08-04 : les seuils chiffres ci-dessous suivent le materiel et l'usage
 Fenêtre fixe :
   100 requêtes par minute, compteur remis à zéro à chaque minute pile
   - Effet de bord : un client peut envoyer 100 requêtes à 59s puis 100 à 61s,
@@ -153,7 +154,7 @@ Techniques qui réduisent la latence PERÇUE sans réduire la latence RÉELLE :
     (statut "en cours de traitement" visible, pas une roue qui tourne sans information)
 ```
 
-Analogie : Analogie : pagination, rate limiting et cache HTTP, c'est une cuisine de restaurant en
+Analogie : pagination, rate limiting et cache HTTP, c'est une cuisine de restaurant en
 service qui refuse d'envoyer toute la carte d'un coup et régule les commandes acceptées par
 le pass, et un coureur de montagne qui rationne son effort et ses ravitaillements pour ne pas
 craquer avant l'arrivée.

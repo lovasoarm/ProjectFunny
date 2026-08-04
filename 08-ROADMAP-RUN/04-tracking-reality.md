@@ -85,7 +85,7 @@ bloquée, qui souvent n'ose pas signaler elle-même qu'elle patine, par peur de 
 Demander une démo régulière, tôt, avec bienveillance, rend le blocage visible avant qu'il ne
 devienne un secret de seize jours.
 
-Analogie : Analogie : suivre l'avancement réel, c'est un régisseur qui vérifie en direct que chaque
+Analogie : suivre l'avancement réel, c'est un régisseur qui vérifie en direct que chaque
 effet a bien été déclenché plutôt que de se fier à la feuille de conduite, et un chef de
 cordée qui compte ses coéquipiers à chaque relais plutôt que de croire au plan de course.
 Où l'analogie casse : un régisseur ou un chef de cordée constatent l'état réel d'un seul coup

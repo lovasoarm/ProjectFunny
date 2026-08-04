@@ -85,7 +85,7 @@ de chutes de façon fiable"              trouve vraiment : dans les deux
                                            six semaines dessus
 ```
 
-Analogie : Analogie : planifier par les risques, c'est le tri des urgences hospitalières qui traite
+Analogie : planifier par les risques, c'est le tri des urgences hospitalières qui traite
 d'abord ce qui peut tuer avant ce qui fait mal, et un capitaine en navigation maritime qui
 étudie d'abord les zones de tempête avant de tracer sa route la plus courte.
 Où l'analogie casse : un soignant ou un capitaine observent souvent directement la gravité ou

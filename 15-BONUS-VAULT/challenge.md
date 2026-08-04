@@ -70,3 +70,9 @@ Ce livrable est intégré tel quel dans l'arborescence de livraison du capstone,
 `../12-CAPSTONE-ARENA/03-deliverables.md`, et évalué comme critère éliminatoire dans
 `../12-CAPSTONE-ARENA/04-evaluation-grid.md`. Produis-le pendant le jalon 3 (V1 et preuve) du
 capstone, voir `../12-CAPSTONE-ARENA/challenge.md`, jamais après la présentation finale.
+
+## Durée cible
+
+9 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

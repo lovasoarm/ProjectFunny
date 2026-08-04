@@ -39,6 +39,14 @@ Livre un court texte (une demi-page) qui pourrait être ajouté tel quel à la s
 "Conséquences" ou "Options considérées" de ton ADR pour montrer que l'objection a été prise
 en compte, pas juste survolée.
 
+## Partie orale (obligatoire)
+
+Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
+répondant à voix haute à l'objection du lead comme si tu étais réellement en situation :
+sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
+l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
+où ta réponse orale était plus faible que ta réponse écrite.
+
 ## Grille d'évaluation
 
 | Critère                                      | Ce qui est évalué                                                                                                                                                        | Échec typique                                                                                                           |
@@ -49,6 +57,7 @@ en compte, pas juste survolée.
 | Réversibilité explicite                      | Le texte propose un seuil ou un signal observable qui déclencherait la migration vers une table d'événements, si le choix actuel est maintenu                            | Le choix est présenté comme définitif et fermé, sans condition de révision                                              |
 | Absence de céder par confort social          | Si la décision initiale reste justifiée compte tenu du contexte, le texte le dit clairement sans se rétracter juste parce que le lead est catégorique                    | Le texte change de position uniquement à cause du ton assuré de l'interlocuteur, sans nouvel argument                   |
 | Longueur et densité                          | Le texte tient dans environ 200 mots, sans détour                                                                                                                        | Réponse diluée qui noie l'argument dans des formules de politesse                                                       |
+| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti | La réponse orale est un résumé appauvri du texte, ou dépasse largement les 3 minutes |
 
 ## Ce que tu dois savoir défendre
 
@@ -69,7 +78,8 @@ en compte, pas juste survolée.
 | Réversibilité explicite | 15 |
 | Absence de céder par confort social | 25 |
 | Longueur et densité | 10 |
-| **Total** | **100** |
+| Justesse à l'oral sous contrainte | 20 |
+| **Total** | **120** |
 
 ```text
 < 50   --> boss-fight non valide, la scène est a refaire apres relecture de la lecon concernee
@@ -78,7 +88,7 @@ en compte, pas juste survolée.
 90-100 --> valide avec excellence, ce niveau de justesse est celui attendu en situation reelle
 ```
 
-Seuil de passage : 70/100. En dessous, le niveau n'est pas considéré comme acquis, même si le
+Seuil de passage : 84/120. En dessous, le niveau n'est pas considéré comme acquis, même si le
 texte rendu est bien écrit.
 
-**Éliminatoire :** Si "Absence de céder par confort social" est noté en dessous de 10/25, le total est plafonné à 55/100 quel que soit le reste : céder à une objection uniquement parce qu'elle est exprimée avec assurance annule la valeur de tout raisonnement par ailleurs correct.
+**Éliminatoire :** Si "Absence de céder par confort social" est noté en dessous de 10/25, le total est plafonné à 66/120 quel que soit le reste : céder à une objection uniquement parce qu'elle est exprimée avec assurance annule la valeur de tout raisonnement par ailleurs correct.

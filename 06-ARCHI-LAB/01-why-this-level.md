@@ -54,19 +54,19 @@ Une bonne architecture minimise et rend explicite le rayon de l'explosion. Une m
 architecture le maximise et le cache.
 
 ```text
-Changement demandé : "ajouter un deuxième mode de paiement"
+Changement demandé : "ajouter un deuxième mode de paiement pour les cotisations du club"
 
 Mauvaise architecture (couplage caché) :
-  routes/checkout.js ──> modifie directement
-       ├── la table `orders`
-       ├── le calcul de TVA (dupliqué ici ET dans le rapport comptable)
+  routes/cotisation.js ──> modifie directement
+       ├── la table `adherents`
+       ├── le calcul de tarif dégressif (dupliqué ici ET dans le rapport comptable)
        ├── l'email de confirmation (template inline)
-       └── le webhook Stripe (mélangé avec la logique métier)
+       └── le webhook du prestataire de paiement (mélangé avec la logique métier)
   → toucher au paiement oblige à comprendre et risquer de casser 4 autres choses
 
 Bonne architecture (couplage explicite et limité) :
-  UseCase "ProcessPayment" ──> dépend d'une interface PaymentGateway
-       ├── implémentation Stripe
+  UseCase "ProcessCotisation" ──> dépend d'une interface PaymentGateway
+       ├── implémentation prestataire actuel
        └── implémentation nouvelle (à ajouter, sans toucher au UseCase)
   → ajouter un mode de paiement = ajouter un fichier, pas modifier les autres
 ```

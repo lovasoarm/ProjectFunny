@@ -42,3 +42,9 @@ Un document (`roadmap.md`) contenant :
 Ne commence pas ce challenge par la phase qui te semble la plus facile à écrire. Commence
 par identifier le risque le plus cher, même si c'est inconfortable : c'est exactement le
 réflexe que ce niveau construit.
+
+## Durée cible
+
+6 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

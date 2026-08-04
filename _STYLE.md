@@ -119,7 +119,7 @@ Ordre imposé :
 ## Liens et navigation
 
 Chaque `README.md` de niveau ouvre par une ligne de navigation en liens relatifs :
-`[Sommaire](../CURRICULUM.md) | [Niveau precedent](../NN-.../README.md) | [Niveau suivant](../NN-.../README.md)`
+`[Sommaire](CURRICULUM.md) | [Niveau precedent](../NN-.../README.md) | [Niveau suivant](../NN-.../README.md)`
 et liste ses fichiers en liens relatifs cliquables. Toute mention d'un autre fichier du dépôt
 dans une leçon est un lien relatif, jamais un nom nu.
 

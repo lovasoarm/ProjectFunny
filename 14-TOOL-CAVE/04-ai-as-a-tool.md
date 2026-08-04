@@ -21,6 +21,7 @@ projet, ne sait jamais dire honnêtement "je ne suis pas sûr", et invente une h
 plausible plutôt que de te demander une clarification.
 
 ```text
+# verifie le 2026-08-04 : contenu a revoir a chaque saut de generation de modele d'IA
 Développeur junior humain              Assistant IA générative
 ────────────────────────────           ─────────────────────────────────
 Peut dire "je ne sais pas,        vs    Produit toujours une réponse,

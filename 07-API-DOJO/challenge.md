@@ -49,3 +49,9 @@ décision, pas nécessairement en code complet ici. Il demande de prouver, par d
 passent et échouent aux bons endroits, que tu maîtrises le socle : contrat écrit, idempotence
 réelle, autorisation vérifiée, pagination bornée. Une API "sécurisée" sur le papier sans test
 qui le prouve ne vaut rien de plus qu'une API qui n'a jamais pensé à la question.
+
+## Durée cible
+
+10 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

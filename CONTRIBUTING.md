@@ -8,8 +8,10 @@ Réponds à ces trois questions dans la description de ta contribution :
 
 1. **Quel échec réel cette page évite-t-elle ?** Décris une situation vue, pas une notion manquante.
 2. **Quel est le coût de la bonne pratique proposée ?** Une recommandation sans coût est une opinion.
-3. **Sera-t-elle vraie dans cinq ans ?** Sinon, elle va dans `15-BONUS-VAULT/` avec un marqueur
-   `<!-- volatile: revoir avant AAAA-MM -->`.
+3. **Sera-t-elle vraie dans cinq ans ?** Sinon, elle va dans `15-BONUS-VAULT/`, et chaque exemple
+   de code volatil (version d'outil, seuil de performance) porte dans le commentaire de son bloc
+   de code la mention `# verifie le AAAA-MM-JJ`, au format déjà en usage dans
+   `05-DATA-SPELLS/grimoire.md` et `09-QUALITY-SHIELD/grimoire.md`.
 
 ## Format obligatoire d'une leçon
 

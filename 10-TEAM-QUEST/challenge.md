@@ -56,3 +56,9 @@ Ne rédige pas ce document seul dans ton coin avant de le montrer à l'équipe c
 accompli. Commence par demander à au moins une personne de l'équipe quelle règle implicite
 elle suit déjà sans l'avoir jamais écrite : c'est souvent la première ligne la plus utile du
 document, et c'est exactement le réflexe que ce niveau construit.
+
+## Durée cible
+
+6 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

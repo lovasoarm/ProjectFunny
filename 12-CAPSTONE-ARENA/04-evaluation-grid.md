@@ -2,7 +2,7 @@
 
 ## Principe
 
-Chaque critère noté est sur 20. Le total est sur 140. Cette grille sert à l'auto-évaluation
+Chaque critère noté est sur 20. Le total est sur 160. Cette grille sert à l'auto-évaluation
 (livrable 5 du niveau) et à toute revue externe ultérieure. Un score sans justification
 écrite ne compte pas : la justification est ce qui prouve que tu comprends pourquoi tu te
 notes ainsi, pas seulement que tu sais lister des points.
@@ -15,16 +15,16 @@ capstone non validable, quel que soit le score obtenu sur le reste de la grille.
 | Critère éliminatoire                                       | Condition de passage                                                                                                       |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Arborescence de livraison conforme                          | La structure de dossier correspond exactement à celle décrite dans `03-deliverables.md`, sans fichier manquant ni renommé        |
-| Revue de risques du Niveau 15 présente et signée            | `REVUE-DE-RISQUES.md` existe, couvre sécurité, coûts et données personnelles, et porte une signature datée                       |
+| Revue de risques du Niveau 15 présente, signée, et vérifiée par au moins un test automatisé | `REVUE-DE-RISQUES.md` existe, couvre sécurité, coûts et données personnelles, porte une signature datée, **et** `tests/` contient au moins un test qui prouve qu'une mitigation décrite dans la revue est effective : une requête HTTP non autorisée sur une ressource appartenant à un autre utilisateur doit retourner un code 403 ou 404, jamais un code 200 avec les données de la victime |
 
 ```text
-Un des deux critères éliminatoires manquant ou incomplet --> score final plafonné à 0/140,
+Un des deux critères éliminatoires manquant ou incomplet --> score final plafonné à 0/160,
 quel que soit le détail du reste de la grille. Ce n'est pas une pénalité, c'est un blocage :
 un livrable qui n'a pas la forme attendue ou qui n'a pas traité les risques du projet n'est
 pas un capstone recevable, indépendamment de la qualité du code.
 ```
 
-## Grille chiffrée (sur 120)
+## Grille chiffrée (sur 160)
 
 | Critère                                    | /20 | Ce qui est vérifié                                                                                                                                                                                                            |
 | ------------------------------------------- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -35,11 +35,12 @@ pas un capstone recevable, indépendamment de la qualité du code.
 | Honnêteté sur les limites et la dette      | 20  | La roadmap post-V1 nomme précisément ce qui est fragile ou reporté, sans minimiser ni dramatiser. Aucune affirmation non vérifiée présentée comme un fait acquis.                                                             |
 | Délégation à l'IA                          | 20  | `TDD_JOURNAL.md` ou l'auto-évaluation liste précisément ce qui a été délégué à une IA sur le jalon V1 (génération, suggestion, revue), ce qui ne l'a pas été, et pourquoi ce partage était le bon compromis pour ce projet.    |
 | Protocole d'enquête (`HYPOTHESES.md`)      | 20  | Le bug documenté a été rendu déterministe avant toute correction. Au moins trois hypothèses falsifiables sont posées, dont au moins une explicitement réfutée par une expérience. Le correctif est prouvé par 200 exécutions consécutives sans échec du test qui échouait avant, pas par une seule exécution réussie.                |
+| Transfert de décision hors stack           | 20  | `TRANSFERT.md` est présent : la retranscription conserve l'invariant métier exact ; le texte distingue explicitement mécanisme intemporel et syntaxe remplaçable, sans les confondre.                                                                                                                                              |
 
 ## Coût du changement de spec (mesuré, pas noté séparément)
 
-Le coût du changement de spec décrit dans `05-changement-de-spec.md` n'est pas un septième
-critère noté sur 20 : il est la preuve exigée à l'intérieur des critères "Justesse
+Le coût du changement de spec décrit dans `05-changement-de-spec.md` n'est pas un critère
+noté à part entière sur 20 : il est la preuve exigée à l'intérieur des critères "Justesse
 architecturale" et "Honnêteté sur les limites et la dette". Concrètement :
 
 ```text
@@ -85,17 +86,17 @@ invalide le capstone entier.
 ## Seuils
 
 ```text
-< 84/140    -> le capstone n'est pas validé, reprendre le cadrage avant de continuer le code
-84-104/140  -> validé avec réserve, identifier et corriger le critère le plus faible avant de
-               présenter ce projet comme référence
-105-125/140 -> validé, projet présentable en portfolio avec ses limites assumées à l'oral
-126-140/140 -> validé avec excellence, ce niveau de rigueur est celui attendu en conditions
-               professionnelles réelles sur un projet à enjeu de sécurité
+< 96/160     -> le capstone n'est pas validé, reprendre le cadrage avant de continuer le code
+96-119/160   -> validé avec réserve, identifier et corriger le critère le plus faible avant de
+                présenter ce projet comme référence
+120-143/160  -> validé, projet présentable en portfolio avec ses limites assumées à l'oral
+144-160/160  -> validé avec excellence, ce niveau de rigueur est celui attendu en conditions
+                professionnelles réelles sur un projet à enjeu de sécurité
 
-Palier 105-125 et 126-140 : la revue de risques (REVUE-DE-RISQUES.md) doit être non seulement
+Palier 120-143 et 144-160 : la revue de risques (REVUE-DE-RISQUES.md) doit être non seulement
 présente (critère éliminatoire) mais aussi jugée complète par une relecture externe (trois
-familles de risques couvertes, mitigations concrètes) pour que le score franchisse 105/140.
-Une revue de risques minimaliste plafonne le score final à 104/140, même si le reste de la
+familles de risques couvertes, mitigations concrètes) pour que le score franchisse 120/160.
+Une revue de risques minimaliste plafonne le score final à 119/160, même si le reste de la
 grille dépasse ce seuil.
 ```
 
@@ -120,3 +121,5 @@ réelle.
   contrainte de sécurité : quel critère perdrait alors son poids critique.
 - Pourquoi une hypothèse réfutée dans `HYPOTHESES.md` compte pour le critère "Protocole
   d'enquête" au même titre qu'une hypothèse confirmée.
+- Pourquoi une retranscription de décision qui change de langage mais perd l'invariant métier
+  ne vaut aucun point sur "Transfert de décision hors stack", même si le code produit compile.

@@ -76,3 +76,9 @@ Si tu peux répondre "peu importe, on aurait fait pareil de toute façon" à la 
 qui aurait dû se passer pour que tu choisisses une autre option", ton ADR ne documente pas une
 vraie décision : il documente une évidence. Recommence avec une décision qui avait réellement
 deux issues possibles.
+
+## Durée cible
+
+6 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

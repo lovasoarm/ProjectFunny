@@ -1,4 +1,4 @@
-[Sommaire](../CURRICULUM.md) | [Niveau precedent](../10-.../README.md) | [Niveau suivant](../12-.../README.md)
+[Sommaire](../CURRICULUM.md) | [Niveau precedent](../10-TEAM-QUEST/README.md) | [Niveau suivant](../12-CAPSTONE-ARENA/README.md)
 
 # Niveau 11 : Big App Snoop
 
@@ -17,8 +17,8 @@ entrer dans un système sans tout lire, à repérer les points d'entrée qui com
 reconstruire les contraintes qui ont façonné des choix qui te semblent d'abord absurdes, et
 enfin à y toucher sans rien casser.
 
-Ce niveau réutilise : niveau [06 (Archi Lab)](../06-.../README.md) pour reconnaître une
-architecture en couches et une frontière de service, et niveau [07 (API Dojo)](../07-.../README.md)
+Ce niveau réutilise : niveau [06 (Archi Lab)](../06-ARCHI-LAB/README.md) pour reconnaître une
+architecture en couches et une frontière de service, et niveau [07 (API Dojo)](../07-API-DOJO/README.md)
 pour reconnaître un pattern de repository et un contrat d'appel entre services.
 
 Auto-test d'entrée :

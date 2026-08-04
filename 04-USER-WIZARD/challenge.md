@@ -39,3 +39,9 @@ Un écran de planning + un formulaire de prise de rendez-vous, avec :
 
 Pas de design visuel abouti, pas de responsive complet. Le jury n'évalue pas l'esthétique, il évalue
 la robustesse des états et des parcours.
+
+## Durée cible
+
+8 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

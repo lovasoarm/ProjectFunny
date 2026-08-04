@@ -56,6 +56,7 @@ ce qui est devenu faux. C'est le seul moment du parcours où tu rejoues ton prop
 | après le niveau 07 | [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md) | 60 à 90 min |
 | après le niveau 10 | [RETRO-BLOC-3-CONDUITE.md](RETRO-BLOC-3-CONDUITE.md) | 60 à 90 min |
 | après le niveau 12 | [RETRO-BLOC-4-EPREUVE.md](RETRO-BLOC-4-EPREUVE.md) | 60 à 90 min |
+| après le niveau 15 | [RETRO-BLOC-5-MAITRISE.md](RETRO-BLOC-5-MAITRISE.md) | 60 à 90 min |
 
 ## Que faire quand tu rates un boss-fight
 

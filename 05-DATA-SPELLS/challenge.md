@@ -51,3 +51,9 @@ Il ne demande pas de construire une interface utilisateur ni un système de scop
 d'autorisation complet (ça, c'est le niveau API Dojo) : le livrable est le schéma, les
 migrations, et les requêtes, prouvés par des mesures et des tests qui échouent aux bons
 endroits sur les versions naïves.
+
+## Durée cible
+
+12 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

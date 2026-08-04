@@ -69,6 +69,26 @@ ci-dessous doit pouvoir être jugé sans que tu sois présent pour l'expliquer o
   moins 200 fois de suite sans échec, avec le résultat de ce harnais consigné dans le
   document.
 
+## Livrable 7 : TRANSFERT.md
+
+- Un fichier `TRANSFERT.md` à la racine du dépôt, au même niveau d'exigence que les six
+  livrables précédents, en trois sections.
+- **La décision reprise.** Tu choisis une décision déjà validée et notée dans ton propre
+  capstone : soit le modèle de données du jalon Architecture (celui qui a résisté à l'analyse
+  de concurrence, critère "Justesse architecturale"), soit le contrat d'API du même jalon. Tu
+  ne réécris pas tout le projet : tu retranscris une seule décision précise.
+- **La retranscription.** La même décision, réécrite en pseudo-code strictement typé
+  indépendant de tout langage (pas de syntaxe TypeScript), ou dans un second langage réel de
+  ton choix (Python avec SQLAlchemy, Go avec un ORM léger, Java avec JPA). Le niveau
+  d'exigence technique reste identique : si la version TypeScript posait une contrainte
+  d'exclusion sur une période, la version transférée doit poser l'équivalent exact dans le
+  nouveau langage, pas une approximation vague.
+- **Ce qui reste vrai, ce qui change, et pourquoi.** Un texte d'une demi-page maximum qui
+  nomme précisément ce qui est un mécanisme intemporel (l'invariant métier, la garantie de
+  concurrence) et ce qui est une syntaxe remplaçable (la façon d'écrire la contrainte). C'est
+  le test réel : qui ne sait pas faire cette distinction n'a pas compris le principe, il a
+  mémorisé une syntaxe.
+
 ## Ce que tu dois savoir défendre
 
 - Pourquoi le test de concurrence sur le comptage de capacité est un livrable obligatoire et
@@ -79,6 +99,8 @@ ci-dessous doit pouvoir être jugé sans que tu sois présent pour l'expliquer o
   fonctionnalité : et pourquoi les deux n'appellent pas le même traitement.
 - Pourquoi une hypothèse réfutée dans `HYPOTHESES.md` a autant de valeur qu'une hypothèse
   confirmée pour prouver le sérieux de ton enquête.
+- Pourquoi `TRANSFERT.md` distingue un mécanisme intemporel d'une syntaxe remplaçable, et ce
+  que révèle sur ta compréhension le fait de confondre les deux.
 
 ## Arborescence de livraison imposée
 
@@ -95,13 +117,15 @@ capstone/
 +-- POSTMORTEM.md
 +-- REVUE-DE-RISQUES.md
 +-- HYPOTHESES.md
++-- TRANSFERT.md
 +-- ADR/
 |   +-- ADR-0001-....md
 |   \-- ADR-000N-....md
 +-- src/
 |   \-- (code de la V1)
 \-- tests/
-    \-- (dont le test de concurrence sur le comptage de capacité)
+    +-- (dont le test de concurrence sur le comptage de capacité)
+    \-- (dont le test de contrôle d'accès horizontal : 403 ou 404, jamais 200)
 ```
 
 - `cahierdescharges.md` : reformulation finale du besoin, incluant les hypothèses du Livrable 1
@@ -115,11 +139,14 @@ capstone/
 - `HYPOTHESES.md` : le protocole d'enquête d'un vrai bug rencontré pendant le capstone, au
   format à 6 champs, avec au moins une hypothèse réfutée et la preuve de non-régression sur
   200 exécutions (voir [`../14-TOOL-CAVE/03-debugging-toolkit.md`](../14-TOOL-CAVE/03-debugging-toolkit.md)).
+- `TRANSFERT.md` : la retranscription d'une décision du jalon Architecture hors de la stack du
+  projet, avec la distinction explicite entre mécanisme intemporel et syntaxe remplaçable.
 - `ADR/` : un fichier par décision structurante, au format du Niveau 15
   (`../15-BONUS-VAULT/01-decision-templates.md`).
 - `src/` : le code de la V1.
 - `tests/` : les tests automatisés, en particulier celui qui prouve la résistance du comptage
-  de capacité à l'accès concurrent.
+  de capacité à l'accès concurrent, et celui qui prouve qu'un accès non autorisé à la
+  ressource d'un autre adhérent est bloqué.
 
 ## Revue de risques : contenu minimal de REVUE-DE-RISQUES.md
 
@@ -131,6 +158,13 @@ Sécurité            : ex. accès concurrent au comptage de capacité, fuite de
 Coûts                : ex. dépassement du délai de deux mois, dépendance à un service payant
 Données personnelles : ex. données d'adhérents partagées entre trois salles indépendantes
 ```
+
+Le scénario de contrôle d'accès horizontal décrit dans
+[`../15-BONUS-VAULT/05-security-cost-privacy.md`](../15-BONUS-VAULT/05-security-cost-privacy.md)
+(accès à la réservation d'un autre adhérent en modifiant l'identifiant dans l'URL) doit être
+couvert par au moins un test dans `tests/`, au même titre que le test de concurrence déjà
+exigé sur le comptage de capacité : une requête non autorisée doit retourner 403 ou 404,
+jamais 200 avec les données de la victime.
 
 Ce fichier doit être signé et daté par toi avant la présentation finale : une revue de
 risques non signée ne compte pas comme livrée, au même titre qu'une note de cadrage non

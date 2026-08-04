@@ -39,12 +39,14 @@ vrai incident (Niveaux 6 à 12).
 +-- 02-checklists.md                      --> mise en prod, revue, incident, onboarding
 +-- 03-reading-list.md                    --> ressources durables, sans liens morts
 +-- 04-anti-patterns-hall-of-fame.md      --> catalogue commenté des erreurs qui reviennent
++-- 05-security-cost-privacy.md           --> sécurité, coûts et données personnelles
 +-- challenge.md                          --> revue de risques du projet fil rouge, obligatoire
 \-- grimoire.md                           --> mémo dense
 ```
 
 [01-decision-templates.md](01-decision-templates.md) | [02-checklists.md](02-checklists.md) |
 [03-reading-list.md](03-reading-list.md) | [04-anti-patterns-hall-of-fame.md](04-anti-patterns-hall-of-fame.md) |
+[05-security-cost-privacy.md](05-security-cost-privacy.md) |
 [challenge.md](challenge.md) | [grimoire.md](grimoire.md)
 
 Ce niveau réutilise : Niveaux 6 à 12, en particulier le brief et le modèle de données du
@@ -77,6 +79,13 @@ personne. Ouvre `02` avant chaque mise en prod, revue, incident ou arrivée d'un
 personne dans l'équipe : pas après. `03` te donne où chercher quand un problème neuf sort du
 cadre de ce curriculum. `04` se lit comme un miroir : la plupart des anti-patterns décrits,
 tu les as déjà commis ou vus commettre, et les nommer est la première étape pour les éviter.
+
+Ouvre `05` avant de produire ta revue de risques pour le capstone : c'est lui qui pose le
+vocabulaire et les seuils que `challenge.md` te demande d'appliquer, et que le capstone
+vérifie désormais par un test automatisé sur le contrôle d'accès (voir 12-CAPSTONE-ARENA).
+
+Avant de continuer : passe par [RETRO-BLOC-5-MAITRISE.md](../RETRO-BLOC-5-MAITRISE.md), la
+rétrospective du bloc Maîtrise que tu viens de terminer.
 
 ## Ce qui ne se passe pas ici
 

@@ -139,7 +139,7 @@ un jour) mais "est-ce qu'une décision ou une règle métier actuelle en dépend
 entité ajoutée sans besoin réel actuel est une dette qu'on paie tout de suite (complexité) pour
 un bénéfice hypothétique qu'on paiera peut-être jamais.
 
-Analogie : Analogie : modéliser un domaine, c'est prendre les mesures et choisir les assemblages avant de couper le bois à l'atelier de menuiserie, et trier les patients selon leur état réel aux urgences.
+Analogie : modéliser un domaine, c'est prendre les mesures et choisir les assemblages avant de couper le bois à l'atelier de menuiserie, et trier les patients selon leur état réel aux urgences.
 Où l'analogie casse : le bois ne change pas de forme une fois scié, et un patient trié reste le
 même individu. Un modèle de données doit encaisser des années de changements métier que
 personne n'a anticipés au moment du plan.

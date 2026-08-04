@@ -408,3 +408,57 @@ Où l'analogie casse : aux urgences et en cordée, il existe une limite éthique
 provoquer une crise ou une chute pour l'observer. En informatique, provoquer le bug à volonté
 dans un environnement de test est non seulement permis mais obligatoire : c'est ce qui rend
 l'enquête possible sans mettre personne en danger.
+
+## Cas E : la double réservation, deux histoires possibles
+
+### Le symptôme
+
+Deux clients réservent le même créneau du club d'escalade à quelques secondes d'écart.
+Les deux réservations sont enregistrées. Le symptôme est identique dans les deux
+scénarios suivants ; un seul est la vraie cause sur ce système précis.
+
+### Hypothèse A : race condition en base
+
+Deux écritures concurrentes lisent le compteur de capacité avant que l'une des deux
+n'ait eu le temps de l'incrémenter et de committer, donc les deux passent le test de
+capacité disponible.
+
+### Hypothèse B : cache applicatif périmé
+
+Le compteur de capacité est mis en cache côté application avec une durée de vie courte ;
+la deuxième réservation lit une valeur de cache qui ne reflète pas encore la première
+écriture, donc elle passe le test de capacité disponible sur une donnée déjà obsolète.
+
+### Consigne
+
+Conçois une seule expérience qui, quel que soit son résultat, élimine l'une des deux
+hypothèses sans ambiguïté et sans avoir besoin d'une deuxième expérience pour trancher.
+Écris cette expérience avant de lire le corrigé.
+
+Ce cas n'est pas le même exercice que le format `HYPOTHESES.md` ci-dessus : là, tu explores
+au moins trois pistes l'une après l'autre ; ici, deux explications mutuellement exclusives
+produisent exactement le même symptôme, et c'est la conception de l'expérience décisive qui
+est notée, pas le nombre de pistes listées.
+
+### Corrigé, à ne lire qu'après avoir écrit ton expérience
+
+```text
+Expérience décisive : espacer les deux réservations concurrentes d'un délai strictement
+supérieur à la durée de vie du cache (TTL), tout en gardant les deux écritures dans la
+même fenêtre de transaction en base (sleep contrôlé injecté entre la lecture du compteur
+et le commit de la première réservation).
+
+Résultat 1 : le bug persiste malgré un délai > TTL
+  --> le cache ne peut plus être périmé au moment de la seconde lecture
+  --> hypothèse B réfutée, hypothèse A confirmée (race condition en base)
+
+Résultat 2 : le bug disparaît dès que le délai dépasse le TTL
+  --> les deux écritures restent concurrentes en base, donc la race condition
+      aurait dû se reproduire si elle était la cause
+  --> hypothèse A réfutée, hypothèse B confirmée (cache périmé)
+
+Une seule expérience, deux résultats possibles, une hypothèse éliminée dans les deux cas :
+c'est ce qui la rend décisive. Une expérience qui laisserait les deux hypothèses vivantes
+après coup (par exemple "on relance l'appel et on regarde si ça recommence") ne tranche
+rien et coûte le même temps.
+```

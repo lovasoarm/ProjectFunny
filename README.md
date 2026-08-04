@@ -67,6 +67,11 @@ Chaque niveau contient : `README.md` (la carte), `01-why-this-level.md` (pourquo
 qui casse sans lui), des leçons numérotées, `challenge.md` (livrable), `boss-fight.md` (situation
 adverse), `grimoire.md` (mémo dense).
 
+Exception : le niveau 15 (Bonus Vault) n'a ni `01-why-this-level.md` ni `boss-fight.md` —
+c'est un coffre de référence consultable hors ordre, pas un niveau à traverser linéairement.
+Voir la section « Écart au gabarit » de `15-BONUS-VAULT/README.md` pour la justification
+complète.
+
 ## Comment démarrer
 
 1. Lis `00-PROLOGUE/README.md`.

@@ -27,6 +27,20 @@ Tu reçois ce message d'un client fictif, à traiter comme s'il était réel :
 > Merci d'avance,
 > Le collectif des trois salles
 
+```text
+Club d'escalade, trois salles
+   |
+   +-- Salle Centre-ville  --> tarif variable en soirée
+   +-- Salle Banlieue       --> tarif réduit le matin
+   +-- Salle Troisième site --> tarif de référence
+        |
+        v
+   Créneaux récurrents (ex: tous les mardis 18h, toute la saison)
+        |
+        v
+   Réservation --> vérifie capacité restante --> confirme ou refuse
+```
+
 ## Ce que ce brief contient vraiment
 
 Lis-le une seconde fois. Il contient, mélangés sans hiérarchie explicite :

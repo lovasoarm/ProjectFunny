@@ -79,7 +79,7 @@ frontière entre modules, parcours complet) ce bug serait-il visible avant
 la production ?"
 ```
 
-Analogie : Analogie : des tests qui rapportent, c'est un menuisier qui vérifie l'équerrage d'un
+Analogie : des tests qui rapportent, c'est un menuisier qui vérifie l'équerrage d'un
 assemblage avant de le coller définitivement, et un protocole de triage aux urgences qui
 vérifie les mêmes signes vitaux sur chaque patient pour ne rater aucune urgence connue.
 Où l'analogie casse : l'équerrage ou le protocole de triage se vérifient en quelques

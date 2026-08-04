@@ -150,7 +150,7 @@ Sauter l'étape 3 est le piège le plus fréquent : une équipe suppose que "tou
 migré" parce que l'annonce a été envoyée, sans jamais vérifier dans les métriques réelles
 qui appelle encore l'ancienne version.
 
-Analogie : Analogie : un contrat d'API, c'est la feuille de route qu'une régie de spectacle distribue à
+Analogie : un contrat d'API, c'est la feuille de route qu'une régie de spectacle distribue à
 tous les techniciens avant le show, et le règlement international qui dit comment deux navires
 se croisent sans avoir besoin de se parler par radio.
 Où l'analogie casse : la feuille de route et le règlement de croisement se relisent et

@@ -47,3 +47,9 @@ tests qui passent, que tu maîtrises les forces sous-jacentes vues dans ce nivea
 "Hexagonal Architecture" mal compris et mal appliqué ne vaut rien de plus qu'un fichier
 couplé : c'est le comportement du code face au changement qui compte, pas le nom du pattern
 affiché dans le README.
+
+## Durée cible
+
+10 h, cohérent avec la durée annoncée pour ce niveau dans CURRICULUM.md. Si tu dépasses
+largement ce budget, c'est un signal à noter dans ta rétrospective de bloc, pas une raison
+de bâcler la fin du livrable.

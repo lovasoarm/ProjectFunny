@@ -25,6 +25,14 @@ Rédige, comme un livrable réel :
 3. Une réponse au client, en langage client (pas en jargon technique), qui ne cache ni
    n'exagère la difficulté.
 
+## Partie orale (obligatoire)
+
+Une fois le texte écrit rendu, enregistre-toi en audio ou vidéo pendant 3 minutes maximum,
+répondant à voix haute au client sur le pivot à J-10 comme si tu étais réellement en situation :
+sans lire ton texte mot à mot, sans notes au-delà d'un post-it de mots-clés. Réécoute
+l'enregistrement une seule fois et note toi-même, avant toute relecture externe, un point
+où ta réponse orale était plus faible que ta réponse écrite.
+
 ## Grille d'évaluation
 
 | Critère                                 | Points | Ce qui est vérifié                                                                                                                                          |
@@ -33,5 +41,6 @@ Rédige, comme un livrable réel :
 | Distinction panique vs impact réel      | 20     | Tu ne traites pas tout le système comme cassé alors que seule une partie l'est réellement                                                                   |
 | Qualité de la proposition de traitement | 25     | La proposition est réaliste par rapport au délai restant, avec un compromis assumé (report, effort, ou délai)                                               |
 | Communication client                    | 25     | La réponse au client est honnête, sans jargon, sans minimiser ni dramatiser, et propose une option concrète plutôt qu'un simple constat de problème         |
+| Justesse à l'oral sous contrainte de temps, sans texte préparé lu mot à mot | 20     | La réponse orale tient la même logique que le texte écrit, sans relecture mot à mot, dans le temps imparti ; un résumé appauvri ou un dépassement des 3 minutes ne vaut pas le maximum |
 
-Score minimal pour valider : 70/100.
+Score minimal pour valider : 84/120.
