@@ -1,30 +1,37 @@
-# Grimoire : Niveau 01 Mindset
+# Grimoire : Niveau 01, Mindset
 
-Mémo dense à garder ouvert pendant le challenge et le boss-fight.
+Mémo dense à garder ouvert pendant le challenge et le boss-fight. Sert à trancher vite, pas à
+réciter une théorie devant un lead qui attend une réponse dans la minute.
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Dette volontaire | Raccourci pris consciemment, avec un signal de remboursement explicite | Le raccourci devient permanent faute d'échéance nommée, personne ne sait qu'il faut y revenir | Quel est le signal chiffré qui déclenche le remboursement de cette dette ? |
-| Dette subie | Raccourci pris sans évaluation du coût de changement, découvert après coup | L'équipe découvre le coût au pire moment, en production, sans plan de sortie | Comment distingues-tu, sur ce projet, une dette subie d'une dette volontaire ? |
-| Valeur d'option | Bénéfice de garder plusieurs futurs possibles ouverts, payé par un coût immédiat plus élevé | Tu sur-investis dans une flexibilité que personne n'activera jamais | Quel scénario concret, dans les 12 prochains mois, activerait cette option ? |
-| Hypothèse testable | Affirmation qui peut être fausse, formulée avec un seuil chiffré vérifiable | Tu avances sur des convictions jamais confrontées au réel, invérifiables | Quelle expérience, la moins chère possible, vérifierait cette hypothèse ? |
-| Réduction de risque au moindre coût | Choisir, parmi les façons de réduire une incertitude, celle qui coûte le moins avant d'investir dans la solution complète | Tu construis la solution complète avant de savoir si le problème existe vraiment | Quelle est l'expérience la moins chère qui réduirait cette incertitude ? |
-| Pari le moins cher | Parmi plusieurs options incertaines, celle dont l'échec coûte le moins à corriger | Tu choisis l'option la plus séduisante plutôt que celle dont l'échec est le moins cher | Si cette option échoue, combien ça coûte à corriger, comparé aux autres ? |
-| Asymétrie des erreurs | Le coût de se tromper n'est pas le même selon le sens de l'erreur (construire à tort vs ne pas construire à tort) | Tu traites toutes les erreurs comme équivalentes et arbitres mal sous pression | Quel est le coût si tu te trompes dans un sens, et dans l'autre ? |
-| ADR | Document court qui capture une décision architecturale prise, son contexte, ses alternatives et ses conséquences | La décision se reperd, se redébat, ou se réinterprète différemment selon qui la raconte | Un tiers pourrait-il reconstituer ton raisonnement à la seule lecture du document ? |
-| RFC | Document qui propose une décision avant qu'elle soit prise, pour solliciter la contradiction | La décision se prend en aveugle, sans la contradiction qui aurait pu révéler un angle mort | Qui doit répondre à cette RFC, et avant quand ? |
-| Note de conception | Document qui cadre un problème, ses contraintes et ses critères de succès, avant de proposer des solutions | On saute directement à la solution sans avoir vérifié qu'elle répond au bon problème | Comment saura-t-on, dans N semaines, que la décision était la bonne ? |
+| Dette volontaire | Raccourci pris consciemment, avec un signal de remboursement explicite et daté. | `printf "dette: colonne_unique; remboursement_si: volume > 10k/j\n" >> dette.yml` | ardoise assumée en cuisine de service / dette de sommeil acceptée avant un sommet |
+| Dette subie | Raccourci pris sans évaluation du coût de changement, découvert après coup. | `git log --grep="TODO temporaire" --oneline` | improvisation forcée par une panne en régie / voie de repli non prévue en montagne |
+| Valeur d'option | Bénéfice de garder plusieurs futurs possibles ouverts, payé par un coût immédiat plus élevé. | `printf "option_gardee: event_store; activee_si: besoin_audit_legal\n"` | garder deux voiles à bord au cas où le vent tourne / garder un plat de secours en cuisine |
+| Hypothèse testable | Affirmation qui peut être fausse, formulée avec un seuil chiffré vérifiable. | `const hypothese = { texte: "80% des tournées < 2h", seuilFaux: "< 0.6" };` | prévision météo vérifiée en mer / test d'un menu du jour avant service complet |
+| Réduction de risque au moindre coût | Choisir, parmi les façons de réduire une incertitude, celle qui coûte le moins avant d'investir dans la solution complète. | `printf "experience_low_cost: sondage_5_clients avant build complet\n"` | reconnaissance de la voie avant la cordée complète / mise en place légère avant le coup de feu |
+| Pari le moins cher | Parmi plusieurs options incertaines, celle dont l'échec coûte le moins à corriger. | `printf "option_choisie: A; cout_echec_A: 2j; cout_echec_B: 3sem\n"` | test d'un plat en petite série avant carte complète / test d'ancrage avant d'engager le mât |
+| Asymétrie des erreurs | Le coût de se tromper n'est pas le même selon le sens de l'erreur (construire à tort vs ne pas construire à tort). | `printf "cout_faux_positif: 2j; cout_faux_negatif: 3sem\n"` | fausse alerte incendie vs incendie non détecté aux urgences / rebrousser à tort vs continuer à tort en montagne |
+| ADR | Document court qui capture une décision architecturale, son contexte, ses alternatives, ses conséquences. | `cp gabarit-adr.md docs/adr/ADR-012-historique-statuts.md` | fiche de sécurité en régie technique / journal de bord du navigateur |
+| RFC | Document qui propose une décision avant qu'elle soit prise, pour solliciter la contradiction. | `printf "RFC: qui doit répondre = %s; avant = %s\n" "lead-back" "vendredi"` | briefing d'équipe avant le service / réunion météo avant de larguer les amarres |
+| Note de conception | Document qui cadre un problème, ses contraintes et ses critères de succès avant de proposer des solutions. | `printf "criteres_succes: latence < 200ms d'ici 6 semaines\n" >> note.md` | fiche technique avant montage du décor / plan de course avant le départ |
 
-## Comportements évalués en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Reconnaissance du point valide | Le texte identifie précisément ce que le lead a raison de signaler (perte d'information si un jour un historique fin est nécessaire) | Réponse défensive qui ignore l'objection ou la caricature |
-| Distinction contexte / généralité | Le texte explique pourquoi l'expérience du lead sur un autre projet ne se transpose pas automatiquement (volume différent, besoin métier différent, délai différent) | Le texte traite l'analogie comme automatiquement valide ou automatiquement invalide sans l'examiner |
-| Fondation sur des faits, pas des préférences (justification par un mécanisme) | Le texte cite au moins un élément vérifiable du projet réel (volume de tournées/jour, fréquence des demandes du service client, délai de livraison de la fonctionnalité) | Le texte reste au niveau des principes généraux ("la simplicité c'est important") sans jamais toucher au projet concret |
-| Réversibilité explicite (compromis nommé et assumé) | Le texte propose un seuil ou un signal observable qui déclencherait la migration vers une table d'événements, si le choix actuel est maintenu | Le choix est présenté comme définitif et fermé, sans condition de révision |
-| Absence de céder par confort social (honnêteté sur ce qu'on ne sait pas) | Si la décision initiale reste justifiée compte tenu du contexte, le texte le dit clairement sans se rétracter juste parce que le lead est catégorique | Le texte change de position uniquement à cause du ton assuré de l'interlocuteur, sans nouvel argument |
-| Longueur et densité | Le texte tient dans environ 200 mots, sans détour | Réponse diluée qui noie l'argument dans des formules de politesse |
+| Dette volontaire | Le raccourci devient permanent faute d'échéance nommée, personne ne sait qu'il faut y revenir | Quel est le signal chiffré qui déclenche le remboursement de cette dette ? |
+| Dette subie | L'équipe découvre le coût au pire moment, en production, sans plan de sortie | Comment distingues-tu, sur ce projet, une dette subie d'une dette volontaire ? |
+| Valeur d'option | Tu sur-investis dans une flexibilité que personne n'activera jamais | Quel scénario concret, dans les 12 prochains mois, activerait cette option ? |
+| Hypothèse testable | Tu avances sur des convictions jamais confrontées au réel, invérifiables | Quelle expérience, la moins chère possible, vérifierait cette hypothèse ? |
+| Réduction de risque au moindre coût | Tu construis la solution complète avant de savoir si le problème existe vraiment | Quelle est l'expérience la moins chère qui réduirait cette incertitude ? |
+| Pari le moins cher | Tu choisis l'option la plus séduisante plutôt que celle dont l'échec est le moins cher | Si cette option échoue, combien ça coûte à corriger, comparé aux autres ? |
+| Asymétrie des erreurs | Tu traites toutes les erreurs comme équivalentes et arbitres mal sous pression | Quel est le coût si tu te trompes dans un sens, et dans l'autre ? |
+| ADR | La décision se reperd, se redébat, ou se réinterprète différemment selon qui la raconte | Un tiers pourrait-il reconstituer ton raisonnement à la seule lecture du document ? |
+| RFC | La décision se prend en aveugle, sans la contradiction qui aurait pu révéler un angle mort | Qui doit répondre à cette RFC, et avant quand ? |
+| Note de conception | On saute directement à la solution sans avoir vérifié qu'elle répond au bon problème | Comment saura-t-on, dans N semaines, que la décision était la bonne ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Heuristiques de coût de changement
 
@@ -142,3 +149,13 @@ plutôt que les autres, dans ce contexte précis.]
 - [ ] J'ai écrit une condition observable qui me ferait changer d'avis.
 - [ ] Un tiers qui n'a pas participé à la discussion pourrait reconstituer mon raisonnement
       à la seule lecture du document.
+
+## Si tu rates le boss-fight
+
+Relis d'abord ta réponse au regard du critère "absence de céder par confort social" : c'est
+lui qui plafonne la note s'il est faible. Relis ensuite la section "Heuristiques de coût de
+changement" ci-dessus, puis réécris ta réponse en changeant uniquement le paragraphe où tu
+cèdes ou refuses sans mécanisme. Attends 48 h avant de retenter la scène : le but est de la
+rejouer avec du recul, pas de la corriger à chaud. Si tu rates une deuxième fois sur le même
+critère, redescends au niveau 00 relire la règle "Défendre" : le problème n'est pas ce
+niveau-ci, c'est l'habitude de défendre une décision à l'oral sans notes.

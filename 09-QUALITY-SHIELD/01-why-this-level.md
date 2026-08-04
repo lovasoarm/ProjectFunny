@@ -1,89 +1,150 @@
-# Pourquoi "ça marche chez moi" ne suffit jamais
+# Pourquoi ce niveau existe : QUALITY-SHIELD
 
-## La scène
+## 1. Pourquoi ce niveau existe
 
-Karim livre l'API de réservation de créneaux du cabinet vétérinaire. En local, tout passe :
-il crée un rendez-vous, l'annule, en recrée un autre. Trois semaines après la mise en
-production, un vendredi soir, deux réceptionnistes de deux sites différents réservent le
-même créneau du même vétérinaire itinérant à quelques secondes d'intervalle. Le système
-accepte les deux. Le lundi, un client trouve porte close alors qu'il avait une confirmation
-par SMS. Personne n'a été alerté dans l'intervalle : il n'existe aucune métrique qui aurait
-montré un pic de doubles réservations, aucun test qui vérifiait la concurrence, et le seul
-moyen de savoir qu'un problème existait était qu'un client se plaigne. Karim n'a pas manqué
-de compétence. Il a manqué de bouclier : rien dans son système n'était construit pour
-détecter et absorber ce que lui-même n'avait pas anticipé.
+Écrire du code qui marche une fois, sur ta machine, pendant que tu le regardes, est facile.
+Écrire du code qui continue de marcher six mois plus tard, modifié par quelqu'un d'autre, sous
+une charge que tu n'as pas testée, est une compétence distincte. Ce niveau existe parce que la
+qualité n'est pas un supplément moral ("bien coder"), c'est un mécanisme concret qui déplace le
+moment où une erreur est détectée : avant ou après qu'elle ait coûté cher à quelqu'un.
 
-## Ce qui se passe vraiment
+## 2. Ce qui casse sans lui (deux incidents chiffrés)
 
-Le code qui "marche" en développement est validé sur un sous-ensemble de conditions choisi
-par la personne qui l'a écrit : donc, par construction, un sous-ensemble qui exclut ses
-propres angles morts. La qualité logicielle n'est pas un supplément moral ("bien coder"),
-c'est une contre-mesure structurelle contre ce biais : elle ajoute des couches qui trouvent
-les problèmes que l'auteur ne peut pas voir lui-même.
+Incident 1 : un cabinet vétérinaire perd l'historique de rappels vaccinaux de 340 clients
+pendant une nuit, suite à une migration de base de données lancée sans sauvegarde ni test de
+rollback. Trois jours de reconstruction manuelle à partir de carnets papier sont nécessaires.
+
+Incident 2 : une plateforme de tournées de livraison déploie un correctif un vendredi soir sans
+revue de code ni test automatisé. Le correctif inverse silencieusement deux champs de calcul
+d'itinéraire. 45 tournées du week-end partent avec des trajets faux, provoquant environ 6
+heures de retard cumulé et des appels clients en nombre.
+
+## 3. Qui souffre en premier
+
+L'utilisateur final souffre en premier, souvent sans le savoir : il reçoit un résultat faux
+sans indication que quelque chose a cassé. L'équipe de support souffre ensuite, en absorbant
+des signalements qu'elle ne sait pas encore relier à une cause technique. Le développeur
+responsable souffre en dernier, au moment du post-mortem, quand le coût réel est déjà payé.
+
+## 4. Quand ça se manifeste
+
+Le manque de filet de sécurité ne se voit pas tant que rien ne change. Il se manifeste
+précisément au moment d'une modification : un changement de dépendance, une migration, un
+correctif urgent. C'est pour cela qu'il est sous-estimé en début de projet, quand le code est
+encore petit et que personne n'a encore eu besoin de le modifier sous pression.
+
+## 5. Ce que tu sais faire à la sortie
+
+Tu sais écrire des tests qui protègent réellement un comportement critique, pas des tests qui
+gonflent un pourcentage de couverture sans valeur. Tu sais instrumenter un système pour savoir
+ce qu'il fait en production, pas seulement en local. Tu sais mener une revue de code utile et
+conduire un post-mortem qui change un mécanisme, pas seulement une personne.
+
+## 6. Ce qui n'est pas couvert et où
+
+- L'architecture qui rend un système testable est posée en amont, dans
+  [06-ARCHI-LAB/02-boundaries-and-coupling.md](../06-ARCHI-LAB/02-boundaries-and-coupling.md).
+- La gestion d'équipe autour d'un incident (communication au client, gestion du stress) est
+  couverte par [10-TEAM-QUEST/04-communication-under-pressure.md](../10-TEAM-QUEST/04-communication-under-pressure.md).
+- L'audit critique d'une réponse produite par une IA est traité dans
+  [14-TOOL-CAVE/05-audit-dune-reponse-ia.md](../14-TOOL-CAVE/05-audit-dune-reponse-ia.md).
+
+## 7. Prérequis
+
+- Savoir découper un système en modules avec des frontières claires (niveau 06).
+- Avoir déjà écrit au moins un test automatisé, même simple, pour comprendre le vocabulaire de
+  base (assertion, fixture, mock) avant d'aborder la stratégie de test.
+- Avoir un projet réel en cours : ce niveau se pratique sur du code qui vit, pas sur un exercice
+  isolé sans conséquence.
+
+## 8. Erreurs de débutant les plus coûteuses
+
+- Viser un pourcentage de couverture de test comme objectif en soi, ce qui produit des tests
+  qui vérifient des détails d'implémentation sans jamais protéger un comportement réel.
+- Ajouter des logs uniquement après un incident, jamais avant, ce qui rend le prochain incident
+  aussi opaque que le précédent.
+- Traiter la revue de code comme une formalité à valider vite, sans jamais poser de question
+  sur le raisonnement derrière un choix.
+- Rédiger un post-mortem qui blâme une personne au lieu de corriger le mécanisme qui a permis
+  l'erreur (absence de test, absence de garde-fou, alerte manquante).
+
+## 9. Le mécanisme sous-jacent
+
+Un filet de sécurité ne réduit pas le nombre d'erreurs commises : il réduit le temps entre le
+moment où une erreur est introduite et le moment où elle est détectée. Plus ce délai est court,
+moins l'erreur a eu le temps de se propager dans des décisions ultérieures ou dans des données
+réelles utilisées par des vrais clients.
 
 ```text
-Sans bouclier qualité                    Avec bouclier qualité
-
-  code ──► démo locale ──► prod           code ──► tests ciblés sur le risque
-     │         │                             │         │
-     │      "ça marche"                      │      revue de code (angle mort
-     │                                       │       d'un pair)
-     │                                        │         │
-     └──► seul juge : l'auteur               │      observabilité (le système
-                                              │       parle avant le client)
-                                              │         │
-                                              └──► prod, avec des capteurs actifs
+Sans filet : erreur introduite --> propagation --> plainte client --> detection
+Avec filet : erreur introduite --> test ou alerte --> detection immediate
+La difference de cout entre les deux chemins n'est pas lineaire : plus l'erreur
+a voyage loin avant detection, plus elle a contamine de decisions dependantes.
 ```
 
-Ce bouclier a quatre couches, chacune couvrant un moment différent du cycle de vie du bug :
+Analogie : un filet de sécurité logiciel, c'est le triage systématique aux urgences d'un hôpital
+qui détecte un problème grave avant qu'il devienne critique, et la vérification d'un régisseur
+avant chaque lever de rideau qui contrôle que chaque élément technique répond.
+Où l'analogie casse : un triage ou une vérification de régie s'effectuent sur un système qui
+attend, à l'arrêt. Un système logiciel continue de recevoir du trafic réel pendant qu'on le
+teste ou qu'on le corrige : le filet doit fonctionner sans jamais interrompre ce qui tourne.
 
-1. **Les tests** (leçon 02) : trouvent le problème _avant_ que le code parte en production,
-   à condition de tester ce qui coûte cher si ça casse, pas tout ce qui est facile à tester.
-2. **L'observabilité** (leçon 03) : trouve le problème _en production_, en minutes, avant
-   qu'un utilisateur ait besoin de se plaindre pour qu'on le sache.
-3. **La revue et la CI** (leçon 04) : trouvent le problème _avant qu'il n'entre dans le
-   code partagé_, en ajoutant un regard extérieur et des garde-fous automatiques.
-4. **La gestion d'incident** (leçon 05) : traite le problème _une fois qu'il est arrivé
-   quand même_ : parce qu'il arrivera quand même : sans détruire la confiance de l'équipe.
+## 10. Contre-exemple : quand appliquer ce niveau serait une erreur
 
-Aucune de ces couches n'est suffisante seule. Des tests parfaits n'empêchent pas un problème
-de concurrence qui n'apparaît qu'à charge réelle. Une observabilité parfaite ne répare rien
-si personne ne regarde l'alerte. Une revue de code parfaite n'attrape pas un bug qui dépend
-du comportement réel des utilisateurs. C'est la superposition qui protège, pas une couche
-isolée.
+Un script jetable, écrit pour migrer une fois 200 lignes d'un vieux tableur vers une base de
+données, n'a pas besoin d'une suite de tests ni d'observabilité complète : il sera exécuté une
+fois, vérifié à la main sur le résultat, puis jeté. La règle de discernement : la rigueur de ce
+niveau se justifie proportionnellement à la durée de vie du code et au nombre de personnes qui
+en dépendront. Un code à usage unique et vérifiable à l'oeil n'a pas besoin du même filet qu'un
+service de production utilisé chaque jour par des tiers.
 
-### Le coût, toujours le coût
+## 11. Le coût d'apprentissage
 
-Ce niveau refuse une idée répandue et fausse : "plus de tests, plus de logs, plus de
-process, c'est toujours mieux". Chaque couche a un coût réel (temps d'écriture, temps de
-maintenance, bruit cognitif) et ce coût doit être mis en face du coût de la panne qu'elle
-évite. Un test qui protège une fonction jamais appelée en production coûte plus qu'il ne
-rapporte. Une alerte qui se déclenche dix fois par jour sans qu'aucune ne soit actionnable
-coûte plus qu'elle ne rapporte, parce qu'elle entraîne l'équipe à ignorer les alertes.
+Compter 10 à 15 heures pour construire une première stratégie de test cohérente sur un projet
+réel, plus 3 à 4 heures pour mettre en place une observabilité minimale utile (logs
+structurés, une alerte). Le coût principal n'est pas d'apprendre la syntaxe des outils de test,
+mais d'apprendre à choisir quoi tester et quoi laisser sans test, ce qui demande de la pratique
+répétée sur des cas réels, pas seulement de la lecture.
 
-## Compromis
+## 12. Le signal observable de maîtrise
 
-| Option                                         | Coût                                                              | Bénéfice                                                                                        | Quand choisir                                                                           |
-| ---------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Aucun bouclier ("ça marche en démo")           | Rapide à livrer, séduisant à court terme                          | Vitesse maximale sur un prototype jetable                                                       | Prototype exploratoire sans utilisateur réel, jamais un système qui reste en production |
-| Bouclier qualité proportionné au coût de panne | Investissement continu (temps de test, d'observabilité, de revue) | Les pannes coûteuses sont détectées tôt et corrigées vite, la confiance dans le système grandit | Tout système avec des utilisateurs réels et des conséquences réelles en cas d'erreur    |
+Tu maîtrises ce niveau quand, face à un bug en production, ton premier réflexe est de te
+demander "quel test aurait détecté ça avant, et pourquoi n'existait-il pas", plutôt que de
+corriger le symptôme et de passer à autre chose sans ajouter de garde-fou.
 
-## Pièges classiques
+Un signal complementaire : tu sais reformuler un compromis test/vitesse en une
+phrase claire ('on ne teste pas ce cas rare, on accepte le risque, voici pourquoi')
+plutot que de laisser ce choix implicite et non assume.
 
-- Croire que "ça marche en local" est une preuve de qualité : le symptôme est un bug qui
-  n'apparaît qu'en production, sous charge réelle ou concurrence réelle.
-- Ajouter des tests et des logs partout sans les rattacher à un coût de panne réel : le
-  symptôme est une CI lente et une suite de logs bruyante que personne ne lit plus.
-- Traiter la qualité comme une étape finale ("on nettoiera après la démo") : le symptôme est
-  qu'elle n'arrive jamais, parce que la prochaine urgence prend toujours la priorité.
-- Considérer un incident comme un échec individuel à cacher : le symptôme est qu'il se
-  reproduit, parce que personne n'a eu le droit d'en tirer une leçon publique.
+Ce reflexe se verifie aussi a l'oral : tu dois pouvoir citer, pour ton projet actuel, au moins un chemin de code volontairement laisse sans test, et la raison de ce choix.
 
-## Ce que tu dois savoir défendre
+## 13. Ce que l'IA fait et ne fait pas à ta place
 
-1. Pourquoi "ça marche en local" ne prouve rien sur le comportement en production, même si
-   le code est objectivement correct pour les cas testés.
-2. Explique pourquoi les quatre couches du bouclier qualité (tests, observabilité, revue/CI,
-   gestion d'incident) sont complémentaires et pas substituables l'une à l'autre.
-3. Donne un exemple de coût caché d'un excès de qualité mal ciblée (trop de tests, trop
-   d'alertes) et explique le mécanisme par lequel il devient contre-productif.
+Une IA peut générer rapidement des cas de test à partir d'une fonction donnée, ce qui aide à
+couvrir des cas limites qu'on oublierait spontanément. Elle ne peut pas savoir, sans qu'on le
+lui dise, quel comportement est réellement critique dans ton contexte métier : un test généré
+automatiquement peut très bien vérifier un détail sans importance et ignorer la règle de
+sécurité qui, elle, doit absolument être protégée. Voir aussi
+[14-TOOL-CAVE/05-audit-dune-reponse-ia.md](../14-TOOL-CAVE/05-audit-dune-reponse-ia.md) pour
+la méthode d'audit d'une suggestion produite par une IA.
+
+## 14. Réutilisation dans les niveaux aval
+
+- [11-BIG-APP-SNOOP](../11-BIG-APP-SNOOP/README.md) réutilise la lecture des tests existants
+  comme méthode pour comprendre les intentions d'une base de code inconnue.
+- [12-CAPSTONE-ARENA](../12-CAPSTONE-ARENA/README.md) exige un filet de sécurité minimal comme
+  critère de passage du projet final.
+- [13-DAY-TO-LEGEND](../13-DAY-TO-LEGEND/README.md) réutilise le réflexe de post-mortem comme
+  boucle d'apprentissage personnelle.
+
+## 15. Trois questions à défendre à l'oral
+
+1. Explique pourquoi viser un pourcentage de couverture de test comme objectif en soi peut
+   produire une fausse impression de sécurité.
+2. Donne un exemple où l'absence de log a rendu un incident plus long à diagnostiquer qu'il
+   n'aurait dû l'être.
+3. Pourquoi un post-mortem qui blâme une personne plutôt qu'un mécanisme ne réduit pas le
+   risque que l'incident se reproduise.
+
+Point final de verification : relis la section 2 avant un boss-fight, les deux incidents
+chiffres sont les preuves que la grille attend en premier.

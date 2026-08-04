@@ -1,25 +1,33 @@
-# Grimoire : Archi-Lab
+# Grimoire : Niveau 06, Archi-Lab
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Mémo à ouvrir avant de trancher un découpage de modules ou un choix monolithe/services. Sert
+à nommer le mécanisme qui casse, pas à réciter du vocabulaire d'architecture.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Couplage | A quel point un module doit connaitre l'interieur d'un autre pour fonctionner. Plus c'est fort, plus un changement interne se propage en cassures. | Un changement isole se transforme en chantier de trois jours ailleurs. | Peux-tu citer le type de couplage entre deux modules precis de ton systeme, et pourquoi ce type-la ? |
-| Cohesion | A quel point les elements d'un module ont une raison commune d'etre ensemble (une seule raison de changer par module = forte cohesion). | Un module fourre-tout devient impossible a decrire en une phrase, et personne n'ose plus y toucher seul. | Peux-tu decrire ce module en une phrase sans "et" ? |
-| Dependance dirigee | Une fleche "A depend de B" qui doit toujours pouvoir se dessiner sans jamais former de cycle dans le graphe global du systeme. | Un cycle de dependances rend impossible de deployer, tester ou remplacer une partie sans l'autre. | Peux-tu dessiner le graphe de dependances de ton systeme sans trouver de cycle ? |
-| Inversion de dependance | Le domaine definit une interface, l'infra l'implemente : la fleche de dependance va de l'infra vers le domaine, pas l'inverse. | Le domaine se retrouve a connaitre HTTP, SQL ou un framework, et devient impossible a tester sans les demarrer. | Ton domaine peut-il se tester sans base de donnees ni serveur demarre ? |
-| Source de verite | La copie d'une donnee designee comme faisant foi en cas de desaccord ; tout le reste est un derive reconstructible. | Deux copies divergent et personne ne sait laquelle croire, une decision se prend sur la mauvaise. | Pour une donnee dupliquee dans ton systeme, sais-tu nommer sa source de verite ? |
-| Coherence eventuelle | Un decalage temporaire et assume entre une copie et sa source de verite, acceptable uniquement si aucune decision irreversible ne s'appuie dessus. | Une decision irreversible se prend sur une copie perimee, sans que personne ne l'ait choisi. | Quelle decision irreversible pourrait s'appuyer, par erreur, sur une copie non a jour ? |
-| Monolithe modulaire | Une seule unite de deploiement, organisee en modules internes a frontieres claires, sans appel reseau entre les parties. | Le systeme se fragmente en services avant que l'equipe en ait besoin, et paie un cout reseau et operationnel pour rien. | Pourquoi choisir un monolithe modulaire plutot que des microservices ici, avec quels criteres ? |
-| Les 4 criteres de decision monolithe vs services | Autonomie organisationnelle, isolation de charge, isolation de risque/conformite, maturite operationnelle : zero critere vrai revient a garder un monolithe modulaire. | On decoupe en services par mode plutot que par besoin, et on paie le cout reseau sans aucun benefice reel. | Lequel des quatre criteres est vrai dans ton contexte actuel, et lequel ne l'est pas ? |
+| Couplage | A quel point un module doit connaître l'intérieur d'un autre pour fonctionner. | `import { calculTarif } from "../facturation/interne/moteur";` | commis qui doit connaître la recette secrète du chef pour dresser un plat / grimpeur qui dépend du nœud exact fait par un autre pour avancer |
+| Cohésion | A quel point les éléments d'un module ont une seule raison commune de changer. | `export const ModuleReservation = { creer, annuler, deplacer };` | poste dédié uniquement aux desserts en cuisine / cordée dédiée uniquement à l'équipement, rien d'autre |
+| Dépendance dirigée | Une flèche A dépend de B, qui ne doit jamais former de cycle dans le graphe global. | `// domaine/reservation.ts n'importe jamais depuis infra/*` | commande qui va toujours de la salle vers la cuisine, jamais l'inverse / ordre qui descend toujours du skipper vers l'équipage |
+| Inversion de dépendance | Le domaine définit une interface, l'infra l'implémente. | `interface DepotReservation { sauver(r: Reservation): Promise<void>; }` | le chef définit la recette, le fournisseur s'adapte au cahier des charges / le skipper fixe le cap, le moteur s'adapte à la demande |
+| Source de vérité | La copie d'une donnée désignée comme faisant foi en cas de désaccord. | `const stockReel = await depotStock.lireQuantite(produitId);` | le carnet de commandes du chef fait foi, pas le tableau affiché en salle / le livre de bord fait foi, pas le souvenir d'un matelot |
+| Cohérence éventuelle | Un décalage temporaire et assumé entre une copie et sa source de vérité. | `// cache invalidé sous 5s, jamais utilisé pour une décision irréversible` | ardoise du jour pas encore mise à jour partout en salle / position GPS affichée avec quelques secondes de retard |
+| Monolithe modulaire | Une seule unité de déploiement organisée en modules à frontières claires, sans appel réseau interne. | `// src/modules/{reservation,facturation,notif}/ dans un seul déploiement` | une seule cuisine avec des postes bien séparés, pas trois restaurants distincts / un seul bateau avec des cabines dédiées, pas trois navires |
+| Critères monolithe vs services | Autonomie organisationnelle, isolation de charge, isolation de risque, maturité opérationnelle. | `// 0 critere vrai --> rester en monolithe modulaire` | ouvrir une cuisine séparée seulement si une équipe distincte la gère vraiment / affréter un second bateau seulement si la charge le justifie vraiment |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'echec |
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Refus argumente des deux extremes | La justification s'appuie sur un mecanisme concret (couplage, cout reel), pas sur une preference esthetique ou une peur du changement | Tu rejettes une option sans expliquer par quel mecanisme elle echoue |
-| Troisieme voie realisable | La proposition tient dans les trois jours et cible precisement le couplage qui a cause le probleme initial, pas un refactoring generique | Tu proposes un refactoring vague ou disproportionne au delai |
-| Reponse aux microservices | L'argument utilise au moins un des quatre criteres de decision du niveau, applique avec des faits du cas (une seule equipe, pas de contrainte de conformite isolee) | Tu repousses les microservices avec un simple "on n'a pas le temps" |
-| Mecanisme anti-recidive | L'engagement propose est verifiable (fait partie d'une definition de "termine", d'un critere de revue de code), pas un voeu pieux | Tu promets un "nettoyage plus tard" sans mecanisme qui l'oblige |
-| Ton | La decision est assumee et defendable devant le CTO et le developpeur senior en meme temps, sans chercher a plaire aux deux a la fois par du flou | Ta reponse reste evasive pour eviter de trancher clairement |
+| Couplage | Un changement isolé se transforme en chantier de trois jours ailleurs | Peux-tu citer le type de couplage entre deux modules précis de ton système, et pourquoi ce type-là ? |
+| Cohésion | Un module fourre-tout devient impossible à décrire en une phrase, personne n'ose plus y toucher seul | Peux-tu décrire ce module en une phrase sans "et" ? |
+| Dépendance dirigée | Un cycle de dépendances rend impossible de déployer, tester ou remplacer une partie sans l'autre | Peux-tu dessiner le graphe de dépendances de ton système sans trouver de cycle ? |
+| Inversion de dépendance | Le domaine se retrouve à connaître HTTP, SQL ou un framework, impossible à tester sans les démarrer | Ton domaine peut-il se tester sans base de données ni serveur démarré ? |
+| Source de vérité | Deux copies divergent, personne ne sait laquelle croire, une décision se prend sur la mauvaise | Pour une donnée dupliquée dans ton système, sais-tu nommer sa source de vérité ? |
+| Cohérence éventuelle | Une décision irréversible se prend sur une copie périmée, sans que personne ne l'ait choisi | Quelle décision irréversible pourrait s'appuyer, par erreur, sur une copie non à jour ? |
+| Monolithe modulaire | Le système se fragmente en services avant que l'équipe en ait besoin, coût réseau payé pour rien | Pourquoi choisir un monolithe modulaire plutôt que des microservices ici, avec quels critères ? |
+| Critères monolithe vs services | On découpe en services par mode plutôt que par besoin, coût réseau sans bénéfice réel | Lequel des quatre critères est vrai dans ton contexte actuel, et lequel ne l'est pas ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Le gradient de couplage (du pire au meilleur)
 
@@ -60,3 +68,12 @@ Zero critere vrai --> monolithe modulaire, sans hesitation.
 Quand tu doutes du decoupage : demande-toi "quand cette chose change, qu'est-ce que je suis
 oblige de changer avec ?" Si la reponse est "beaucoup de choses sans rapport apparent",
 le decoupage est mauvais, independamment de ce que dit le nom des dossiers.
+
+## Si tu rates le boss-fight
+
+Relis d'abord le critere qui a plafonne ta note : troisieme voie realisable, reponse aux
+microservices, ou mecanisme anti-recidive. Redessine le graphe de dependances de la scene
+avant de repondre a nouveau, en identifiant precisement le couplage fautif. Relis le gradient
+de couplage ci-dessus. Attends 48 h avant de retenter le boss-fight pour juger la scene a
+froid. Si l'echec se reproduit sur le meme critere, redescends au niveau 05 relire
+"invariant" : un mauvais decoupage cache souvent un invariant mal place.

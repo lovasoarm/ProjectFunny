@@ -1,27 +1,33 @@
-# Grimoire : API Dojo
+# Grimoire : Niveau 07, API Dojo
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Mémo à ouvrir avant d'exposer ou de modifier un endpoint. Sert à vérifier le contrat, pas à
+réviser la liste des verbes HTTP.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Contrat d'API | L'ensemble des garanties sur lesquelles un client a le droit de s'appuyer sans risquer une casse au prochain deploiement. La documentation decrit le contrat ; elle n'EST pas le contrat si elle n'est pas tenue. | Un deploiement casse des clients qui faisaient confiance a un comportement jamais formalise. | Ton contrat est-il ecrit quelque part, ou seulement implicite dans le code du serveur ? |
-| Compatibilite ascendante | Un client ancien continue de fonctionner face a un serveur nouveau. C'est la direction qui protege les clients externes non maitrises. | Un client externe que tu ne controles pas casse a ton prochain deploiement, sans prevenir personne. | Un client qui n'a pas ete mis a jour depuis six mois fonctionne-t-il encore avec ta derniere version ? |
-| Compatibilite descendante | Un client nouveau continue de fonctionner face a un serveur ancien. Critique en deploiement progressif et en systemes de messages. | Un deploiement progressif casse en plein rollout, entre l'ancienne et la nouvelle version du serveur. | Que se passe-t-il si ton client nouveau parle a un serveur pas encore mis a jour ? |
-| Idempotence | Propriete d'une operation dont l'execution repetee produit le meme resultat que l'execution unique. GET, PUT, DELETE le sont par nature ; POST non. | Un retry reseau duplique une commande, un paiement, un envoi : l'utilisateur est facture deux fois. | Quelles operations de ton API sont idempotentes, et comment le garantis-tu pour les autres ? |
-| Idempotency key | Identifiant genere cote client au moment de l'intention (pas a chaque tentative reseau), qui permet au serveur de reconnaitre et dedupliquer un retry. | Sans elle, chaque coupure reseau cree un doublon que le serveur ne peut pas detecter. | Ta cle d'idempotence est-elle generee a l'intention ou a chaque tentative reseau ? |
-| Authn / Authz | Authn verifie qui appelle ; Authz verifie ce que cet appelant a le droit de faire, precisement. | Un appelant identifie mais mal autorise accede a des donnees ou actions hors de son perimetre. | Ton systeme confond-il "je sais qui tu es" avec "je sais ce que tu as le droit de faire" ? |
-| Scope et frontiere de confiance | Le scope est le perimetre d'action accorde a un token (moindre privilege). La frontiere de confiance est le point ou une requete passe d'une zone controlee a une zone non controlee, et exige sa propre verification. | Un token trop large fuite au-dela de son usage prevu, et une frontiere non revalidee laisse passer une requete deja compromise en amont. | Chaque frontiere de confiance de ton systeme revalide-t-elle ce qui la traverse, sans supposer qu'un controle plus haut suffit ? |
-| Rate limiting | Limitation du debit d'appels d'un client, protege autant contre les clients honnetes mal configures que contre les attaques deliberees. | Un client mal configure ou une attaque sature ton service sans limite, et degrade tout le monde. | Que se passe-t-il concretement si un client rejoue la meme requete cent fois par seconde ? |
-| Cache HTTP (ETag, Cache-Control) | Mecanisme pour eviter de retransmettre un contenu identique a un appel precedent. | Chaque appel retransmet des donnees inchangees, gonflant latence et cout reseau pour rien. | Sur quel endpoint de ton API un cache HTTP ferait-il une vraie difference ? |
-| Latence percue | Le temps d'attente ressenti par l'utilisateur, distinct du temps de reponse mesure cote serveur ; se reduit aussi par la structure de l'attente, pas seulement sa duree. | On optimise le temps serveur sans jamais ameliorer ce que l'utilisateur ressent reellement. | Comment reduirais-tu la latence percue sans forcement reduire le temps de reponse mesure ? |
+| Contrat d'API | L'ensemble des garanties sur lesquelles un client a le droit de s'appuyer sans risquer une casse au prochain déploiement. | `openapi: 3.1.0\npaths:\n  /reservations:\n    get: {}` | menu affiché qui engage la cuisine sur ce qui est réellement servi / carte marine qui engage sur les hauts-fonds réellement présents |
+| Compatibilité ascendante | Un client ancien continue de fonctionner face à un serveur nouveau. | `// champ ajoute, jamais retire : ancien client ignore le nouveau champ` | un vieux ticket de commande reste lisible même avec la nouvelle carte / un vieux plan de route reste valide même avec les nouvelles balises |
+| Compatibilité descendante | Un client nouveau continue de fonctionner face à un serveur ancien. | `// le nouveau client tolere l'absence du nouveau champ cote serveur` | la nouvelle recrue sait encore lire l'ancien système de tickets / le nouveau matelot sait encore lire le vieux livre de bord |
+| Idempotence | Une opération répétée produit le même résultat que l'exécution unique. | `if (dejaTraite(cle)) return reponsePrecedente(cle);` | un même bon de commande renvoyé deux fois ne fait pas deux plats / une même manœuvre rejouée ne double pas le nœud |
+| Idempotency key | Identifiant généré côté client à l'intention, pas à chaque tentative réseau. | `const cle = crypto.randomUUID(); // genere une fois, avant tout retry` | numéro de ticket pris une fois en salle, pas à chaque passage en cuisine / numéro de manœuvre décidé une fois par le skipper, pas à chaque essai |
+| Authn / Authz | Authn vérifie qui appelle ; Authz vérifie ce que cet appelant a le droit de faire. | `if (!user) throw 401; if (!user.peut("annuler")) throw 403;` | badge du personnel vs droit d'accès à la réserve du chef / identité du matelot vs droit de toucher à la barre |
+| Rate limiting | Limitation du débit d'appels d'un client. | `if (compteur(clientId) > seuilParSeconde) throw 429;` | cuisine qui refuse de prendre plus de commandes que sa cadence / port qui limite le nombre de bateaux entrant en même temps |
+| Latence perçue | Le temps d'attente ressenti, distinct du temps de réponse mesuré côté serveur. | `afficherAccuseReception(); await requeteReelle();` | accusé de réception immédiat en salle pendant que la cuisine prépare / retour radio immédiat pendant que la manœuvre s'exécute |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'echec |
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Refus argumente des deux raccourcis | Le refus s'appuie sur un mecanisme du niveau (scope, moindre privilege, frontiere de confiance, transmission de secret), pas sur une prudence generique | Tu dis juste "c'est risque" sans nommer le mecanisme concret qui casse |
-| Solution livrable en trois jours | La proposition est reellement realisable dans le delai avec les moyens actuels, sans exiger un systeme generique complet non existant | Tu proposes un systeme de scopes generique complet, irrealiste en trois jours |
-| Reponse au manque d'outillage | La solution minimale (table de correspondance verifiee a l'appel) resout le probleme reel sans sur-ingenierie disproportionnee au delai | Tu construis plus que necessaire, ou tu bricoles une solution qui ne verifie rien reellement |
-| Mecanisme anti-recidive | L'engagement propose s'integre a un processus existant (signature commerciale) et est verifiable, pas un voeu pieux | Tu promets "on fera attention la prochaine fois" sans mecanisme dans un processus reel |
-| Ton | La decision est assumee et defendable simultanement devant le commercial presse et le partenaire qui attend sa cle, sans ceder sur le fond pour gagner du temps | Tu cedes sur le fond (token admin, cle en clair) pour eviter le conflit immediat |
+| Contrat d'API | Un déploiement casse des clients qui faisaient confiance à un comportement jamais formalisé | Ton contrat est-il écrit quelque part, ou seulement implicite dans le code du serveur ? |
+| Compatibilité ascendante | Un client externe que tu ne contrôles pas casse à ton prochain déploiement | Un client qui n'a pas été mis à jour depuis six mois fonctionne-t-il encore avec ta dernière version ? |
+| Compatibilité descendante | Un déploiement progressif casse en plein rollout, entre ancienne et nouvelle version du serveur | Que se passe-t-il si ton client nouveau parle à un serveur pas encore mis à jour ? |
+| Idempotence | Un retry réseau duplique une commande, un paiement, un envoi | Quelles opérations de ton API sont idempotentes, et comment le garantis-tu pour les autres ? |
+| Idempotency key | Sans elle, chaque coupure réseau crée un doublon indétectable par le serveur | Ta clé d'idempotence est-elle générée à l'intention ou à chaque tentative réseau ? |
+| Authn / Authz | Un appelant identifié mais mal autorisé accède à des données hors de son périmètre | Ton système confond-il "je sais qui tu es" avec "je sais ce que tu as le droit de faire" ? |
+| Rate limiting | Un client mal configuré ou une attaque sature ton service sans limite | Que se passe-t-il concrètement si un client rejoue la même requête cent fois par seconde ? |
+| Latence perçue | On optimise le temps serveur sans jamais améliorer ce que l'utilisateur ressent réellement | Comment réduirais-tu la latence perçue sans forcément réduire le temps de réponse mesuré ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Tableau des codes HTTP et de leur "retryabilite"
 
@@ -76,3 +82,12 @@ Avant de livrer un endpoint, demande-toi : "si cet appelant retente cette requet
 d'affilee a cause d'un reseau instable, qu'est-ce qui se passe exactement dans mon systeme ?"
 Si la reponse n'est pas "rien de plus qu'une seule tentative", l'idempotence n'est pas
 reglee : independamment de ce que dit le reste du code.
+
+## Si tu rates le boss-fight
+
+Relis d'abord le critere qui a plafonne ta note : refus argumente des raccourcis, solution
+livrable en trois jours, ou mecanisme anti-recidive. Reprends la scene en listant separement
+ce qui touche un scope mal defini et ce qui est un detail acceptable. Relis la checklist
+ci-dessus. Attends 48 h avant de retenter le boss-fight pour juger la scene a froid. Si
+l'echec se reproduit sur le meme critere, redescends au niveau 06 relire "frontiere de
+confiance" : un scope mal pose est souvent une frontiere jamais revalidee.

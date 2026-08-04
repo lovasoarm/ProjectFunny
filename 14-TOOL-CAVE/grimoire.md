@@ -1,25 +1,33 @@
-# Grimoire : Tool Cave
+# Grimoire : Niveau 14, Tool Cave
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
-|---|---|---|---|
-| Hypothèse falsifiable | Une affirmation qui prédit un résultat observable différent selon qu'elle est vraie ou fausse | Tu tournes en rond en changeant du code au hasard, sans savoir si un changement a rapproché ou éloigné de la cause | Donne un exemple d'hypothèse sur un bug que tu as vécu, et le résultat qui l'aurait infirmée |
-| Bissection | Diviser l'espace de recherche (historique git, code, données, config) en deux à chaque étape pour converger en O(log n) | Tu inspectes les changements un par un, en O(n), et tu perds un temps proportionnel à la taille du problème | Pourquoi une recherche par bissection sur 1000 commits prend au maximum 10 étapes |
-| Log ciblé | Une trace ajoutée spécifiquement pour trancher une question précise, retirée une fois la réponse obtenue | Tu ajoutes des logs génériques partout, tu noies le signal utile, et tu oublies de les retirer avant prod | Quelle question précise ton dernier log de debug devait-il trancher |
-| Cause racine vs symptôme | Le symptôme est ce qui casse visiblement ; la cause racine est le mécanisme qui produit ce symptôme, souvent plus en amont | Tu corriges le symptôme (un cas particulier), le même bug revient sous une autre forme la semaine suivante | Cite un bug où corriger le symptôme sans corriger la cause aurait suffi à repasser les tests |
-| Hypothèse silencieuse d'une réponse IA | Le choix implicite qu'un modèle fait pour compléter un prompt sous-spécifié, jamais écrit noir sur blanc | Tu livres un code qui répond littéralement à ta question mais pas à ton besoin réel, l'écart n'apparaît qu'en production | Comment repères-tu qu'un prompt était sous-spécifié après coup, sur ta réponse IA la plus récente |
-| Compromis nommé et assumé | La décision qui dit explicitement ce qu'elle sacrifie et pourquoi ce sacrifice est acceptable dans le contexte | Tu prends une décision sous pression sans dire ce qu'elle coûte, personne ne peut la challenger ni la revenir en arrière en connaissance de cause | Sur ta dernière décision urgente, qu'as-tu sacrifié et pourquoi c'était le bon ordre de priorité |
-| Honnêteté sur l'incertitude | Nommer explicitement ce que tu n'as pas vérifié, plutôt que de présenter une hypothèse comme un fait | Une hypothèse non vérifiée présentée comme certaine se propage : d'autres construisent dessus sans la questionner | Sur ton dernier rapport de bug, quelle affirmation n'avait en réalité pas de preuve derrière elle |
-| Commit unitaire sans transaction globale | Un traitement par lot qui valide chaque élément séparément, sans rollback global en cas d'échec en cours de route | Une interruption au milieu du lot laisse un état partiel (certains éléments traités, d'autres non), impossible à rejouer sans risquer un doublon | Pourquoi relancer un lot à commit unitaire depuis le début double le travail déjà validé |
+Mémo à ouvrir avant une session de debug ou une revue de code généré par IA. Sert à
+vérifier la méthode, pas à réciter une liste d'outils.
 
-## Comportements évalués en boss-fight
+| Terme | Définition | Code | Analogies |
+| --- | --- | --- | --- |
+| Hypothèse falsifiable | Une affirmation qui prédit un résultat observable différent selon qu'elle est vraie ou fausse. | `// si vrai: log X apparait ; si faux: log X absent` | diagnostic du chef qui prédit précisément le goût si l'ingrédient est en cause / hypothèse du skipper qui prédit précisément la dérive si le courant est en cause |
+| Bissection | Diviser l'espace de recherche en deux à chaque étape pour converger en O(log n). | `git bisect start && git bisect bad && git bisect good v1.2.0` | vérifier la moitié des plats du service pour isoler celui qui a raté / vérifier la moitié du parcours pour isoler où la corde a lâché |
+| Log ciblé | Une trace ajoutée pour trancher une question précise, retirée ensuite. | `console.log("DEBUG cle_idempotence=", cle); // a retirer avant merge` | note prise en cuisine juste pour vérifier une cuisson, jetée après / repère marqué juste pour vérifier un cap, effacé après |
+| Cause racine vs symptôme | Le symptôme casse visiblement, la cause racine produit ce symptôme en amont. | `// corriger le calcul de stock, pas juste masquer l'alerte de rupture` | traiter la fièvre sans traiter l'infection aux urgences / colmater une fuite sans réparer la coque fissurée |
+| Hypothèse silencieuse d'une réponse IA | Le choix implicite qu'un modèle fait pour compléter un prompt sous-spécifié. | `// le modele a suppose email unique sans qu'on le precise` | commis qui invente une quantité non précisée sur la commande / matelot qui invente un cap non précisé par le skipper |
+| Compromis nommé et assumé | La décision qui dit explicitement ce qu'elle sacrifie et pourquoi c'est acceptable. | `// on sacrifie la validation stricte cette nuit, corrige avant lundi` | chef qui annonce assumer un plat de secours faute de temps / skipper qui annonce assumer une route plus longue faute de vent |
+| Honnêteté sur l'incertitude | Nommer ce que tu n'as pas vérifié, plutôt que de le présenter comme un fait. | `// NON VERIFIE : cause probable, a confirmer avec les logs de prod` | chef qui dit ne pas être sûr du fournisseur en cause / skipper qui dit ne pas être sûr de la cause de la dérive |
+| Commit unitaire sans transaction globale | Un traitement par lot qui valide chaque élément séparément, sans rollback global. | `for (const item of lot) { await traiter(item); await marquerFait(item.id); }` | chaque plat du service facturé séparément, pas en un seul ticket global / chaque nœud vérifié séparément, pas en un seul geste global |
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
-|---|---|---|
-| Justification par un mecanisme | La cause racine est nommee et reliee au code et aux logs fournis, pas seulement au message d'erreur affiche | Une cause racine affirmee sans lien explicite avec une ligne de log, de code ou de git log fournie |
-| Protocole de verification sans nouvelle execution | Le protocole utilise uniquement les logs, git log et requetes SQL fournis pour confirmer l'hypothese avant d'agir | Une verification qui suppose de relancer le job ou d'obtenir une donnee non fournie dans l'enonce |
-| Compromis nomme et assume | La decision dit explicitement ce qui est sacrifie et pourquoi ce sacrifice est le bon ordre de priorite sous contrainte de temps | Une decision qui n'evoque aucun sacrifice, comme si elle n'avait aucun cout |
-| Honnetete sur ce que tu ne sais pas | La copie liste au moins un point non verifiable cette nuit-la et prevoit sa verification ulterieure | Une affirmation presentee comme certaine alors qu'elle n'est pas etayee par les logs fournis |
-| Coherence de la decision avec la contrainte "une seule tentative" | La decision traite separement les unites deja committees, celles en attente, et le cas en echec, sans action globale non maitrisee | Une relance aveugle du batch complet qui expose au double commit |
+## Défense orale
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+| --- | --- | --- |
+| Hypothèse falsifiable | Tu tournes en rond en changeant du code au hasard, sans savoir si tu te rapproches | Donne un exemple d'hypothèse sur un bug vécu, et le résultat qui l'aurait infirmée |
+| Bissection | Tu inspectes les changements un par un, en O(n), tu perds un temps proportionnel au problème | Pourquoi une recherche par bissection sur 1000 commits prend au maximum 10 étapes ? |
+| Log ciblé | Tu ajoutes des logs génériques partout, tu noies le signal et tu oublies de les retirer | Quelle question précise ton dernier log de debug devait-il trancher ? |
+| Cause racine vs symptôme | Tu corriges le symptôme, le même bug revient sous une autre forme la semaine suivante | Cite un bug où corriger le symptôme sans corriger la cause aurait suffi à repasser les tests |
+| Hypothèse silencieuse d'une réponse IA | Tu livres un code qui répond à ta question mais pas à ton besoin réel | Comment repères-tu qu'un prompt était sous-spécifié après coup ? |
+| Compromis nommé et assumé | Tu prends une décision sous pression sans dire ce qu'elle coûte, personne ne peut la challenger | Sur ta dernière décision urgente, qu'as-tu sacrifié et pourquoi c'était le bon ordre de priorité ? |
+| Honnêteté sur l'incertitude | Une hypothèse non vérifiée se propage, d'autres construisent dessus sans la questionner | Sur ton dernier rapport de bug, quelle affirmation n'avait en réalité pas de preuve derrière elle ? |
+| Commit unitaire sans transaction globale | Une interruption laisse un état partiel, impossible à rejouer sans risquer un doublon | Pourquoi relancer un lot à commit unitaire depuis le début double le travail déjà validé ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Méthode de debug, en une page
 
@@ -70,6 +78,38 @@ Ne génère pas encore de code : j'ai besoin de choisir en connaissance de cause
 2. Une revue par quelqu'un de plus expérimenté que toi sur le sujet précis.
 3. Ta propre relecture à froid, une fois la pression du moment retombée.
 
+## Commandes prêtes à copier
+
+```bash
+# 1. Bissection git pour isoler le commit qui a introduit une régression.
+git bisect start
+git bisect bad HEAD
+git bisect good v1.2.0
+# git testera chaque commit intermédiaire, marque-le bad/good jusqu'à convergence
+```
+
+```bash
+# 2. Compter les requêtes SQL réellement exécutées par un test, pour détecter un N+1.
+# suppose un log de requêtes actif en environnement de test (ex: variable d'env dédiée)
+DEBUG_SQL_COUNT=1 npm test -- --grep "liste des réservations"
+```
+
+```bash
+# 3. Rejouer un lot en ignorant les éléments déjà marqués comme traités (commit unitaire).
+# n'agit jamais sur l'ensemble du lot d'un bloc, seulement sur ce qui reste en attente
+psql -d prod -c "SELECT id FROM lot_import WHERE statut = 'en_attente' LIMIT 100;"
+```
+
+```bash
+# 4. Grep ciblé sur l'historique pour retrouver quand une valeur par défaut a changé.
+git log -p --follow -S"DEFAULT 'M'" -- migrations/materiel.sql
+```
+
+```bash
+# 5. Isoler un test unique pour reproduire un bug sans faire tourner toute la suite.
+npx vitest run src/reservation.test.ts -t "refuse un chevauchement de créneau"
+```
+
 ## Formule à retenir
 
 ```text
@@ -77,3 +117,13 @@ Vitesse de livraison utile = Comprehension du probleme x Maitrise des outils
 
 Un facteur proche de zéro effondre le produit, quelle que soit la qualité de l'autre.
 ```
+
+## Si tu rates le boss-fight
+
+Relis d'abord le critère qui a plafonné ta note : justification par un mécanisme, protocole
+de vérification sans nouvelle exécution, ou cohérence avec la contrainte "une seule
+tentative". Reprends les logs fournis et refais la bissection à la main avant de répondre à
+nouveau. Relis la méthode de debug en une page ci-dessus. Attends 48 h avant de retenter le
+boss-fight pour juger la scène à froid. Si l'échec se reproduit sur le même critère,
+redescends au niveau 07 relire "idempotence" : une relance de lot mal maîtrisée cache souvent
+une opération non idempotente.

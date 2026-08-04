@@ -1,31 +1,34 @@
-# Grimoire : Data Spells
+# Grimoire : Niveau 05, Data Spells
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Mémo à ouvrir avant de modéliser un schéma ou de migrer une table de production vivante.
+Sert à vérifier le mécanisme, pas à réciter du vocabulaire SQL. Postgres 16 (verifie le
+2026-08-03).
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Entité | Chose du domaine avec une identité stable, indépendante de ses attributs | Tu confonds identité et attributs, deux lignes différentes se retrouvent fusionnées par erreur | Peut-elle changer d'attribut sans changer d'identité ? |
-| Clé naturelle / clé technique | Donnée du monde réel censée être unique, contre un identifiant inventé par le système sans signification métier | Une clé naturelle qui change (email, numéro) casse toutes les références qui s'appuient dessus | Pourquoi cette table utilise une clé technique et pas la clé naturelle en identifiant primaire ? |
-| Invariant | Règle qui doit rester vraie en toutes circonstances, quel que soit le chemin de code emprunté | Un chemin de code oublié viole la règle silencieusement, incident découvert bien plus tard | Cet invariant est-il défendu par une contrainte de base, ou seulement par du code applicatif ? |
-| Normalisation | Éliminer la duplication d'un même fait pour qu'il ne puisse jamais se contredire lui-même entre deux copies | Deux copies du même fait divergent, plus personne ne sait laquelle est vraie | Ce fait est-il dupliqué quelque part, et si oui pourquoi assumé ? |
-| Dénormalisation en snapshot | Recopier volontairement une donnée pour figer un fait historique (facture), nommée explicitement | Un historique se met à jour rétroactivement, une facture déjà émise change de montant sans qu'on le veuille | Pourquoi cette copie est un snapshot volontaire et pas un oubli de normalisation ? |
-| Index partiel | Index restreint aux lignes qui vérifient une condition, seul moyen fiable d'imposer "au plus une ligne de ce type" quand NULL est impliqué | Une contrainte UNIQUE classique laisse passer plusieurs lignes NULL, l'invariant métier n'est jamais réellement posé | Pourquoi une contrainte UNIQUE simple ne suffit pas ici ? |
-| Contrainte d'exclusion | Garantit qu'aucune paire de lignes ne viole une relation donnée (ex : aucune période qui chevauche une autre) | Deux périodes se chevauchent silencieusement, la base ne le refuse jamais | Comment la base empêche-t-elle, elle-même, deux périodes qui se chevauchent ? |
-| Expand/contract | Découper un changement de schéma en étapes (ajouter, remplir, basculer, retirer) qui restent chacune sûres isolément, sans downtime | Un déploiement interrompu au milieu laisse le schéma dans un état incohérent, avec coupure de service | Si le déploiement s'arrête à cette étape précise, le système reste-t-il cohérent ? |
-| NOT VALID / VALIDATE CONSTRAINT | Poser une contrainte immédiatement pour les nouvelles écritures, valider les lignes existantes séparément, sans verrou exclusif prolongé | Ajouter une contrainte NOT NULL en une seule instruction verrouille toute la table en production | Comment évites-tu un verrou exclusif prolongé en ajoutant cette contrainte ? |
-| Soft delete / audit trail | Soft delete : marquer une ligne comme supprimée sans l'effacer. Audit trail : trace de qui a changé quoi et quand, indépendante du soft delete | Une donnée référencée disparaît et casse les lectures qui en dépendent, ou personne ne peut reconstituer une décision passée | As-tu un filtre systématique côté lecture pour les lignes soft-deleted ? |
-| N+1 | Une requête par élément d'une liste dans une boucle applicative, coût qui croît linéairement avec le volume | Le temps de réponse explose dès que le volume de données grossit, invisible en développement | As-tu vérifié le nombre de requêtes exécutées par un compteur, ou seulement à l'œil ? |
-| Pagination par curseur | Navigation basée sur une clé stable et ordonnée en totalité, stable même sous insertions/suppressions concurrentes | La pagination par offset saute ou répète des lignes quand des insertions/suppressions arrivent en cours de navigation | Ta clé de curseur garantit-elle un ordre total sans égalité possible entre deux lignes ? |
-| Lost update | Deux transactions concurrentes lisent la même valeur, écrivent chacune une version corrigée, l'une écrase silencieusement l'autre | Une modification concurrente disparaît sans erreur visible, sous READ COMMITTED | Comment détectes-tu, ou empêches-tu, ce lost update sur cette table ? |
-| Verrou pessimiste (FOR UPDATE) vs optimiste (colonne version) | Pessimiste : empêche le conflit en bloquant les lecteurs concurrents. Optimiste : détecte le conflit au moment d'écrire, sans jamais bloquer | Un mauvais choix de verrou crée soit des blocages inutiles, soit des conflits non détectés | Pourquoi ce verrou-là plutôt que l'autre, sur cette table précise ? |
+| Entité | Chose du domaine avec une identité stable, indépendante de ses attributs. | `SELECT id FROM materiel WHERE id = '3f2a...';` | numéro de table en salle, stable même si le plat commandé change / numéro de cordage, stable même si sa longueur est recoupée |
+| Clé naturelle / clé technique | Donnée du monde réel censée être unique, contre un identifiant inventé par le système. | `id uuid PRIMARY KEY DEFAULT gen_random_uuid(), email text UNIQUE` | nom du client en salle vs numéro de couvert attribué / nom du marin vs matricule de bord |
+| Invariant | Règle qui doit rester vraie en toutes circonstances, défendue par une contrainte de base. | `ALTER TABLE creneau ADD CONSTRAINT prix_positif CHECK (prix >= 0);` | règle de sécurité aux urgences valable pour tout patient, sans exception / point d'ancrage qui ne doit jamais lâcher, quelle que soit la cordée |
+| Normalisation | Éliminer la duplication d'un même fait pour qu'il ne puisse jamais se contredire lui-même. | `CREATE TABLE client (id uuid PRIMARY KEY, nom text);` | un seul carnet de commandes fait foi en cuisine, pas une copie par serveur / un seul livre de bord fait foi, pas un carnet par matelot |
+| Dénormalisation en snapshot | Recopier volontairement une donnée pour figer un fait historique, nommée explicitement. | `ALTER TABLE facture ADD COLUMN tarif_au_moment_emission numeric NOT NULL;` | ticket de caisse qui garde le prix du jour, même si la carte change ensuite / relevé de position figé au moment du passage, même si la route change après |
+| Index partiel | Index restreint aux lignes qui vérifient une condition, pour imposer "au plus une ligne" avec NULL impliqué. | `CREATE UNIQUE INDEX ON creneau (salle_id) WHERE annule_le IS NULL;` | un seul plat du jour actif par service, les anciens ne comptent plus / une seule route active tracée sur la carte, les anciennes sont archivées |
+| Contrainte d'exclusion | Garantit qu'aucune paire de lignes ne viole une relation donnée, par exemple deux périodes qui se chevauchent. | `EXCLUDE USING gist (salle_id WITH =, periode WITH &&);` | deux réservations de la même table qui ne peuvent jamais se chevaucher / deux créneaux de mouillage au même quai qui ne peuvent jamais se chevaucher |
+| Expand/contract | Découper un changement de schéma en étapes sûres isolément, sans downtime. | `ALTER TABLE materiel ADD COLUMN taille text; -- puis backfill, bascule, drop` | changement de menu en cuisine annoncé et testé avant de retirer l'ancien plat de la carte / changement de gréement testé en double avant de retirer l'ancien matériel |
 
-## Comportements évalués en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Refus argumenté de l'UPDATE en place (justification par un mécanisme) | Le refus s'appuie sur le mécanisme précis (perte d'historique, application rétroactive fausse d'un tarif), pas une prudence générique | Un refus flou, non relié au mécanisme réel de perte de données |
-| Schéma minimal livrable en un jour (compromis nommé et assumé) | La proposition (colonne de période, contrainte d'exclusion ou vérification applicative) est réellement réalisable dans le délai, sans refonte disproportionnée | Une refonte complète du système de facturation proposée dans l'urgence |
-| Cohérence de la lecture du tarif applicable | La solution garantit que chaque facture lit le tarif en vigueur à la date de la consommation qu'elle facture, pas à la date du calcul | Le calcul lit le tarif au moment de l'exécution du batch, pas à la date réelle de consommation |
-| Robustesse face à l'incertitude réglementaire (honnêteté sur ce qu'on ne sait pas) | La décision reste correcte que le recalcul rétroactif soit finalement exigé ou non, sans pari risqué sur l'une ou l'autre issue | Un pari implicite sur une seule issue réglementaire, qui casse si l'autre se produit |
-| Vérifiabilité | La vérification proposée est concrète et exécutable, pas un vœu pieux ("on testera bien") | Une vérification vague, non exécutable avant dimanche minuit |
+| Entité | Tu confonds identité et attributs, deux lignes différentes se retrouvent fusionnées par erreur | Peut-elle changer d'attribut sans changer d'identité ? |
+| Clé naturelle / clé technique | Une clé naturelle qui change casse toutes les références qui s'appuient dessus | Pourquoi cette table utilise une clé technique et pas la clé naturelle en identifiant primaire ? |
+| Invariant | Un chemin de code oublié viole la règle silencieusement, incident découvert bien plus tard | Cet invariant est-il défendu par une contrainte de base, ou seulement par du code applicatif ? |
+| Normalisation | Deux copies du même fait divergent, plus personne ne sait laquelle est vraie | Ce fait est-il dupliqué quelque part, et si oui pourquoi assumé ? |
+| Dénormalisation en snapshot | Un historique se met à jour rétroactivement, une facture déjà émise change de montant | Pourquoi cette copie est un snapshot volontaire et pas un oubli de normalisation ? |
+| Index partiel | Une contrainte UNIQUE classique laisse passer plusieurs lignes NULL, l'invariant n'est jamais posé | Pourquoi une contrainte UNIQUE simple ne suffit pas ici ? |
+| Contrainte d'exclusion | Deux périodes se chevauchent silencieusement, la base ne le refuse jamais | Comment la base empêche-t-elle, elle-même, deux périodes qui se chevauchent ? |
+| Expand/contract | Un déploiement interrompu au milieu laisse le schéma dans un état incohérent, coupure de service | Si le déploiement s'arrête à cette étape précise, le système reste-t-il cohérent ? |
+
+Grille détaillée : voir [boss-fight.md](./boss-fight.md).
 
 ## Arbre de décision : normaliser ou dénormaliser une colonne
 
@@ -72,6 +75,54 @@ Les conflits d'écriture sur cette ligne sont-ils fréquents ?
 - [ ] Chaque `WHERE`/`JOIN`/`ORDER BY` réellement exécuté souvent a un index correspondant,
       jamais "au cas où".
 
+## Requêtes prêtes à copier
+
+```sql
+-- 1. Ajouter une contrainte NOT NULL sans verrou exclusif prolongé sur une table pleine.
+-- Etape a : poser la contrainte NOT VALID, elle protege immediatement les nouvelles ecritures
+-- sans scanner les lignes existantes.
+ALTER TABLE materiel
+  ADD CONSTRAINT materiel_taille_not_null CHECK (taille_baudrier IS NOT NULL) NOT VALID;
+```
+
+```sql
+-- 2. Valider la contrainte sur les lignes existantes, dans un second temps.
+-- Ce scan lit la table mais ne pose pas de verrou exclusif comme le ferait un ALTER classique.
+ALTER TABLE materiel VALIDATE CONSTRAINT materiel_taille_not_null;
+```
+
+```sql
+-- 3. Creer un index sans bloquer les ecritures concurrentes, restreint aux lignes utiles.
+-- CONCURRENTLY evite le verrou exclusif ; WHERE reduit la taille de l'index aux lignes actives.
+CREATE INDEX CONCURRENTLY idx_creneau_salle_actif
+  ON creneau (salle_id, debut)
+  WHERE annule_le IS NULL;
+```
+
+```sql
+-- 4. Empecher deux reservations de la meme salle de se chevaucher dans le temps.
+-- btree_gist est requis pour combiner egalite (=) et chevauchement (&&) dans une seule contrainte.
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+
+ALTER TABLE creneau
+  ADD CONSTRAINT creneau_pas_de_chevauchement
+  EXCLUDE USING gist (salle_id WITH =, periode WITH &&);
+```
+
+```sql
+-- 5. Migration expand-contract complete pour renommer une colonne sans downtime.
+-- Etape EXPAND : ajouter la nouvelle colonne, nullable, sans toucher a l'ancienne.
+ALTER TABLE materiel ADD COLUMN taille text;
+
+-- Etape BACKFILL : remplir par lots pour ne pas verrouiller toute la table d'un coup.
+UPDATE materiel SET taille = taille_baudrier
+  WHERE id IN (SELECT id FROM materiel WHERE taille IS NULL LIMIT 1000);
+-- repeter jusqu'a ce qu'il n'y ait plus rien a traiter
+
+-- Etape CONTRACT (une fois le code applicatif bascule et observe un temps suffisant) :
+ALTER TABLE materiel DROP COLUMN taille_baudrier;
+```
+
 ## Heuristique de secours
 
 Avant d'écrire une contrainte "dans le code applicatif seulement", demande-toi : "si quelqu'un
@@ -79,3 +130,12 @@ modifie cette table directement en SQL un dimanche soir d'urgence, cet invariant
 encore ?" Si la réponse est non, l'invariant doit descendre dans la base : contrainte `CHECK`,
 index unique partiel, ou contrainte d'exclusion : indépendamment de la confiance qu'on a dans
 le code applicatif.
+
+## Si tu rates le boss-fight
+
+Relis d'abord le critère qui a plafonné ta note : refus argumenté de l'UPDATE en place,
+schéma minimal livrable, ou cohérence de lecture du tarif. Reprends la scène en identifiant
+la donnée qui doit devenir un snapshot et celle qui doit rester normalisée. Relis l'arbre de
+décision ci-dessus. Attends 48 h avant de retenter le boss-fight pour juger la scène à froid.
+Si l'échec se reproduit sur le même critère, redescends au niveau 04 relire "invariant d'une
+feature" : un mauvais schéma cache souvent un invariant jamais nommé.

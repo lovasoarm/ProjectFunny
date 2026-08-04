@@ -1,24 +1,30 @@
-# Grimoire : Niveau 10 : Team Quest
+# Grimoire : Team Quest
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Ouvre ce mémo avant une réunion qui sent le conflit, ou juste après. Il te donne les réflexes de
+coordination d'équipe, pas le cours complet sur le travail en groupe.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Working agreement | Ensemble de regles explicites et verifiables qu'une equipe adopte pour regler a l'avance les questions qui, sinon, se posent pour la premiere fois sous pression. | Chaque conflit redecouvre une regle qui n'existait que dans une seule tete, au pire moment. | Ton working agreement est-il ecrit, date, et relu recemment, ou existe-t-il seulement dans les tetes ? |
-| Definition of Done | Liste verifiable de conditions qui definissent "fini" pour une tache, independante de l'impression de la personne qui l'a realisee. | Deux personnes appellent "fini" deux choses differentes, et le desaccord n'explose qu'a la livraison. | Ta definition de "fini" est-elle une liste verifiable, ou une impression personnelle ? |
-| Trunk-based development | Flux Git ou tout le monde travaille a partir d'une branche unique, toujours deployable, avec des branches de travail tres courtes. | Des branches longues divergent et le merge final devient un conflit majeur. | Ton flux Git correspond-il a ton rythme de release reel, ou a une habitude recopiee ? |
-| GitFlow | Flux Git avec branches separees pour le developpement en cours, les releases en preparation, et les correctifs urgents. | Une release freinee par une branche de developpement non isolee bloque un correctif urgent. | Pourquoi GitFlow plutot que trunk-based pour ton equipe et ton rythme de release ? |
-| Feature flag | Condition dans le code qui active ou desactive une fonctionnalite sans nouveau deploiement, decouplant "code en production" de "fonctionnalite visible". | Une fonctionnalite non finie doit attendre un deploiement complet pour etre desactivee en urgence. | Comment desactiverais-tu une fonctionnalite en production sans redeployer ? |
-| Escalade | Action de remonter un probleme a quelqu'un qui a le pouvoir de le resoudre quand on ne l'a pas soi-meme, avec des faits et une proposition, pas seulement un signalement de detresse. | Un blocage reste local trop longtemps, ou remonte sans faits ni proposition et ne se resout pas plus vite. | Quand escalades-tu exactement, et avec quoi dans les mains a ce moment-la ? |
-| Qui decide quoi | Table qui fixe, pour chaque type de decision (implementation locale, architecture partagee, priorite produit, decision irreversible), qui tranche en cas de desaccord. | Un desaccord technique tourne en rond parce que personne ne sait qui a le dernier mot. | Qui decide, dans ton equipe, en cas de desaccord sur une decision irreversible ? |
-| Signaux qu'un working agreement est mort | Plus personne ne le cite, il decrit une equipe ou un outillage qui n'existe plus, ou une regle y figure alors que tout le monde la contourne. | L'equipe suit des regles fantomes qui ne correspondent plus a la realite, sans le dire. | Quel signal montrerait que ton working agreement actuel est deja mort ? |
+| Working agreement | Règles explicites et vérifiables adoptées à l'avance pour régler ce qui, sinon, se joue sous pression. | `git log -1 --format="%ad" -- working-agreement.md # date de derniere revision` | atelier de menuiserie / régie technique de spectacle |
+| Definition of Done | Liste vérifiable de conditions pour appeler une tâche "finie", indépendante de l'impression de son auteur. | `- [ ] tests verts\n- [ ] revue approuvee\n- [ ] deploye en staging\n- [ ] documente` | cuisine de restaurant en service / urgences d'hôpital |
+| Trunk-based development | Flux Git où tout le monde part d'une branche unique, toujours déployable, avec des branches courtes. | `git checkout main && git pull && git checkout -b fix-alerte-temp && git push -u origin fix-alerte-temp` | navigation maritime / course en montagne |
+| GitFlow | Flux Git avec branches séparées pour développement, releases en préparation et correctifs urgents. | `git checkout -b release/2026.03 develop` | atelier de menuiserie / régie technique de spectacle |
+| Feature flag | Condition dans le code qui active ou désactive une fonctionnalité sans nouveau déploiement. | `if (flags.isEnabled("alerte_temperature_v2", unit.id)) { return computeV2(unit); }` | régie technique de spectacle / urgences d'hôpital |
+| Escalade | Remonter un problème à quelqu'un qui a le pouvoir de le résoudre, avec des faits et une proposition. | `# message d'escalade type\necho "Blocage: X depuis 4h. Impact: Y. Proposition: Z. Besoin: validation avant 17h."` | course en montagne / urgences d'hôpital |
+| Qui décide quoi | Table qui fixe, par type de décision, qui tranche en cas de désaccord. | `INSERT INTO decisions_owners (type, owner) VALUES ('architecture_partagee', 'lead-tech');` | navigation maritime / cuisine de restaurant en service |
+| Signaux qu'un working agreement est mort | Plus personne ne le cite, ou une règle y figure alors que tout le monde la contourne. | `grep -c "trunk-based" working-agreement.md; git log --all --oneline | grep -c "hotfix direct sur main"` | atelier de menuiserie / course en montagne |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour la préparer à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Identification du vrai désaccord (justification par un mécanisme) | Tu identifies l'hypothèse vérifiable (fiabilité du capteur) qui devrait trancher | Tu discutes des deux solutions comme des préférences esthétiques |
-| Gestion de la pression de la deadline (compromis nommé et assumé) | Tu proposes une vérification rapide ou une décision par défaut prudente si le temps manque | Tu forces une décision arbitraire juste pour "avancer" avant la release |
-| Gestion humaine | Tu reconnais le coût du travail de chacun sans que ça t'empêche de choisir la meilleure décision technique disponible | Tu ignores la frustration de Malik et Inès, ou tu la calmes sans rien résoudre sur le fond |
-| Réflexe systémique | Tu proposes un changement concret du working agreement pour éviter le prochain doublon | Tu règles seulement le conflit du jour |
+| Trouver le vrai désaccord | Sans distinguer fait vérifiable et préférence, la discussion tourne en rond entre deux egos. | Quelle hypothèse vérifiable devrait trancher ton dernier désaccord technique ? |
+| Tenir la pression de deadline | Forcer une décision arbitraire pour "avancer" fait porter le risque à plus tard, plus cher. | Que proposes-tu quand le temps manque pour vérifier avant une échéance ferme ? |
+| Reconnaître le coût humain | Ignorer le travail déjà fourni par chacun casse la confiance même si la décision technique est juste. | Comment reconnais-tu l'effort de quelqu'un sans pour autant garder sa solution si elle est moins bonne ? |
+| Réflexe systémique | Ne régler que le conflit du jour garantit que le même doublon revient. | Quel changement du working agreement proposes-tu pour éviter que ce conflit se reproduise ? |
 
 ## La règle en une phrase
 
@@ -93,3 +99,11 @@ localement  de deranger quelqu'un au-dessus ?
 ## Phrase à ressortir en cas de désaccord qui monte
 
 "Est-ce qu'on discute d'une préférence, ou d'un fait qu'on peut vérifier avant de trancher ?"
+
+## Si tu rates le boss-fight
+
+Relis la leçon sur "qui décide quoi" et celle sur l'escalade avant de retenter. Refais
+l'exercice en identifiant d'abord, par écrit, l'hypothèse vérifiable qui sépare les deux
+positions en jeu, avant de rédiger ta prise de parole. Donne-toi 48 heures, pas plus. Si le
+score reste sous 50/100, remonte au niveau amont sur la distinction entre fait vérifiable et
+préférence avant de revenir sur ce boss-fight.

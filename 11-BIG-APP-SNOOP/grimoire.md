@@ -1,25 +1,31 @@
 # Grimoire : Big App Snoop
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Ouvre ce mémo avant de toucher à du code étranger dans un gros dépôt. Il te donne la méthode
+d'archéologie, pas un cours sur la lecture de code.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Cartographie du terrain | Repérer la structure d'un dépôt (arborescence, dépendances, schéma DB) sans lire la logique métier | Tu lis fichier par fichier sans savoir si tu remontes vers la cause ou t'enfonces dans une branche morte | Pourquoi cette phase précède toute lecture de code et combien de temps tu lui donnes sur un budget de 3 heures |
-| Flux de bout en bout | Suivre un cas d'usage réel du clic jusqu'à l'écriture en base, sans dévier | Tu comprends des fragments isolés sans jamais voir la forme réelle d'un parcours utilisateur | Pourquoi une traversée verticale unique t'apprend plus qu'une lecture exhaustive d'un dossier |
-| Zone à risque | Fichier ou fonction à fort impact ou fort historique de modification (git log --stat, absence de tests) | Tu traites tout le code avec la même prudence, trop pour le cosmétique, pas assez pour le critique | Deux indices concrets, autres que ton intuition, pour repérer une zone à risque |
-| Contrainte reconstruite | Raison externe (légale, contractuelle, performance, équipe) qui explique un design en apparence mauvais | Tu juges et tu réécris du code qui répond en fait à un besoin réel encore actif | Les quatre familles de contraintes et la question qui décide si chacune est encore active |
-| Dette délibérée vs dette subie | Distinction entre un compromis choisi consciemment et une dégradation non maîtrisée | Tu traites toute imperfection comme une faute, tu perds la confiance de l'équipe en place | Un exemple de chacune, avec l'indice qui te permet de les distinguer dans le code |
-| Rayon d'impact | Ensemble des appelants, tests et données qui dépendent de ce que tu modifies | Tu corriges une fonction partagée sans savoir qu'elle est partagée, et un service sans lien apparent casse | Les cinq branches du rayon d'impact et laquelle casse en silence plutôt que bruyamment |
-| Test de caractérisation | Test qui documente le comportement actuel du code, bug inclus, avant toute modification | Tu ne sais pas mesurer l'écart exact que ton correctif introduit, tu changes à l'aveugle | En quoi il diffère d'un test qui vérifie qu'un comportement est correct |
-| Patch minimal | Le plus petit changement qui corrige le problème réel sans nettoyage ni renommage mêlés | La revue de code se noie dans du bruit, le risque de régression grimpe sans bénéfice mesuré | Les trois qualités d'un patch minimal et pourquoi le nettoyage mérite sa propre PR |
-| Non-régression | Preuve que ce qui marchait avant ton patch marche toujours après, distincte de la preuve que ton correctif fonctionne | Tu livres un correctif qui fonctionne sur son cas et casse un cas déjà géré ailleurs | La différence entre preuve positive et preuve négative de non-régression |
-| Données déjà écrites | Lignes en base ou fichiers créés sous l'ancien comportement, non concernés automatiquement par ton patch | Un rapport ou un calcul redevient incohérent uniquement sur les enregistrements antérieurs à ton déploiement | Pourquoi ce point est l'angle mort le plus fréquent d'une modification en apparence propre |
+| Cartographie du terrain | Repérer la structure d'un dépôt (arborescence, dépendances, schéma DB) sans lire la logique métier. | `find . -maxdepth 2 -type d && cat package.json | jq '.dependencies'` | course en montagne / navigation maritime |
+| Flux de bout en bout | Suivre un cas d'usage réel du clic jusqu'à l'écriture en base, sans dévier. | `rg -n "createTournee" --type ts` | urgences d'hôpital / atelier de menuiserie |
+| Zone à risque | Fichier ou fonction à fort impact ou fort historique de modification. | `git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10` | régie technique de spectacle / course en montagne |
+| Contrainte reconstruite | Raison externe (légale, contractuelle, performance, équipe) qui explique un design en apparence mauvais. | `git log --follow -p -- chargeSplitter.ts | head -80` | atelier de menuiserie / cuisine de restaurant en service |
+| Dette délibérée vs dette subie | Distinction entre un compromis choisi consciemment et une dégradation non maîtrisée. | `git log --all --grep="TODO temporaire" -i --oneline` | navigation maritime / urgences d'hôpital |
+| Rayon d'impact | Ensemble des appelants, tests et données qui dépendent de ce que tu modifies. | `rg -n "from ['\"].*slotWindow" --type ts` | régie technique de spectacle / course en montagne |
+| Test de caractérisation | Test qui documente le comportement actuel du code, bug inclus, avant toute modification. | `it("caracterise le comportement actuel", () => { expect(splitHeatingCost(oldBuilding, readings)).toEqual(snapshotActuel); })` | atelier de menuiserie / urgences d'hôpital |
+| Patch minimal | Le plus petit changement qui corrige le problème réel, sans nettoyage ni renommage mêlés. | `git diff --stat # verifie que le diff ne touche que la ligne du bug` | cuisine de restaurant en service / navigation maritime |
+| Non-régression | Preuve que ce qui marchait avant ton patch marche toujours après. | `npm test -- --run tests/chargeSplitter.spec.ts` | urgences d'hôpital / course en montagne |
+| Données déjà écrites | Lignes en base ou fichiers créés sous l'ancien comportement, non concernées automatiquement par ton patch. | `SELECT count(*) FROM allocations WHERE created_at < '2026-01-01';` | atelier de menuiserie / régie technique de spectacle |
 
-## Comportements évalués en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Justification par un mécanisme, pas par une impression | Méthode d'archéologie explicite (commandes, sources) utilisée avant toute conclusion sur la qualité du code | Un jugement du type "c'est mal fait" apparaît avant la section de recommandation finale |
-| Compromis nommé et assumé | Hypothèses de contrainte formulées comme vérifiables, avec le moyen exact de les confirmer ou de les infirmer | Une hypothèse présentée comme une certitude définitive sans moyen de vérification proposé |
-| Honnêteté sur ce que tu ne sais pas | Traitement explicite du cas où la preuve (ticket, commit) n'existe plus : contrainte traitée comme active par défaut, protégée par un test | Conclure d'une absence de preuve à une absence de besoin, ou inventer une certitude non vérifiable |
+| Enquêter avant de juger | Un jugement esthétique prononcé avant l'enquête te fait rater une contrainte réelle et invisible au premier coup d'oeil. | Quelle méthode d'archéologie (commandes précises) suis-tu avant de conclure sur la qualité d'un code ? |
+| Formuler des hypothèses vérifiables | Présenter une supposition comme une certitude définitive empêche quiconque de la challenger plus tard. | Comment formules-tu une hypothèse de contrainte de façon à pouvoir la confirmer ou l'infirmer ? |
+| Assumer l'absence de preuve | Conclure d'une absence de preuve à une absence de besoin est le piège classique de ce niveau. | Que fais-tu quand la trace d'une contrainte (ticket, commit) a disparu pour de bon ? |
 
 ## La méthode en une page
 
@@ -131,3 +137,11 @@ Equipe / historique     -> duplication entre zones jamais synchronisees, code "v
 45 min  historique cible
 15 min  synthese ecrite
 ```
+
+## Si tu rates le boss-fight
+
+Relis la leçon sur la reconstruction de contraintes et celle sur le rayon d'impact avant de
+retenter. Refais l'exercice en écrivant d'abord les quatre questions de reconstruction pour
+chaque branche de code suspecte, avant toute recommandation. Donne-toi 48 heures, pas plus.
+Si le score reste sous 78/100, ou si le traitement de l'absence de preuve reste sous 20/25,
+remonte au niveau amont sur la distinction entre hypothèse et certitude avant de revenir ici.

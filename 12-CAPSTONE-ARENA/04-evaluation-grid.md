@@ -2,7 +2,7 @@
 
 ## Principe
 
-Chaque critère noté est sur 20. Le total est sur 120. Cette grille sert à l'auto-évaluation
+Chaque critère noté est sur 20. Le total est sur 140. Cette grille sert à l'auto-évaluation
 (livrable 5 du niveau) et à toute revue externe ultérieure. Un score sans justification
 écrite ne compte pas : la justification est ce qui prouve que tu comprends pourquoi tu te
 notes ainsi, pas seulement que tu sais lister des points.
@@ -18,7 +18,7 @@ capstone non validable, quel que soit le score obtenu sur le reste de la grille.
 | Revue de risques du Niveau 15 présente et signée            | `REVUE-DE-RISQUES.md` existe, couvre sécurité, coûts et données personnelles, et porte une signature datée                       |
 
 ```text
-Un des deux critères éliminatoires manquant ou incomplet --> score final plafonné à 0/120,
+Un des deux critères éliminatoires manquant ou incomplet --> score final plafonné à 0/140,
 quel que soit le détail du reste de la grille. Ce n'est pas une pénalité, c'est un blocage :
 un livrable qui n'a pas la forme attendue ou qui n'a pas traité les risques du projet n'est
 pas un capstone recevable, indépendamment de la qualité du code.
@@ -34,6 +34,7 @@ pas un capstone recevable, indépendamment de la qualité du code.
 | Qualité de communication du livrable       | 20  | Une personne qui n'a pas suivi le projet peut comprendre le périmètre, l'architecture et les limites connues en lisant les documents seuls, sans explication orale.                                                           |
 | Honnêteté sur les limites et la dette      | 20  | La roadmap post-V1 nomme précisément ce qui est fragile ou reporté, sans minimiser ni dramatiser. Aucune affirmation non vérifiée présentée comme un fait acquis.                                                             |
 | Délégation à l'IA                          | 20  | `TDD_JOURNAL.md` ou l'auto-évaluation liste précisément ce qui a été délégué à une IA sur le jalon V1 (génération, suggestion, revue), ce qui ne l'a pas été, et pourquoi ce partage était le bon compromis pour ce projet.    |
+| Protocole d'enquête (`HYPOTHESES.md`)      | 20  | Le bug documenté a été rendu déterministe avant toute correction. Au moins trois hypothèses falsifiables sont posées, dont au moins une explicitement réfutée par une expérience. Le correctif est prouvé par 200 exécutions consécutives sans échec du test qui échouait avant, pas par une seule exécution réussie.                |
 
 ## Coût du changement de spec (mesuré, pas noté séparément)
 
@@ -84,17 +85,17 @@ invalide le capstone entier.
 ## Seuils
 
 ```text
-< 72/120    -> le capstone n'est pas validé, reprendre le cadrage avant de continuer le code
-72-89/120   -> validé avec réserve, identifier et corriger le critère le plus faible avant de
+< 84/140    -> le capstone n'est pas validé, reprendre le cadrage avant de continuer le code
+84-104/140  -> validé avec réserve, identifier et corriger le critère le plus faible avant de
                présenter ce projet comme référence
-90-107/120  -> validé, projet présentable en portfolio avec ses limites assumées à l'oral
-108-120/120 -> validé avec excellence, ce niveau de rigueur est celui attendu en conditions
+105-125/140 -> validé, projet présentable en portfolio avec ses limites assumées à l'oral
+126-140/140 -> validé avec excellence, ce niveau de rigueur est celui attendu en conditions
                professionnelles réelles sur un projet à enjeu de sécurité
 
-Palier 90-107 et 108-120 : la revue de risques (REVUE-DE-RISQUES.md) doit être non seulement
+Palier 105-125 et 126-140 : la revue de risques (REVUE-DE-RISQUES.md) doit être non seulement
 présente (critère éliminatoire) mais aussi jugée complète par une relecture externe (trois
-familles de risques couvertes, mitigations concrètes) pour que le score franchisse 90/120.
-Une revue de risques minimaliste plafonne le score final à 89/120, même si le reste de la
+familles de risques couvertes, mitigations concrètes) pour que le score franchisse 105/140.
+Une revue de risques minimaliste plafonne le score final à 104/140, même si le reste de la
 grille dépasse ce seuil.
 ```
 
@@ -117,3 +118,5 @@ réelle.
   notés sur 20.
 - Comment tu utiliserais cette grille différemment si le brief n'avait contenu aucune
   contrainte de sécurité : quel critère perdrait alors son poids critique.
+- Pourquoi une hypothèse réfutée dans `HYPOTHESES.md` compte pour le critère "Protocole
+  d'enquête" au même titre qu'une hypothèse confirmée.

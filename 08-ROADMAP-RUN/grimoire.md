@@ -1,24 +1,28 @@
-# Grimoire : Niveau 08 : Roadmap Run
+# Grimoire : Roadmap Run
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Ouvre ce mémo quand un sponsor te pousse vers une date avant que tu aies vérifié quoi que ce soit. Il te donne le réflexe, pas la théorie complète : pour ça, relis les leçons du niveau.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Jalon (milestone) | Point de verification binaire, date, rattache a un artefact, jamais un pourcentage. | Un "80% fait" ne dit rien de verifiable, et le retard se decouvre trop tard. | Ton prochain jalon est-il binaire, date, et rattache a un artefact concret ? |
-| Tranche verticale (vertical slice) | Decoupage qui traverse toutes les couches du systeme pour un scenario reduit mais complet, a l'oppose d'un decoupage par couche technique. | On finit "toute la base de donnees" puis "tout le back" sans jamais avoir un scenario complet demontrable avant la toute fin. | Ta phase 1 traverse-t-elle toutes les couches pour un scenario complet, ou seulement une couche technique ? |
-| Risque le plus cher | Hypothese a la fois incertaine et couteuse a corriger si fausse, souvent difficile a inverser une fois du travail construit dessus. | On construit des semaines sur une hypothese fausse, et le cout de correction explose parce que tout est deja batti dessus. | Quel est le risque le plus cher de ton projet actuel, et l'as-tu deja verifie ? |
-| Derive silencieuse | Ecart entre avancement reel et avancement declare qui grandit sans etre signale, jusqu'a devenir un retard officiel soudain. | Le retard n'est annonce que quand il est trop tard pour l'absorber sans casse. | Comment detectes-tu une derive silencieuse avant qu'elle devienne un retard officiel ? |
-| Matrice de risque (incertitude x cout) | Outil qui classe chaque hypothese selon son incertitude et son cout si elle est fausse, pour designer ce qu'il faut verifier en premier. | On traite les risques dans l'ordre ou ils sont pratiques a traiter, pas dans l'ordre ou ils coutent cher. | Peux-tu placer tes cinq hypotheses principales dans la matrice incertitude x cout ? |
-| Signal de derive : pourcentage repete | Le meme pourcentage d'avancement annonce deux fois de suite signale un blocage cache. | On croit que "ca avance" alors que rien de verifiable n'a change depuis la derniere fois. | As-tu deja vu le meme pourcentage annonce deux semaines de suite sans creuser ? |
-| Signal de derive : questions plus vagues | Des questions qui deviennent plus vagues au lieu de plus precises indiquent un blocage. | Une equipe bloquee arrete de poser des questions precises, et personne ne le remarque a temps. | Les questions de ton equipe deviennent-elles plus precises ou plus vagues au fil du projet ? |
-| Formule de la demo comme signal fiable | Ne jamais demander "ou en es-tu ?", toujours demander "montre-moi ce qui marche maintenant, avec des donnees reelles". | Une reponse invérifiable ("ca avance bien") remplace un vrai signal et masque un retard. | Que fais-tu si on te repond "ca avance bien" au lieu de te montrer quelque chose qui marche ? |
+| Jalon (milestone) | Point de vérification binaire, daté, rattaché à un artefact. Jamais un pourcentage. | `git tag -a jalon-demo-scenario-complet -m "2026-03-01: demo bout-en-bout avec donnees reelles"` | course en montagne / régie technique de spectacle |
+| Tranche verticale | Découpage qui traverse toutes les couches pour un scénario réduit mais complet, plutôt que couche par couche. | `# scenario minimal complet, pas "toute la BDD" puis "tout le back"\ncurl -X POST /api/tournees -d '{"livreur":1,"colis":["A1"]}'` | atelier de menuiserie / cuisine de restaurant en service |
+| Risque le plus cher | Hypothèse à la fois incertaine et coûteuse à corriger si elle est fausse. | `SELECT nom, incertitude, cout_si_faux, incertitude*cout_si_faux AS score FROM hypotheses ORDER BY score DESC LIMIT 1;` | navigation maritime / urgences d'hôpital |
+| Dérive silencieuse | Écart entre avancement réel et avancement déclaré qui grossit sans être signalé. | `diff <(cat rapport-semaine-N.txt) <(cat rapport-semaine-N-1.txt)` | course en montagne / régie technique de spectacle |
+| Matrice de risque | Classement des hypothèses par incertitude x coût, pour décider quoi vérifier en premier. | `INSERT INTO risques (hypothese, incertitude, cout_si_faux) VALUES ('tantiemes totalisent 10000', 'elevee', 'eleve');` | atelier de menuiserie / navigation maritime |
+| Signal : pourcentage répété | Le même chiffre d'avancement annoncé deux fois de suite signale un blocage caché. | `grep -c "80%" rapport-semaine-*.txt` | urgences d'hôpital / course en montagne |
+| Signal : questions plus vagues | Des questions qui perdent en précision au fil des points d'équipe indiquent un blocage. | `git log --since="2 weeks ago" --grep="question" --oneline | wc -l` | régie technique de spectacle / cuisine de restaurant en service |
+| Formule de la démo | Ne jamais demander "où en es-tu", toujours demander une démonstration avec des données réelles. | `curl -s https://staging.exemple.fr/api/factures/dernieres | jq '.[0]'` | navigation maritime / urgences d'hôpital |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière à réviser, reformulée pour que tu comprennes le mécanisme, pas la grille par coeur.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Gestion de la pression | Tu proposes une alternative concrete et utilisable dans les deux heures | Tu cedes et donnes une date pour faire plaisir, ou tu refuses sechement sans alternative |
-| Communication du risque | Tu formules le risque en consequence business comprehensible ("si les tantiemes sont faux, certains coproprietaires seront sur- ou sous-factures, ce qui est pire qu'un retard") | Tu utilises du jargon de planning ("on n'a pas fini le risk assessment") |
-| Engagement | Tu fixes une date precise de retour avec un livrable nomme | Tu restes vague sur la suite ("je te recontacte") |
-| Coherence avec le niveau (justification par un mecanisme) | Tu expliques que la date depend d'abord de la verification du risque le plus cher | Tu donnes une date basee sur une simple somme de taches connues |
+| Sang-froid sous pression | Tu cèdes une date de confort ou tu bloques sans rien proposer, dans les deux cas le sponsor perd confiance. | As-tu une alternative concrète à proposer dans l'heure qui suit une demande de date prématurée ? |
+| Traduction du risque en impact métier | Le jargon de planning ne convainc personne et cache la vraie conséquence pour l'utilisateur final. | Peux-tu formuler ton risque technique en une phrase compréhensible par un non-technicien ? |
+| Engagement daté | Une réponse vague ("je te recontacte") est vécue comme un refus déguisé. | Quelle date précise et quel livrable nommé donnes-tu en échange d'un délai de réflexion ? |
+| Cohérence de méthode | Donner une date sans avoir vérifié le risque le plus cher revient à deviner. | Ta date dépend-elle d'abord de la vérification de ton hypothèse la plus coûteuse ? |
 
 ## La règle en une phrase
 
@@ -56,12 +60,16 @@ incertitude   à explorer, coût         RISQUE LE PLUS CHER
 2. Les questions posées deviennent plus vagues au lieu de plus précises --> signal de blocage.
 3. Le périmètre d'une tâche grossit sans que sa date bouge --> risque absorbé en silence.
 
-## Formule de la démo comme signal fiable
-
-Ne jamais demander "où en es-tu ?". Toujours demander : "montre-moi ce qui marche maintenant,
-avec des données réelles." Une réponse invérifiable n'est pas un signal, c'est du bruit.
-
 ## Phrase à ressortir en réunion de planning
 
 "Avant de donner une date, je veux d'abord savoir ce qu'on ne sait pas : et vérifier la
 partie qui coûterait le plus cher si on se trompait."
+
+## Si tu rates le boss-fight
+
+Relis `01-why-this-level.md` et la leçon sur la matrice de risque avant de retenter. Refais
+l'exercice en écrivant d'abord tes cinq hypothèses réelles, chiffrées incertitude x coût,
+avant de rédiger une seule ligne de réponse au sponsor. Donne-toi 48 heures, pas plus : au-delà,
+la scène perd sa tension et tu répètes une réponse apprise par coeur plutôt que raisonnée. Si à
+la deuxième tentative tu retombes sous 50/100, remonte au niveau amont sur la priorisation par
+coût et vérifie que tu sais vraiment distinguer incertitude et coût avant de revenir ici.

@@ -1,24 +1,30 @@
 # Grimoire : Day-to-Legend
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Ouvre ce mémo quand tu doutes de ta progression, ou juste avant de préparer un dossier de
+promotion. Il rappelle les leviers d'entraînement, pas le cours complet sur la progression.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Pratique délibérée | Entrainement cible, juste au-dela de la zone de confort, avec feedback rapide et specifique, par opposition au travail ordinaire qui optimise la livraison, pas la progression. | On confond "travailler beaucoup" et "progresser", et l'anciennete remplace la competence reelle. | Ta derniere semaine contenait-elle de la pratique deliberee, ou seulement du travail ordinaire ? |
-| Boucle de feedback fermee | Correction basee uniquement sur ton propre jugement, sans reference externe, qui plafonne rapidement ta progression au niveau que tu avais deja. | Tu te corriges toi-meme indefiniment, sans jamais depasser ton propre plafond de comprehension. | As-tu une reference externe qui verifie tes decisions, ou juges-tu seul de leur qualite ? |
-| Zone d'apprentissage efficace | Niveau de difficulte juste au-dela du confortable, ni trop facile (ennui, zero gain), ni trop difficile (frustration sans gain exploitable). | Tu t'entraines dans le confort (zero gain) ou dans l'inconnu total (frustration sans apprentissage). | Ton dernier exercice etait-il dans la zone d'apprentissage efficace, ou hors d'elle ? |
-| Plateau de progression | Stagnation malgre un travail continu, causee le plus souvent par une zone de confort deguisee, une boucle fermee, ou un mauvais niveau de difficulte. | Tu continues a travailler sans progresser, et tu ne le remarques que des annees plus tard. | Es-tu en plateau actuellement, et laquelle des trois causes s'applique ? |
-| Portfolio de preuves | Ensemble d'artefacts verifiables (ADR, post-mortem, code documente) attestant une competence, par opposition a une reputation declarative. | Ta competence reelle repose uniquement sur ta parole, invérifiable par quiconque decide de ta promotion. | Peux-tu citer trois artefacts verifiables qui prouvent une competence precise que tu revendiques ? |
-| Kata de decision | Exercice court et regulier : contexte, decision, justification, compromis, ce qui te ferait changer d'avis. | Tu n'entraines jamais explicitement ta capacite a justifier une decision et a nommer un compromis. | Peux-tu refaire, sur une decision recente, l'exercice contexte / decision / justification / compromis ? |
-| Journal de decision | Notation quotidienne courte de la decision du jour, d'une hesitation, et de ce que tu referais autrement. | Tu perds la trace de tes propres raisonnements, et ne peux plus verifier ta progression dans le temps. | Que retiendrais-tu de ta derniere entree de journal, si tu devais la relire dans un an ? |
-| Checklist annuelle de verite | Quatre questions posees une fois par an sur decision risquee, source d'apprentissage, competence nouvelle, croissance du portfolio ; trois ou quatre "non" signalent un plateau a traiter. | Le plateau se decouvre trop tard, apres plusieurs annees perdues sans le savoir. | Combien de "non" obtiens-tu a la checklist annuelle de verite aujourd'hui ? |
+| Pratique délibérée | Entraînement ciblé, juste au-delà de la zone de confort, avec feedback rapide et spécifique. | `echo "kata du jour: justifier une decision reelle en 4 lignes" >> kata.md` | course en montagne / atelier de menuiserie |
+| Boucle de feedback fermée | Correction basée uniquement sur son propre jugement, qui plafonne vite la progression. | `git log --author="moi" --grep="revu par" --oneline | wc -l` | urgences d'hôpital / régie technique de spectacle |
+| Zone d'apprentissage efficace | Difficulté juste au-delà du confortable, ni trop facile ni trop dure. | `echo "difficulte ressentie: 6/10" >> kata.md # vise 6-7, pas 2 ni 10` | course en montagne / navigation maritime |
+| Plateau de progression | Stagnation malgré un travail continu, causée par zone de confort, boucle fermée ou mauvais calibrage. | `diff <(cat competences-2025.md) <(cat competences-2026.md)` | atelier de menuiserie / urgences d'hôpital |
+| Portfolio de preuves | Artefacts vérifiables (ADR, post-mortem, code documenté) attestant une compétence réelle. | `git log --author="moi" --grep="ADR" --oneline` | régie technique de spectacle / navigation maritime |
+| Kata de décision | Exercice court et régulier : contexte, décision, justification, compromis, ce qui ferait changer d'avis. | `echo "contexte / decision / justification / compromis / contre-preuve" >> kata-$(date +%F).md` | course en montagne / cuisine de restaurant en service |
+| Journal de décision | Notation quotidienne courte de la décision du jour et de ce qu'on referait autrement. | `echo "$(date +%F): decision=X, hesitation=Y, autrement=Z" >> journal.md` | urgences d'hôpital / atelier de menuiserie |
+| Checklist annuelle de vérité | Quatre questions posées une fois par an ; trois ou quatre "non" signalent un plateau à traiter. | `grep -c "non" checklist-annuelle-2026.md` | navigation maritime / course en montagne |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Reconstruction honnête du portfolio (honnêteté sur ce qu'on ne sait pas) | Les preuves choisies s'appuient sur des faits vérifiables (commits, tickets, incidents réels), pas sur une reformulation flatteuse a posteriori | Les preuves reformulent le passé de façon flatteuse sans base vérifiable |
-| Sélection des trois décisions (justification par un mécanisme) | Le critère de sélection est explicite et défendable, pas "les plus impressionnantes à raconter" | Le critère de sélection est implicite ou choisi pour l'effet narratif |
-| Proposition de grille au manager (compromis nommé et assumé) | La grille profite objectivement à tous les candidats, pas seulement à toi | La grille est concue, meme implicitement, pour avantager seulement toi |
-| Honnêteté sur les limites | Le plan ne prétend pas rattraper en un mois ce qui demande douze semaines ; il assume la limite et mise sur la qualité plutôt que le volume | Le plan bluffe une expérience ou une régularité qui n'existe pas |
+| Reconstruire honnêtement un historique | Enjoliver le passé sans base vérifiable se retourne contre toi dès qu'on creuse. | Sur quelles traces concrètes (commits, tickets) t'appuies-tu pour prouver une compétence passée ? |
+| Choisir avec un critère explicite | Choisir "ce qui impressionne" plutôt que ce qui a un vrai impact affaiblit ta démonstration. | Quel critère explicite justifie le choix de tes trois décisions mises en avant ? |
+| Proposer un cadre juste pour tous | Une grille conçue pour t'avantager seul se retourne contre toi si elle est perçue comme une manoeuvre. | En quoi ta proposition de grille profite-t-elle aussi à tes collègues en lice ? |
+| Assumer ses limites | Bluffer une expérience ou une régularité qui n'existe pas se découvre tôt ou tard. | Que refuses-tu explicitement de prétendre avoir accompli en un mois ? |
 
 ## Routine minimale (résumé)
 
@@ -50,3 +56,11 @@ Mauvais niveau de difficulte --> recalibrer, viser l'inconfort gerable, pas l'in
 Quand tu doutes de ta progression : "qu'est-ce que j'ai fait cette semaine qui m'aurait
 gêné il y a six mois, et est-ce que ça me gêne encore aujourd'hui ?" Si la réponse est
 "je n'ai rien fait de tel", c'est le signal, pas l'introspection vague.
+
+## Si tu rates le boss-fight
+
+Relis la section sur le portfolio de preuves et sur les trois causes de plateau avant de
+retenter. Refais l'exercice en listant d'abord, par écrit, cinq traces vérifiables de ton
+historique réel (commits, tickets, incidents) avant de composer ton plan. Donne-toi
+48 heures. Si le score reste sous 50/100, ou si l'honnêteté sur les limites reste sous
+12/30, remonte au niveau amont sur les compromis nommés et assumés avant de revenir ici.

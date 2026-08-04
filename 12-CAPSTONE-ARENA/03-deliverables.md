@@ -52,6 +52,23 @@ ci-dessous doit pouvoir être jugé sans que tu sois présent pour l'expliquer o
   externe, avec une justification écrite pour chaque critère où tu ne t'attribues pas le
   score maximal.
 
+
+## Livrable 6 : HYPOTHESES.md
+
+- Un fichier `HYPOTHESES.md` à la racine du dépôt, documentant un vrai bug rencontré pendant
+  le capstone (pas un exemple inventé après coup), au format à 6 champs imposé par
+  [`../14-TOOL-CAVE/03-debugging-toolkit.md`](../14-TOOL-CAVE/03-debugging-toolkit.md) :
+  symptôme observable, hypothèse, prédiction falsifiable, expérience, résultat, conclusion.
+- Au moins trois hypothèses distinctes, dont au moins une explicitement réfutée par une
+  expérience : une auto-évaluation qui ne présente que des hypothèses confirmées du premier
+  coup est un signal que l'enquête n'a pas été honnête.
+- La preuve que le bug a été rendu reproductible à volonté avant toute tentative de
+  correction (seed fixe, sleep contrôlé, injection d'ordonnancement ou harnais de répétition),
+  décrite dans le champ "Expérience" de chaque hypothèse concernée.
+- La preuve de non-régression après correctif : le test qui échouait doit être relancé au
+  moins 200 fois de suite sans échec, avec le résultat de ce harnais consigné dans le
+  document.
+
 ## Ce que tu dois savoir défendre
 
 - Pourquoi le test de concurrence sur le comptage de capacité est un livrable obligatoire et
@@ -60,6 +77,8 @@ ci-dessous doit pouvoir être jugé sans que tu sois présent pour l'expliquer o
   ensuite.
 - Ce qui distingue, dans ta roadmap post-V1, une dette technique assumée d'un report de
   fonctionnalité : et pourquoi les deux n'appellent pas le même traitement.
+- Pourquoi une hypothèse réfutée dans `HYPOTHESES.md` a autant de valeur qu'une hypothèse
+  confirmée pour prouver le sérieux de ton enquête.
 
 ## Arborescence de livraison imposée
 
@@ -75,6 +94,7 @@ capstone/
 +-- TDD_JOURNAL.md
 +-- POSTMORTEM.md
 +-- REVUE-DE-RISQUES.md
++-- HYPOTHESES.md
 +-- ADR/
 |   +-- ADR-0001-....md
 |   \-- ADR-000N-....md
@@ -92,6 +112,9 @@ capstone/
 - `POSTMORTEM.md` : ce qui a mal tourné, ce qui a bien tourné, ce que tu ferais différemment.
 - `REVUE-DE-RISQUES.md` : revue de risques du projet (sécurité, coûts, données personnelles),
   produite selon le gabarit du Niveau 15 (voir `../15-BONUS-VAULT/challenge.md`).
+- `HYPOTHESES.md` : le protocole d'enquête d'un vrai bug rencontré pendant le capstone, au
+  format à 6 champs, avec au moins une hypothèse réfutée et la preuve de non-régression sur
+  200 exécutions (voir [`../14-TOOL-CAVE/03-debugging-toolkit.md`](../14-TOOL-CAVE/03-debugging-toolkit.md)).
 - `ADR/` : un fichier par décision structurante, au format du Niveau 15
   (`../15-BONUS-VAULT/01-decision-templates.md`).
 - `src/` : le code de la V1.

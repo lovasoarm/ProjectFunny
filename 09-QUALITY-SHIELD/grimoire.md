@@ -1,24 +1,30 @@
-# Grimoire : Niveau 09, Quality Shield
+# Grimoire : Quality Shield
 
-| Terme | Ce que c'est | Ce qui casse sans ça | Ce que tu dois savoir défendre |
+Ouvre ce mémo en plein incident ou juste avant une revue tendue. Il rappelle les réflexes du
+bouclier qualité, pas la théorie complète des tests.
+
+| Terme | Définition | Code | Analogies |
 | --- | --- | --- | --- |
-| Les quatre couches du bouclier | Tests (avant production), observabilite (en production, en minutes), revue + CI (avant le code partage), incident/postmortem (apres, sans recidive). Aucune couche seule ne suffit. | Une seule couche laisse un trou : un bug non teste, non observe, non revu, ou qui se reproduit sans postmortem. | Quelle couche de ton bouclier est la plus faible aujourd'hui, et que laisse-t-elle passer ? |
-| Priorisation des tests | Cout reel de la panne x probabilite qu'un bug s'y glisse = priorite de test. Jamais "c'est facile a tester" ou un pourcentage de couverture vise. | On teste ce qui est facile a tester, pas ce qui coute cher si ca casse, et le vrai risque passe au travers. | Quel est le test le plus prioritaire de ton systeme selon cette formule, et pourquoi ? |
-| Pyramide vs trophee | Pyramide : beaucoup d'unitaires, bon pour la logique pure isolee. Trophee : accent sur l'integration, bon quand le risque vient des frontieres (base reelle, reseau, format externe). | On applique une pyramide a un systeme dont le risque vient des frontieres, et les tests unitaires ne voient jamais le vrai bug. | Ton systeme merite-t-il une pyramide ou un trophee, et pourquoi ? |
-| Observabilite : logs, metriques, traces | Logs structures ("que s'est-il passe, precisement"), metriques ("combien, depuis quand ca derive"), traces ("ou est passe le temps, ou ca a casse"). | Un incident survient et personne ne peut repondre a une question surgie en plein incident. | Peux-tu repondre a une question imprevue pendant un incident avec tes logs, metriques et traces actuels ? |
-| Revue de code : machine vs humain | La machine (linter, formateur) traite style, indentation, nommage mecanique. L'humain traite logique metier, cas limites, risque de securite, dette d'architecture. | La revue humaine se perd en commentaires de style, et rate le vrai risque metier ou de securite. | Ta derniere revue de code a-t-elle porte sur un scenario concret, ou sur une preference esthetique ? |
-| Test flaky | Test dont le resultat varie sans changement de code, typiquement a cause du temps reel, de l'ordre d'execution ou d'un etat partage mal isole. | Un test flaky relance indefiniment "jusqu'a ce qu'il passe" masque un vrai bug intermittent. | Que fais-tu d'un test flaky : le corriger, le desactiver avec un ticket, ou le relancer en boucle ? |
-| Incident commander et les deux temps | Personne qui centralise les decisions pendant un incident, pas necessairement l'expert technique. Pendant : reduire l'impact vite. Apres : comprendre la cause structurelle sans urgence de temps. | Reparation et analyse se melangent, et l'urgence du "pendant" empeche de bien comprendre le "apres", ou l'inverse retarde la reparation. | Sais-tu distinguer, dans ton dernier incident, ce qui relevait du "pendant" et ce qui relevait de "l'apres" ? |
-| Postmortem sans blame | Analyse d'incident centree sur le systeme, jamais sur la personne, avec chronologie factuelle, cause immediate et structurelle, et actions datees assignees. | Une equipe qui craint le blame cache l'information utile, et le meme incident se reproduit. | Ton dernier postmortem contient-il des actions assignees et datees, ou juste "faire plus attention" ? |
+| Les quatre couches du bouclier | Tests avant prod, observabilité en prod, revue + CI avant partage, postmortem après incident. Une seule couche ne suffit jamais. | `npm test && npm run lint && npm run build` | urgences d'hôpital / régie technique de spectacle |
+| Priorisation des tests | Coût réel de la panne x probabilité qu'un bug s'y glisse, jamais un pourcentage de couverture visé. | `# priorite = impact_business * proba_bug, pas "facile a tester"\nvitest run tests/paiement.spec.ts --coverage=false` | navigation maritime / cuisine de restaurant en service |
+| Pyramide vs trophée | Pyramide : beaucoup d'unitaires pour la logique pure. Trophée : accent sur l'intégration quand le risque vient des frontières. | `vitest run tests/integration/**/*.spec.ts` | atelier de menuiserie / urgences d'hôpital |
+| Observabilité (logs, métriques, traces) | Logs structurés pour "quoi précisément", métriques pour "combien depuis quand", traces pour "où est passé le temps". | `logger.info({ event: "facture_generee", unitId, montantCents }, "facture generee")` | régie technique de spectacle / navigation maritime |
+| Revue de code : machine vs humain | La machine traite le style, l'humain traite la logique métier, les cas limites et le risque de sécurité. | `eslint . --fix && echo "reste: logique metier, cas limites, securite"` | atelier de menuiserie / cuisine de restaurant en service |
+| Test flaky | Test dont le résultat varie sans changement de code, souvent à cause du temps réel ou d'un état partagé. | `vitest run --retry=0 tests/flaky.spec.ts # jamais de retry qui masque le bug` | course en montagne / urgences d'hôpital |
+| Incident commander | Personne qui centralise les décisions pendant l'incident, distincte de l'expert technique. | `# une seule personne decide pendant l'incident\necho "IC: @toi, decisions passent par toi jusqu'a resolution"` | régie technique de spectacle / navigation maritime |
+| Postmortem sans blâme | Analyse centrée sur le système : chronologie factuelle, cause immédiate et structurelle, actions datées assignées. | `git log --since="2026-03-01" --until="2026-03-02" --oneline -- services/facturation/` | urgences d'hôpital / course en montagne |
 
-## Comportements evalues en boss-fight
+## Défense orale
 
-| Comportement | Preuve attendue dans ta copie | Signal d'échec |
+Pour la grille complète et chiffrée, va voir [./boss-fight.md](./boss-fight.md). Voici la matière
+reformulée pour t'entraîner à l'oral.
+
+| Terme | Ce qui casse sans ça | Ce que tu dois savoir défendre |
 | --- | --- | --- |
-| Décision sous incertitude | Tranche avec un critère lié à l'impact utilisateur réel, assume la part de risque | Ne tranche pas, ou tranche sans critère explicite |
-| Coordination de l'équipe | Centralise clairement la décision, empêche les actions parallèles non coordonnées | Laisse les deux développeurs agir chacun de leur côté |
-| Séparation réparation/analyse (compromis nommé et assumé) | Explique clairement pourquoi il répare avant de comprendre en détail, et reporte l'analyse | Cherche la cause exacte avant d'agir sur l'impact |
-| Communication pendant l'incident (honnêteté sur ce qu'on ne sait pas) | Prévoit une communication régulière pendant l'incident, y compris "on ne sait pas encore" | Ne communique qu'une fois résolu |
+| Trancher sous incertitude | Sans critère explicite, tu paralyses la décision ou tu paries au hasard pendant que l'impact grandit. | Quel critère lié à l'impact utilisateur réel utilises-tu pour trancher en pleine incertitude ? |
+| Centraliser la coordination | Sans rôle clair, deux personnes agissent en parallèle et aggravent la panne. | Comment empêches-tu deux personnes d'agir en même temps sans se concerter pendant un incident ? |
+| Séparer réparer et comprendre | Chercher la cause exacte avant d'agir retarde la réduction de l'impact réel. | Pourquoi répares-tu avant de comprendre en détail, et quand rattrapes-tu l'analyse ? |
+| Communiquer pendant, pas seulement après | Sans nouvelles régulières, les parties prenantes imaginent le pire ou perdent confiance. | Que dis-tu à ton équipe pendant l'incident si tu ne sais pas encore la cause ? |
 
 ## Prioriser les tests : la seule formule qui compte
 
@@ -53,8 +59,6 @@ Machine (linter, formateur) : style, indentation, imports, nommage mecanique
 Humain (revue) : logique metier, cas limites, risque de securite, dette d'architecture
 ```
 
-Un bon commentaire de revue pointe un scénario concret, jamais une préférence esthétique.
-
 ## CI : ordre des étapes, et la règle du test flaky
 
 ```text
@@ -79,3 +83,48 @@ Apres    : comprendre la cause structurelle, sans urgence de temps, actions assi
    passer sans alerte).
 3. Ce qui a bien fonctionné, à préserver.
 4. Actions concrètes, assignées à une personne, avec une date : jamais "faire plus attention".
+
+## Commandes prêtes à copier
+
+```bash
+# 1. Profilage rapide d'un endpoint suspect en Node 20 LTS (verifie le 2026-08-03)
+node --prof server.js &
+curl -s http://localhost:3000/api/tournees > /dev/null
+kill %1 && node --prof-process isolate-*.log > profil.txt
+```
+
+```bash
+# 2. Bisect git pour trouver le commit qui a introduit une regression
+git bisect start
+git bisect bad HEAD
+git bisect good v1.4.0
+git bisect run npm test -- tests/facturation.spec.ts
+```
+
+```bash
+# 3. Logs structures en JSON pour une question precise pendant un incident
+echo '{"ts":"2026-03-01T09:12:00Z","event":"echec_confirmation","unitId":341,"reason":"tranche_horaire not found"}' \
+  | tee -a incident.log
+```
+
+```bash
+# 4. Test de charge minimal avec autocannon pour verifier un seuil avant mise en prod
+npx autocannon -c 20 -d 30 https://staging.exemple.fr/api/tournees
+```
+
+```sql
+-- 5. Requete de diagnostic Postgres 16 (verifie le 2026-08-03) : trouver les commits partiels d'un batch
+SELECT unit_id, committed_at
+FROM invoices
+WHERE batch_id = '2026-03-monthly'
+ORDER BY committed_at DESC
+LIMIT 5;
+```
+
+## Si tu rates le boss-fight
+
+Relis la leçon sur les deux temps de l'incident et celle sur la priorisation des tests avant
+de retenter. Refais l'exercice en écrivant d'abord ton critère de décision par écrit, puis
+seulement ta réponse. Donne-toi 48 heures avant la deuxième tentative, pas plus, pour garder
+la pression réaliste de la scène. Si le score reste sous 50/100, remonte au niveau amont sur
+les compromis nommés et assumés avant de revenir affronter ce boss-fight.

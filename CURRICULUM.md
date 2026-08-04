@@ -20,7 +20,7 @@ et ce qui casse dans un projet si ce niveau est sauté.
 | 12  | CAPSTONE-ARENA | Tu conduis un projet complet depuis un brief ambigu     | Projet livré + dossier de décisions            | 25-40 h |
 | 13  | DAY-TO-LEGEND  | Tu progresses seul, durablement                         | Routine 12 semaines + portfolio de preuves     | continu |
 | 14  | TOOL-CAVE      | Tu es rapide à déboguer et outillé                      | Environnement et checklists de debug           | 4 h     |
-| 15  | BONUS-VAULT    | Tu couvres sécurité, coûts, données personnelles        | Revue de risques du projet fil rouge           | 6 h     |
+| 15  | BONUS-VAULT    | Tu couvres sécurité, coûts, données personnelles        | Revue de risques signée du projet fil rouge    | 9 h     |
 
 ## Ce qui casse si tu sautes un niveau
 
@@ -32,8 +32,36 @@ et ce qui casse dans un projet si ce niveau est sauté.
 - Sans 09 : tu apprends les pannes par tes utilisateurs.
 - Sans 10 : deux devs produisent moins qu'un seul.
 
-## Prérequis techniques
+## Prérequis techniques et versions de référence
 
-Un langage que tu connais (TypeScript recommandé pour suivre les exemples), une base SQL, Git,
-et un éditeur. Rien d'autre. Le curriculum est volontairement peu dépendant des outils : voir
-`ANNEXE-perennite.md`.
+Un langage que tu connais, une base SQL, Git, et un éditeur. Rien d'autre. Le curriculum est
+volontairement peu dépendant des outils, mais les exemples doivent tourner : ils sont écrits et
+vérifiés contre les versions ci-dessous. Si tu utilises une version inférieure, une partie des
+mécanismes enseignés n'existe pas chez toi, et tu croiras avoir mal compris.
+
+| Outil | Version minimale | Version de référence | Vérifié le |
+| --- | --- | --- | --- |
+| PostgreSQL | 12 | 16 | 2026-08-03 |
+| Node.js | 20 LTS | 22 LTS | 2026-08-03 |
+| TypeScript | 5.4 | 5.5 | 2026-08-03 |
+| Git | 2.40 | 2.45 | 2026-08-03 |
+| Docker Engine | 24 | 27 | 2026-08-03 |
+| psql (client) | 14 | 16 | 2026-08-03 |
+
+### Le niveau 05 est écrit pour PostgreSQL, pas pour SQL en général
+
+Le niveau [05-DATA-SPELLS](05-DATA-SPELLS/README.md) utilise des mécanismes propres à Postgres :
+
+| Mécanisme | Disponible à partir de | Équivalent MySQL 8 |
+| --- | --- | --- |
+| `ADD CONSTRAINT ... NOT VALID` puis `VALIDATE CONSTRAINT` | Postgres 9.4 | Aucun équivalent : la validation est toujours bloquante |
+| Contrainte d'exclusion `EXCLUDE USING gist` | Postgres 9.2 | Aucun équivalent : il faut un verrou applicatif ou une table de créneaux |
+| Index partiel `CREATE INDEX ... WHERE ...` | Postgres 7.2 | Aucun équivalent direct : colonne générée plus index |
+| `CREATE INDEX CONCURRENTLY` | Postgres 8.2 | `ALTER TABLE ... ALGORITHM=INPLACE`, garanties différentes |
+| Type `jsonb` et index GIN | Postgres 9.4 | `JSON` sans index natif équivalent |
+
+Si tu es sur MySQL ou SQLite, lis quand même le niveau 05, mais installe un Postgres 16 pour les
+exercices : sinon la moitié des exercices est infaisable, et ce n'est pas ta faute.
+
+Les ressources externes et leur date de vérification sont dans
+[ANNEXE-perennite.md](ANNEXE-perennite.md).

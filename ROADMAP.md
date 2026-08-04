@@ -41,7 +41,35 @@ Bloc CONDUITE  (08-10) : "voici mes risques, ma stratégie de test, mon flux d'�
 Bloc EPREUVE   (11-12) : "voici le projet, ses limites connues, et ce que je changerais"
 ```
 
-Si tu n'y arrives pas, ne passe pas au bloc suivant. Refais le boss fight du dernier niveau.
+Si tu n'y arrives pas, ne passe pas au bloc suivant. Refais le boss-fight du dernier niveau, en
+suivant la section `## Si tu échoues` de son fichier `boss-fight.md` : chaque boss-fight porte
+désormais son propre protocole de reprise, au niveau du fichier et pas seulement du bloc.
+
+## Rétrospectives de bloc (obligatoires)
+
+À la fin de chaque bloc, avant d'ouvrir le suivant, tu rouvres tes livrables passés et tu écris
+ce qui est devenu faux. C'est le seul moment du parcours où tu rejoues ton propre travail.
+
+| Fin de bloc | Rétrospective à faire | Durée |
+| --- | --- | --- |
+| après le niveau 03 | [RETRO-BLOC-1-CADRAGE.md](RETRO-BLOC-1-CADRAGE.md) | 60 à 90 min |
+| après le niveau 07 | [RETRO-BLOC-2-BUILD.md](RETRO-BLOC-2-BUILD.md) | 60 à 90 min |
+| après le niveau 10 | [RETRO-BLOC-3-CONDUITE.md](RETRO-BLOC-3-CONDUITE.md) | 60 à 90 min |
+| après le niveau 12 | [RETRO-BLOC-4-EPREUVE.md](RETRO-BLOC-4-EPREUVE.md) | 60 à 90 min |
+
+## Que faire quand tu rates un boss-fight
+
+```text
+echec 1 --> relis les lecons citees dans la grille, refais le challenge,
+            attends 48 h, retente avec la variante proposee
+echec 2 --> retourne au niveau amont nomme dans le boss-fight,
+            refais son boss-fight, puis reviens
+echec 3 --> reduis le perimetre de ton projet fil rouge : le blocage vient
+            presque toujours d'un projet trop ambitieux
+```
+
+Un échec de boss-fight n'est pas un verdict sur toi. C'est un signal de position : il te dit
+quel niveau amont n'a pas pris.
 
 ## Règle d'abandon saine
 

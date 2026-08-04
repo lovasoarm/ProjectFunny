@@ -145,3 +145,266 @@ Piège 3 : Optimiser la fonction la plus visible plutôt que la plus coûteuse
   reformule-la en hypothèse falsifiable.
 - Cite les trois pièges de mesure d'un profiler et pour chacun un exemple où il t'aurait
   fait tirer une conclusion fausse.
+
+## Atelier : le bug qui n'arrive qu'une fois sur cinquante
+
+### La scène
+
+Un club d'escalade gère ses créneaux de mur avec un service Node qui accepte les
+réservations. Chaque créneau a une capacité fixe, par exemple huit places. Deux grimpeurs
+cliquent "réserver" à la même seconde sur le dernier créneau du mardi soir. La CI fait
+tourner la suite de tests avant chaque déploiement, et un test précis, `reserve.concurrent.test.ts`,
+échoue environ une fois sur cinquante exécutions, jamais plus, jamais moins souvent. L'équipe
+a pris l'habitude de relancer la CI quand ça arrive. Un vendredi, neuf personnes se
+retrouvent sur un créneau à huit places, un adhérent fait un scandale à l'accueil, et
+personne ne peut expliquer pourquoi le compteur a menti.
+
+### Le code fourni
+
+```ts
+// Node 20 LTS (verifie le 2026-08-03)
+// reservation.ts : service de réservation de créneaux du mur d'escalade
+
+type Creneau = {
+  id: string;
+  capacite: number;
+  placesReservees: number;
+};
+
+const creneaux = new Map<string, Creneau>();
+
+creneaux.set("mardi-19h", { id: "mardi-19h", capacite: 8, placesReservees: 7 });
+
+// Simule un accès base de données avec une latence réseau variable, comme en production.
+function latenceReseau(): Promise<void> {
+  const ms = Math.random() * 5; // 0 à 5ms, variation réaliste d'un pool de connexions
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function reserverPlace(creneauId: string): Promise<boolean> {
+  const creneau = creneaux.get(creneauId);
+  if (!creneau) return false;
+
+  // Lecture du compteur : une requête SELECT en conditions réelles.
+  await latenceReseau();
+  const placesActuelles = creneau.placesReservees;
+
+  if (placesActuelles >= creneau.capacite) {
+    return false; // complet, refus
+  }
+
+  // Écriture du compteur : une requête UPDATE en conditions réelles.
+  // Entre la lecture ci-dessus et l'écriture ci-dessous, une autre requête concurrente
+  // a le temps de lire la même valeur non encore mise à jour.
+  await latenceReseau();
+  creneau.placesReservees = placesActuelles + 1;
+
+  return true;
+}
+
+export function getCreneau(creneauId: string): Creneau | undefined {
+  return creneaux.get(creneauId);
+}
+```
+
+Le test qui échoue environ une fois sur cinquante :
+
+```ts
+// reserve.concurrent.test.ts
+import { test, expect } from "vitest";
+import { reserverPlace, getCreneau } from "./reservation";
+
+test("le compteur ne dépasse jamais la capacité sous accès concurrent", async () => {
+  // Une seule place restante, deux tentatives simultanées : une seule doit réussir.
+  const creneau = getCreneau("mardi-19h")!;
+  creneau.placesReservees = creneau.capacite - 1;
+
+  const [resultat1, resultat2] = await Promise.all([
+    reserverPlace("mardi-19h"),
+    reserverPlace("mardi-19h"),
+  ]);
+
+  const succes = [resultat1, resultat2].filter(Boolean).length;
+  expect(succes).toBe(1); // échoue environ 1 fois sur 50 : les deux réussissent parfois
+  expect(getCreneau("mardi-19h")!.placesReservees).toBe(creneau.capacite);
+});
+```
+
+### Étape 1 : rendre le bug déterministe AVANT toute correction
+
+Règle absolue de cet atelier : **tu n'as pas le droit de toucher au correctif tant que tu ne
+peux pas déclencher le bug à volonté.** Un bug qu'on corrige "à l'instinct" sans l'avoir rendu
+reproductible n'est pas corrigé, il est masqué : la preuve, c'est que ce club l'a déjà vécu
+trois semaines plus tôt sous une autre forme.
+
+Techniques pour transformer un bug d'une fois sur cinquante en un bug d'une fois sur une :
+
+- **Seed fixe sur l'aléatoire.** Remplace `Math.random()` par un générateur seedé
+  (`mulberry32(42)` ou équivalent) le temps de l'enquête, pour que chaque exécution du test
+  produise exactement la même séquence de latences.
+- **Injection d'ordonnancement.** Force l'entrelacement le plus dangereux : les deux appels
+  doivent lire avant qu'aucun n'écrive. Un simple `await` placé à la main entre la lecture et
+  l'écriture, contrôlé par un paramètre de test, transforme la course en scénario garanti.
+- **Sleep contrôlé, jamais un sleep au hasard.** Remplace la latence aléatoire par une
+  latence paramétrable dans le test : `latenceReseau(ms: number)`. Une requête à 10ms et
+  l'autre à 0ms reproduit l'entrelacement dangereux à chaque exécution.
+- **Journalisation horodatée à la milliseconde**, posée avant de toucher au code de
+  production, pour observer l'ordre réel des lectures et écritures :
+
+```ts
+console.log(`[${Date.now()}] req=${id} lecture placesReservees=${placesActuelles}`);
+console.log(`[${Date.now()}] req=${id} ecriture placesReservees=${placesActuelles + 1}`);
+```
+
+- **Harnais de répétition** : fais tourner le test en boucle et compte les échecs réels avant
+  de croire à la fréquence "une fois sur cinquante" annoncée de mémoire.
+
+```bash
+# Harnais de répétition : mesure la fréquence réelle d'échec, ne la suppose pas
+for i in $(seq 1 200); do
+  npx vitest run reserve.concurrent.test.ts --reporter=dot >> /tmp/run-$i.log 2>&1 \
+    || echo "ECHEC run $i" >> /tmp/echecs.log
+done
+wc -l /tmp/echecs.log
+```
+
+Sans ce travail de reproduction, tu ne peux pas savoir si un futur correctif marche : tu ne
+peux que constater, encore une fois, que "ça semble aller mieux".
+
+### Étape 2 : le format HYPOTHESES.md imposé
+
+Chaque hypothèse suit exactement six champs, dans cet ordre, jamais résumés ni fusionnés :
+
+```text
+Symptôme observable    : ...
+Hypothèse               : ...
+Prédiction falsifiable  : ...
+Expérience               : ...
+Résultat                 : ...
+Conclusion               : ...
+```
+
+Exemple rempli sur le bug de cet atelier, avec au moins trois hypothèses dont une réfutée :
+
+```text
+Symptôme observable    : le test de concurrence échoue environ une fois sur cinquante,
+                          avec un compteur qui dépasse la capacité de un.
+
+Hypothèse 1             : le générateur Math.random() de Node partage un état global qui
+                          se corrompt sous appels concurrents.
+Prédiction falsifiable  : si c'est vrai, remplacer Math.random() par un compteur fixe ne
+                          doit rien changer à la fréquence d'échec, puisque le problème
+                          serait dans le générateur lui-même, pas dans son usage.
+Expérience               : remplacement de latenceReseau() par un délai fixe de 2ms des
+                          deux côtés, 200 exécutions du test.
+Résultat                 : le test échoue quand même, à une fréquence proche de celle
+                          observée avant, tant que les deux délais restent égaux.
+Conclusion               : hypothèse réfutée. Le générateur aléatoire n'est pas en cause :
+                          le problème survient même avec une latence fixe, donc il tient à
+                          l'ordre relatif des opérations, pas à Math.random().
+
+Hypothèse 2             : la Map JavaScript n'est pas thread-safe et corrompt la valeur
+                          stockée sous accès concurrent.
+Prédiction falsifiable  : si c'est vrai, lire directement creneau.placesReservees juste
+                          après l'écriture, dans la même fonction, sans await entre les
+                          deux, doit parfois renvoyer une valeur incohérente.
+Expérience               : ajout d'un log juste après l'écriture, sur 200 exécutions,
+                          comparaison de la valeur écrite et de la valeur relue
+                          immédiatement.
+Résultat                 : la valeur relue correspond toujours exactement à la valeur
+                          écrite, dans les 200 cas.
+Conclusion               : hypothèse réfutée. Node est mono-thread pour ce code
+                          JavaScript : la Map ne se corrompt pas toute seule, le problème
+                          est ailleurs.
+
+Hypothèse 3             : deux appels concurrents peuvent tous les deux lire l'ancienne
+                          valeur de placesReservees avant qu'aucun des deux n'ait écrit sa
+                          mise à jour, parce que la lecture et l'écriture ne forment pas
+                          une opération atomique.
+Prédiction falsifiable  : si c'est vrai, forcer l'entrelacement lecture A, lecture B,
+                          écriture A, écriture B (avec un délai contrôlé) doit produire un
+                          dépassement de capacité à 100% des exécutions, pas seulement une
+                          fois sur cinquante.
+Expérience               : sleep contrôlé imposant cet ordre exact, 200 exécutions du
+                          test avec cet entrelacement forcé.
+Résultat                 : les 200 exécutions dépassent la capacité de un, à chaque fois.
+Conclusion               : hypothèse confirmée. La combinaison lecture puis écriture, sans
+                          verrou ni contrainte, permet à deux requêtes concurrentes de
+                          fonder leur décision sur la même valeur périmée. C'est une race
+                          condition classique de type lecture-modification-écriture (read
+                          modify write) non atomique.
+```
+
+### Étape 3 : la correction et sa preuve
+
+Une fois l'hypothèse 3 confirmée, le correctif retire toute décision prise côté application
+sur une valeur lue séparément, et déplace la vérification de capacité dans une seule
+opération atomique côté base de données, protégée par une contrainte :
+
+```sql
+-- Migration : la capacité est vérifiée et incrémentée en une seule opération atomique,
+-- impossible à interrompre par une requête concurrente.
+ALTER TABLE creneaux
+  ADD CONSTRAINT places_dans_la_capacite
+  CHECK (places_reservees <= capacite);
+
+-- La réservation devient un UPDATE conditionnel unique, plus de lecture séparée.
+UPDATE creneaux
+SET places_reservees = places_reservees + 1
+WHERE id = $1
+  AND places_reservees < capacite;
+-- Si la ligne modifiée est 0, la place n'a pas pu être prise : le créneau était complet
+-- au moment exact de l'écriture, pas au moment d'une lecture périmée de quelques
+-- millisecondes.
+```
+
+La preuve de correction n'est pas "le test passe une fois" : c'est le harnais de répétition
+qui échouait avant, relancé 200 fois de suite sans aucun échec.
+
+```bash
+for i in $(seq 1 200); do
+  npx vitest run reserve.concurrent.test.ts --reporter=dot \
+    || { echo "ECHEC run $i sur le correctif"; exit 1; }
+done
+echo "200/200 : correction prouvée, pas seulement supposée"
+```
+
+### Arbre de décision d'enquête
+
+```text
+Un test échoue de facon intermittente
+|
++-- Peux-tu le reproduire a volonte (>90% des essais) ?
+|     |
+|     +-- NON --> ne touche pas au code de production.
+|     |           Applique seed fixe, sleep controle, injection d'ordonnancement,
+|     |           harnais de repetition, jusqu'a obtenir une reproduction fiable.
+|     |
+|     \-- OUI --> continue.
+|
++-- As-tu au moins 3 hypotheses falsifiables ecrites dans HYPOTHESES.md ?
+|     |
+|     +-- NON --> ecris-les avant d'ouvrir le code source suspect.
+|     |
+|     \-- OUI --> teste chaque hypothese par une experience separee.
+|
++-- Une hypothese est-elle confirmee par une experience qui la rend impossible a nier ?
+|     |
+|     +-- NON --> formule de nouvelles hypotheses, ne corrige rien au hasard.
+|     |
+|     \-- OUI --> ecris le correctif cible sur la cause confirmee.
+|
+\-- Le test qui echouait passe-t-il 200 fois de suite apres correctif ?
+      |
+      +-- NON --> le correctif ne traite pas la vraie cause, retour a HYPOTHESES.md.
+      |
+      \-- OUI --> correction prouvee, documente-la, retire les logs de debug temporaires.
+```
+
+Analogie : traquer un bug intermittent, c'est la garde aux urgences qui refuse de traiter un
+malaise sans en avoir observé une crise déclenchée en conditions contrôlées, et la cordée qui
+refuse de retenter un passage tant qu'elle n'a pas identifié la prise exacte qui a lâché.
+Où l'analogie casse : aux urgences et en cordée, il existe une limite éthique et physique à
+provoquer une crise ou une chute pour l'observer. En informatique, provoquer le bug à volonté
+dans un environnement de test est non seulement permis mais obligatoire : c'est ce qui rend
+l'enquête possible sans mettre personne en danger.

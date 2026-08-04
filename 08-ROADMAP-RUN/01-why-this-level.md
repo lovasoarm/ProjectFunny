@@ -1,103 +1,153 @@
-# Pourquoi les plannings optimistes tuent les projets
+# Pourquoi ce niveau existe : ROADMAP-RUN
 
-## La scène
+## 1. Pourquoi ce niveau existe
 
-Léa dirige le développement du système de refacturation d'énergie pour un syndic qui gère
-40 immeubles. Le patron demande une date. Léa additionne les tâches qu'elle voit dans son
-backlog : écran de saisie des index, calcul de répartition par tantièmes, export PDF des
-factures : et annonce "six semaines". Elle livre à la semaine 11. Entre-temps, elle a
-découvert que la règle de répartition change selon le type de contrat (chauffage collectif
-vs individuel), que deux immeubles ont des tantièmes qui ne totalisent pas 10 000 à cause
-d'une erreur historique jamais corrigée, et que le format d'export attendu par le prestataire
-d'impression n'est documenté nulle part et doit être rétro-ingénié à partir d'exemples PDF.
-Aucune de ces trois choses n'était "un risque identifié". Elles étaient juste absentes du
-planning parce que Léa a listé ce qu'elle savait faire, pas ce qu'elle ne savait pas encore.
+Savoir coder une fonctionnalité et savoir dire quand elle sera prête sont deux compétences
+différentes. Ce niveau existe parce que la deuxième s'apprend rarement en autodidacte : elle
+demande de nommer l'incertitude à voix haute, ce que personne n'enseigne spontanément. Sans
+méthode de planification, un projet techniquement bien construit peut quand même échouer,
+parce qu'il arrive trop tard, avec un budget dépassé, et une confiance client déjà brûlée.
 
-## Ce qui se passe vraiment
+## 2. Ce qui casse sans lui (deux incidents chiffrés)
 
-Un planning optimiste additionne des tâches connues. Un planning réaliste soustrait du temps
-pour des inconnues qu'on n'a pas encore nommées. La différence entre les deux n'est pas la
-compétence de la personne qui planifie : c'est la méthode.
+Incident 1 : une régie de refacturation d'énergie annonce "six semaines" pour un module de
+répartition de charges. Le projet livre en semaine 11, soit un dépassement de 83 %, parce que
+trois inconnues métier (règles dérogatoires, format d'export non documenté, erreur de
+tantièmes historique) n'avaient jamais été isolées avant l'estimation.
+
+Incident 2 : une entreprise de livraison frigorifique découpe sa roadmap par couche technique
+(backend, frontend, intégration). Le défaut d'incompatibilité réseau n'est découvert qu'en
+phase 3, sur 8 semaines de projet : 2 semaines de backend doivent être refaites, soit 25 % du
+temps total du projet perdu à un stade où le budget est déjà engagé.
+
+## 3. Qui souffre en premier
+
+Un troisième cercle souffre presque toujours sans le savoir : les utilisateurs finaux, qui
+reçoivent une version pressée en fin de course pour rattraper le retard, avec moins de tests
+et moins de vérification que ce qui avait été prévu au départ.
+
+Le développeur qui a donné l'estimation optimiste souffre en premier, en public, devant le
+client ou le sponsor. Vient ensuite l'équipe entière, qui absorbe les heures supplémentaires
+non planifiées. Le sponsor souffre en dernier, mais le plus durablement : sa propre crédibilité
+externe (auprès de ses clients ou de sa direction) a été engagée sur une date qui n'a pas tenu.
+
+## 4. Quand ça se manifeste
+
+Le symptôme apparaît rarement au début. Les deux ou trois premières semaines d'un projet mal
+planifié ressemblent à un projet bien planifié : le travail visible avance. Le décalage se
+révèle typiquement au premier tiers du calendrier annoncé, quand la première inconnue non
+nommée doit enfin être affrontée, et qu'aucun budget de temps ne lui avait été réservé.
+
+Un signe additionnel : le silence en reunion de suivi. Tant que personne ne pose
+de question precise sur une zone floue du projet, il y a de bonnes chances que cette
+zone n'ait pas encore ete regardee en detail, pas qu'elle soit reglee.
+
+## 5. Ce que tu sais faire à la sortie
+
+Tu sais découper un projet en phases qui livrent une tranche verticale vérifiable plutôt qu'une
+couche technique invérifiable. Tu sais repérer, avant de planifier, l'hypothèse la plus chère à
+inverser si elle est fausse, et l'attaquer en premier. Tu sais distinguer un avancement déclaré
+d'un avancement démontré, et repérer les trois signaux de dérive avant que le retard devienne
+officiel.
+
+## 6. Ce qui n'est pas couvert et où
+
+- La négociation du budget ou du contrat avec le client n'est pas couverte ici : voir
+  [10-TEAM-QUEST/04-communication-under-pressure.md](../10-TEAM-QUEST/04-communication-under-pressure.md).
+- Le découpage du travail en tranches de valeur (base de ce niveau) est détaillé dans
+  [03-MVP-SPLIT/02-slicing-value.md](../03-MVP-SPLIT/02-slicing-value.md), pas réexpliqué ici.
+- La gestion d'un incident de production en cours de projet est couverte par
+  [09-QUALITY-SHIELD/05-incidents-and-postmortem.md](../09-QUALITY-SHIELD/05-incidents-and-postmortem.md).
+
+## 7. Prérequis
+
+- Avoir déjà découpé un besoin en tranches verticales de valeur (niveau 03).
+- Savoir estimer une tâche avec une fourchette plutôt qu'un chiffre unique
+  ([03-MVP-SPLIT/04-estimating-honestly.md](../03-MVP-SPLIT/04-estimating-honestly.md)).
+- Avoir une base de projet réelle sur laquelle appliquer la méthode : ce niveau ne s'apprend
+  pas sur un exercice abstrait.
+- Avoir déjà vécu, au moins une fois, un dépassement de délai non anticipé : la méthode se
+  comprend mieux avec une douleur réelle en mémoire qu'en abstrait.
+
+## 8. Erreurs de débutant les plus coûteuses
+
+- Découper par couche technique pour rassurer l'organisation des équipes, en repoussant le
+  risque d'intégration à la fin du projet.
+- Donner un chiffre unique d'estimation en réunion, sous pression sociale, sans avoir ouvert le
+  problème.
+- Confondre "occupé" et "en avance" : accepter un pourcentage déclaré sans jamais demander une
+  démonstration de ce qui fonctionne réellement.
+- Traiter la découverte d'une inconnue comme une tâche de développement normale, avec la même
+  estimation qu'une implémentation connue.
+
+## 9. Le mécanisme sous-jacent
+
+Un projet a un budget de risque, pas seulement un budget de temps. Chaque inconnue non nommée
+consomme silencieusement ce budget. Le mécanisme de ce niveau consiste à rendre l'inconnue
+visible tôt, quand elle coûte encore peu à corriger, plutôt que de la laisser remonter tard,
+quand tout le reste du système a été construit par-dessus une hypothèse fausse.
 
 ```text
-Planning optimiste (par tâches connues)
-┌──────────┬──────────┬──────────┐
-│ tâche A  │ tâche B  │ tâche C  │  → durée = somme des durées estimées
-└──────────┴──────────┴──────────┘
-   3j          2j          1j        = 6 jours annoncés
-
-Réalité (les inconnues se révèlent en cours de route)
-┌──────────┬────┬──────────┬────┬──────────┬────┐
-│ tâche A  │ ?! │ tâche B  │ ?! │ tâche C  │ ?! │  → durée = somme + surprises
-└──────────┴────┴──────────┴────┴──────────┴────┘
-   3j        2j     2j       3j     1j       2j    = 13 jours réels
+Budget de risque d'un projet
+ semaine 1        semaine 5        semaine 10
+   [connu]  [connu]  [inconnu decouvert tot, cout faible]
+                                    [inconnu decouvert tard, cout multiplie]
+Regle : plus une inconnue est decouverte tard, plus son cout de correction
+augmente, car le code construit dessus doit etre defait, pas seulement corrige.
 ```
 
-Les "?!" ne sont pas des imprévus au sens météorologique : ce sont des inconnues
-_connaissables à l'avance_ si on les avait cherchées avant d'estimer. La règle de
-répartition variable selon le type de contrat était dans le cahier des charges du syndic,
-noyée dans une annexe. L'erreur de tantièmes était visible dans les données existantes, si
-quelqu'un les avait ouvertes avant la semaine 8. Le format d'export était devinable en
-demandant au prestataire d'impression avant de coder, pas après.
+Analogie : planifier un projet, c'est le régisseur qui teste chaque effet technique avant la
+générale plutôt que le jour du spectacle, et le chef de cordée qui repère les passages
+dangereux sur la carte avant de les affronter en pleine paroi.
+Où l'analogie casse : le régisseur et le chef de cordée peuvent observer directement le danger
+avant d'agir. Un risque projet reste souvent invisible tant qu'on n'a pas construit la partie
+du système qui le révèle : on planifie contre une incertitude qu'aucun instrument ne montre.
 
-Un planning tient la route quand il fait deux choses qu'un planning optimiste ne fait pas :
+## 10. Contre-exemple : quand appliquer ce niveau serait une erreur
 
-1. **Il isole ce qui est réellement inconnu** et lui donne un temps dédié : une phase de
-   découverte, pas une tâche de développement. Découvrir une règle métier n'a pas la même
-   nature que l'implémenter ; les confondre dans une seule estimation cache le risque.
-2. **Il ordonne les phases pour faire remonter les inconnues tôt**, quand elles coûtent
-   encore peu à corriger, plutôt qu'à la fin, quand tout le reste du système est construit
-   par-dessus une hypothèse fausse.
+Un prototype jetable, construit en deux jours pour tester une idée devant trois utilisateurs et
+destiné à être jeté quel que soit le résultat, ne mérite pas un découpage par phases ni un
+risk-first planning complet. Le coût de la méthode dépasserait le coût du projet lui-même.
+Ici, la règle de discernement est simple : la méthode de ce niveau se justifie dès qu'un projet
+a plus d'une semaine de développement réel et qu'un tiers (client, sponsor, équipe) attend une
+date. En dessous, planifier formellement est une perte de temps déguisée en rigueur.
 
-### Le coût de la découverte tardive
+## 11. Le coût d'apprentissage
 
-Une inconnue découverte en semaine 2 coûte le temps de la corriger. La même inconnue
-découverte en semaine 10 coûte le temps de la corriger _plus_ le temps de refaire tout ce
-qui a été construit sur l'hypothèse fausse _plus_ la confiance perdue avec le sponsor qui
-avait annoncé une date à ses propres clients.
+Compter environ 6 à 10 heures pour intégrer la méthode sur un projet réel de taille moyenne : le
+temps d'appliquer une fois le découpage en tranches verticales, une fois l'identification du
+risque le plus cher, et de tenir un suivi d'avancement par démonstration sur au moins deux
+semaines. La compétence ne se fixe pas en lisant, seulement en la pratiquant sur un projet où
+une vraie date compte pour quelqu'un d'autre que toi.
 
-```text
-coût de correction
-      │                                              ● (semaine 10 : tout est à refaire)
-      │                                      ●
-      │                              ●
-      │                      ●
-      │              ●
-      │      ●
-      └──────────────────────────────────────────────► temps où l'inconnue est découverte
-     sem.1   sem.3   sem.5   sem.7   sem.9   sem.10
-```
+## 12. Le signal observable de maîtrise
 
-Ce n'est pas une courbe linéaire, c'est une courbe qui s'emballe, parce que le code écrit
-après l'hypothèse fausse _dépend_ d'elle. Corriger l'hypothèse en semaine 10 ne veut pas dire
-changer une fonction, ça veut dire défaire des couches.
+Tu maîtrises ce niveau quand, face à une nouvelle demande de date, ton premier réflexe est de
+demander "quelles sont les inconnues" avant de donner un chiffre, et quand tu peux nommer, sans
+préparation, l'hypothèse la plus chère à inverser d'un projet en cours.
 
-## Compromis
+## 13. Ce que l'IA fait et ne fait pas à ta place
 
-| Option                                                 | Coût                                                              | Bénéfice                                                                                                 | Quand choisir                                                                                                   |
-| ------------------------------------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Planning par somme de tâches connues                   | Rapide à produire, facile à vendre ("6 semaines")                 | Motivant à court terme, personne ne pose de questions gênantes                                           | Jamais pour un projet avec de l'incertitude métier ou technique réelle                                          |
-| Planning risk-first (isoler et attaquer l'inconnu tôt) | Plus lent à produire, la première date annoncée est moins précise | La date devient plus fiable au fil du projet, les mauvaises surprises arrivent tôt et coûtent moins cher | Dès que le projet touche une règle métier mal documentée, une intégration externe, ou une donnée jamais auditée |
+Une IA peut t'aider à décomposer une tâche large en sous-tâches candidates, et à rédiger un
+squelette de plan par phases. Elle ne peut pas savoir, à ta place, quelle inconnue métier est
+réellement mal documentée dans ton contexte : cette information vit dans des personnes et des
+systèmes réels que l'IA n'a jamais consultés. Elle ne peut pas non plus porter la responsabilité
+de l'annonce de date faite à un sponsor : c'est un acte humain, engageant, qui reste le tien.
 
-## Pièges classiques
+## 14. Réutilisation dans les niveaux aval
 
-- Annoncer une date avant d'avoir identifié les zones d'incertitude : le symptôme est un
-  planning qui "glisse" de façon répétée, toujours de quelques jours, jamais annoncé d'un
-  coup.
-- Traiter la découverte comme une tâche de développement normale : le symptôme est
-  l'incapacité à répondre "combien de temps pour découvrir X" sans donner le même chiffre
-  que pour "implémenter X".
-- Estimer en confondant "ce que je sais faire vite" avec "ce que le projet exige" : le
-  symptôme est un planning détaillé sur les parties familières et vague sur les parties
-  nouvelles.
-- Refuser de nommer une inconnue par peur qu'elle fasse peur au sponsor : le symptôme est
-  qu'elle ressort quand même, plus tard, sous forme de retard non expliqué.
+- [09-QUALITY-SHIELD](../09-QUALITY-SHIELD/README.md) réutilise la notion de jalon vérifiable
+  pour définir ce qu'est un test qui "prouve" quelque chose plutôt qu'un test décoratif.
+- [12-CAPSTONE-ARENA](../12-CAPSTONE-ARENA/README.md) exige un plan par phases avec risque
+  nommé pour son propre projet final.
+- [13-DAY-TO-LEGEND](../13-DAY-TO-LEGEND/README.md) réutilise le suivi par démonstration
+  régulière comme discipline personnelle.
 
-## Ce que tu dois savoir défendre
+## 15. Trois questions à défendre à l'oral
 
-1. Pourquoi un planning qui additionne des tâches connues sous-estime systématiquement,
-   même quand chaque estimation individuelle est correcte.
-2. Donne un exemple (dans un domaine autre que la refacturation d'énergie) d'une inconnue
-   "connaissable à l'avance" qui, non cherchée, devient un retard non expliqué.
-3. Pourquoi le coût de correction d'une hypothèse fausse augmente plus vite que le temps
-   écoulé, et pas de façon linéaire.
+1. Pourquoi un découpage par couche technique cache le risque d'intégration jusqu'à la fin du
+   projet, même si chaque couche prise seule est bien construite.
+2. Donne un exemple de jalon formulé comme un pourcentage, et reformule-le en jalon binaire,
+   daté et rattaché à un artefact vérifiable.
+3. Explique le mécanisme qui fait qu'une inconnue découverte tard coûte plus cher qu'une
+   inconnue découverte tôt, et pas de façon linéaire.
